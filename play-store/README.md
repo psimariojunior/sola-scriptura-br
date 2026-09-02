@@ -21,7 +21,7 @@ O app usa Firebase Cloud Messaging (FCM) para push notifications.
 
 1. Acesse [Firebase Console](https://console.firebase.google.com)
 2. Crie um projeto ou use o existente
-3. Adicione um app Android com package name `com.solascriptura.sola_scriptura_app`
+3. Adicione um app Android com package name `com.solascriptura.app`
 4. Baixe o `google-services.json`
 5. Coloque o arquivo em `mobile_app/android/app/google-services.json`
 

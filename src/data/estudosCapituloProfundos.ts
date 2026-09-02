@@ -3194,6 +3194,290 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     fontes: ['Romanos 9', 'Gênesis 21:12', 'Malaquias 1:2–3', 'Êxodo 9:16', 'Isaías 28:16'],
   }),
 
+  'rm:2': ficha('rm', 2, 'O juiz moralista, o judeu e a circuncisão do coração', {
+    contextoHistorico:
+      'Depois de 1:18–32, o leitor «de bem» em Roma aplaude a ira contra os pagãos. Paulo vira o tribunal: tu que julgas, fazes as mesmas coisas. A igreja de Roma tinha judeus e gentios; o capítulo desmonta a vantagem étnica sem negar a eleição (que volta em 9–11).',
+    contextoCultural:
+      'O juízo segundo as obras (2:6–11) é linguagem do AT (Sl 62:12; Pv 24:12), não uma segunda via de salvação ao lado da fé. A «circuncisão» era o marcador social da aliança; Jeremias 4:4 e 9:25 já falavam de circuncisão do coração.',
+    contextoGeografico:
+      'Roma, capital onde o direito e o status importam. O argumento não depende do mapa: o tribunal é de Deus, não do Fórum.',
+    resumo:
+      'Por isso és inescusável, ó homem, quem quer que julgues. O juízo de Deus é segundo a verdade. Bondade, tolerância e longanimidade levam ao arrependimento; o coração duro entesoura ira. Deus pagará a cada um segundo as suas obras — glória ao que persevera no bem; ira ao que é contencioso. Não há acepção: judeu primeiro e também grego. Os gentios que não têm lei, para si mesmos são lei. O judeu que se apoia na lei e desonra a Deus pelo transgredir: o nome de Deus é blasfemado entre os gentios. Circuncisão aproveita se guardar a lei; o incircunciso que observa a lei julgará o circunciso transgressionário. Judeu no oculto; circuncisão a do coração, no espírito, não na letra.',
+    estrutura: [
+      '2:1–16 — o juiz humano e o tribunal de Deus',
+      '2:17–29 — o judeu, a lei e o coração',
+    ],
+    temas: ['Juízo', 'Arrependimento', 'Lei', 'Circuncisão', 'Hipocrisia'],
+    VersiculosChave: [
+      chave('Romanos 2:4', 'A bondade de Deus te conduz ao arrependimento?', 'A paciência divina não é indulgência barata; é convite.'),
+      chave('Romanos 2:28–29', 'Não é judeu o que o é exteriormente… a circuncisão é a do coração.', 'A aliança chega ao centro da pessoa; Paulo prepara 3:1–8 e 9:6.'),
+    ],
+    notaExegetica:
+      'κρίνεις (2:1) ecoa o julgamento que o leitor acaba de fazer em 1:32. γραπτόν ἐν ταῖς καρδίαις (2:15): a lei no coração não substitui o evangelho; mostra que o gentio também é responsável. ἐν πνεύματι οὐ γράμματι (2:29) antecipa 7:6 e 2 Co 3.',
+    notaHermeneutica:
+      'Não leia 2:6–13 como justificação por obras que anula 3:20–28. O princípio do juízo é obras; o meio de ser achado justo é a fé que produz obediência (1:5; 16:26). Leia 2 com 3: o «sim» à pergunta «há vantagem?» (3:1) não devolve o orgulho que 2 derrubou.',
+    significadoTeologico:
+      'Ninguém se esconde atrás da moral nem da etnia. A revelação especial (lei, circuncisão) agrava a responsabilidade quando há transgression. O verdadeiro povo é criado no coração pelo Espírito — tese que 8 e 9–11 completam.',
+    palavrasOriginais: ['ἀναπολόγητος', 'μετάνοια', 'περιτομὴ καρδίας', 'γράμμα / πνεῦμα'],
+    aplicacaoPratica:
+      'Pare de usar Rm 1 como arma contra os outros. Deixe a bondade de Deus levar ao arrependimento. Não confie no crachá da igreja. Peça circuncisão do coração.',
+    perguntasEstudo: [
+      'Como 2:1 usa o «amém» implícito de quem leu 1:18–32?',
+      '2:6–11 contradiz a justificação pela fé — ou descreve o critério do tribunal?',
+      'O que Jeremias 4:4 e 9:25 acrescentam a 2:28–29?',
+    ],
+    fontes: ['Romanos 2', 'Salmos 62:12', 'Jeremias 4:4', 'Jeremias 9:25–26', 'Isaías 52:5'],
+  }),
+
+  'rm:7': ficha('rm', 7, 'A lei, o casamento e o «homem miserável»', {
+    contextoHistorico:
+      'Após 6 (mortos para o pecado, vivos para Deus), a objeção: então a lei é pecado? Paulo, judeu fariseu, fala a quem conhece a lei. A analogia do casamento (o marido morto) explica a mudança de senhorio: da lei para Cristo.',
+    contextoCultural:
+      'No direito judaico e romano, o casamento liga enquanto o cônjuge vive. «Concupiscência» (ἐπιθυμία) e o décimo mandamento (7:7) mostram que a lei acusa o desejo, não só o ato. O debate sobre se 7:14–25 é Paulo convertido ou o homem sob a lei não se resolve com um slogan: o texto geme no presente e termina em 8:1.',
+    contextoGeografico:
+      'Sem cenário de viagem: o palco é o eu diante da lei. Roma ouve uma teologia nascida na sinagoga e cumprida no Messias.',
+    resumo:
+      'A lei tem domínio sobre o homem todo o tempo que vive. A mulher casada: se o marido morre, livre. Assim vós: mortos para a lei pelo corpo de Cristo, a fim de serdes de outro, daquele que ressuscitou. O fruto agora é para Deus; outrora, para a morte. Servimos em novidade de espírito, não na velhice da letra. A lei é santa; eu não conheceria a concupiscência, se a lei não dissesse: não cobiçarás. O pecado, tomando ocasião, me enganou. O que quero, não faço; o que odeio, isso faço. Quem me livrará do corpo desta morte? Graças a Deus, por Jesus Cristo. Assim que eu mesmo, com o entendimento, sirvo à lei de Deus, mas com a carne, à lei do pecado.',
+    estrutura: [
+      '7:1–6 — analogia do casamento; novidade do Espírito',
+      '7:7–13 — a lei é santa; o pecado usa a lei',
+      '7:14–25 — o conflito e o clamor',
+    ],
+    temas: ['Lei', 'Pecado', 'Carne', 'Espírito', 'Libertação'],
+    VersiculosChave: [
+      chave('Romanos 7:4', 'Mortos para a lei pelo corpo de Cristo, para serdes de outro.', 'A união nupcial muda de senhor: não antinomismo, e sim novo esposo.'),
+      chave('Romanos 7:24–25', 'Quem me livrará… Graças a Deus, por Jesus Cristo nosso Senhor.', 'O clamor não fica no espelho; abre a porta de Rm 8.'),
+    ],
+    notaExegetica:
+      'κατηργήθημεν ἀπὸ τοῦ νόμου (7:6): fomos desligados, não a lei destruída (cf. 3:31). ἐγὼ σάρκινός εἰμι (7:14) e πράσσω ὃ οὐ θέλω (7:15) descrevem incapacidade, não desculpa. νόμος ἁμαρτίας (7:23, 25) é o regime da carne, não um segundo decálogo.',
+    notaHermeneutica:
+      'Não pregue 7 como se o cristão estivesse condenado a perder sempre (isso ignora 6 e 8). Não pregue 8 como se 7 fosse só «o incrédulo» de modo que o santo nunca geme (isso ignora 8:23). A carta é um arco: 7 mostra a lei sem o Espírito; 8, o Espírito da vida.',
+    significadoTeologico:
+      'A lei revela e agrava o pecado; não o cura. A morte de Cristo encerra o casamento antigo. A libertação é uma Pessoa, não um método de autoaperfeiçoamento.',
+    palavrasOriginais: ['νόμος', 'ἐπιθυμία', 'σάρξ', 'ταλαίπωρος'],
+    aplicacaoPratica:
+      'Não use a lei como escada para o céu. Nomeie o pecado que a lei acende. Clame por Cristo, não por mais resolução. Leia o capítulo seguinte no mesmo fôlego.',
+    perguntasEstudo: [
+      'O que a analogia do casamento afirma sobre mudar de senhor sem denegrir a lei?',
+      'Como 7:7–13 impede dizer que a lei é má?',
+      'Por que 7:24–25 exige Romanos 8 imediatamente depois?',
+    ],
+    fontes: ['Romanos 7', 'Êxodo 20:17', 'Romanos 6', 'Romanos 8:1–4'],
+  }),
+
+  'rm:10': ficha('rm', 10, 'Cristo, o fim da lei, e a Palavra que se prega', {
+    contextoHistorico:
+      'Continua o bloco 9–11. Paulo testemunha zelo de Israel, mas sem entendimento. A justiça própria pela lei choca-se com a justiça de Deus pela fé. A missão aos gentios não é plano B: está em Isaías, Joel e Deuteronômio.',
+    contextoCultural:
+      '«Descer ao abismo / subir ao céu» (10:6–7) relê Dt 30: a Torah «perto de ti» torna-se Cristo, a Palavra encarnada e ressuscitada. «Todo aquele» (10:11–13) quebra o monopólio étnico sem apagar Israel (cap. 11).',
+    contextoGeografico:
+      '«Como pregarão se não forem enviados?» A carta já mira a Espanha (15:24): Roma é plataforma, não destino final. O mapa da fé é o da Palavra anunciada.',
+    resumo:
+      'O voto do coração: que sejam salvos. Têm zelo, não segundo o entendimento. Ignorando a justiça de Deus e procurando estabelecer a sua, não se sujeitaram. Cristo é o fim da lei para justiça de todo o que crê. Moisés: o homem que fizer estas coisas viverá por elas. A justiça da fé: não perguntes quem subirá ou descerá; a Palavra está perto, na boca e no coração. Se com a boca confessares Jesus como Senhor e creres que Deus o ressuscitou, serás salvo. Todo aquele que invocar o nome do Senhor será salvo. Como invocarão sem crer? Como crerão sem ouvir? Como ouvirão sem quem pregue? Como pregarão se não forem enviados? «Que formosos os pés…» Nem todos obedeceram. A fé vem pelo ouvir, e o ouvir pela Palavra de Cristo. Israel ouviu; Isaías: fui achado pelos que não me buscavam; o dia todo estendi as mãos a um povo rebelde.',
+    estrutura: [
+      '10:1–13 — zelo, fim da lei, confessar e crer',
+      '10:14–21 — envio, ouvir, Israel e as nações',
+    ],
+    temas: ['Fé', 'Pregação', 'Missão', 'Senhorio', 'Israel'],
+    VersiculosChave: [
+      chave('Romanos 10:4', 'Cristo é o fim da lei para justiça de todo aquele que crê.', 'τέλος: alvo e término da lei como via de justiça própria.'),
+      chave('Romanos 10:9–13', 'Se confessares… e creres… todo aquele que invocar o nome do Senhor será salvo.', 'Boca e coração; judeu e grego; Joel 2:32 no Messias.'),
+    ],
+    notaExegetica:
+      'τέλος νόμου (10:4): fim e cumprimento. ῥῆμα Χριστοῦ (10:17): a fé não nasce de um sentimento genérico, e sim da Palavra acerca de Cristo. ὑπακούω / ἀκοή (10:16–17): ouvir e obedecer da mesma raiz.',
+    notaHermeneutica:
+      'Não use 10:9 como fórmula mágica sem 10:14–17 (precisa haver Palavra). Não use 10:13 para anular 9: a eleição e o «todo aquele» convivem na mesma seção. Dt 30 em 10:6–8 é analogia da fé: a proximidade da lei aponta para a proximidade de Cristo.',
+    significadoTeologico:
+      'A justiça de Deus chega por proclamação. O senhorio de Jesus (Κύριος) é o Nome divino de Joel na boca da igreja. A recusa de Israel não é surdez acidental: ouviram e, em parte, rejeitaram o enviado.',
+    palavrasOriginais: ['τέλος', 'ὁμολογέω', 'ῥῆμα', 'εὐαγγελίζω'],
+    aplicacaoPratica:
+      'Troque o zelo sem entendimento por sujeição a Cristo. Confesse com a boca o que o coração crê. Envie pregadores. Não presuma que «já ouviram» basta — a fé vem pelo ouvir Cristo.',
+    perguntasEstudo: [
+      'O que «fim da lei» (10:4) significa — e o que não significa (antinomismo)?',
+      'Como Deuteronômio 30 funciona em 10:6–8?',
+      'Que cadeia missionária 10:14–15 estabelece?',
+    ],
+    fontes: ['Romanos 10', 'Deuteronômio 30:12–14', 'Joel 2:32', 'Isaías 52:7', 'Isaías 65:1–2'],
+  }),
+
+  'rm:11': ficha('rm', 11, 'O remanescente, a oliveira e o mistério de Israel', {
+    contextoHistorico:
+      '«Rejeitou Deus o seu povo?» A pergunta de 11:1 segura 9–10. Paulo é israelita, da semente de Abraão, da tribo de Benjamim. Elias pensou estar só; Deus guardou sete mil. No presente há remanescente segundo a eleição da graça.',
+    contextoCultural:
+      'A oliveira (Jr 11:16; Os 14:6) é Israel; os ramos naturais e o enxerto de zambujeiro (gentios) usam a prática agrícola mediterrânea. «Todo o Israel» (11:26) gerou leituras: o remanescente crente, a nação no fim, ou o Israel de Deus em Cristo — o texto exige humildade e o «mistério» (11:25), não um partido.',
+    contextoGeografico:
+      'Sião (11:26) e a oliveira: Jerusalém e a terra da aliança no horizonte, enquanto a igreja em Roma é majoritariamente gentia e tentada ao orgulho.',
+    resumo:
+      'Deus não rejeitou o povo que de antemão conheceu. O remanescente pela graça, não por obras. Os outros foram endurecidos (Is 29; Sl 69). Tropeçaram para cair? De modo nenhum: pela sua queda, salvação aos gentios, para pô-los em ciúmes. Se a rejeição é reconciliação do mundo, a admissão será vida dentre os mortos. A raiz é santa; os ramos também. Não te glories contra os ramos. Se Deus não poupou os naturais, teme. A bondade e a severidade. O mistério: endurecimento em parte, até que a plenitude dos gentios entre; e assim todo o Israel será salvo. Os dons e a vocação de Deus são sem arrependimento. Deus encerrou a todos na desobediência, para usar de misericórdia para com todos. Ó profundidade!',
+    estrutura: [
+      '11:1–10 — remanescente e endurecimento',
+      '11:11–24 — ciúmes, oliveira, aviso aos gentios',
+      '11:25–36 — mistério, misericórdia, doxologia',
+    ],
+    temas: ['Remanescente', 'Oliveira', 'Misericórdia', 'Orgulho', 'Mistério'],
+    VersiculosChave: [
+      chave('Romanos 11:18', 'Não te glories contra os ramos… não és tu que sustentas a raiz, mas a raiz a ti.', 'O gentio vive da seiva de Abraão, não o contrário.'),
+      chave('Romanos 11:33–36', 'Ó profundidade das riquezas… dele, por ele e para ele são todas as coisas.', 'A eleição termina em adorações, não em debate frio.'),
+    ],
+    notaExegetica:
+      'πώρωσις ἀπὸ μέρους (11:25): endurecimento parcial e temporário. οὕτως (11:26): «e assim» (modo), não necessariamente «e então» (calendário). ἄρρητα (11:29): os dons e o chamado são irrevogáveis.',
+    notaHermeneutica:
+      'Não leia 11 sem 9–10 (eleição e Palavra). Não use 11:26 para anular a fé em Cristo (11:23: «se não permanecerem na incredulidade»). Não use o enxerto para substituir Israel como se a raiz tivesse morrido. A doxologia impede tanto o triunfalismo gentio quanto a especulação arrogante.',
+    significadoTeologico:
+      'A fidelidade de Deus à aliança e a salvação das nações não competem. A igreja gentia é hóspede da oliveira. A história santa ainda não acabou; a misericórdia é o último horizonte.',
+    palavrasOriginais: ['λεῖμμα', 'ἐγκεντρίζω', 'πλήρωμα', 'μυστήριον'],
+    aplicacaoPratica:
+      'Não despreze judeus incrédulos nem judaize o evangelho. Tema. Adore a profundidade. Espere misericórdia para os que agora rejeitam — o mesmo Deus enxerta de novo.',
+    perguntasEstudo: [
+      'Como 11:1–6 relê Elias sem transformar o remanescente em elitismo?',
+      'O que a oliveira ensina ao gentio em Roma — e a nós?',
+      'Que limites 11:20–23 põe sobre qualquer leitura de 11:26?',
+    ],
+    fontes: ['Romanos 11', '1 Reis 19:10–18', 'Jeremias 11:16', 'Isaías 59:20–21', 'Deuteronômio 29:4'],
+  }),
+
+  'rm:13': ficha('rm', 13, 'Autoridades, o amor que cumpre a lei e a armadura da luz', {
+    contextoHistorico:
+      'Nero ainda não é o perseguidor sistemático de 64 d.C.; mesmo assim, Roma conhece impostos e espada. Paulo escreve a uma minoria sem poder político. 13:1–7 não é um cheque em branco a qualquer tirania: a autoridade é «de Deus» enquanto ministra o bem e pune o mal (13:3–4).',
+    contextoCultural:
+      'O tributo (φόρος) e o imposto (τέλος) eram feridas reais. «Amar ao próximo» cita Lv 19:18 como cumprimento da segunda tábua. A «noite adiantada» é escatologia ética: viver de dia no império que ainda é noite.',
+    contextoGeografico:
+      'Roma: o centro do poder que mais tarde matará Pedro e Paulo. O capítulo ensina submissão e dívida de amor no mesmo CEP do César.',
+    resumo:
+      'Toda alma esteja sujeita às autoridades superiores; não há autoridade senão de Deus. Quem resiste, resiste à ordenação de Deus. Os magistrados não são terror para as boas obras, senão para as más. É ministro de Deus, vingador para castigar o que faz o mal. Por isso pagais tributos. Dai a cada um o que deveis: ao tributo, o tributo; ao temor, o temor; à honra, a honra. A ninguém devais coisa alguma, senão o amar-vos uns aos outros: quem ama ao próximo cumpriu a lei. Os mandamentos se resumem neste: amarás. O amor não faz mal; cumprimento da lei é o amor. Conhecendo o tempo: a noite vai alta, o dia chega. Despojemo-nos das obras das trevas; vistamos as armas da luz. Andemos honestamente; nada de orgias, impureza, contenda. Vestí-vos do Senhor Jesus Cristo, e não tenhais cuidado da carne em suas concupiscências.',
+    estrutura: [
+      '13:1–7 — autoridade, espada, tributo',
+      '13:8–10 — a dívida do amor',
+      '13:11–14 — hora, luz, vestir Cristo',
+    ],
+    temas: ['Autoridade', 'Amor', 'Lei', 'Escatologia', 'Santidade'],
+    VersiculosChave: [
+      chave('Romanos 13:8–10', 'A ninguém devais nada, senão o amor… o cumprimento da lei é o amor.', 'A ética civil não substitui a dívida que nunca se quita: amar.'),
+      chave('Romanos 13:14', 'Revesti-vos do Senhor Jesus Cristo.', 'A santidade não é lista solta: é vestir uma Pessoa (Gl 3:27).'),
+    ],
+    notaExegetica:
+      'τεταγμέναι (13:1): ordenadas. διάκονος / λειτουργός (13:4, 6): o Estado como servo, não como deus. πλησίον (13:9–10) é o próximo, não um sentimento vago. ὅπλα τοῦ φωτός (13:12): armadura, não pijama moral.',
+    notaHermeneutica:
+      'Leia 13:1–7 com Atos 5:29 (é necessário obedecer a Deus) e com Apocalipse 13 (a besta). Paulo descreve a vocação da autoridade, não canoniza Nero. 12:19 (não vos vingueis) e 13:4 (o magistrado vinga) distinguem a pessoa e o ofício.',
+    significadoTeologico:
+      'O evangelho não anarquia nem idolatria do Estado. O amor cumpre a lei porque recusa o mal ao próximo. A escatologia torna a noite curta: a carne não governa quem já se vestiu de Cristo.',
+    palavrasOriginais: ['ἐξουσία', 'φόρος', 'ἀγάπη', 'ὅπλα'],
+    aplicacaoPratica:
+      'Pague o que é devido sem adorar o César. Ame de fato — isso é mais difícil que protestar. Vista Cristo de manhã. Não use 13 para silenciar a igreja diante do mal institucional.',
+    perguntasEstudo: [
+      'Como 13:3–4 limita o que 13:1 parece absoluto?',
+      'Que relação há entre 12:19 e 13:4?',
+      'O que «revesti-vos de Cristo» acrescenta às proibições de 13:13?',
+    ],
+    fontes: ['Romanos 13', 'Levítico 19:18', 'Atos 5:29', 'Mateus 22:21', 'Gálatas 3:27'],
+  }),
+
+  'rm:14': ficha('rm', 14, 'O fraco e o forte: dias, alimentos e o tribunal de Cristo', {
+    contextoHistorico:
+      'A igreja mista de Roma: alguns, provavelmente judeus ou tementes, guardam dias e evitam carne impura ou sacrificada a ídolos; outros, «fortes», comem de tudo. O capítulo não é sobre preferências de restaurante: é sobre a fé que não destrói o irmão por quem Cristo morreu.',
+    contextoCultural:
+      'O mercado de Roma vendia carne ligada a templos. O calendário judaico (sábados, luas) continuava visível. «Imundo» (κοινός) é linguagem de pureza, não de higiene moderna.',
+    contextoGeografico:
+      'Mesas em casas de Roma, onde o convite para jantar podia ser teste de comunhão — o mesmo problema de 1 Coríntios 8–10, com ênfase no julgamento mútuo.',
+    resumo:
+      'Acolhei o que é fraco na fé — não para contendas de opiniões. Um crê que de tudo se pode comer; o fraco come legumes. Quem come não despreze; quem não come não julgue: Deus o recebeu. Quem és tu que julgas o servo alheio? Um faz diferença entre dia e dia; outro julga iguais todos os dias. Cada um esteja certo em sua mente. Ninguém vive para si: se vivemos, para o Senhor; se morremos, para o Senhor. Cristo morreu e reviveu para ser Senhor de mortos e vivos. Todos compareceremos perante o tribunal. Não nos julguemos mais uns aos outros; antes, não ponde tropeço. Nada é de si mesmo imundo; mas para quem o estima imundo, para ele é. Se por causa de comida o teu irmão se contrista, já não andas segundo o amor. Não destruas por causa da tua comida aquele por quem Cristo morreu. O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito Santo. Tudo que não é de fé é pecado.',
+    estrutura: [
+      '14:1–12 — acolher, não julgar, o Senhor e o tribunal',
+      '14:13–23 — tropeço, amor, reino, fé',
+    ],
+    temas: ['Consciência', 'Amor', 'Liberdade', 'Tribunal', 'Reino'],
+    VersiculosChave: [
+      chave('Romanos 14:8', 'Quer vivamos quer morramos, somos do Senhor.', 'A identidade batismal relativiza o cardápio e o calendário.'),
+      chave('Romanos 14:17', 'O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito Santo.', 'O centro não é a mesa; é o reino.'),
+    ],
+    notaExegetica:
+      'προσλαμβάνεσθε (14:1): acolhei, o mesmo verbo de 15:7. διάκρισεις διαλογισμῶν: não disputas de opiniões. κοινός (14:14): impuro cerimonialmente. πίστις em 14:23 é convicção diante de Deus, não o ato de crer para justificação (embora ligados).',
+    notaHermeneutica:
+      'Não use 14 para relativizar o que Paulo chama pecado em 13:13 ou 1:18–32. O «adiáforo» aqui é comida e dias, não o evangelho. O «forte» (15:1) carrega o fraco: a liberdade cristã ajoelha-se pelo irmão.',
+    significadoTeologico:
+      'Cristo é Senhor da consciência. O tribunal futuro mata o tribunal da mesa. A liberdade sem amor é destruição do fraco — e portanto ofensa ao cruzificado.',
+    palavrasOriginais: ['ἀσθενῶν τῇ πίστει', 'βῆμα', 'πρόσκομμα', 'βασιλεία'],
+    aplicacaoPratica:
+      'Acolha sem interrogatório de cardápio. Não despreze o «legalista» nem julgue o «livre». Pare de destruir por um prato. Faça o que faz por fé, ou não faça.',
+    perguntasEstudo: [
+      'Quem é o «fraco» neste capítulo — e o que o forte não pode fazer?',
+      'Como 14:10–12 muda a forma de discordar na igreja?',
+      'Que limite 14:23 põe sobre imitar a liberdade alheia?',
+    ],
+    fontes: ['Romanos 14', 'Levítico 11', '1 Coríntios 8–10', 'Isaías 45:23'],
+  }),
+
+  'rm:15': ficha('rm', 15, 'Os fortes, as Escrituras e a rota até a Espanha', {
+    contextoHistorico:
+      'Fecha a ética de 12–15 e abre o itinerário apostólico. Paulo, que não fundou Roma, não quer edificar sobre fundamento alheio (15:20). Jerusalém (oferta dos gentios), Roma e Espanha: o mapa da missão.',
+    contextoCultural:
+      'As citações de 15:9–12 (2 Sm 22 / Sl 18; Dt 32; Sl 117; Is 11) provam que as nações no louvor não são acidente. A coleta para os pobres de Jerusalém (15:25–28) é teologia: os gentios devem aos judeus os bens espirituais.',
+    contextoGeografico:
+      'Jerusalém → Roma → Espanha. A Ilíria (15:19) marca até onde o arco já chegou. Roma é ponte, não pódio.',
+    resumo:
+      'Nós que somos fortes devemos suportar as fraquezas dos não fortes, e não agradar a nós mesmos. Cristo não agradou a si (Sl 69:9). Tudo que foi escrito para nosso ensino: pela paciência e consolação das Escrituras tenhamos esperança. Um para com o outro, segundo Cristo, para que unânimes glorieis ao Deus e Pai. Portanto acolhei-vos como Cristo vos acolheu. Cristo foi ministro da circuncisão; as nações glorificam a Deus pela misericórdia. Que o Deus da esperança vos encha de gozo e paz. Paulo: ministro de Cristo entre os gentios, sacerdote do evangelho. Desde Jerusalém e arredores até a Ilíria. Espero ver-vos de passagem para a Espanha. Agora vou a Jerusalém servir aos santos. Rogo que luteis comigo nas orações: que eu seja livre dos rebeldes na Judeia, e que o meu serviço seja aceito.',
+    estrutura: [
+      '15:1–13 — os fortes, as Escrituras, as nações no louvor',
+      '15:14–33 — o sacerdote da oferta gentia, Roma, Espanha, Jerusalém',
+    ],
+    temas: ['Escritura', 'Esperança', 'Missão', 'Unidade', 'Oferta'],
+    VersiculosChave: [
+      chave('Romanos 15:4', 'Tudo que dantes foi escrito para nosso ensino foi escrito, para que… tenhamos esperança.', 'O AT não é prefácio descartável; alimenta a esperança da igreja.'),
+      chave('Romanos 15:7', 'Acolhei-vos uns aos outros, como também Cristo nos acolheu.', 'A hospitalidade eclesial tem medida cristológica.'),
+    ],
+    notaExegetica:
+      'λειτουργόν (15:16): Paulo como liturgo; ἡ προσφορὰ τῶν ἐθνῶν: os gentios são oferta santificada pelo Espírito. πληροφορέω / πληροφορία da esperança em 15:13. 15:20: φιλότιμον εὐαγγελίζεσθαι — ambição santa de não repetir fundamento.',
+    notaHermeneutica:
+      '15:4 autoriza ler o AT cristologicamente sem esvaziar Israel (15:8–12). 15:1 interpreta 14: o forte carrega, não ganha o debate. Os planos de 15:22–33 mostram que a teologia da carta é também logística da missão.',
+    significadoTeologico:
+      'A unidade da igreja mista é o objetivo visível do evangelho às nações. A coleta é sacramento da dívida gentia. A esperança nasce da Escritura e do Deus da esperança, não do otimismo romano.',
+    palavrasOriginais: ['δυνατοί', 'προσφορά', 'ἐλπίς', 'λειτουργός'],
+    aplicacaoPratica:
+      'Carregue o fraco. Leia o AT até ter esperança. Acolha como Cristo acolheu. Ore pela missão e pela oferta — a teologia que não viaja ainda não chegou a Rm 15.',
+    perguntasEstudo: [
+      'Como o Salmo 69:9 em 15:3 define o que é «não agradar a si»?',
+      'O que 15:8–12 faz com a inclusão das nações?',
+      'Por que a coleta de 15:25–27 é teológica, não só caritativa?',
+    ],
+    fontes: ['Romanos 15', 'Salmos 69:9', 'Isaías 11:10', 'Salmos 117:1', 'Deuteronômio 32:43'],
+  }),
+
+  'rm:16': ficha('rm', 16, 'Febe, a rede da igreja e a doxologia da obediência da fé', {
+    contextoHistorico:
+      'Lista de saudações: a carta viaja com Febe, diácona de Cencreia (porto de Corinto). Muitos nomes são de escravos, libertos, mulheres, casas — o evangelho na carne da urbe. A advertência contra os que causam dissensões (16:17–20) protege o ensino dos caps. 1–15.',
+    contextoCultural:
+      'Igrejas domésticas (Priscila e Áquila, 16:3–5). Mulheres como Febe, Júnia (16:7, «notáveis entre os apóstolos» — discussão lexicográfica honesta: entre os enviados, não um cargo medieval). O ósculo santo e o Tertius que escreve (16:22) mostram o processo antigo de ditado.',
+    contextoGeografico:
+      'Cencreia → Roma. Áquila e Priscila já estiveram em Roma, Corinto e Éfeso (At 18). A carta amarra o Egeu ao Tibre.',
+    resumo:
+      'Recomendo-vos Febe, nossa irmã, serva da igreja em Cencreia: recebei-a e ajudai-a; tem sido protetora de muitos, e de mim. Saúdai Priscila e Áquila, cooperadores, que pela minha vida expuseram o pescoço; e a igreja que está em sua casa. Epeneto, primícias da Ásia. Maria, que trabalhou muito. Andrônico e Júnia, parentes, companheiros de prisão, notáveis entre os apóstolos, que foram antes de mim em Cristo. Mais nomes, mais casas. Acautelai-vos dos que causam dissensões e escândalos contra a doutrina que aprendestes; desviái-vos. O Deus de paz esmagará em breve Satanás debaixo dos vossos pés. Timóteo, Lúcio, Jasom, Sosípatro. Tertius, que escrevi a epístola. Gaio, hospedeiro. Erasto, tesoureiro da cidade. Àquele que é poderoso para vos confirmar segundo o meu evangelho e a pregação de Jesus Cristo, segundo a revelação do mistério… para obediência da fé entre todas as nações: ao único Deus sábio seja glória por Jesus Cristo. Amém.',
+    estrutura: [
+      '16:1–16 — Febe e a rede de nomes e casas',
+      '16:17–23 — dissensão, paz, os que estão com Paulo',
+      '16:25–27 — doxologia: mistério, nações, glória',
+    ],
+    temas: ['Igreja doméstica', 'Mulheres', 'Doutrina', 'Missão', 'Doxologia'],
+    VersiculosChave: [
+      chave('Romanos 16:1–2', 'Febe, nossa irmã, serva da igreja… protetora de muitos.', 'O evangelho viaja com uma mulher de Cencreia, não só com um apóstolo célebre.'),
+      chave('Romanos 16:25–27', 'Poderoso para vos confirmar… para obediência da fé… glória.', 'A carta fecha como começou (1:5): fé que obedece, nas nações, para a glória de Deus.'),
+    ],
+    notaExegetica:
+      'διάκονον (16:1): serva/diácona da igreja local. προστάτις: benfeitora/patrona, termo de honra cívica. 16:7 Ἰουνίαν: o acento e a tradição leem mulher; ἐπίσημοι ἐν τοῖς ἀποστόλοις admite «notáveis entre os apóstolos» ou «bem conhecidos dos apóstolos» — não force um cargo que o texto não define. ἡ διδαχή (16:17) é o padrão da carta, não um gosto.',
+    notaHermeneutica:
+      'Não transforme a lista em argumentação solta sobre ofícios modernos sem o resto do NT. Não ignore Febe para preservar um estereótipo. A doxologia (presente na maioria dos manuscritos ao fim; discussão de posição em alguns) amarra mistério, profetas, nações e glória — o mesmo arco de 1:1–5 e 11:33–36.',
+    significadoTeologico:
+      'A doutrina de Rm 1–15 habita nomes próprios. A unidade é pessoal. A obediência da fé é o alvo das nações. Satanás é esmagado sob os pés da igreja (Gn 3:15 no horizonte), não sob o ego do líder.',
+    palavrasOriginais: ['διάκονος', 'προστάτις', 'διδαχή', 'ὑπακοὴ πίστεως'],
+    aplicacaoPratica:
+      'Recomende o irmão pelo nome. Abra a casa. Fuja do divisor que fala «evangelho» contra a doutrina apostólica. Termine o estudo de Romanos em glória, não em polêmica.',
+    perguntasEstudo: [
+      'O que Febe (16:1–2) ensina sobre missão e hospitalidade?',
+      'Como 16:17–18 protege 14–15 de virar relativismo?',
+      'De que modo 16:25–27 ecoa 1:1–5?',
+    ],
+    fontes: ['Romanos 16', 'Atos 18:1–3, 18', 'Gênesis 3:15', 'Romanos 1:5'],
+  }),
+
   'sl:16': ficha('sl', 16, 'Mictão de Davi: o Santo não verá corrupção', {
     contextoHistorico:
       'Salmo de confiança. Atos 2 e 13 leem 16:10 na ressurreição de Jesus: Davi morreu e viu corrupção; o Santo não. A hermenêutica apostólica não é inventada aqui: está no próprio texto da esperança para além do Seol.',

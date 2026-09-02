@@ -15,7 +15,7 @@
 
 ## Descrição Curta (até 80 caracteres)
 
-Estudo bíblico completo: 24 traduções, lexico hebraico/grego, IA, cursos e mais.
+Estudo bíblico completo: 10 traduções, léxico hebraico/grego, IA.
 
 ---
 
@@ -26,7 +26,7 @@ Estudo bíblico completo: 24 traduções, lexico hebraico/grego, IA, cursos e ma
 **Funcionalidades Principais:**
 
 📖 **Bíblia Multi-Tradição**
-- 24 traduções em português e inglês (ARC, ARA, ACF, KJV, NVI, WEB, NVT, KJA, AA, NBV e mais)
+- 10 traduções em português e inglês (ARC, ARA, ACF, KJV, NVI, WEB, NVT, KJA, AA, NBV)
 - Leitura lado a lado para comparar traduções
 - Modo Karaoke com áudio sincronizado
 - Comentários inline de 8 teólogos clássicos
@@ -164,7 +164,8 @@ O app TWA (Trusted Web Activity) não requer permissões especiais além das que
 
 ## Checklist de Publicação
 
-- [ ] APK/AAB gerado via Bubblewrap
+- [ ] AAB gerado: `cd mobile_app && flutter build appbundle --release`
+- [ ] Package: `com.solascriptura.app` (não o id antigo sola_scriptura_app)
 - [ ] Ícone 512x512 configurado
 - [ ] Feature Graphic criado (1024x500)
 - [ ] Screenshots de telefone (mínimo 2)

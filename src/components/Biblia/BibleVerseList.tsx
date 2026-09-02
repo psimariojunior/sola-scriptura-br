@@ -267,6 +267,13 @@ export function BibleVerseList({
               totalCapitulos={nav.livro.totalCapitulos}
               totalVersiculos={nav.data[0]?.versiculos?.length ?? 0}
               variant={isModoLeitura ? 'leitura' : 'estudo'}
+              onAbrirEstudo={() => {
+                ui.setModoLeitura('estudo');
+                ui.setEstudoCapituloAberto(true);
+                ui.setModoExibicao('versiculo', { persist: false });
+                panels.setSidePanelWidth('half');
+                panels.setSidePanelTab('estudos');
+              }}
             />
             {!isModoLeitura && (
               <>

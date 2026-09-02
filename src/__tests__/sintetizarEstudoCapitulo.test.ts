@@ -23,6 +23,12 @@ describe('fichas profundas vs cânon', () => {
       expect(estudosCapituloProfundos[`jo:${c}`]?.nivel).toBe('profundo');
     }
   });
+
+  it('Romanos 1–16 está coberto por ficha profunda', () => {
+    for (let c = 1; c <= 16; c++) {
+      expect(estudosCapituloProfundos[`rm:${c}`]?.nivel).toBe('profundo');
+    }
+  });
 });
 
 describe('sintetizarEstudoCapitulo', () => {

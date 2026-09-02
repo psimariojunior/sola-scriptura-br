@@ -13,6 +13,7 @@ interface ChapterHeaderProps {
   totalCapitulos: number;
   totalVersiculos: number;
   variant?: 'leitura' | 'estudo';
+  onAbrirEstudo?: () => void;
 }
 
 function Ornament({ compact = false }: { compact?: boolean }) {
@@ -37,21 +38,49 @@ export function ChapterHeader({
   totalCapitulos,
   totalVersiculos,
   variant = 'estudo',
+  onAbrirEstudo,
 }: ChapterHeaderProps) {
   const tempoLeituraMinutos = Math.max(1, Math.ceil(totalVersiculos * 0.25));
-  const [temFichaProfunda, setTemFichaProfunda] = useState(false);
+  const [ficha, setFicha] = useState<{ titulo: string; profunda: boolean } | null>(null);
 
   useEffect(() => {
     let cancel = false;
     import('@/lib/estudosLoader').then(({ obterEstudoCapitulo }) => {
       if (cancel) return;
-      const ficha = obterEstudoCapitulo(livroAbreviacao, capitulo);
-      setTemFichaProfunda(ficha.nivel === 'profundo');
+      const e = obterEstudoCapitulo(livroAbreviacao, capitulo);
+      setFicha({ titulo: e.titulo, profunda: e.nivel === 'profundo' });
     }).catch(() => {
-      if (!cancel) setTemFichaProfunda(false);
+      if (!cancel) setFicha(null);
     });
     return () => { cancel = true; };
   }, [livroAbreviacao, capitulo]);
+
+  const atalhoEstudo =
+    variant === 'leitura' && ficha ? (
+      onAbrirEstudo ? (
+        <button
+          type="button"
+          onClick={onAbrirEstudo}
+          className="mt-3 inline-flex max-w-[min(100%,28rem)] items-center justify-center gap-2 rounded-full border border-[var(--brand-default)]/25 bg-[var(--brand-subtle)]/50 px-3.5 py-1.5 text-left transition-colors hover:border-[var(--brand-default)]/50 hover:bg-[var(--brand-subtle)]"
+        >
+          <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--brand-default)]">
+            {ficha.profunda ? 'Ficha' : 'Estudar'}
+          </span>
+          <span className="min-w-0 truncate text-[12px] sm:text-[13px] text-[var(--content-secondary)]">
+            {ficha.titulo}
+          </span>
+        </button>
+      ) : (
+        <p className="mt-3">
+          <Link
+            href={hrefGuia(livroAbreviacao, capitulo)}
+            className="text-[12px] text-[var(--content-muted)] hover:text-[var(--brand-default)] underline-offset-4 hover:underline"
+          >
+            {ficha.titulo}
+          </Link>
+        </p>
+      )
+    ) : null;
 
   if (variant === 'leitura') {
     return (
@@ -67,16 +96,7 @@ export function ChapterHeader({
           {capitulo}
         </h1>
         <Ornament compact />
-        {temFichaProfunda && (
-          <p className="mt-1">
-            <Link
-              href={hrefGuia(livroAbreviacao, capitulo)}
-              className="text-[12px] text-[var(--content-muted)] hover:text-[var(--brand-default)] underline-offset-4 hover:underline"
-            >
-              Ficha profunda deste capítulo
-            </Link>
-          </p>
-        )}
+        {atalhoEstudo}
       </header>
     );
   }

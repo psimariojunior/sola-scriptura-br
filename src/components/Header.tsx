@@ -14,7 +14,7 @@ import { HeaderNav } from '@/components/header/HeaderNav';
 import { HeaderSearch } from '@/components/header/HeaderSearch';
 import { HeaderUserMenu } from '@/components/header/HeaderUserMenu';
 import { HeaderMobileMenu } from '@/components/header/HeaderMobileMenu';
-import { Map, History, User, Calendar, Heart, HelpCircle, ScrollText, Languages, MessageCircle, Library, BookOpen, BookMarked, Search, Compass, Users } from 'lucide-react';
+import { Map, History, User, Calendar, Heart, HelpCircle, ScrollText, Languages, MessageCircle, Library, BookOpen, BookMarked, Search, Compass, Users, GraduationCap } from 'lucide-react';
 
 type LucideIcon = typeof BookOpen;
 
@@ -27,6 +27,7 @@ interface NavLinkSpec {
 const navLinksStatic: NavLinkSpec[] = [
   { href: '/biblia', label: 'nav.bible', icon: BookOpen },
   { href: '/estudar', label: 'nav.study', icon: Search },
+  { href: '/cursos', label: 'nav.courses', icon: GraduationCap },
   { href: '/biblioteca', label: 'nav.library', icon: Library },
   { href: '/teologia', label: 'nav.theology', icon: BookMarked },
 ];

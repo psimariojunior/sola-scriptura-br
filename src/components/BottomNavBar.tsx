@@ -54,7 +54,7 @@ function BottomNavBarInner() {
     { href: '/', label: t('bottomBar.home'), icon: Home },
     { href: '/biblia', label: t('bottomBar.bible'), icon: BookOpen },
     { href: '/estudar', label: t('bottomBar.study', 'Estudar'), icon: Search },
-    { href: '/biblioteca', label: t('bottomBar.library', 'Biblioteca'), icon: BookMarked },
+    { href: '/cursos', label: t('bottomBar.courses', 'Cursos'), icon: GraduationCap },
     { href: '#more', label: t('bottomBar.more'), icon: MoreHorizontal },
   ], [t]);
 
@@ -96,6 +96,7 @@ function BottomNavBarInner() {
         { href: '/devocional', label: t('bottomBar.devotional'), icon: Heart },
         { href: '/flashcards', label: t('bottomBar.flashcards'), icon: BookMarked },
         { href: '/quiz', label: t('bottomBar.quizzes'), icon: HelpCircle },
+        { href: '/biblioteca', label: t('bottomBar.library', 'Biblioteca'), icon: BookMarked },
         { href: '/social', label: t('bottomBar.social', 'Social'), icon: Users },
       ],
     },

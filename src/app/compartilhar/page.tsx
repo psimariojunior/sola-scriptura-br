@@ -41,9 +41,23 @@ export default function CompartilharPage() {
   const copiarTexto = async () => {
     if (!versiculoAtual) return;
     const texto = `"${versiculoAtual.texto}" — ${versiculoAtual.referencia}\n\nvia Sola Scriptura`;
-    await navigator.clipboard.writeText(texto);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(texto);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback: create a temporary textarea for clipboard copy
+      const ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   const compartilharWhatsApp = () => {
@@ -143,7 +157,7 @@ export default function CompartilharPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main id="main-content" className="pt-24 pb-16 px-6">
         <div className="max-w-2xl mx-auto">
           <ScrollReveal>
             <div className="flex items-center gap-3 mb-8">

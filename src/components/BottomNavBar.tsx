@@ -127,6 +127,9 @@ function BottomNavBarInner() {
     setHidden(false);
   }, [pathname]);
 
+  const toggleMore = useCallback(() => setShowMore((s) => !s), []);
+  const closeMore = useCallback(() => setShowMore(false), []);
+
   useEffect(() => {
     if (!showMore) return;
     const handleEscape = (e: KeyboardEvent) => {
@@ -138,9 +141,6 @@ function BottomNavBarInner() {
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [showMore, closeMore]);
-
-  const toggleMore = useCallback(() => setShowMore((s) => !s), []);
-  const closeMore = useCallback(() => setShowMore(false), []);
 
   const toggleGroup = useCallback((titulo: string) => {
     setExpandedGroups((prev) => ({ ...prev, [titulo]: !prev[titulo] }));

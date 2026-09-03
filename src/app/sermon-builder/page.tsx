@@ -314,7 +314,7 @@ export default function SermonBuilderPage() {
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       <Header />
-      <main className="max-w-4xl mx-auto px-4 pt-24 pb-16">
+      <main id="main-content" className="max-w-4xl mx-auto px-4 pt-24 pb-16">
         <ScrollReveal>
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] text-xs font-semibold mb-4">

@@ -317,14 +317,13 @@ function useStudyDashboard() {
 
 function calculateStreak(activeDays: string[]): number {
   if (activeDays.length === 0) return 0;
-  const sorted = [...new Set(activeDays)].sort().reverse();
-  const today = todayStr();
+  const daySet = new Set(activeDays);
   let streak = 0;
-  for (let i = 0; i < sorted.length; i++) {
+  for (let i = 0; i < 365; i++) {
     const expected = new Date();
     expected.setDate(expected.getDate() - i);
     const expectedStr = expected.toISOString().split('T')[0];
-    if (sorted.includes(expectedStr)) {
+    if (daySet.has(expectedStr)) {
       streak++;
     } else {
       break;

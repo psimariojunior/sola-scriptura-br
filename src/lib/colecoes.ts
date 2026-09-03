@@ -79,3 +79,39 @@ export function adicionarVersoAColecao(
   persistir(colecoes);
   return true;
 }
+
+export function removerColecao(colecaoId: string): boolean {
+  const colecoes = listarColecoes();
+  const filtered = colecoes.filter((c) => c.id !== colecaoId);
+  if (filtered.length === colecoes.length) return false;
+  persistir(filtered);
+  return true;
+}
+
+export function removerVersoDaColecao(
+  colecaoId: string,
+  livro: string,
+  capitulo: number,
+  verso: number,
+): boolean {
+  const colecoes = listarColecoes();
+  const idx = colecoes.findIndex((c) => c.id === colecaoId);
+  if (idx < 0) return false;
+  const alvo = colecoes[idx];
+  const filtered = alvo.versiculos.filter(
+    (v) => !(v.livro === livro && v.capitulo === capitulo && v.verso === verso),
+  );
+  if (filtered.length === alvo.versiculos.length) return false;
+  colecoes[idx] = { ...alvo, versiculos: filtered };
+  persistir(colecoes);
+  return true;
+}
+
+export function editarColecao(colecaoId: string, updates: Partial<Pick<Colecao, 'nome' | 'descricao'>>): boolean {
+  const colecoes = listarColecoes();
+  const idx = colecoes.findIndex((c) => c.id === colecaoId);
+  if (idx < 0) return false;
+  colecoes[idx] = { ...colecoes[idx], ...updates };
+  persistir(colecoes);
+  return true;
+}

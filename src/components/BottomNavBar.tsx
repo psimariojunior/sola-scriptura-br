@@ -158,7 +158,7 @@ function BottomNavBarInner() {
             <div className="flex items-center justify-between px-5 py-4 border-b border-border/30">
               <div>
                 <span className="text-sm font-semibold block">{t('nav.more')}</span>
-                <span className="text-[10px] text-muted-foreground">Explore todas as ferramentas</span>
+                <span className="text-[10px] text-muted-foreground">{t('header.exploreTools')}</span>
               </div>
               <button
                 onClick={closeMore}
@@ -234,7 +234,7 @@ function BottomNavBarInner() {
                 ? isMoreActive
                 : tab.href === '/estudar'
                   ? isEstudarActive
-                  : pathname === tab.href || (tab.href !== '/' && pathname?.startsWith(tab.href));
+                  : pathname === tab.href || (tab.href !== '/' && pathname?.startsWith(tab.href + '/'));
 
               if (isMore) {
                 return (
@@ -262,6 +262,7 @@ function BottomNavBarInner() {
                   key={tab.href}
                   href={tab.href}
                   aria-label={tab.label}
+                  aria-current={active ? 'page' : undefined}
                   className={`relative flex flex-col items-center justify-center flex-1 min-h-[48px] py-2 rounded-2xl transition-all duration-200 ${
                     active 
                       ? 'text-primary bg-primary/[0.08]' 

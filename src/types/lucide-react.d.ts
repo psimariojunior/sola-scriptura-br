@@ -74,6 +74,7 @@ declare module 'lucide-react' {
   export const Folder: LucideIcon;
   export const FolderPlus: LucideIcon;
   export const Gauge: LucideIcon;
+  export const Gem: LucideIcon;
   export const Gift: LucideIcon;
   export const GitBranch: LucideIcon;
   export const GitCompareArrows: LucideIcon;
@@ -190,6 +191,7 @@ declare module 'lucide-react' {
   export const Tv: LucideIcon;
   export const Type: LucideIcon;
   export const Underline: LucideIcon;
+  export const Undo2: LucideIcon;
   export const User: LucideIcon;
   export const UserCheck: LucideIcon;
   export const Users: LucideIcon;

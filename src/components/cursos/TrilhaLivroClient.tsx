@@ -82,6 +82,7 @@ export function TrilhaLivroClient({ slug }: { slug: string }) {
   const proximo = proximoCapituloPendente(trilha);
 
   async function emitir() {
+    if (!trilha) return;
     setErroCert(null);
     setEmitindo(true);
     try {

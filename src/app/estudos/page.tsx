@@ -23,6 +23,7 @@ import { getStats } from '@/lib/estatisticas';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
 import { BannerTrilhasOficiais } from '@/components/cursos/BannerTrilhasOficiais';
+import { temEstudo } from '@/data/estudos-index';
 
 const BibleCourses = dynamic(() => import('@/components/BibleCourses').then(m => ({ default: m.BibleCourses })), {
   ssr: false,
@@ -200,8 +201,7 @@ export default function EstudosPage() {
   const estudosTeologicos = useMemo(() => {
     if (!obterEstudosFn) return [];
     // Usar indice leve para buscar apenas versiculos que tem estudo (126 keys)
-    // em vez de iterar495.000 combinacoes possiveis
-    const { temEstudo } = require('@/data/estudos-index');
+    // em vez de iterar 495.000 combinacoes possiveis
     const estudos: EstudoVersiculo[] = [];
     const seen = new Set<string>();
     

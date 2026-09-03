@@ -30,7 +30,19 @@ export async function proxy(request: NextRequest) {
   if (!needsAuth) return NextResponse.next();
 
   const token = getTokenFromRequest(request);
-  if (!token || isJwtExpired(token)) {
+  if (!token) {
+    const loginUrl = new URL('/auth', request.url);
+    loginUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  try {
+    if (isJwtExpired(token)) {
+      const loginUrl = new URL('/auth', request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+  } catch {
     const loginUrl = new URL('/auth', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);

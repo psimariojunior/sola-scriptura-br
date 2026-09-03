@@ -149,8 +149,7 @@ export async function sha256Curto(payload: string): Promise<string> {
     const digest = await globalThis.crypto.subtle.digest('SHA-256', data);
     return hexDeBuffer(digest).slice(0, 12).toUpperCase();
   }
-  const { createHash } = await import('crypto');
-  return createHash('sha256').update(payload, 'utf8').digest('hex').slice(0, 12).toUpperCase();
+  throw new Error('SHA-256 não disponível neste navegador. Use HTTPS.');
 }
 
 export function idCertificado(trilhaId: string, dataIso: string, hash: string): string {

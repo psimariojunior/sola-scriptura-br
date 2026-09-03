@@ -108,7 +108,6 @@ export const metadata: Metadata = {
     shortcut: '/favicon.svg',
   },
   manifest: '/manifest.json',
-  verification: undefined,
   other: {
     'apple-mobile-web-app-title': 'Sola Scriptura',
     'apple-mobile-web-app-capable': 'yes',
@@ -185,9 +184,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${cormorant.variable} ${inter.variable} ${spectral.variable}`}
     >
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="dns-prefetch" href="https://api.midvash.com" />
-        <link rel="dns-prefetch" href="https://api.solascripturabr.com.br" />
         <link rel="preconnect" href="https://api.midvash.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://api.solascripturabr.com.br" crossOrigin="anonymous" />
         <script
@@ -198,7 +194,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-body antialiased bg-background text-foreground">
+      <body className="antialiased bg-background text-foreground">
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>

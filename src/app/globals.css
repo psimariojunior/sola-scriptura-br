@@ -579,7 +579,7 @@ body::before {
   border-radius: 6px;
 }
 
-.skeleton-text { height: 1em; border-radius: 0.25em; background-color: var(--muted, rgba(0, 0, 0, 0.08)); }
+.skeleton-text { height: 1em; border-radius: 0.25em; background-color: hsl(var(--muted, 0 0% 92%)); }
 .skeleton-title { height: 22px; width: 60%; margin-bottom: 12px; }
 
 .animate-fade-in { animation: fadeIn 0.5s ease-out; }

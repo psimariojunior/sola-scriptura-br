@@ -484,7 +484,7 @@ function BDAGPanel({
           )}
 
         {/* Categoria */}
-        {entry.categoria && (
+        {entry?.categoria && (
           <div className="flex items-center gap-2">
             <span
               className="text-[10px] font-medium"
@@ -515,7 +515,7 @@ function BDAGPanel({
         )}
 
         {/* Frequência no NT */}
-        {entry.usoNoNT > 0 && (
+        {entry?.usoNoNT && entry.usoNoNT > 0 && (
           <div
             className="flex items-center gap-2 rounded-lg p-2.5"
             style={{
@@ -538,7 +538,7 @@ function BDAGPanel({
         )}
 
         {/* Livros onde aparece */}
-        {entry.livros && entry.livros.length > 0 && (
+        {entry?.livros && entry.livros.length > 0 && (
           <div
             className="rounded-xl p-3"
             style={{
@@ -571,7 +571,7 @@ function BDAGPanel({
         )}
 
         {/* Notas */}
-        {entry.notas && (
+        {entry?.notas && (
           <div
             className="rounded-xl p-3"
             style={{
@@ -602,7 +602,7 @@ function BDAGPanel({
 
         {/* Ação: Buscar no corpus */}
         <button
-          onClick={() => onSearch(entry.transliteracao || entry.palavra)}
+          onClick={() => entry && onSearch(entry.transliteracao || entry.palavra)}
           className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-medium transition-colors"
           style={{
             backgroundColor: "var(--brand-default)",
@@ -610,7 +610,7 @@ function BDAGPanel({
           }}
         >
           <Search className="w-3.5 h-3.5" />
-          Buscar &quot;{entry.transliteracao || entry.palavra}&quot; no corpus
+          Buscar &quot;{entry?.transliteracao || entry?.palavra || ""}&quot; no corpus
         </button>
       </div>
     </motion.div>

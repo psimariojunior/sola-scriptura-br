@@ -39,7 +39,7 @@ export default function IaPage() {
   const { t } = useTranslation();
   const [tradicao, setTradicao] = useState('');
   const [mostrarTradicoes, setMostrarTradicoes] = useState(false);
-  const [temAcesso, setTemAcesso] = useState(true);
+  const [temAcesso, setTemAcesso] = useState(false);
   const [paywallAberto, setPaywallAberto] = useState(false);
 
   useEffect(() => {

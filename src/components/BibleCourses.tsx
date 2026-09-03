@@ -210,10 +210,11 @@ export function BibleCourses() {
       <div className="p-4 border-b border-[var(--border)]/40">
         <div className="flex items-center gap-2 mb-1">
           <GraduationCap className="w-5 h-5 text-[var(--brand)]" />
-          <h2 className="font-bold text-lg">Cursos introdutórios</h2>
+          <h2 className="font-bold text-lg">Cursos de Teologia</h2>
         </div>
         <p className="text-xs text-[var(--content-muted)] leading-relaxed">
-          Aulas com texto e vídeo, trilha visível e certificado só depois de concluir as aulas e a avaliação (70%). Sem carga horária, seminário ou grau.
+          Conteúdo de nível seminário com base nas Escrituras, teólogos históricos e avaliação. 
+          Cada curso abrange uma área da teologia ou livro bíblico em profundidade.
         </p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 border-b border-[var(--border)]/20">

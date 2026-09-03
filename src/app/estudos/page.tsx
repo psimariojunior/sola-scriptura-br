@@ -841,7 +841,7 @@ export default function EstudosPage() {
                 <div className="space-y-4">
                   <BannerTrilhasOficiais compact />
                   <p className="text-xs text-muted-foreground">
-                    Abaixo: cursos introdutórios com vídeo e quiz. O diploma deles não é o das trilhas João e Romanos.
+                    Trilhas oficiais com certificado (João e Romanos) e cursos de teologia — cada um com conteúdo próprio.
                   </p>
                   <div className="sola-card overflow-hidden min-h-[400px] md:min-h-[700px]">
                     <BibleCourses />

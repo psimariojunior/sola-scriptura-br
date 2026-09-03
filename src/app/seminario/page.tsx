@@ -38,31 +38,31 @@ interface NivelFormacao {
 const TRILHA_FORMACAO: NivelFormacao[] = [
   {
     id: 'fundamentos',
-    titulo: 'Primeiros passos',
-    subtitulo: 'Introdução',
+    titulo: 'Fundamentos da Fé',
+    subtitulo: 'Doutrinas Básicas',
     cor: 'from-emerald-500 to-teal-600',
     icone: Lightbulb,
-    descricao: 'Cursos introdutórios: o que é a Bíblia, fundamentos da fé, Gênesis e a vida de Jesus. Sem carga horária nem grau.',
+    descricao: 'Bibliologia, teologia própria, cristologia e fundamentos da fé cristã.',
     cursosIds: ['conhecendo-a-biblia', 'fundamentos-da-fe', 'genesis-origem', 'vida-de-jesus'],
     requisitos: [],
   },
   {
     id: 'intermediario',
-    titulo: 'Livros e leitura',
-    subtitulo: 'Introdução',
+    titulo: 'Livros e Leitura',
+    subtitulo: 'Estudo Bíblico',
     cor: 'from-blue-500 to-indigo-600',
     icone: Brain,
-    descricao: 'Hermenêutica prática, evangelhos, Salmos, João e Êxodo — ainda introdução, não seminário avançado.',
+    descricao: 'Hermenêutica, evangelhos, Salmos, João e Êxodo — estudo aprofundado de cada livro.',
     cursosIds: ['hermeneutica-pratica', 'evangelhos-vida-de-jesus', 'salmos-oração-louvor', 'joao-verbo', 'exodo-libertação'],
     requisitos: [],
   },
   {
     id: 'avancado',
-    titulo: 'Doutrina e cartas',
-    subtitulo: 'Introdução',
+    titulo: 'Doutrina e Cartas',
+    subtitulo: 'Teologia Avançada',
     cor: 'from-purple-500 to-violet-600',
     icone: Cross,
-    descricao: 'Teologia sistemática, Romanos e Apocalipse como introdução nesta plataforma — não é mestrado nem “nível avançado”.',
+    descricao: 'Teologia sistemática completa, Romanos e Apocalipse — conteúdo de nível seminário.',
     cursosIds: ['teologia-sistematica', 'romanos-teologia-cruz', 'apocalipse-consumacao'],
     requisitos: [],
   },
@@ -175,8 +175,8 @@ export default function SeminarioPage() {
                   <GraduationCap className="w-8 h-8" />
                 </div>
                 <div>
-                  <h1 className="font-display text-3xl md:text-4xl font-bold">Cursos introdutórios</h1>
-                  <p className="text-white/80 text-sm mt-1">Vídeo, trilha e certificado de introdução — outro diploma das trilhas João e Romanos</p>
+                  <h1 className="font-display text-3xl md:text-4xl font-bold">Seminário Bíblico</h1>
+                  <p className="text-white/80 text-sm mt-1">Teologia sistemática, exegese e estudo profundo das Escrituras</p>
                 </div>
               </div>
 
@@ -191,8 +191,8 @@ export default function SeminarioPage() {
 
           <BannerTrilhasOficiais compact />
           <p className="text-xs text-[var(--content-muted)] mb-8 -mt-2">
-            João e Romanos são fichas profundas (ler + responder). Os 12 cursos desta página são
-            introdução com vídeo — os diplomas não se misturam.
+            Trilhas oficiais com certificado (João e Romanos) e cursos de teologia sistemática —
+            cada um com conteúdo próprio e avaliação.
           </p>
 
           {/* Tabs */}
@@ -330,8 +330,8 @@ export default function SeminarioPage() {
                 {/* Bible Courses Component */}
                 <div className="mt-10 rounded-2xl border border-[var(--border)]/40 overflow-hidden bg-[var(--surface-raised)]">
                   <div className="p-6 border-b border-[var(--border)]/30">
-                    <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Cursos introdutórios</h3>
-                    <p className="text-[var(--content-secondary)] text-sm mt-1">Vídeo, trilha e quiz. O diploma daqui é de introdução — não o das fichas João e Romanos.</p>
+                    <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Cursos de Teologia</h3>
+                    <p className="text-[var(--content-secondary)] text-sm mt-1">Conteúdo seminário com base nas Escrituras e na tradição confessional.</p>
                   </div>
                   <BibleCourses />
                 </div>
@@ -349,7 +349,7 @@ export default function SeminarioPage() {
               >
                 <div className="mb-6">
                   <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-2">Catálogo introdutório</h2>
-                  <p className="text-[var(--content-secondary)] text-sm">Os {CURSOS.length} cursos abaixo são introdução com vídeo. João e Romanos (fichas) estão no banner acima.</p>
+                  <p className="text-[var(--content-secondary)] text-sm">Os {CURSOS.length} cursos abaixo cobrem teologia sistemática, exegese e estudo bíblico. João e Romanos (trilhas oficiais) estão no banner acima.</p>
                 </div>
 
                 <div className="flex gap-2 mb-6 overflow-x-auto pb-2">

@@ -2,442 +2,708 @@ import type { Curso } from './cursos';
 
 export const CURSO_ROMANOS: Curso = {
   id: 'romanos-teologia-cruz',
-  título: 'Romanos: A Teologia da Cruz',
-  descrição: 'Curso introdutório à carta aos Romanos: pecado, justificação, vida no Espírito e o povo de Deus. Não é seminário nem carga horária.',
+  título: 'Romanos: O Evangelho de Deus',
+  descrição: 'Um estudo aprofundado da epístola que transformou Agostinho, Lutero e Wesley — a exposição mais completa da justificação pela fé nas Escrituras.',
   instrutor: 'Sola Scriptura',
-  duração: 'Introdução',
-  nível: 'iniciante',
-  categoria: 'Estudo Bíblico',
+  duração: '10 módulos · 10 aulas + avaliação',
+  nível: 'avançado',
+  categoria: 'Exegese e Teologia',
   certificado: true,
   módulos: [
     {
-      id: 'mod-problema',
-      título: 'O Problema: Caps 1-3',
-      descrição: 'Todos pecaram e destituídos da glória de Deus',
-      ícone: '⚖️',
+      id: 'mod-panorama',
+      título: 'Panorama de Romanos',
+      descrição: 'Contexto histórico, propósito, estrutura e temas centrais da epístola',
+      ícone: '📖',
       aulas: [
         {
           id: 'aula-rom-1-1',
-          título: 'Introdução a Romanos',
+          título: 'Panorama de Romanos',
           tipo: 'video',
           videoUrl: 'https://www.youtube.com/watch?v=uGLbrGF1JJk',
-          videoTítulo: 'Romanos 1-4 || Bible Project Português ||',
-          duração: '14 min',
-          conteúdo: '## Introdução a Romanos\n\nRomanos é a carta mais sistemática de Paulo. Escrita por volta de 57 d.C. de Corinto, ela apresenta o evangelho em sua forma mais completa.\n\n### Por que Romanos é importante\n\nAgostinho converteu-se lendo Romanos 9-10. Lutero a usou para desafiar a indulgência. Wesley sentiu o coração "estranhamente aquecido" lendo a prefação de Romanos. Martin Luther King Jr. baseou-se nela para o movimento dos direitos civis.\n\n### O tema central\n\nA justificação pela fé: como o justo Deus pode declarar justo o pecador, apenas pela fé em Cristo.\n\n### A estrutura\n\nCaps 1-3: O problema (pecado universal). Caps 3-5: A solução (justificação pela fé). Caps 6-8: A vida no espírito. Caps 9-11: O plano para Israel e as nações. Caps 12-16: Aplicação prática.',
+          videoTítulo: 'Romanos 1-4 || BibleProject Português',
+          duração: '20 min',
+          conteúdo: `## Contexto Histórico e Propósito da Epístola
+
+Paulo escreveu Romanos por volta de 57 d.C. durante sua terceira viagem missionária, provavelmente em Corinto, conforme indicado em Romanos 16:1-2, onde Paula e Gaio são mencionados como seus anfitriões (At 20:2-3). A carta foi levada por Febe, diaconisa da igreja em_Cencreia (Rm 16:1), uma mulher de posição social elevada que provavelmente financiou parte do ministério paulino. A comunidade em Roma era composta tanto de judeus quanto de gentios convertidos, e havia sofrido a expulsão de Cláudio em 49 d.C. (At 18:2, cf. Silésio em At 18:2), retornando apenas após a morte do imperador em 54 d.C. Esse contexto de tensão étnica entre judeus e gentios na comunidade romana é fundamental para entender por que Paulo dedica tanto espaço à relação entre Israel e as nações (caps. 9-11).
+
+O propósito da carta é duplo. Primeiro, Paulo deseja apresentar formalmente o evangelho que prega aos gentios, já que nunca havia visitado Roma (Rm 1:13-15). Segundo, ele busca preparar o terreno para sua futura viagem missionária até a Hispânia (Rm 15:22-24), usando a igreja romana como base de apoio logístico. A carta funciona como um resumo teológico do seu ministério e uma defesa pública da sua mensagem diante das críticas dos judaizantes (cf. Gl 2:7-10).
+
+A estrutura de Romanos é debatida entre os estudiosos, mas a divisão mais aceita segue o esquema de Schreiner: (1) A revelação da ira e da justiça de Deus (1:18-4:25), (2) A vida cristã na graça (5:1-8:39), (3) O papel de Israel na história da salvação (9:1-11:36), e (4) A ética cristã prática (12:1-15:13). Cranfield observa que a carta possui uma estrutura argumentativa rigorosa, onde cada seção se desenvolve organicamente da anterior — a condição humana (1:18-3:20) conduz necessariamente à justificação pela fé (3:21-5:21), que por sua vez fundamenta a vida no Espírito (6:1-8:39).
+
+### Temas Centrais
+
+O tema unificador de Romanos é a dikaiosýne theou — a justiça de Deus. Essa expressão aparece em 1:17 como o tema programático: "A justiça de Deus se revela no evangelho de fé em fé". Para Paulo, a justiça de Deus não é apenas um atributo divino abstrato, mas um evento salvífico: Deus age como justo ao cumprir sua aliança e salvar seu povo pela fé em Cristo. Lutero, em sua Relecture de Romanos (1515), descobriu que essa justiça não é a que condena, mas a que salva — o famoso "turbo e porta aberta" que o libertou da angústia da consciência.
+
+O conceito de pistis (fé) é o veículo pelo qual a justiça de Deus se apropria do crente. A fé paulina não é apenas同意 intelectual (pistis + infinitivo em Rm 4:5), mas confiança pessoal e obediência ativa (pistis + dativo em Gl 2:16). Murray distingue entre fé instrumento (o meio) e fé ato (a resposta humana), enfatizando que a fé não é mérito — é a mão vazia que recebe o dom da graça.
+
+A hamartia (pecado) é retratada como potestas pecati — o domínio do pecado como força senhorial. Em Rm 5:12-21, Paulo apresenta o paralelo entre Adão e Cristo: assim como o pecado entrou pelo primeiro homem e trouxe morte universal, assim também a graça superabundou em Cristo para a justificação de muitos. Käsemann enfatiza que o pecado em Romanos não é apenas transgressão legal, mas fundamentalmente uma ruptura ontológica na relação com Deus — o homem se torna "inimigo de Deus" (Rm 5:10).
+
+A charis (graça) é o fundamento inabalável da salvação. Paulo insiste que a justificação é dōrea tēs charitos — um dom da graça (Rm 3:24). Stott observa que a graça não é仅仅 generosidade divina, mas justiça imputada: Deus declara justo o ímpio não ignorando o pecado, mas transferindo-o para Cristo no expiatory sacrifice. A propiciação (hilastērion, Rm 3:25) é o ponto culminante: Jesus absorve a ira de Deus dirigida ao pecado humano, satisfazendo assim both a justiça e a misericórdia divinas.
+
+A adulteratio (condenação) e a liberatio (libertação) formam o arco da narrativa: de "não há justo" (Rm 3:10) a "nenhuma condenação" (Rm 8:1). O Espírito Santo (pneuma) é o agente transformador que nos livra da lei do pecado e da morte (8:2), testifica nossa filiação (8:16) e intercede por nós com gemidos inexprimíveis (8:26).
+
+O conceito de坚忍 (perseverança) é expresso na cadeia da salvação de Rm 8:29-30: Deus predestinou, chamou, justificou e glorificou — não há quebra nessa sequência. Moo argumenta que isso não elimina a responsabilidade humana, mas a fundamenta: é Deus quem persevera em nós (Fil 1:6).
+
+A ética de Romanos (caps. 12-16) não é um apêndice, mas a consequência necessária da doutrina. O paráclēsis (exortação) paulino parte do imperativo lógico: "Assim que" (Rm 12:1) — dado que somos justificados pela fé, a resposta é o sacrifício vivo do corpo. O amor (agapē) cumpre a Lei inteira (13:8-10), e a submissão às autoridades (13:1-7) é=testada pela responsabilidade política do cristão no mundo.
+
+A doutrina da eleição (eklogethai, 9:11) em Romanos 9 é um dos textos mais desafiadores. Paulo usa o exemplo de Jacó e Esaú para demonstrar que a escolha divina não se baseia em obras nem em mérito humano, mas no propósito (prothesis) de Deus. Wright argumenta que a eleição tem um objetivo missiológico: Deus escolhe para abençoar todas as nações (Gn 12:3), não para excluir. A soberania de Deus não anula a responsabilidade humana — " como queremos que cada um de vós declare o seu desejo" (Rm 9:32-33) — mas a fundamenta.`,
           versículosChave: [
-            { ref: 'Romanos 1:16-17', texto: 'Porque não me envergonho do evangelho, pois é o poder de Deus para salvação... porque nele se revela a justiça de Deus.' },
-          ],
-        },
-        {
-          id: 'aula-rom-1-2',
-          título: 'A ira de Deus se revela (Rom 1:18-32)',
-          tipo: 'texto',
-          duração: '15 min',
-          conteúdo: '## A ira de Deus se revela\n\nDepois de apresentar o evangelho, Paulo explica por que precisamos dele: a ira de Deus se revela do céu contra toda impiedade e injustiça dos homens.\n\n### A escalada do pecado\n\n1. Conhecem a verdade, mas a suprimem (v.18)\n2. Trocam a verdade por mentira (v.25)\n3. Trocam a glória de Deus por imagens (v.23)\n4. Trocam o que é natural por o que é contranatural (v.26)\n5. Rejeitam o conhecimento de Deus (v.28)\n\n### A ira de Deus\n\nA ira de Deus não é temperamento — é a oposição consistente e santa de Deus ao pecado. É uma resposta moral do caráter santo de Deus.',
-          versículosChave: [
-            { ref: 'Romanos 1:18', texto: 'Porque a ira de Deus se revela do céu contra toda impiedade e injustiça dos homens.' },
-            { ref: 'Romanos 1:25', texto: 'Trocam a verdade de Deus pela mentira.' },
-          ],
-        },
-        {
-          id: 'aula-rom-1-3',
-          título: 'O julgamento justo de Deus (Rom 2)',
-          tipo: 'texto',
-          duração: '14 min',
-          conteúdo: '## O julgamento justo de Deus\n\nNo capítulo 2, Paulo se dirige aos moralistas e religiosos. Você que julga os outros, você também está sob julgamento.\n\n### Ninguém é justo\n\nO judeu religioso pensa que a Lei o salva. O gentio moral pensa que a consciência basta. Paulo demonstra que ambos estão sob condenação.\n\n### A Lei e a consciência\n\nA Lei não salva — ela revela o pecado. A consciência testifica da verdade, mas não tem poder para transformar.\n\n### O julgamento de Deus\n\nDeus julgará cada pessoa segundo a verdade. Não há favoritismo. Judeu e gentio, religioso e ateu — todos estão diante do mesmo tribunal.',
-          versículosChave: [
-            { ref: 'Romanos 2:1', texto: 'Logo, és indesculpável, ó homem, qualquer que sejas tu, que julgas.' },
-            { ref: 'Romanos 2:11', texto: 'Pois Deus não faz acepção de pessoas.' },
-          ],
-        },
-        {
-          id: 'aula-rom-1-4',
-          título: 'Todos pecaram (Rom 3:9-23)',
-          tipo: 'texto',
-          duração: '16 min',
-          conteúdo: '## Todos pecaram\n\nO capítulo 3 de Romanos é o diagnóstico mais devastador da condição humana.\n\n### O resumo de Paulo\n\nNão há justo, nem um sequer. Não há quem entenda. Não há quem busque a Deus. Todos se extraviaram (3:10-12).\n\n### A conclusão\n\nTodos pecaram e estão destituídos da glória de Deus (3:23). Não há exceção. O moralista, o religioso, o pecador escandaloso — todos estão na mesma condição.\n\n### O problema da justiça de Deus\n\nSe Deus é justo, como pode perdoar? Esse é o dilema que Paulo resolve nos próximos capítulos: a justiça de Deus é revelada pela fé em Jesus Cristo para todos que creem.',
-          versículosChave: [
-            { ref: 'Romanos 3:10', texto: 'Não há justo, nem um sequer.' },
-            { ref: 'Romanos 3:23', texto: 'Porque todos pecaram e estão destituídos da glória de Deus.' },
-          ],
-        },
-        {
-          id: 'aula-rom-1-5',
-          título: 'Quiz: O Problema',
-          tipo: 'quiz',
-          duração: '10 min',
-          perguntas: [
-            { id: 'q-rom-1-1', pergunta: 'Qual é o tema central de Romanos?', opções: ['A igreja', 'A justificação pela fé', 'Os dons', 'A ética'], respostaCorreta: 1, explicação: 'O tema central é a justificação pela fé: como o justo Deus pode declarar justo o pecador.' },
-            { id: 'q-rom-1-2', pergunta: 'O que a "ira de Deus" significa em Romanos 1:18?', opções: ['Temperamento', 'Oposição consistente e santa ao pecado', 'Indiferença', 'Fracasso'], respostaCorreta: 1, explicação: 'A ira de Deus é a resposta moral do caráter santo de Deus ao pecado.' },
-            { id: 'q-rom-1-3', pergunta: 'Romanos 2 dirigiu-se a quem?', opções: ['Apenas aos pecadores', 'Aos moralistas e religiosos', 'Apenas aos gentios', 'Apenas aos judeus'], respostaCorreta: 1, explicação: 'Paulo se dirige aos moralistas e religiosos que julgam os outros sem verem sua própria condição.' },
-            { id: 'q-rom-1-4', pergunta: 'O que Romanos 3:23 declara?', opções: ['Alguns pecaram', 'Todos pecaram e estão destituídos da glória de Deus', 'Deus pecou', 'A Lei salva'], respostaCorreta: 1, explicação: 'Todos pecaram — sem exceção — e estão destituídos da glória de Deus.' },
-            { id: 'q-rom-1-5', pergunta: 'Qual a escalada do pecado em Romanos 1?', opções: ['Pequena e irrelevante', 'Conhecem a verdade, mas a suprimem, e crescem em rebelião', 'Apenas cultural', 'Não há escalada'], respostaCorreta: 1, explicação: 'Paulo descreve uma escalada: da supressão da verdade até a rejeição total do conhecimento de Deus.' },
-            { id: 'q-rom-1-6', pergunta: 'A Lei salva?', opções: ['Sim, sempre', 'Não, ela revela o pecado', 'Apenas no AT', 'Depende da obediência'], respostaCorreta: 1, explicação: 'A Lei não salva — ela revela o pecado e demonstra a necessidade de um Salvador.' },
-            { id: 'q-rom-1-7', pergunta: 'Deus faz acepção de pessoas?', opções: ['Sim, para os judeus', 'Não, julga todos igualmente', 'Apenas para os gentios', 'Depende'], respostaCorreta: 1, explicação: 'Deus não faz acepção de pessoas (Rom 2:11). Judeu e gentio, todos estão diante do mesmo tribunal.' },
-            { id: 'q-rom-1-8', pergunta: 'Como Paulo descreve a condição humana em Romanos 3?', opções: ['Boa, mas precisa de ajuda', 'Totalmente corrompida e sem justiça', 'Neutra', 'Varia'], respostaCorreta: 1, explicação: 'Paulo diz que não há justo, que todos se extraviaram, e que ninguém busca a Deus.' },
-            { id: 'q-rom-1-9', pergunta: 'Qual o dilema de Romanos?', opções: ['Se Deus existe', 'Se Deus é justo, como pode perdoar pecadores', 'Se a Bíblia é verdadeira', 'Se o mundo é real'], respostaCorreta: 1, explicação: 'O dilema é: se Deus é justo, como pode perdoar pecadores? Paulo resolve isso com a cruz de Cristo.' },
-            { id: 'q-rom-1-10', pergunta: 'O que significa "destituídos da glória de Deus"?', opções: ['Deus não tem glória', 'O homem perdeu a imagem de Deus por causa do pecado', 'Deus é fraco', 'O homem é Deus'], respostaCorreta: 1, explicação: 'O homem foi criado à imagem de Deus, mas o pecado corrompeu e distorceu essa imagem, deixando-o "destituído" da glória original.' },
+            { ref: 'Romanos 1:16-17', texto: 'Porque não me envergonho do evangelho, pois é o poder de Deus para salvação de todo aquele que crê, primeiro do judeu, e também do grego. Porque no evangelho a justiça de Deus se revela de fé em fé, como está escrito: Mas o justo viverá pela fé.' },
           ],
         },
       ],
     },
     {
-      id: 'mod-solucao',
-      título: 'A Solução: Caps 4-5',
-      descrição: 'A justificação pela fé é a paz com Deus',
-      ícone: '✝️',
+      id: 'mod-ira',
+      título: 'A Revelação da Ira (Rm 1:18-32)',
+      descrição: 'A paganidade, a supressão da verdade e a escalada do pecado sob o julgamento divino',
+      ícone: '🔥',
       aulas: [
         {
           id: 'aula-rom-2-1',
-          título: 'A justificação pela fé (Rom 3:21-31)',
-          tipo: 'video',
-          videoUrl: 'https://www.youtube.com/watch?v=gcpurQOORaI',
-          videoTítulo: 'O que é justificação - Moises Brasil',
-          duração: '16 min',
-          conteúdo: '## A justificação pela fé\n\nRomanos 3:21-31 é o núcleo da teologia paulina. Aqui Paulo revela como o justo Deus declara justo o pecador.\n\n### A justiça de Deus\n\nUma justiça de Deus se manifestou sem a Lei, testificada pela Lei e pelos Profetas (3:21). Essa justiça vem por meio da fé em Jesus Cristo para todos que creem (3:22).\n\n### O propiciatório\n\nDeus propôs Jesus como propiciatório pelo seu sangue, mediante a fé (3:25). Propiciatório significa que Jesus absorveu a ira de Deus que era direcionada a nós.\n\n### A graça\n\nA justificação é pela graça, de graça, como dom (3:24). Não há merecimento humano. É um presente de Deus.\n\n### O orgulho humano\n\nNão há lugar para orgulho. Se é dom, não é obra. Se é graça, não é mérito.',
-          versículosChave: [
-            { ref: 'Romanos 3:24', texto: 'Sendo justificados de graça, por sua graça, mediante a redenção que há em Cristo Jesus.' },
-            { ref: 'Romanos 3:25', texto: 'Propôs Deus Jesus como propiciatório pelo seu sangue, mediante a fé.' },
-          ],
-        },
-        {
-          id: 'aula-rom-2-2',
-          título: 'Abraão como modelo (Rom 4)',
+          título: 'A Revelação da Ira (Rm 1:18-32)',
           tipo: 'texto',
-          duração: '14 min',
-          conteúdo: '## Abraão como modelo\n\nPaulo usa Abraão como exemplo de justificação pela fé, não pelas obras.\n\n### A fé de Abraão\n\nAbraão creu em Deus, e isso lhe foi imputado como justiça (4:3, citando Gênesis 15:6). Ele não circuncidou antes de ser justificado. Não observou a Lei antes de ser justo.\n\n### O que é imputação\n\nA justificação é a declaração legal de que somos justos. Não é que nos tornamos justos instantaneamente (isso é santificação) — é que Deus nos declara justos com base na justiça de Cristo.\n\n### Para quem\n\nAbraão é pai de todos que creem, circuncidados ou não. A justificação pela fé é universal — para judeus e gentios.',
+          duração: '20 min',
+          conteúdo: `## A Revelação da Ira (Rm 1:18-32)
+
+### O Versículo Programático: 1:18
+
+Paulo abre o argumento teológico de Romanos com uma afirmação que se conecta diretamente ao versículo anterior (1:17). Assim como a justiça de Deus se revela no evangelho, a ira de Deus (orgē theou) se revela do céu contra toda impiedade (asebeia) e injustiça (adikia) dos homens. A estrutura paralela não é acidental: a revelação da graça e a revelação da ira são faces da mesma moeda divina. A ira de Deus não é temperamento nem vingança — como observa Murray, é "a reação santa e justa de Deus contra o pecado", uma expressão necessária do caráter moral de Deus. O anglicano Cranfield enfatiza que a ira de Deus não é arbitrária, mas consistente: Deus não pode ignorar o pecado sem deixar de ser justo. A ira, portanto, não é a antítese do amor, mas seu corolário necessário — Deus ama a justiça e, portanto, aborrece o que a destrói.
+
+A palavra grega orgē denota uma ira estabelecida, duradoura — não uma explosão momentânea, mas um estado permanente de oposição divina ao mal. Isso é crucial: a ira de Deus não é um evento pontual, mas uma condição contínua da relação entre o Deus santo e a humanidade pecadora. Barth observa que a ira de Deus é a expressão negativa do amor de Deus — Deus se opõe ao pecado porque ama o pecador e deseja sua restauração.
+
+### A Supressão da Verdade (1:18-23)
+
+A acusação central de Paulo é que os seres humanos "suprimem" (katechontōn) a verdade em injustiça. O verbo grego katechō significa segurar, conter, reter — os homens conhecem a verdade sobre Deus, mas a reprimitam ativamente. Isso não é ignorância, mas rebelião. A verdade sobre Deus é "manifesta" (phaneron), evidente, clara — não porque o evangelho foi pregado, mas porque Deus se revela na criação (teologia natural, cf. Sl 19:1-4; At 14:17).
+
+Paulo descreve quatro permutas trágicas, uma escalada descendente de rebelião:
+
+1. A glória do Deus incorruptível foi trocada (metēllaxan) por imagens de homem corruptível (1:23). A palavra glória (doxa) sugere que a criatura humana foi feita para refletir a imagem divina, mas inverteu a relação — criou imagens em vez de ser imagem.
+
+2. Trocaram a verdade de Deus pela mentira (1:25). A mentira (pseudos) não é apenas erro, mas engano deliberado. Paul usa o verbo metatithēmi (trocar, mudar de posição) para descrever uma substituição consciente da realidade divina pela fantasia humana.
+
+3. Trocaram o que é natural (physikon) por o que é contranatural (para physin, 1:26). O termo para physin (natureza) aqui se refere à ordem criada estabelecida por Deus — a relação masculino-feminina como tipo criacional.
+
+4. Rejeitaram o conhecimento de Dios (1:28). O verbo adokimazō (rejeitar, declarar indigno) indica que Deus permite que a humanidade sofra as consequências de sua própria rebelião: entregou-os (paredōken) a uma mente sem discernimento.
+
+Cranfield observa que essa escalada descreve o processo de ateísmo prático: não a negação teórica de Deus, mas a recusa prática de reconhecê-lo. O homem não é ateísta intelectual na maioria das vezes — é ateu operacional, vivendo como se Deus não existisse.
+
+### A Escalada do Pecado (1:29-31)
+
+Paulo enumera 21 vícios em dois catálogos (1:29-31), um dos quais inclui=kltodokimia (desaprovação — rejeição de tudo o que é bom). A lista não é exaustiva, mas representativa: injustiça, maldade, avareza, perversão, assassinatos, disputas, engano, malignidade, difamação, ódio a Deus, insolência, soberba, arrogância, invenção de males, desobediência aos pais, sem entendimento, quebra de aliança, sem afeto natural, misericórdia. O clímax é a frase devastadora: "sabendo plenamente o justo julgamento de Deus, que são mortos os que tais coisas praticam" (1:32).
+
+Paulo acrescenta uma acusação final: não apenas praticam o mal, mas "rejoicam-se com os que o praticam" (1:32). Isso transforma o pecado individual em pecado comunitário, a rebelião pessoal em cultura de rebelião. O homem não apenas peca — aprova o pecado alheio, criando um ecossistema de corrupção. Isso antecipa o diagnóstico de Rm 3:10-18, onde Paulo cita uma catena de Escrituras para provar que todos, sem exceção, estão sob a condenação divina.
+
+### Implicações Teológicas
+
+A teologia da ira em Romanos 1 tem consequências práticas imediatas. Primeiro, ela invalida qualquer noção de que Deus é indiferente ao pecado. A cruz de Cristo não é um sintomo da fraqueza divina, mas o cumprimento máximo da sua justiça — Deus não perdoa ignorando o mal, mas ao julgá-lo em Cristo. Segundo, ela destrói o autoengano moral: ninguém pode alegar ignorância diante de Deus (1:20-21). A revelação geral é suficiente para condenar, embora não seja suficiente para salvar — para isso, o evangelho é necessário. Terceiro, ela estabelece a urgência da evangelização: se a ira de Deus é real e contínua, a proclamação do evangelho não é opção, mas necessidade existencial.
+
+Stott resume: "A ira de Deus contra o pecado não é a raiva de um tirano, mas a dor de um pai." A mesma justiça que condena o pecado é a que justifica o crente pela fé. A cruz é o ponto onde a ira e o amor se encontram — onde Deus é ao mesmo tempo "justo e justificador daquele que tem fé em Jesus" (3:26).`,
           versículosChave: [
-            { ref: 'Romanos 4:3', texto: 'Porque que diz a Escritura? E Abraão creu em Deus, e isso lhe foi imputado como justiça.' },
-            { ref: 'Romanos 4:5', texto: 'Mas ao que não obra, mas crê naquele que justifica o ímpio, a sua fé lhe é imputada como justiça.' },
-          ],
-        },
-        {
-          id: 'aula-rom-2-3',
-          título: 'Paz e esperança (Rom 5:1-11)',
-          tipo: 'texto',
-          duração: '13 min',
-          conteúdo: '## Paz e esperança\n\nJustificados pela fé, temos paz com Deus e acesso a Sua graça.\n\n### A paz\n\nJustificados pela fé, temos paz com Deus (5:1). Antes, éramos inimigos. Agora, temos paz. Essa paz não é ausência de conflito — é reconciliação com Deus.\n\n### A esperança\n\nNa esperança da glória de Deus (5:2). A esperança cristã não é desejo vago — é certeza baseada nas promessas de Deus.\n\n### O amor\n\nO amor de Deus está derramado nos nossos corações (5:5). Essa é a base da perseverança.\n\n### A certeza\n\nSe Deus nos amou sendo inimigos, quanto mais nos amará sendo justificados! (5:8-10).',
-          versículosChave: [
-            { ref: 'Romanos 5:1', texto: 'Justificados pela fé, temos paz com Deus.' },
-            { ref: 'Romanos 5:8', texto: 'Mas Deus prova o seu amor por nós em que Cristo morreu por nós sendo nós ainda pecadores.' },
-          ],
-        },
-        {
-          id: 'aula-rom-2-4',
-          título: 'Em Adão e em Cristo (Rom 5:12-21)',
-          tipo: 'texto',
-          duração: '14 min',
-          conteúdo: '## Em Adão e em Cristo\n\nPaulo faz o maior paralelo da história: Adão e Cristo.\n\n### O primeiro Adão\n\nPecado entrou no mundo por um homem, e pela pecado a morte (5:12). Todos estamos "em Adão" — compartilhamos sua culpa e sua condenação.\n\n### O segundo Adão\n\nJesus, o segundo Adão, obedece onde Adão falhou. A graça de um homem — Cristo — é mais abundante que a transgressão de Adão.\n\n### A superabundância\n\nOnde abundou o pecado, sobreabundou a graça (5:20). A graça de Deus é maior que qualquer pecado humano.\n\n### A vida\n\nAssim como em Adão todos morrem, assim também em Cristo todos serão vivificados (5:19, cf. 1 Cor 15:22).',
-          versículosChave: [
-            { ref: 'Romanos 5:12', texto: 'Por meio de um homem o pecado entrou no mundo.' },
-            { ref: 'Romanos 5:20', texto: 'Onde abundou o pecado, sobreabundou a graça.' },
-          ],
-        },
-        {
-          id: 'aula-rom-2-5',
-          título: 'Quiz: A Solução',
-          tipo: 'quiz',
-          duração: '10 min',
-          perguntas: [
-            { id: 'q-rom-2-1', pergunta: 'O que é a justificação?', opções: ['Tornar-se santo', 'Ser declarado justo por Deus pela fé', 'Fazer obras boas', 'Obedecer a Lei'], respostaCorreta: 1, explicação: 'A justificação é a declaração legal de que somos justos com base na justiça de Cristo.' },
-            { id: 'q-rom-2-2', pergunta: 'Por que Abraão é modelo de justificação?', opções: ['Porque era rico', 'Porque creu em Deus e isso lhe foi imputado como justiça', 'Porque era perfeito', 'Porque fez muitas obras'], respostaCorreta: 1, explicação: 'Abraão creu em Deus e isso lhe foi imputado como justiça, antes da Lei e da circuncisão.' },
-            { id: 'q-rom-2-3', pergunta: 'O que a paz com Deus significa?', opções: ['Ausência de conflito', 'Reconciliação com Deus através de Cristo', 'Paz mundial', 'Ausência de tentação'], respostaCorreta: 1, explicação: 'A paz com Deus é a reconciliação — de inimigos, passamos a ser amigos e filhos.' },
-            { id: 'q-rom-2-4', pergunta: 'Como o amor de Deus é provado em Romanos 5?', opções: ['Com milagres', 'Cristo morreu por nós sendo pecadores', 'Com prosperidade', 'Com sabedoria'], respostaCorreta: 1, explicação: 'Deus prova o Seu amor em que Cristo morreu por nós sendo ainda pecadores (5:8).' },
-            { id: 'q-rom-2-5', pergunta: 'O que é "imputação"?', opções: ['Acusação', 'Declaração legal de que somos justos', 'Sentença de morte', 'Punicação'], respostaCorreta: 1, explicação: 'Imputação é a declaração legal de que a justiça de Cristo é creditada a nós pela fé.' },
-            { id: 'q-rom-2-6', pergunta: 'Qual a relação entre Adão e Cristo em Romanos 5?', opções: ['São iguais', 'Adão trouxe pecado e morte; Cristo trouxe graça e vida', 'Cristo é pior que Adão', 'Adão é melhor'], respostaCorreta: 1, explicação: 'Adão trouxe pecado e morte a todos; Cristo trouxe graça e vida a todos que creem.' },
-            { id: 'q-rom-2-7', pergunta: 'O que significa "sobreabundou a graça"?', opções: ['A graça é pouca', 'A graça de Deus é maior que qualquer pecado', 'A graça é opcional', 'A graça acabou'], respostaCorreta: 1, explicação: 'A graça de Deus é sempre maior que o pecado humano — ela sobreabunda.' },
-            { id: 'q-rom-2-8', pergunta: 'A justificação depende de obras?', opções: ['Sim, sempre', 'Não, é pela fé em Cristo', 'Depende da religião', 'Depende do batismo'], respostaCorreta: 1, explicação: 'A justificação é pela fé, não pelas obras da Lei (Rom 3:28).' },
-            { id: 'q-rom-2-9', pergunta: 'A justificação é para quem?', opções: ['Apenas judeus', 'Para todos que creem — judeus e gentios', 'Apenas para pastores', 'Apenas para os bons'], respostaCorreta: 1, explicação: 'A justificação pela fé é universal — para todos que creem, sem distinção de etnia ou religião.' },
-            { id: 'q-rom-2-10', pergunta: 'O que a "esperança da glória" significa?', opções: ['Desejo vago', 'Certeza de que seremos transformados e viveremos eternamente com Deus', 'Morte certa', 'Não há esperança'], respostaCorreta: 1, explicação: 'A esperança cristã é certeza baseada nas promessas de Deus de que seremos glorificados.' },
+            { ref: 'Romanos 1:18', texto: 'Porque a ira de Deus se revela do céu contra toda a impiedade e injustiça dos homens que suprimem a verdade em injustiça.' },
+            { ref: 'Romanos 1:20', texto: 'Porque os atributos invisíveis de Deus, desde a criação do mundo, se veem claramente, sendo percebidos pelas coisas que foram feitas.' },
+            { ref: 'Romanos 1:25', texto: 'Trocam a verdade de Deus pela mentira, adorando e servindo a criatura em vez do Criador.' },
+            { ref: 'Romanos 1:32', texto: 'E não somente fazem o mesmo, mas também se comprazem com os que os praticam.' },
           ],
         },
       ],
     },
     {
-      id: 'mod-vida',
-      título: 'A Vida: Caps 6-8',
-      descrição: 'Mortos para o pecado, vivos para Cristo no espírito',
-      ícone: '🕊️',
+      id: 'mod-julgamento',
+      título: 'O Julgamento Sem Desculpas (Rm 2-3)',
+      descrição: 'Judeus e gentios diante da Lei e da consciência, o diagnóstico universal do pecado',
+      ícone: '⚖️',
       aulas: [
         {
           id: 'aula-rom-3-1',
-          título: 'Mortos para o pecado (Rom 6:1-14)',
-          tipo: 'video',
-          duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=w5rkwQb3cFM',
-          videoTítulo: 'Romanos 5-16 – BibleProject Português',
-          conteúdo: '## Mortos para o pecado\n\nPaulo antecipa uma objeção: se a graça abunda, devemos pecar mais? De jeito nenhum!\n\n### Unidos com Cristo na morte e ressurreição\n\nBatizados em Cristo, fomos sepultados com Ele e ressuscitamos com Ele (6:3-4). O batismo simboliza a nossa morte para o pecado e a nossa nova vida em Cristo.\n\n### Libertação do pecado\n\nO pecado não terá domínio sobre vocês (6:14). A Lei ainda reina? Não. A graça reina. Estamos livres do domínio do pecado.\n\n### A entrega\n\nEntregai-vos a Deus como vivos, dentre os mortos, e os vossos membros a Deus para instrumentos de justiça (6:13). A vida cristã é uma entrega diária.',
-          versículosChave: [
-            { ref: 'Romanos 6:6', texto: 'O nosso velho homem foi crucificado com ele, para que o corpo do pecado fosse desfeito.' },
-            { ref: 'Romanos 6:11', texto: 'Assim também vós considerai-vos mortos para o pecado, mas vivos para Deus em Cristo Jesus.' },
-          ],
-        },
-        {
-          id: 'aula-rom-3-2',
-          título: 'Servos da justiça (Rom 6:15-23)',
+          título: 'O Julgamento Sem Desculpas (Rm 2-3)',
           tipo: 'texto',
-          duração: '12 min',
-          conteúdo: '## Servos da justiça\n\nPaulo usa a imagem de servidão: éramos servos do pecado, agora somos servos da justiça.\n\n### A mudança de senhor\n\nAntes, servíeis ao pecado. Agora, serveis a Deus. Não há neutro — ou servimos ao pecado ou servimos a Deus.\n\n### O fruto\n\nO fruto do pecado é morte. O fruto da santificação é vida eterna (6:22). A vida cristã produz frutos.\n\n### O pagamento\n\nO salário do pecado é morte; mas o dom gratuito de Deus é a vida eterna (6:23). Um é pagamento; o outro é presente.',
+          duração: '20 min',
+          conteúdo: `## O Julgamento Sem Desculpas (Rm 2-3)
+
+### O Moralista Julgado (2:1-16)
+
+Paulo emprega uma estratégia retórica brilhante no capítulo 2. Depois de descrever a decadência pagã em 1:18-32, ele antecipa que seu público judeu estaria assentindo: "Sim, esses gentios são merecedores da ira de Deus." Mas então Paulo gira o espelho: "Logo, és indesculpável, oh homem, qualquer que sejas tu, que julgas" (2:1). A palavra indesculpable (anapologētos) significa literalmente "sem defesa" — o moralista que condena os pecadores públicos, mas pratica os mesmos pecados em privado, está duplamente condenado. Käsemann observa que Paulo está desmontando a autojustificação humana: não importa o quão vil seja o pecador que julgamos, nossa posição diante de Deus depende da nossa própria resposta à sua bondade.
+
+O versículo 4 é crucial: "Ou desprezas tu as riquezas da sua bondade, tolerância e paciência, não sabendo que a bondade de Deus te conduz ao arrependimento?" A bondade de Deus (chrēstotēs) não é indiferença — é paciência estratégica que oferece tempo para o arrependimento. Mas se esse tempo é desperdiçado em presunção ("o teu coração endurece"), acumula-se "ira para o dia da ira" (2:5). A paciência de Deus não é tolerância ao mal, mas oportunidade para a graça.
+
+Paulo antecipa a objeção: "Não é injusto Deus para castigar?" A resposta é que Deus julga "segundo a verdade" (2:2), tanto pelos mandamentos da Lei quanto pela consciência. Os gentios que não possuem a Lei escrita, mas possuem "a obra da Lei escrita em seus corações" (2:15), são julgados pela consciência (syneidēsis). O termo syneidēsis aqui não é apenas o senso moral, mas o testemunho interno de que Deus existe e julga — cf. a discussão de Paulo em At 17:22-31 em Atenas. Cranfield argumenta que a consciência não é infalível, mas é suficiente para tornar os homens "inexcusáveis" (anapologētous, 2:1).
+
+### O Judeu e a Lei (2:17-29)
+
+Paulo agora se dirige diretamente ao judeu religioso. A adjective "judeu" (Ioudaios) carrega peso teológico: significa "louvor a Deus" — o povo que deveria ser testemunha do Deus verdadeiro. Mas Paulo denuncia a inconsistência entre a identidade religiosa e a prática ética: "Tu, que ensinas a outrem, não te ensinas a ti mesmo?" (2:21). O judeu tem a circuncisão como sinal da aliança (peritomē), mas Paul distingue entre a circuncisão carnal (physical) e a espiritual (2:28-29). A verdadeira circuncisão é "do coração, pelo Espírito" — não uma letra, mas um espírito (pneuma). Murray observa que isso não anula a circuncisão abraâmica, mas a reorienta: o sinal exterior sem a realidade interior é vazio.
+
+### A Catena do Pecado (3:1-18)
+
+Romanos 3:10-18 é uma das passagens mais devastadoras da Bíblia. Paulo cita uma série de textos do Antigo Testamento para provar que todos, sem exceção, estão sob pecado. A catena inclui: Salmo 14:1-3 ("Não há justo, nem um sequer"), Salmo 53:2-3 ("Não há quem entenda, não há quem busque a Deus"), Salmo 5:10 ("Sepulcro aberto é a garganta deles"), Salmo 140:3 ("Peçonha de víbora está em seus lábios"), Salmo 10:7 ("Maldade e amargura estão em seus lábios"), Salmo 36:1 ("Não há temor de Deus diante dos seus olhos"), e Isaías 59:7-8 ("Não há paz nos seus caminhos"). A justaposição deliberada desses textos cria um mosaico de depravação universal: a boca, os pés, as mãos, a mente, os olhos — toda a pessoa humana é afetada pelo pecado.
+
+A conclusão é inequívoca: "Toda a boca se calhe" (3:19). A Lei não salva — ela condena. Cada homem, cada mulher, cada criança está sob o veredito divino. Não há distinção entre judeu e grego (3:22-23) — "porque todos pecaram e estão destituídos da glória de Deus" (hēmarton, aoristo indicativo — um fato consumado, não uma tendência). Stott observa que "destituídos" (hysterountai) é uma palavra contábil: significa "estão aquém, estão devendo, estão falidos". A humanidade está em bancarrota moral diante de Deus.
+
+### O Dilema e a Solução (3:21-26)
+
+Mas então Paulo apresenta a viravolta mais dramática da história da teologia: "Mas agora, sem a Lei, se manifestou a justiça de Dios" (3:21). A expressão "mas agora" (nuni de) marca o clímax argumentativo de Romanos — tudo o que foi dito anteriormente preparava para esse momento. Uma justiça de Deus (dikaiosynē theou) se manifestou "sem a Lei" (chōris nomou), mas "testificada pela Lei e pelos Profetas" (3:21). Isso não é inovação — é o cumprimento das promessas messiânicas.
+
+A justiça de Deus se manifesta "para todos e sobre todos os que creem" (3:22). A universalidade do pecado (3:23) encontra sua contrapartida na universalidade da graça. Não há distinção (3:22) — judeu e grego estão no mesmo nível diante da cruz.
+
+O versículo 24 é o coração soteriológico de Romanos: "Sendo justificados de graça, por sua graça, mediante a redenção que há em Cristo Jesus." Três termos teológicos carregam o peso da salvação: dikaioumenoi (sendo justificados — presente participio, indicando processo contínuo), dorean (de graça — gratuitamente, sem mérito), apolutrōseōs (redenção — pagamento de resgate, cf. o preço do escravo no mercado). A redenção em Cristo Jesus é o meio pelo qual a justificação se realiza.
+
+O versículo 25 apresenta o conceito de propiciação (hilastērion): "Propôs Deus Jesus como propiciatório pelo seu sangue, mediante a fé." O hilastērion no Antigo Testamento é o "propiciatório" da arca da aliança (Ex 25:17-22), o lugar onde Deus encontra com o pecador e onde o sangue do dia da expiação é aspergido (Lv 16:14-15). Ao chamar Jesus de hilastērion, Paulo está dizendo que Cristo é o cumprimento do ritual do dia da expiação — Ele é tanto o lugar quanto o meio da reconciliação. O sangue (haima) não é simbólico — é sacrificial, substitutivo, expiatório.
+
+### A Linguagem da Justificação Forense
+
+A justificação em Romanos é um termo jurídico (forense). Não significa "tornar justo" (isso seria santificação — hagiasmos), mas "declarar justo" (dikaiōsis). O juiz divino declara o réu culpado, mas aceita o pagamento de Cristo em seu lugar. A imputação (logizesthai, 4:3-8, 11) é o mecanismo: a justiça de Cristo é creditada ao crente, assim como o pecado de Adão foi creditado à humanidade. Murray enfatiza que a imputação não é uma ficção legal — é uma realidade objetiva baseada na união com Cristo. O crente não é仅仅 declarado justo — ele é justificado porque está "em Cristo" (en Christō), e Cristo é justo.
+
+Cranfield observa que a justificação é simultaneamente objetiva (Deus declara justo) e subjetiva (o crente a recebe pela fé). A fé (pistis) não é mérito — é a mão vazia que recebe o dom. "Ao que não obra, mas crê naquele que justifica o ímpio, a sua fé lhe é imputada como justiça" (4:5). A graça gratuita e o esforço humano são mutuamente exclusivos: "Se é pela graça, já não é por obras; do contrário, a graça não é mais graça" (11:6).
+
+### Implicações Práticas
+
+O diagnóstico de Romanos 2-3 destrói toda forma de autojustificação. O religioso não está melhor que o pecador escandaloso — ambos estão sob a condenação. A Lei não é escada para Deus, mas espelho que revela a necessidade de um Salvador. A consciência não é redentora — é testemunha. A única saída é a graça gratuita em Cristo. Isso fundamenta a humildade cristã: se fomos justificados gratuitamente, não há orgulho, apenas gratidão. E fundamenta a urgência missionária: se todos estão sob condenação, o evangelho não é opção — é urgência existencial.`,
           versículosChave: [
-            { ref: 'Romanos 6:23', texto: 'Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna em Cristo Jesus.' },
-          ],
-        },
-        {
-          id: 'aula-rom-3-3',
-          título: 'A luta interior (Rom 7:1-25)',
-          tipo: 'texto',
-          duração: '15 min',
-          conteúdo: '## A luta interior\n\nO capítulo 7 é a descrição mais honesta da vida cristã antes da plenitude do Espírito.\n\n### A Lei e o pecado\n\nA Lei é santa, justa e boa (7:12). Mas o pecado usa a Lei como armadilha. A Lei mostra o pecado, mas não tem poder para vencê-lo.\n\n### A luta\n\nO que quero fazer, isso não faço; é o que odeio, isso pratico (7:15). Toda cristão madura reconhece essa luta.\n\n### A libertação\n\nQuem me livrará deste corpo de morte? Graças a Deus, por Jesus Cristo nosso Senhor! (7:24-25). A solução não é mais esforço — é mais Cristo.\n\n### O que este capítulo ensina\n\nA luta com o pecado é normal na vida cristã. A vitória não vem da Lei, mas do Espírito.',
-          versículosChave: [
-            { ref: 'Romanos 7:15', texto: 'Porque o que pratico, não aprovo; mas o que odeio, isso faco.' },
-            { ref: 'Romanos 7:24-25', texto: 'Quem me livrará? Graças a Deus, por Jesus Cristo!' },
-          ],
-        },
-        {
-          id: 'aula-rom-3-4',
-          título: 'Vida no Espírito (Rom 8:1-17)',
-          tipo: 'video',
-          videoUrl: 'https://www.youtube.com/watch?v=Xy9rHjb2Hq4',
-          videoTítulo: 'Espírito Santo - Filiação e Fruto do Espírito - Curso de Teologia Trinitária - Moises Brasil',
-          duração: '16 min',
-          conteúdo: '## Vida no Espírito\n\nO capítulo 8 é o ponto alto de Romanos. Não há condenação para os que estão em Cristo Jesus.\n\n### A libertação\n\nA lei do espírito de vida me livrou da lei do pecado e da morte (8:2). O Espírito nos libertou. Não é esforço humano — é obra divina.\n\n### A vida no espírito\n\nOs que andam segundo o Espírito pensam nas coisas do Espírito (8:5). A vida cristã é guiada pelo Espírito.\n\n### Filhos de Deus\n\nO Espírito mesmo testifica ao nosso espírito de que somos filhos de Deus (8:16). Essa é a certeza da salvação.\n\n### Herdeiros\n\nSe filhos, logo herdeiros — herdeiros de Deus e co-herdeiros com Cristo (8:17).',
-          versículosChave: [
-            { ref: 'Romanos 8:1', texto: 'Portanto, agora nenhuma condenação há para os que estão em Cristo Jesus.' },
-            { ref: 'Romanos 8:28', texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus.' },
-          ],
-        },
-        {
-          id: 'aula-rom-3-5',
-          título: 'Nada nos separará (Rom 8:18-39)',
-          tipo: 'texto',
-          duração: '15 min',
-          conteúdo: '## Nada nos separará\n\nO capítulo 8 termina com uma das passagens mais emocionantes da Bíblia.\n\n### A glória futura\n\nAs aflições do tempo presente não são comparáveis com a glória que será revelada em nós (8:18). O sofrimento é temporário; a glória é eterna.\n\n### A criação geme\n\nToda a criação geme esperando a libertação dos filhos de Deus (8:22). A redenção inclui a criação inteira.\n\n### O plano de Deus\n\nDeus predestinou, chamou, justificou e glorificou (8:29-30). O "cadeia da salvação" é inviolável.\n\n### A certeza final\n\nNem a morte, nem a vida, nem anjos, nem potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus que está em Cristo Jesus (8:38-39).',
-          versículosChave: [
-            { ref: 'Romanos 8:28', texto: 'Todas as coisas contribuem para o bem daqueles que amam a Deus.' },
-            { ref: 'Romanos 8:29', texto: 'Porque aos quais dantes soube, esses também predestinou.' },
-            { ref: 'Romanos 8:38-39', texto: 'Nada nos poderá separar do amor de Deus em Cristo Jesus.' },
-          ],
-        },
-        {
-          id: 'aula-rom-3-6',
-          título: 'Quiz: A Vida',
-          tipo: 'quiz',
-          duração: '10 min',
-          perguntas: [
-            { id: 'q-rom-3-1', pergunta: 'O que o batismo simboliza em Romanos 6?', opções: ['Purificação', 'Morte e ressurreição com Cristo', 'Entrada na igreja', 'Apenas água'], respostaCorreta: 1, explicação: 'O batismo simboliza a morte para o pecado e a nova vida em Cristo (6:3-4).' },
-            { id: 'q-rom-3-2', pergunta: 'O que significa "mortos para o pecado"?', opções: ['Nunca pecamos', 'O pecado não tem mais domínio absoluto sobre nos', 'Somos perfeitos', 'Não sentimos pecado'], respostaCorreta: 1, explicação: 'O pecado não terá domínio absoluto — fomos libertados, embora ainda lutemos.' },
-            { id: 'q-rom-3-3', pergunta: 'Qual o salário do pecado?', opções: ['Prosperidade', 'Morte', 'Riquezas', 'Sabedoria'], respostaCorreta: 1, explicação: 'O salário do pecado é a morte, mas o dom de Deus é a vida eterna (6:23).' },
-            { id: 'q-rom-3-4', pergunta: 'O que a luta de Romanos 7 revela?', opções: ['Paulo era fraco', 'A luta com o pecado é normal na vida cristã', 'Deus falhou', 'Paulo era hipócrita'], respostaCorreta: 1, explicação: 'A luta com o pecado é normal. A solução não é mais esforço, mas mais Cristo e o Espírito.' },
-            { id: 'q-rom-3-5', pergunta: 'O que há em Romanos 8:1?', opções: ['Muitas condenações', 'Nenhuma condenação para os que estão em Cristo', 'Pouca condenação', 'Condenação apenas'], respostaCorreta: 1, explicação: 'Nenhuma condenação — essa é a certeza dos que estão em Cristo Jesus.' },
-            { id: 'q-rom-3-6', pergunta: 'O que nos separa do amor de Deus?', opções: ['O pecado', 'Nada — nem morte nem vida nos separa', 'Nossas falhas', 'Os outros'], respostaCorreta: 1, explicação: 'Nada — nem morte, nem vida, nem anjos, nem potestades — nos pode separar do amor de Deus (8:38-39).' },
-            { id: 'q-rom-3-7', pergunta: 'O que a criação espera em Romanos 8?', opções: ['Destruição', 'Libertação dos filhos de Deus', 'O fim do mundo', 'Nada'], respostaCorreta: 1, explicação: 'Toda a criação geme esperando a libertação dos filhos de Deus (8:22).' },
-            { id: 'q-rom-3-8', pergunta: 'O que é a "cadeia da salvação" em Romanos 8:29-30?', opções: ['Corrente física', 'Deus predestinou, chamou, justificou e glorificou', 'Cadeia de pecados', 'Não existe'], respostaCorreta: 1, explicação: 'A cadeia da salvação é inviolável: predestinação, chamado, justificação e glorificação.' },
-            { id: 'q-rom-3-9', pergunta: 'Como a vida no Espírito se manifesta?', opções: ['Apenas em culto', 'Em pensar nas coisas do Espírito e andar segundo Ele', 'Em milagres apenas', 'Em riquezas'], respostaCorreta: 1, explicação: 'A vida no Espírito se manifesta em pensamentos e ações guiados pelo Espírito (8:5).' },
-            { id: 'q-rom-3-10', pergunta: 'Qual é a glória que espera os filhos de Deus?', opções: ['Riquezas materiais', 'Ser co-herdeiros com Cristo e compartilhar da Sua glória', 'Fama', 'Poder'], respostaCorreta: 1, explicação: 'Se filhos, herdeiros de Deus e co-herdeiros com Cristo, compartilharemos da Sua glória (8:17).' },
+            { ref: 'Romanos 2:1', texto: 'Logo, és indesculpável, oh homem, qualquer que sejas tu, que julgas, pois em que julgas a outrem, a ti mesmo te condenas.' },
+            { ref: 'Romanos 2:11', texto: 'Pois Deus não faz acepção de pessoas.' },
+            { ref: 'Romanos 3:10', texto: 'Não há justo, nem um sequer.' },
+            { ref: 'Romanos 3:23', texto: 'Porque todos pecaram e estão destituídos da glória de Deus.' },
+            { ref: 'Romanos 3:24', texto: 'Sendo justificados de graça, por sua graça, mediante a redenção que há em Cristo Jesus.' },
           ],
         },
       ],
     },
     {
-      id: 'mod-plano',
-      título: 'O Plano: Caps 9-16',
-      descrição: 'Israel, as nações e a vida prática do evangelho',
-      ícone: '🌍',
+      id: 'mod-justificacao',
+      título: 'A Justificação pela Fé (Rm 3:21-5:21)',
+      descrição: 'A obra de Cristo, fé versus obras, paz com Deus e o amor de Deus derramado',
+      ícone: '✝️',
       aulas: [
         {
           id: 'aula-rom-4-1',
-          título: 'O plano para Israel (Rom 9-11)',
+          título: 'A Justificação pela Fé (Rm 3:21-5:21)',
           tipo: 'texto',
-          duração: '14 min',
-          conteúdo: '## O plano para Israel\n\nPaulo dedica três capítulos a questão de Israel: por que muitos judeus rejeitaram o Messias?\n\n### A dor de Paulo\n\nTenho grande tristeza e contínua dor no meu coração pelos meus irmãos segundo a carne (9:2). Paulo ama Israel e se entristece pela sua incredulidade.\n\n### A soberania de Deus\n\nNão é a palavra de Deus falhou? (9:6). Não! Deus é soberano sobre Suas promessas. Nem todo Israel é Israel (9:6).\n\n### O barro e o oleiro\n\nDeus tem direito de fazer vasos para honra e para desonra (9:21). Isso não é injustiça — é soberania.\n\n### O mistério\n\nParte de Israel endureceu para que a salvação fosse aos gentios, e depois todo Israel será salvo (11:25-26). O plano de Deus inclui todos.',
+          duração: '20 min',
+          conteúdo: `## A Justificação pela Fé (Rm 3:21-5:21)
+
+### O Núcleo Teológico: Romanos 3:21-31
+
+Romanos 3:21-31 é o cerne teológico de toda a epístola — e talvez de todo o Novo Testamento. É aqui que Paulo articula como o justo Deus pode declarar justo o pecador sem comprometer Sua santidade. O conceito-chave é a dikaiosynē theou — a justiça de Deus, que se manifesta no evangelho "sem a Lei" (3:21), mas testificada pela Lei e pelos Profetas (3:21). Essa justiça não é uma exigência que Deus impõe ao homem, mas um dom que Ele oferece ao homem pela fé.
+
+A justificação é descendente (theologica, de Deus para o homem), não ascendente (ética, do homem para Deus). Schreiner enfatiza que a justificação é uma declaração jurídica (forense), não uma transformação moral (ontológica). O termo dikaiōmenoi (sendo justificados, 3:24) é presente participio — indica um processo contíuo, não um evento isolado. É como se Paulo estivesse dizendo: "vocês estão sendo declarados justos agora, neste momento, pela graça de Deus".
+
+O meio da justificação é a redenção (apolutrōsis, 3:24) — pagamento de resgate para liberdade do escravo. No mundo antigo, apolutrōsis era o preço pago para libertar um prisioneiro de guerra ou um escravo do cativeiro. Cristo pagou o preço — não com ouro ou prata, mas com Seu próprio sangue (1 Ped 1:18-19). O preço é insubstituível: o Filho unigênito de Deus.
+
+### A Propiciação: Romanos 3:25
+
+O versículo 25 é um dos mais carregados teologicamente: "Propôs Deus Jesus como propiciatório (hilastērion) pelo seu sangue, mediante a fé." A palavra hilastērion aparece apenas duas vezes no NT (Romanos 3:25 e Hebreus 9:5), e ambas as vezes se referem ao propiciatório da arca da aliança — a tampa dourada coberta de sangue no Santo dos Santos (Ex 25:17-22; Lv 16:14-15). No dia da expiação, o sumo sacerdote aspergia sangue sobre o propiciatório para expiar os pecados de Israel.
+
+Ao chamar Jesus de hilastērion, Paulo faz três declarações devastadoras: (1) Jesus é o cumprimento do ritual do dia da expiação — Ele é tanto o lugar quanto o meio da reconciliação; (2) O sangue de Jesus não é simbólico — é sacrificial, substitutivo, expiatório; (3) A cruz não é acidente histórico — é o plano eterno de Deus para resolver o dilema da justiça e da misericórdia. A propiciação não é Deus sendo aplacado pelo sangue — é Deus em Cristo aplacando Sua própria ira contra o pecado. Não é Deus que precisa ser convencido a amar — é Deus que ama e, portanto, julga.
+
+O versículo 26 é o clímax: "Para que ele fosse justo, e ao mesmo tempo justificasse os que têm fé em Jesus." A justiça e a misericórdia de Deus não estão em conflito — elas se encontram na cruz. A cruz é o lugar onde Deus é ao mesmo tempo justo (julgando o pecado) e justificador (perdoando o pecador). Lutero descobriu essa verdade em 1515 e a chamou de "a primeira verdade do evangelho" — a iustitia Dei passiva (a justiça de Deus que salva, não a que condena).
+
+### A Fé versus as Obras: Romanos 3:27-31
+
+Paulo extrai a conclusão lógica: "Onde está, pois, o motivo de vanglória? É excluído. Por que lei? Pelas obras da Lei? Não, mas pela lei da fé" (3:27). A lei da fé (nomos pisteōs) substitui a lei das obras (nomos ergōn). Não porque a Lei seja má (7:12), mas porque o homem é incapaz de cumprir suas exigências. A Lei revela o pecado, mas não pode removê-lo — para isso, é necessária a graça.
+
+Paulo insiste: "Semos justificados pela fé sem as obras da Lei" (3:28). Isso é o artigo non negotiable do evangelicalismo. Justificação pela fé sola — sola fide, sola gratia, solus Christus, sola Scriptura, soli Deo gloria. Lutero acrescentou "sola" à fé para enfatizar que a fé é o único instrumento, não um dos muitos meios. A fé não é obra — é a mão vazia que recebe o dom. "Ao que não obra, mas crê naquele que justifica o ímpio, a sua fé lhe é imputada como justiça" (4:5).
+
+### Abraão: O Modelo da Fé: Romanos 4
+
+Paulo usa Abraão como caso de estudo para ilustrar a justificação pela fé. "Porque que diz a Escritura? E Abraão creu em Deus, e isso lhe foi imputado como justiça" (4:3, citando Gn 15:6). A imputação (logizesthai) é um termo contábil — significa "creditado, registrado na conta". A fé de Abraão não foi merecedora — foi receptiva. Abraão não "ganhou" a justiça; ele a recebeu como dom.
+
+Paulo faz um ponto crucial: Abraão foi justificado antes da circuncisão (4:10) e antes da Lei (4:15). Isso significa que a justificação pela fé não depende de sacramentos, de observância legal ou de pertença étnica. Abraão é "pai de todos que creem, circuncidados ou não" (4:11). A justificação é universal — para judeus e gentios, sem distinção. Murray observa que Abraão é o prototype da fé não porque era perfeito, mas porque creu na promessa de Deus quando tudo parecia impossível — "ele creu contra toda esperança" (4:18).
+
+### Paz com Deus: Romanos 5:1-11
+
+Justificados pela fé, Paulo lista as consequências da salvação como uma cascata de bênçãos: paz com Deus (5:1), acesso à graça (5:2), esperança da glória (5:2), alegria nas tribulações (5:3-5), e a certeza do amor de Deus (5:5-8). A paz (eirēnē) aqui não é apenas ausência de conflito — é reconciliação (katallagē, 5:10). Éramos inimigos (echthroi) de Deus; agora somos amigos. O amor de Deus foi "derramado" (ekkechutai) em nossos corações — uma palavra vívida que sugere abundância, como um rio transbordando.
+
+O versículo 8 é possivelmente o mais belo de toda a Bíblia: "Mas Deus prova o seu amor por nós em que Cristo morreu por nós sendo nós ainda pecadores." O amor de Deus não depende do mérito humano — é amor et Dios, amor es坚不可摧. Stott observa que esse versículo destrói três mentiras: (1) "Deus não me ama" — Cristo morreu por você; (2) "Preciso melhorar para ser amado" — Ele morreu quando você era pecador; (3) "Meu pecado é grande demais" — Seu amor é maior.
+
+### Em Adão e em Cristo: Romanos 5:12-21
+
+Paulo faz o maior paralelo da história da teologia: Adão e Cristo. O primeiro Adão trouxe pecado e morte ao mundo pela desobediência (5:12-14); o segundo Adão trouxe graça e vida pela obediência (5:15-19). A estrutura é deliberadamente assimétrica: "Onde abundou o pecado, sobreabundou a graça" (5:20). A graça não é apenas igual ao pecado — é mais abundante. Käsemann observa que essa passagem não é uma teoria da culpa hereditária (embora a inclua), mas uma proclamação da vitória da graça: onde a morte reinou, a vida reina ainda mais.
+
+Cranfield sintetiza: "A justificação pela fé não é teoria abstrata — é realidade vivida. É paz com Deus, acesso à graça, esperança da glória, alegria nas tribulações, certeza do amor. Não é apenas perdão — é reconciliação. Não é apenas ausência de condenação — é presença do Espírito. Não é apenas livramento da morte — é vida eterna."`,
           versículosChave: [
-            { ref: 'Romanos 9:6', texto: 'Não caiu por terra a palavra de Deus.' },
-            { ref: 'Romanos 11:25-26', texto: 'Um endurecimento parcial aconteceu a Israel... e depois todo Israel será salvo.' },
-          ],
-        },
-        {
-          id: 'aula-rom-4-2',
-          título: 'A oferenda de ofertas vivas (Rom 12:1-2)',
-          tipo: 'texto',
-          duração: '13 min',
-          conteúdo: '## A oferenda de ofertas vivas\n\nDepois de 11 capítulos de teologia, Paulo faz o grande "portanto": oferentai o vosso corpo.\n\n### Transformação\n\nNão vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento (12:2). A vida cristã é transformação, não conformação.\n\n### O culto racional\n\nO culto racional é a entrega de toda a vida a Deus. Não é apenas música — é uma vida inteira dedicada.\n\n### Humildade\n\nCada um segundo a graça que recebeu (12:3). Humildade é reconhecer que tudo é dom.',
-          versículosChave: [
-            { ref: 'Romanos 12:1', texto: 'Oferentai o vosso corpo em sacrificio vivo.' },
-            { ref: 'Romanos 12:2', texto: 'Não vos conformeis com este mundo, mas transformai-vos.' },
-          ],
-        },
-        {
-          id: 'aula-rom-4-3',
-          título: 'Amor e vida comunitária (Rom 12:9-21)',
-          tipo: 'texto',
-          duração: '12 min',
-          conteúdo: '## Amor e vida comunitária\n\nPaulo lista instruções práticas para a vida cristã em comunidade.\n\n### O amor\n\nO amor seja sem fingimento. Aborrecei o mal, apegai-vos ao bem. Amai-vos uns aos outros com amor fraternal.\n\n### A vida em comunidade\n\nAlegrai-vos com os que se alegram. Chorei com os que choram. Não sede sábios aos vossos próprios olhos.\n\n### O inimigo\n\nSe o teu inimigo tiver fome, dá-lhe de comer. Se tiver sede, dá-lhe de beber. Vences o mal com o bem (12:20-21).',
-          versículosChave: [
-            { ref: 'Romanos 12:9', texto: 'O amor seja sem fingimento; aborrecei o mal, apegai-vos ao bem.' },
-            { ref: 'Romanos 12:21', texto: 'Não te venças pelo mal, mas vence o mal com o bem.' },
-          ],
-        },
-        {
-          id: 'aula-rom-4-4',
-          título: 'Autoridade e consciência (Rom 13-14)',
-          tipo: 'texto',
-          duração: '13 min',
-          conteúdo: '## Autoridade e consciência\n\nPaulo aborda a relação com o Estado e com a consciência fraca.\n\n### Submissão ao Estado\n\nSujeitai-vos a toda autoridade humana, porque não há autoridade que não venha de Deus (13:1). O Estado é instrumento de Deus para o bem.\n\n### A Lei do amor\n\nNão devemos nada a ninguém, senão o amor mútuo (13:8). O amor cumpre a Lei inteira.\n\n### A consciência fraca\n\nEm assuntos neutros (carne sacrificada, dias sagrados), não julgueis uns aos outros. O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito (14:17).',
-          versículosChave: [
-            { ref: 'Romanos 13:1', texto: 'Sujeitai-vos a toda autoridade humana.' },
-            { ref: 'Romanos 14:17', texto: 'O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito.' },
-          ],
-        },
-        {
-          id: 'aula-rom-4-5',
-          título: 'Missão e despedida (Rom 15-16)',
-          tipo: 'texto',
-          duração: '12 min',
-          conteúdo: '## Missão e despedida\n\nRomanos termina com instruções práticas e saudações calorosas.\n\n### A missão de Paulo\n\nPaulo se identifica como apóstolo dos gentios. Sua missão é levar o evangelho onde ainda não chegou.\n\n### A unidade da igreja\n\nAcolhei-vos uns aos outros, como Cristo também vos acolheu (15:7). A unidade entre judeus e gentios é central no evangelho.\n\n### As saudações\n\nPaulo menciona mais de 30 pessoas em Romanos 16. A igreja é feita de pessoas reais, com nomes reais, em relações reais.\n\n### A bênção final\n\nAo que pode fortalecer-vos segundo o meu evangelho... glória a Deus para sempre (16:25-27).',
-          versículosChave: [
-            { ref: 'Romanos 15:7', texto: 'Acolhei-vos uns aos outros, como Cristo também vos acolheu.' },
-            { ref: 'Romanos 16:25', texto: 'Ao que pode fortalecer-vos segundo o meu evangelho.' },
-          ],
-        },
-        {
-          id: 'aula-rom-4-6',
-          título: 'Quiz: O Plano',
-          tipo: 'quiz',
-          duração: '10 min',
-          perguntas: [
-            { id: 'q-rom-4-1', pergunta: 'Por que Paulo se entristece por Israel?', opções: ['Porque eram pobres', 'Porque muitos judeus rejeitaram o Messias', 'Porque eram ricos', 'Porque eram gentios'], respostaCorreta: 1, explicação: 'Paulo se entristece porque parte de Israel endureceu o coração contra o Messias.' },
-            { id: 'q-rom-4-2', pergunta: 'O que significa "oferentai o vosso corpo"?', opções: ['Morra', 'Dedique toda a vida a Deus em sacrifício vivo', 'Faca rituais', 'Obedeca ao Estado'], respostaCorreta: 1, explicação: 'Oferentar o corpo é dedicar toda a vida — pensamentos, ações e palavras — a Deus.' },
-            { id: 'q-rom-4-3', pergunta: 'Como vencemos o mal?', opções: ['Com violência', 'Com o bem', 'Com vingança', 'Com poder'], respostaCorreta: 1, explicação: 'Não te venças pelo mal, mas vence o mal com o bem (12:21).' },
-            { id: 'q-rom-4-4', pergunta: 'Qual a relação do cristão com o Estado?', opções: ['Rebelar-se', 'Sujeitar-se, porque a autoridade vem de Deus', 'Ignorar', 'Lutar'], respostaCorreta: 1, explicação: 'Devemos sujeitar-nos à autoridade, que vem de Deus para o bem (13:1).' },
-            { id: 'q-rom-4-5', pergunta: 'O que o amor cumpre?', opções: ['A Lei inteira', 'Os mandamentos apenas', 'Nada', 'Apenas os dez mandamentos'], respostaCorreta: 1, explicação: 'O amor cumpre a Lei inteira (13:10). Quem ama ao próximo cumpriu tudo.' },
-            { id: 'q-rom-4-6', pergunta: 'O que a "renovação do entendimento" produz?', opções: ['Ignorância', 'Transformação da vida', 'Conformidade com o mundo', 'Estagnação'], respostaCorreta: 1, explicação: 'A renovação do entendimento produz transformação — não conformidade com o mundo (12:2).' },
-            { id: 'q-rom-4-7', pergunta: 'Quantas pessoas Paulo menciona em Romanos 16?', opções: ['5', 'Mais de 30', 'Nenhuma', '10'], respostaCorreta: 1, explicação: 'Paulo menciona mais de 30 pessoas, mostrando que a igreja é feita de pessoas reais.' },
-            { id: 'q-rom-4-8', pergunta: 'O que o reino de Deus não é?', opções: ['Comida e bebida', 'Justiça', 'Paz', 'Alegria'], respostaCorreta: 0, explicação: 'O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito (14:17).' },
-            { id: 'q-rom-4-9', pergunta: 'Como Paulo descreve a missão?', opções: ['Converter judeus apenas', 'Levar o evangelho onde não chegou', 'Ficar quieto', 'Converter gentios apenas'], respostaCorreta: 1, explicação: 'Paulo tinha como missão levar o evangelho aos gentios e onde ainda não havia chegado.' },
-            { id: 'q-rom-4-10', pergunta: 'Qual a bênção final de Romanos?', opções: ['Condenação', 'Glória a Deus pela fortalecimento do evangelho', 'Maldição', 'Nada'], respostaCorreta: 1, explicação: 'Romanos termina com glória a Deus que pode fortalecer-nos segundo o evangelho (16:25-27).' },
+            { ref: 'Romanos 3:24', texto: 'Sendo justificados de graça, por sua graça, mediante a redenção que há em Cristo Jesus.' },
+            { ref: 'Romanos 3:25', texto: 'Propôs Deus Jesus como propiciatório pelo seu sangue, mediante a fé.' },
+            { ref: 'Romanos 3:28', texto: 'Semos justificados pela fé sem as obras da Lei.' },
+            { ref: 'Romanos 4:3', texto: 'E Abraão creu em Deus, e isso lhe foi imputado como justiça.' },
+            { ref: 'Romanos 5:1', texto: 'Justificados, pois, pela fé, temos paz com Deus.' },
+            { ref: 'Romanos 5:8', texto: 'Mas Deus prova o seu amor por nós em que Cristo morreu por nós sendo nós ainda pecadores.' },
+            { ref: 'Romanos 5:20', texto: 'Onde abundou o pecado, sobreabundou a graça.' },
           ],
         },
       ],
     },
     {
-      id: 'mod-soberania',
-      título: 'Romanos 9-11: Soberania e Israel',
-      descrição: 'A soberania divina, a responsabilidade humana e o futuro de Israel',
-      ícone: '👑',
+      id: 'mod-pecado',
+      título: 'Livres do Pecado (Rm 6)',
+      descrição: 'Batismo, união com Cristo, morte e ressurreição com Ele',
+      ícone: '🕊️',
       aulas: [
         {
           id: 'aula-rom-5-1',
-          título: 'A Soberania de Deus na Eleição',
+          título: 'Livres do Pecado (Rm 6)',
           tipo: 'texto',
-          duração: '18 min',
-          conteúdo: '## A Soberania de Deus na Eleição\n\nRomanos 9 é um dos capítulos mais desafiadores e debatidos de toda a Bíblia. Paulo abre com uma angústia pessoal profunda: "Grandes tristezas e contínuas dores tenho no meu coração. Porque eu desejaria eu mesmo ser maldito, separado de Cristo, por amor dos meus irmãos" (9:2-3). Essa declaração revela que a teologia de Paulo não é fria nem abstrata — é marcada por um amor pastoral genuíno pelo povo de Israel.\n\n### A palavra de Deus não falhou\n\nPaulo antecipa a objeção mais incômoda: se Deus fez promessas a Israel, por que tantos judeus rejeitaram o Messias? A palavra de Deus falhou? A resposta é categórica: "Não caiu por terra a palavra de Deus" (9:6). Nem todo aquele que descende de Israel é verdadeiramente Israel. A pertencença ao povo de Deus não é apenas biológica — é espiritual. Deus sempre distinguiu entre a descendência física e a descendência da promessa.\n\n### A escolha de Jacó e Esaú\n\nPaulo ilustra essa verdade com o caso de Jacó e Esaú: "Ainda não tendo os gêmeos nascido, nem tendo praticado algum bem ou mal, para que o propósito de Deus quanto à eleição prevalecesse, não por obras, mas por aquele que chama, foi-lhe dito: O mais velho servirá ao mais moço" (9:11-12). A escolha de Deus não se baseia no mérito, no desempenho ou na previsão de fé. Ela se baseia no Seu propósito soberano. Isso é desconcertante para a mente humana, que anseia por controle e merecimento.\n\n### O vaso de barro e o oleiro\n\nA imagem do vaso de barro em 9:20-23 é poderosa: "Ó homem, quem és tu, que argue contra Deus? A coisa formada dirá ao que a formou: Por que me fizeste assim? Não tem o oleiro poder sobre o barro, para do mesmo barro fazer um vaso para honra e outro para desonra?" Deus não é obrigado a salvar todos. Se Ele salva algum, já é graça. A Justiça de Deus não é comprometida — ela se manifesta tanto na salvação dos eleitos quanto na condenação dos réus.\n\n### O debate teológico\n\nEsse capítulo é o epicentro do debate entre calvinismo e arminianismo. Os calvinistas enfatizam a soberania absoluta de Deus na eleição: Deus escolhe quem salva, independentemente de qualquer mérito humano. Os arminianos argumentam que a eleição é condicional, baseada na presciência da fé humana. Os dois lados citam Romanos 9 como suporte. O que é inegável é que Paulo não apresenta a soberania de Deus e a responsabilidade humana como mutuamente exclusivas — ele as apresenta juntas, sem resolução simplista.\n\n### O mistério da misericórdia\n\nEm 9:14-18, Paulo antecipa a objeção: "Que diremos então? Há injustiça da parte de Deus?" A resposta é que Deus tem misericórdia de quem Ele quer. Isso não é arbitrário — é graça. Se Deus salvasse todos por justiça, ninguém seria salvo, pois "não há justo nem um sequer" (3:10). A soberania de Deus é a garantia de que o Seu plano não falhará. A eleição não é para excluir, mas para garantir que a promessa de salvação se cumpra para todos os que creem.\n\nA lição que fica: confiar na soberania de Deus não elimina o mistério, mas nos liberta da ansiedade de controlar tudo. O Deus que escolheu Jacó sobre Esaú é o mesmo Deus que nos chamou pelas trevas para a Sua maravilhosa luz (1 Ped 2:9).',
+          duração: '20 min',
+          conteúdo: `## Livres do Pecado (Rm 6)
+
+### A Objecção: Devemos Pecar Mais? (6:1-2)
+
+Paulo antecipa uma objeção que seus oponentes já haviam levantado (cf. Gl 5:13; Judas 4): "Que diremos, pois? Permaneceremos no pecado, para que a graça sobreabunde?" (6:1). A lógica perversa é this: se a graça é maior que o pecado (5:20), quanto mais pecarmos, mais graça receberemos. A resposta de Paulo é categórica e monossilábica: "De jeito nenhum!" (mē genoito — uma expressão de horror moral, como se Paulo estivesse fisicamente repugnado pela sugestão).
+
+Paulo prossegue: "Nós, que morremos para o pecado, como viveremos ainda nele?" (6:2). A pergunta é retórica — a resposta é óbvia. O cristão é definido como alguém que morreu para o pecado. Se ele continuasse a viver no pecado, contradiria sua própria identidade. A morte para o pecado não é uma experiência mística opcional — é a realidade objetiva de todo crente em Cristo. Murray observa que "morrer para o pecado" não significa pecar menos (embora isso seja verdade), mas estar numa relação diferente com o pecado: não é mais senhor, mas escravo derrotado.
+
+### O Batismo: Morte e Ressurreição (6:3-4)
+
+Paulo então recorre ao batismo como ilustração da realidade espiritual: "Ou não sabeis que todos nós fomos batizados em Cristo Jesus, fomos batizados na sua morte?" (6:3). O batismo não é apenas ritual de purificação — é imagem da morte e ressurreição com Cristo. O termo baptizō (mergulhar, imergir) sugere enterro: fomos mergulhados na morte de Cristo, como quem é submerso nas águas do batismo. "Fomos, pois, sepultados com ele pelo batismo na morte, para que, como Cristo foi ressuscitado dentre os mortos pela glória do Pai, assim também nós andemos em novidade de vida" (6:4).
+
+A expressão "novidade de vida" (kainotēti zōēs) não é apenas vida melhor — é vida completamente nova, qualitativamente diferente. É a vida do ressuscitado, compartilhada pelo crente. A ressurreição de Cristo não é apenas evento histórico passado — é realidade presente no crente. O crente vive a vida pós-morte de Cristo. Isso não é apenas forense (declaração legal) — é existencial (experiência vivida).
+
+### A União com Cristo: Crucificados e Ressuscitados (6:5-11)
+
+Paulo expande a analogia: "Se fomos plantados juntamente com ele na semelhança da sua morte, também o seremos na semelhança da sua ressurreição" (6:5). A palavra sumphutoi (plantados juntamente) é botânica — sugere enxerto, união orgânica. O crente não é apenas simpatizante de Cristo — é participante da Sua vida. A morte de Cristo não é apenas exemplo ético — é experiência espiritual compartilhada.
+
+O versículo 6 apresenta a doutrina da união com Cristo: "Sabendo isto: que o nosso velho homem foi crucificado com ele, para que o corpo do pecado fosse desfeito, para que não sirvamos mais ao pecado." O "velho homem" (palaios anthrōpos) não é apenas a natureza pecaminosa — é o homem-in-Adão, o ser humano sob o domínio do pecado e da morte. Essa velha identidade foi crucificada com Cristo — não metaforicamente, mas real e objetivamente. O "corpo do ptrvto" (sōma tēs hamartias) é o整个人 sob o domínio do pecado — foi "desfeito" (katargēthē), aniquilado, tornado inoperante.
+
+O versículo 8-9 é a razão da esperança: "Se morremos com Cristo, cremos que também viveremos com ele, sabendo que, ressuscitado dentre os mortos, Cristo já não morre; a morte não tem mais domínio sobre ele." A morte perdeu seu poder. Cristo ressuscitou — e o crente compartilha dessa vitória. A morte ainda existe como realidade biológica, mas perdeu seu domínio (kyrieuei) — não é mais senhor.
+
+O versículo 11 é o imperativo prático: "Assim também vós considerai-vos mortos para o pecado, mas vivos para Deus em Cristo Jesus." O verbo logizomai (considerar, computar, levar em conta) é contábil — é reconhecer a realidade objetiva. Não é "fingir que estou morto" — é "reconhecer que estou morto". A fé é o reconhecimento da realidade que Deus já estabelecida. Murray enfatiza que o imperativo (considerai-vos) se baseia no indicativo (fomos crucificados): a ética cristã é sempre consequência da identidade cristã.
+
+### Imperativos: Não Reine o Pecado (6:12-14)
+
+Paulo então faz o movimento ético: "Não reine, logo, o pecado no vosso corpo mortal, para que obedeçais às suas paixões" (6:12). O verbo basileuei (reinar) sugere que o pecado é um tirano que busca governar. O crente não está mais sob esse governo — foi libertado. Mas a libertação precisa ser vivida. É como a abolição da escravatura: legalmente liberto, mas culturalmente ainda escravo.
+
+O versículo 13 reforça: "Nem tampouco apresenteis os vossos membros ao pecado, para que sirvam à injustiça; mas apresentai-vos a Deus como vivos dentre os mortos, e os vossos membros a Deus para instrumentos de justiça." A palavra "apresentai" (parastēsate) é militar — apresentar-se perante o comandante. O crente se apresenta a Deus como soldado que relata ao seu superior. Cada membro — mãos, pés, olhos, língua, mente — é instrumento (hopla, armas) de justiça ou de pecado. Não há neutralidade.
+
+O versículo 14 é o clímax da unidade: "Porque o pecado não terá domínio (kyrieuei) sobre vós, porque não estais sob a Lei, mas sob a graça." A expressão "sob a Lei" (hypo nomon) não significa sob os mandamentos de Deus — significa sob o sistema de obras que condena. "Sob a graça" (hypo charin) significa sob o dom da graça que liberta. A graça não é indulgência — é poder transformador. É a graça que ensina a negar a impiedade (Tt 2:11-12).
+
+### Servos da Justiça: 6:15-23
+
+Paulo usa a imagem de servidão para ilustrar a mudança de senhor: "Porque, tendo-vos achado livres do pecado, vos fizestes servos da justiça" (6:18). A mudança não é de atividade — é de senhor. Antes, serviam ao pecado (hamartia como senhor); agora, servem à justiça (dikaiosynē como senhor). Não há neutro — ou se serve ao pecado ou se serve a Deus. O versículo 19 é uma concessão à fraqueza humana: "Assim como apresentáveis os vossos membros para servir à imundícia e à maldade, para a maldade, assim agora apresentai os vossos membros para servir à justiça, para a santificação."
+
+O versículo 20-21 contrasta os frutos: quando serviam ao pecado, eram livres da justiça — mas que fruto produziam? "Porque o fim daquelas coisas é a morte." A "liberdade" do pecado é ilusória — é escravatura disfarçada de autonomia. O versículo 22 contrasta: "Mas agora, libertados do pecado e feitos servos a Deus, tendes o vosso fruto para a santificação, e por fim a vida eterna."
+
+### O Salário e o Dom: 6:23
+
+Romanos 6:23 é um dos versículos mais conhecidos e mais teologicamente densos da Bíblia: "Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna em Cristo Jesus, nosso Senhor." A metáfora econômica é deliberada: o pecado "paga" com morte; Deus "dá" vida como dom. O salário (opsōnion) é o que se ganha pelo trabalho — a morte é o resultado natural da vida sob o domínio do pecado. O dom (charisma) é o que se recebe sem merecimento — a vida eterna é graça pura.
+
+Stott observa que esse versículo sintetiza todo o argumento de Romanos: a condição humana (pecado), o julgamento divino (morte), a graça de Deus (dom) e a salvação em Cristo (vida eterna). Não há caminho do meio — ou se está sob o salário do pecado ou sob o dom da graça. A eternidade está em jogo em cada decisão. A morte aqui não é apenas biológica — é separação eterna de Deus. A vida eterna não é apenas quantitativa (duração infinita) — é qualitativa (conhecer a Deus, cf. Jo 17:3).`,
+          versículosChave: [
+            { ref: 'Romanos 6:2', texto: 'De jeito nenhum! Nós, que morremos para o pecado, como viveremos ainda nele?' },
+            { ref: 'Romanos 6:4', texto: 'Fomos, pois, sepultados com ele pelo batismo na morte, para que, como Cristo foi ressuscitado dentre os mortos pela glória do Pai, assim também nós andemos em novidade de vida.' },
+            { ref: 'Romanos 6:11', texto: 'Assim também vós considerai-vos mortos para o pecado, mas vivos para Deus em Cristo Jesus.' },
+            { ref: 'Romanos 6:14', texto: 'Porque o pecado não terá domínio sobre vós, porque não estais sob a Lei, mas sob a graça.' },
+            { ref: 'Romanos 6:23', texto: 'Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna em Cristo Jesus, nosso Senhor.' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'mod-luta',
+      título: 'A Luta Interior (Rm 7)',
+      descrição: 'A Lei e o pecado, o clamor "eu miserável" e a perspectiva do regenerado',
+      ícone: '⚔️',
+      aulas: [
+        {
+          id: 'aula-rom-6-1',
+          título: 'A Luta Interior (Rm 7)',
+          tipo: 'texto',
+          duração: '20 min',
+          conteúdo: `## A Luta Interior (Rm 7)
+
+### O Debate sobre a Perspectiva
+
+Romanos 7 é um dos capítulos mais debatidos de toda a Bíblia. A pergunta central é: Paulo está descrevendo a experiência do crente ou do não-crente? Três posições principais se digladiam há séculos: (1) A perspectiva pré-conversão (Agostinho, em sua primeira interpretação, e muitos reformadores): Paulo descreve o homem sob a Lei, antes da graça; (2) A perspectiva do crente imaturo (Agostinho, em sua segunda interpretação, e muitos pais da Igreja): Paulo descreve o cristão que ainda luta com o pecado; (3) A perspectiva do crente maduro (Murray, Schreiner, e a maioria dos evangélicos): Paulo descreve o cristão regenerado que ainda luta com a carne.
+
+Schreiner argumenta convincentemente que o presente indicativo de 7:14 ("Porque eu sou carnal, vendido ao pecado") não pode descrever o não-crente, porque: (1) o não-crente não "deléia" a lei de Deus (7:22); (2) o não-crente não "luta" contra o pecado (7:15-20); (3) o não-crente não clama por libertação (7:24). A única pessoa que pode delitar na lei de Deus e ao mesmo tempo ser incapaz de cumpri-la é o crente regenerado, que tem o Espírito (8:9) mas ainda habita num corpo de pecado (7:14). Murray observa que a derrota de Romanos 7 é temporal — o crente é libertado em Romanos 8. A vitória não é negada, mas retardada.
+
+### A Relação entre a Lei e o Pecado (7:7-12)
+
+Paulo faz uma defesa da Lei: "Logo, a Lei é santa, e o mandamento é santo, justo e bom" (7:12). A Lei não é o problema — o pecado é. Paulo usa a pessoa do décimo mandamento (Não cobiçarás) para ilustrar: "Mas o pecado, tomando ocasião pelo mandamento, produziu em mim toda cobiça" (7:8). A Lei é como um espelho: mostra a sujeira, mas não pode limpá-la. O pecado usa a Lei como isca — quanto mais a Lei proíbe, mais o pecado cobiça.
+
+O versículo 9 é enigmático: "Eu, sem a Lei, vivia; mas, vindo o mandamento, o pecado reviveu, e eu morri." A interpretação mais provável é que Paulo descreve sua experiência como fariseu: ele vivia em relativa paz sob o sistema de obras, até que o décimo mandamento o confrontou com a realidade da sua cobiça interior. A Lei que deveria dar vida (Lv 18:5) trouxe morte — não por falha da Lei, mas por falha do homem. O pecado "reviveu" — o verbo anazāō sugere que o pecado estava latente, adormecido, e a Lei o despertou como um animal feroz.
+
+### "Eu Miserável" (7:13-25)
+
+O grito mais angustiante da Bíblia: "Ah! homem miserável que eu sou! Quem me livrará deste corpo de morte?" (7:24). A exclamação "eu miserável" (talaipōros egō) é visceral — não é lamento teórico, mas desespero existencial. Paulo está em agonia moral. Ele reconhece o bem na Lei ("deleito-me na Lei de Deus, segundo o homem interior", 7:22), mas descobre uma lei contrária em seus membros que o captura prisioneiro do c法规do pecado e da morte (7:23).
+
+A imagem do "código da Lei" (nomos) aplicado à carne é original. Paulo usa a palavra nomos três vezes em Romanos 7: a lei de Deus (7:22), a lei do pecado (7:23), a lei do pecado em seus membros (7:25). O crente está sob duas "leis" em conflito: a Lei de Deus que aprova, e a Lei do pecado que aprisiona. O "corpo de morte" (sōma tou thanatou) é o整个人 sob o domínio da morte — não é apenas o corpo físico, mas a totalidade da existência humana corrompida pelo pecado.
+
+O versículo 15 é a auto-análise mais honesta da experiência cristã: "Porque o que pratico, não aprovo; mas o que odeio, isso faco." Isso não é hipocrisia — é o reconhecimento da divisão interna do ser humano regenerado. O crente quer fazer o bem (7:18-19), mas o pecado em seus membros o impede. A boa vontade está presente ("prontidão para o bem está em mim", 7:18), mas a capacidade está ausente ("não, porém, o praticar"). A distância entre a intenção e a ação é o espaço onde o pecado habita.
+
+### A Solução: Jesus Cristo (7:24-25)
+
+A resposta não está em mais esforço moral — está em Jesus Cristo. "Graças a Deus, por Jesus Cristo nosso Senhor!" (7:25). A solução não é a Lei (7:7-12), não é a vontade humana (7:15-20), não é a mudança de circunstâncias — é a pessoa de Cristo. A libertação vem de fora do sistema de obras. É graça, não mérito. Murray observa que o crente não resolve a luta de Romanos 7 por si mesmo — ele é resolvido pelo Cristo que o liberta em Romanos 8.
+
+A estrutura de Romanos 7-8 é esta: a derrota (7:13-25) precede a vitória (8:1-4). O clamor do "eu miserável" é respondido pela declaração do "nenhuma condenação". O crente que reconhece sua incapacidade é exatamente aquele que está pronto para receber a plenitude do Espírito. A humildade precede a exaltação. A consciência do pecado precede a experiência da graça. Não há Romanos 8 sem Romanos 7 — a libertação pressupõe a escravidão.
+
+### Implicações Teológicas
+
+A luta interior de Romanos 7 tem três implicações práticas: (1) A perfeição moral absoluta não é alcançável nesta vida — o crente continuará lutando até a glorificação (8:23); (2) A vitória não vem da Lei (esforço moral) mas do Espírito (poder divino); (3) A consciência do pecado é sinal de regeneração — o pecador endurecido não luta contra o pecado, ele o abraça. Lutero comentou: "O crente é ao mesmo tempo justo e pecador" (simul justus et peccator) — justo pela imputação de Cristo, pecador na experiência da carne. Essa tensão só será resolvida na eternidade.
+
+Cranfield observa que Romanos 7 é a mais honesta descrição da experiência cristã já escrita. Não é desculpa para o pecado — é reconhecimento da sua gravidade. Não é negação da vitória — é confissão da necessidade contínua de graça. O crente de Romanos 7 é o crente de Romanos 6 que ainda não experimentou plenamente a realidade de Romanos 8. A jornada da fé é da escravidão à liberdade, do lamento à alegria, do desespero à segurança.`,
+          versículosChave: [
+            { ref: 'Romanos 7:12', texto: 'Logo, a Lei é santa, e o mandamento é santo, justo e bom.' },
+            { ref: 'Romanos 7:15', texto: 'Porque o que pratico, não aprovo; mas o que odeio, isso faco.' },
+            { ref: 'Romanos 7:22', texto: 'Deleito-me, na verdade, na Lei de Deus, segundo o homem interior.' },
+            { ref: 'Romanos 7:24-25', texto: 'Ah! homem miserável que eu sou! Quem me livrará deste corpo de morte? Graças a Deus, por Jesus Cristo nosso Senhor!' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'mod-condenacao',
+      título: 'Nenhuma Condenação (Rm 8)',
+      descrição: 'Vida no Espírito, filhos de Deus, segurança eterna e nada que nos separe do amor',
+      ícone: '🕊️',
+      aulas: [
+        {
+          id: 'aula-rom-7-1',
+          título: 'Nenhuma Condenação (Rm 8)',
+          tipo: 'texto',
+          duração: '20 min',
+          conteúdo: `## Nenhuma Condenação (Rm 8)
+
+### O Versículo Mais Glorioso: 8:1
+
+"Portanto, agora nenhuma condenação há para os que estão em Cristo Jesus." Essa declaração é a resposta direta ao desespero de 7:24. O "eu miserável" encontra alívio no "nenhuma condenação". A palavra katakrima (condenação) é judicial — é a sentença do juiz. Para o crente, a sentença foi proferida em Cristo: Ele foi condenado em nosso lugar (cf. 2 Co 5:21). Não há condenação restante, pendente, ou futura. A condenação foi esgotada na cruz. Schreiner observa que o "agora" (nun) marca o início de uma nova era — a era do Espírito, a era da liberdade.
+
+A condição é "para os que estão em Cristo Jesus" (tois en Christō Iēsou). A expressão "em Cristo" (en Christō) é possivelmente a mais importante de toda a teologia paulina. Significa união orgânica, vital, personal com Cristo. O crente não é仅仅 名义上 "com" Cristo — ele está "nele", dele depende, nele vive. É como o ramo está na videira (Jo 15:4) — sem Cristo, nada podemos; com Cristo, tudo podemos. A justificação não é apenas um veredicto legal passado — é uma relação viva presente.
+
+### A Lei do Espírito: 8:2
+
+"Porque a lei do espírito de vida, em Cristo Jesus, me livrou da lei do pecado e da morte." Paulo usa a palavra "lei" (nomos) em dois sentidos: a lei do pecado (a força que domina a carne) e a lei do Espírito (o poder que liberta o crente). A lei do Espírito de vida não é uma nova lista de mandamentos — é o poder dinâmico do Espírito Santo que quebra o domínio do pecado. Murray observa que o Espírito não apenas torna o crente capaz de obedecer — Ele torna a obediência desejável. A transformação não é externa (conformação) mas interna (renovação).
+
+O verbo "me livrou" (ēleutherōsen) é aoristo indicativo — um evento consumado, não um processo gradual. A libertação é real e completa. Ainda experimentamos os efeitos residuais do pecado (7:13-25), mas o domínio foi rompido. O pecado já não reina (6:14) — foi deposto. O crente ainda luta, mas a guerra já está ganha. A vitória é objetiva; a experiência é subjetiva.
+
+### Mente no Espírito: 8:5-8
+
+Paulo contrasta duas mentalidades: "Os que são segundo a carne pensam nas coisas da carne; mas os que são segundo o Espírito, nas coisas do Espírito" (8:5). O termo phronēma (mentalidade, mindset) é crucial — não se trata apenas de pensamento, mas de orientação existencial fundamental. O crente que é "segundo o Espírito" (kata pneuma) tem seus pensamentos, desejos e ações orientados pelo Espírito. Isso não significa perfeição — significa direção. A bússola está apontando para Deus, mesmo quando os passos vacilam.
+
+O versículo 6 é decisivo: "Porque a mentalidade da carne é morte, mas a mentalidade do Espírito é vida e paz." A "mentalidade da carne" (phronēma tēs sarkos) não é apenas pensar sobre coisas carnais — é uma orientação existencial centrada no eu, na autoconfiança, na autojustificação. A "mentalidade do Espírito" (phronēma tou pneumatos) é centrada em Deus, na confiança na graça, na submissão ao Seu governo. A "vida e paz" (zōē kai eirēnē) são os frutos dessa orientação divina.
+
+O versículo 7-8 é devastador: "Porque o cuidado da carne é inimizade contra Deus, pois não está sujeito à Lei de Deus, nem, na verdade, pode estar." A carne (sarx) não é apenas a natureza física — é o整个人 sob o domínio do pecado. Ela é inimiga (echthra) de Deus — não indiferente, não neutra, mas ativamente hostil. E "não pode estar" (oude gar dynatai) — a incapacidade é total. O homem natural não é merely relutante em buscar Deus — ele é incapaz. Essa doutrina da incapacidade (total depravity) não é pessimismo — é realismo que prepara o terreno para a graça.
+
+### Filhos de Deus: 8:14-17
+
+O Espírito é o agente da filiação: "Porque todos os que são guiados pelo Espírito de Deus são filhos de Deus" (8:14). A filiação não é apenas uma declaração legal — é uma realidade vivida pelo Espírito. O crente não é apenas chamado de filho — ele se sente filho, vive como filho, herda como filho. A "adoção" (huiothesia) é um termo jurídico romano: o escravo era legalmente libertado e adotado como filho, recebendo todos os direitos do herdeiro. O crente, que era escravo do pecado (6:17), é agora filho de Deus com direito pleno à herança.
+
+O versículo 15 é fundamental: "Porque não recebestes o espírito de servidão, para again terdes temor; mas recebestes o Espírito de adoção, pelo qual clamamos: Aba, Pai!" O Espírito de servidão (pneuma douleias) gera temor — medo de Deus como juiz implacável. O Espírito de adoção (pneuma huiothesias) gera intimidade — confiança em Deus como Pai amoroso. A palavra "Abba" é aramaica — o termo íntimo que Jesus usava (Mc 14:36). O crente compartilha da mesma intimidade filial que o próprio Filho.
+
+O versículo 16 testemunha: "O próprio Espírito testifica, juntamente com o nosso espírito, de que somos filhos de Deus." A dupla testemunha — o Espírito em nós e o nosso espírito响应 — é a certeza da salvação. Não depende de sentimentos variáveis, mas de um testemunho interno permanente. A certeza não é arrogância — é confiança no que Deus disse.
+
+### A Glória Futura: 8:17-25
+
+"Se filhos, logo herdeiros; herdeiros de Deus, e co-herdeiros com Cristo" (8:17). A herança é nada menos que Deus mesmo — ser co-herdeiros com Cristo significa compartilhar da Sua glória. Mas há uma condição: "se com ele padecemos, para que também com ele sejamos glorificados" (8:17). O sofrimento não é acidente — é preparação para a glória. Não é punição — é purificação.
+
+O versículo 18 é uma das mais ousadas declarações de Paul: "Porque tenho por certo que as aflições do tempo presente não são comparáveis com a glória que em nós há de ser revelada." As aflições (pathēmata) são reais e dolorosas, mas são temporárias; a glória (doxa) é eterna e superabundante. Käsemann observa que Paulo não minimiza o sofrimento — ele o contextualiza na eternidade. O sofrimento é como a dor de parto (8:22) — doloroso, mas produtivo, levando à manifestação dos filhos de Deus.
+
+A criação inteira "geme" (sustenazei, 8:22) — a palavra sugere gemidos de parto. Toda a criação participa da maldição do pecado (Gn 3:17-19) e anseia pela libertação. Isso é crucial: a redenção não é apenas espiritual — é cósmica. Deus não salvará apenas almas, mas toda a criação. A nova criação (Ap 21:1) é a consumação da história da salvação.
+
+### A Segurança Eterna: 8:28-39
+
+Romanos 8:28-39 é o clímax emocional de toda a epístola — e talvez de toda a Bíblia. A "cadeia da salvação" de 8:29-30 é inviolável: "Porque aos quais dantes soube, esses também predestinou; e aos quais predestinou, esses também chamou; e aos quais chamou, esses também justificou; e aos quais justificou, esses também glorificou." O verbo glorificou (edoxasen) está no aoristo — como se a glorificação já tivesse acontecido. Do ponto de vista de Deus, que está fora do tempo, a salvação é uma realidade consumada. Não há quebra na cadeia — cada elo está seguro no propósito eterno de Deus.
+
+O versículo 31 é o desafio triunfante: "Que diremos, pois, a estas coisas? Se Deus é por nós, quem será contra nós?" A pergunta é retórica — a resposta é óbvia. Ninguém pode prevalecer contra o propósito de Deus. O versículo 32 reforça: "Aquele que não poupou o seu próprio Filho, mas o entregou por todos nós, como nos não dará também todas as coisas com ele?" Se Deus deu o que é mais precioso (o Filho), dará certamente o que é menor (todas as coisas).
+
+O versículo 33-34 é o tribunal final: "Quem intentará acusação contra os escolhidos de Deus? É Deus quem os justifica. Quem é quem condena? É Cristo quem morreu, ou antes, quem também ressuscitou, quem além disso está à destra de Deus, quem também intercede por nós." Nenhuma acusação pode prosperar — Cristo é nosso advogado (paraklētos, cf. 1 Jo 2:1), nosso Juiz (até a esquerda de Deus), e nosso Sumo Sacerdote (intercedendo). O crente tem defesa tripla contra qualquer acusação.
+
+O clímax é 8:38-39 — a declaração mais ousada de segurança eterna: "Porque estou certo de que, nem a morte, nem a vida, nem anjos, nem principados, nem potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus, nosso Senhor." A Lista inclui tudo o que existe no universo — nada pode separar. O verbo "separar" (chōrisai) é forte — significa dividir, cortar, remover. Nenhuma força cósmica, nenhum evento histórico, nenhuma potência espiritual pode romper o laço entre o crente e o amor de Deus em Cristo.
+
+Stott observa: "A segurança do crente não está em sua firmeza para com Deus, mas na firmeza de Deus para com ele. Não é 'eu segurei Deus' — é 'Deus me segurou'." A perseverança dos santos não é mérito humano — é dom divino. Deus que começou a boa obra a aperfeiçoará até o dia de Cristo (Fil 1:6). A salvação é de princípio ao fim — sola gratia.`,
+          versículosChave: [
+            { ref: 'Romanos 8:1', texto: 'Portanto, agora nenhuma condenação há para os que estão em Cristo Jesus.' },
+            { ref: 'Romanos 8:2', texto: 'Porque a lei do espírito de vida, em Cristo Jesus, me livrou da lei do pecado e da morte.' },
+            { ref: 'Romanos 8:28', texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus.' },
+            { ref: 'Romanos 8:29', texto: 'Porque aos quais dantes soube, esses também predestinou.' },
+            { ref: 'Romanos 8:38-39', texto: 'Nem a morte, nem a vida, nem anjos, nem principados, nem potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus, nosso Senhor.' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'mod-israel',
+      título: 'Deus e Israel (Rm 9-11)',
+      descrição: 'A soberania divina, a eleição, Israel e as nações, e o mistério da salvação',
+      ícone: '👑',
+      aulas: [
+        {
+          id: 'aula-rom-8-1',
+          título: 'Deus e Israel (Rm 9-11)',
+          tipo: 'texto',
+          duração: '20 min',
+          conteúdo: `## Deus e Israel (Rm 9-11)
+
+### A Angústia de Paulo (9:1-5)
+
+Romanos 9 abre com uma das declarações mais emocionadas de Paulo: "Grandes tristezas e contínuas dores tenho no meu coração. Porque eu desejaria eu mesmo ser maldito, separado de Cristo, por amor dos meus irmãos, segundo a carne" (9:2-3). A palavra "desejaria" (ēuchēmēn) é imperfeito — Paulo estava continuamente desejando, persistentemente ansiando. A intensidade é tal que ele está disposto a ser "maldito" (anathema) — separado de Cristo — se isso pudesse trazer a salvação de Israel. Isso não é retórica — é pastoral. O apóstolo dos gentios nunca perdeu seu amor pelo povo judeu.
+
+Paulo então lista as bênçãos de Israel: a adoção, a glória, as alianças, a dádiva da Lei, o culto, as promessas, os patriarcas, e a linhagem messiânica (9:4-5). É um catálogo impressionante de privilégios — e no entanto, muitos israelitas não experimentaram a salvação. Isso levanta a questão teológica mais desconfortável de Romanos: se Deus fez promessas a Israel, por que tantos judeus rejeitaram o Messias? A palavra de Deus falhou?
+
+### A Palavra de Deus Não Falhou (9:6-13)
+
+A resposta de Paulo é categórica: "Não caiu por terra a palavra de Deus" (9:6). Nem todo Israel é Israel. A pertencença ao povo de Deus não é meramente biológica — é espiritual. Paulo distingue entre Israel segundo a carne e Israel segundo a promessa. Deus sempre manteve essa distinção: Abel foi aceito, Caim rejeitado; Isaque foi filho da promessa, Ismael não; Jacó foi escolhido, Esaú não. A eleição precede a existência e transcende a descendência física.
+
+O caso de Jacó e Esaú é paradigmático: "Ainda não tendo os gêmeos nascido, nem tendo praticado algum bem ou mal, para que o propósito de Deus quanto à eleição prevalecesse, não por obras, mas por aquele que chama, foi-lhe dito: O mais velho servirá ao mais moço" (9:11-12). A escolha de Deus não se baseia no mérito humano — não é recompensa por bom comportamento nem punição por mau comportamento. É pura soberania. A palavra "preveniu" (proeleeto, 9:11) indica que Deus agiu antes — antes do nascimento, antes das obras, antes de qualquer ação humana. Isso é o que os reformadores chamaram de eleição incondicional.
+
+### O Oleiro e o Barro (9:14-24)
+
+Paulo antecipa a acusação de injustiça: "Dir-me-ás, pois: Por que, então, ainda se queixa ele? Porque quem resiste à sua vontade?" (9:19). A resposta é o argumento do oleiro: "Ó homem, quem és tu, que argue contra Deus? A coisa formada dirá ao que a formou: Por que me fizeste assim? Não tem o oleiro poder sobre o barro, para do mesmo barro fazer um vaso para honra e outro para desonra?" (9:20-21). A imagem não é arbitrária — é a de um artesão que tem direito total sobre sua criação. Deus não é obrigado a salvar todos — se Ele salva alguns, já é graça. A justiça de Deus não é comprometida — ela se manifesta tanto na salvação dos eleitos quanto na condenação dos réus.
+
+O versículo 22-23 é crucial para entender a justiça de Deus: "E se Deus, querendo mostrar a sua ira e dar a conhecer o seu poder, suportou com muita paciência os vasos da ira preparados para a perdição, e para fazer conhecidas as riquezas da sua glória, as quais derramou sobre os vasos da misericórdia que ele de antemão preparou para glória?" O "se" (ei) não é condicional — é argumentativo: "considerando que". Deus permite a existência dos vasos da ira para demonstrar tanto a Sua justiça quanto a Sua misericórdia. Não é crueldade — é sabedoria suprema.
+
+### A Responsabilidade Humana (9:30-10:21)
+
+Se Romanos 9:1-29 enfatiza a soberania de Deus, os versículos 30-10:21 trazem o outro lado: a responsabilidade humana. A ironia dolorosa de Israel: "Israel, que buscava a Lei da justiça, não alcançou a Lei da justiça" (9:31). Por quê? "Porque buscaram não pela fé, mas como quem pratica obras" (9:32). A raiz é o orgulho religioso — a crença de que o ser humano pode conquistar a salvação por mérito próprio. A Lei foi dada como andaime para conduzir a Cristo (Gl 3:24), mas Israel a transformou em escada para subir até Deus.
+
+Romanos 10:8-13 é uma das passagens evangelísticas mais claras do NT: "Se confessares com a tua boca que Jesus é o Senhor, e creres no teu coração que Deus o ressuscitou dos mortos, serás salvo" (10:9). A salvação não é complexa — é acessível. Está "na tua boca e no teu coração" (10:8). Não precisa de peregrinações, rituais ou merecimentos. O versículo 13 é universal: "Porque todo aquele que invocar o nome do Senhor será salvo." Não há restrição étnica, social ou religiosa — "primeiro do judeu, e também do grego" (10:12).
+
+Paulo então faz a pergunta urgente: "Como, pois, invocarão aquele em quem não creram? Como crerão naquele de quem não ouviram? Como ouvirão sem quem pregue?" (10:14). A salvação depende da pregação; a pregação depende do envio; o envio depende da obediência da igreja. Isso fundamenta a necessidade absoluta da evangelização mundial.
+
+### A Azeitona e os Ramos (11:1-24)
+
+Romanos 11 é a resposta de Paulo para quem pensa que Deus rejeitou Israel para sempre: "Deus não rejeitou o seu povo, a quem dantes soube" (11:2). Paulo se prova como prova viva — ele próprio é israelita, da tribo de Benjamim (11:1). O exemplo de Elias mostra que sempre há um remanescente: Deus guardou sete mil homens que não se curvaram diante de Baal (11:2-4). O remanescente sempre existiu — mesmo nos piores momentos, Deus mantém um povo fiel.
+
+A imagem da oliveira em 11:17-24 é rica e perigosa. Os ramos originais são Israel. Alguns foram arrancados por incredulidade. Ramos selvagens (gentios) foram enxertados pela fé. Mas Paulo adverte com severidade: "Não te glories contra os ramos... Se Deus não perdoou aos ramos naturais, perdoará a ti?" (11:21-22). A posição na oliveira não é garantia — depende da fé. A soberania de Deus não anula a responsabilidade humana. O crente gentio não deve ter orgulho — ele é enxerto, não raiz.
+
+### O Mistério Revelado (11:25-32)
+
+Paulo revela um mistério (mystērion — verdade antes oculta, agora revelada): "Há um endurecimento parcial acontecido a Israel, até que a plenitude dos gentios haja entrado. E depois todo Israel será salvo" (11:25-26). O "endurecimento parcial" (pōrōsis) é real, mas não total nem final. A "plenitude dos gentios" (plērōma tōn ethnōn) é um período determinado para a evangelização das nações. E "todo Israel" (pas Israel) é debatido — pode significar a totalidade do povo de Deus (judeus e gentios crentes), ou uma conversão futura em massa do povo judeu. O que é claro é que o plano de Deus não exclui Israel permanentemente.
+
+A conclusão de Paulo em 11:30-32 é poderosa: "Assim como vós também, em outro tempo, não credes em Deus, mas agora alcançastes misericórdia pela desobediência destes, assim também estes agora desobedeceram, para que também eles alcancem misericórdia pela misericórdia para convosco. Porque Deus encerrou todos em desobediência, para usar a misericórdia com todos." A desobediência de uns serve para a salvação de outros. Deus usa até a rebeldia humana para cumprir Seus propósitos redentores. Isso não anula a responsabilidade — mas a enquadra num plano maior.
+
+### O Hino à Soberania (11:33-36)
+
+Romanos 9-11 termina não com uma proposição teórica, mas com um hino de adoração: "Ó profundidade da riqueza, tanto da sabedoria e do conhecimento de Deus! Quão insondáveis são os seus julgamentos, e quão inescrutáveis os seus caminhos!" (11:33). Käsemann observa que a teologia de Paulo não termina em speculação, mas em worship. O mistério da soberania de Deus não é problema a resolver, mas mistério a adorar. "Porque dele, e por ele, e nele são todas as coisas; a ele a glória para sempre" (11:36). A adoração é a resposta correta à soberania divina.`,
           versículosChave: [
             { ref: 'Romanos 9:6', texto: 'Não caiu por terra a palavra de Deus.' },
             { ref: 'Romanos 9:11-12', texto: 'Ainda não tendo os gêmeos nascido, nem tendo praticado algum bem ou mal, para que o propósito de Deus quanto à eleição prevalecesse, não por obras, mas por aquele que chama, foi-lhe dito: O mais velho servirá ao mais moço.' },
-            { ref: 'Romanos 9:20-21', texto: 'Ó homem, quem és tu, que argue contra Deus? A coisa formada dirá ao que a formou: Por que me fizeste assim? Não tem o oleiro poder sobre o barro?' },
-          ],
-        },
-        {
-          id: 'aula-rom-5-2',
-          título: 'A Responsabilidade Humana e a Justiça de Deus',
-          tipo: 'texto',
-          duração: '15 min',
-          conteúdo: '## A Responsabilidade Humana e a Justiça de Deus\n\nSe Romanos 9:1-29 enfatiza a soberania de Deus, os versículos 30-10:21 trazem o outro lado da moeda: a responsabilidade humana. Paulo não permite que usemos a soberania de Deus como desculpa para a apatia. A justiça de Deus é oferecida a todos, e a rejeição é responsabilidade de quem recusa.\n\n### A busca errada de Israel\n\nPaulo observa uma ironia dolorosa: Israel, que buscou a justiça pela obediência à Lei, não alcançou a Lei da justiça (9:31). Por quê? Porque buscaram não pela fé, mas como quem pratica obras (9:32). A raiz do problema é o orgulho religioso — a crença de que o ser humano pode conquistar a salvação por mérito próprio. A Lei foi dada como andaime para conduzir a Cristo (Gl 3:24), mas Israel a transformou em escada para subir até Deus.\n\n### A pedra de tropeço\n\nCristo é pedra de tropeço para Israel (9:33). Isso parece paradoxal — como o Salvador pode ser pedra de tropeço? Porque Ele não se encaixa no projeto religioso humano. O Messias que morreu na cruz é escândalo para quem quer um rei triunfante. A humildade da encarnação e da crucificação ofende o orgulho religioso que espera obras grandiosas.\n\n### O coração confessar\n\nRomanos 10:8-13 é uma das passagens evangelísticas mais claras do NT: "Se confessares com a tua boca que Jesus é o Senhor, e creres no teu coração que Deus o ressuscitou dos mortos, serás salvo." A salvação não é complexa — é acessível. Está na tua boca e no teu coração. A distância até ela é mínima — está na tua própria boca e no teu próprio coração (10:8). Não precisa de peregrinações, rituais ou merecimentos.\n\n### A urgência da proclamação\n\nPaulo faz uma pergunta urgente: "Como, pois, invocarão aquele em quem não creram? Como crerão naquele de quem não ouviram? Como ouvirão sem quem pregue?" (10:14). A salvação depende da pregação. A pregação depende do envio. E o envio depende da obediência da igreja. O evangelho precisa ser proclamado — não guardado em cofres teológicos.\n\n### A rejeição de Israel\n\nEm 10:21, Paulo cita Isaías 65:2: "Estive as mãos estendidas todo o dia para um povo rebelde." A ironia é que Deus estende as mãos para Israel, e Israel recusa. A justiça de Deus está disponível, mas Israel insiste na justiça própria. A rejeição não é porque Deus falhou, mas porque o homem se recusa a aceitar o caminho da graça.\n\n### Lição para hoje\n\nEssa passagem desafia tanto o religioso quanto o secular. O religioso tenta conquistar Deus com obras; o secular tenta ignorar Deus com indiferença. A resposta certa é a fé: reconhecer que somos pecadores, que não podemos nos salvar, e que a salvação está disponível a todos que confessam e creem. A justiça de Deus não é um troféu para os merecedores — é um presente para os que se rendem.',
-          versículosChave: [
-            { ref: 'Romanos 9:31', texto: 'Israel, que buscava a lei da justiça, não alcançou a Lei da justiça.' },
             { ref: 'Romanos 10:9', texto: 'Se confessares com a tua boca que Jesus é o Senhor, e creres no teu coração que Deus o ressuscitou dos mortos, serás salvo.' },
-            { ref: 'Romanos 10:17', texto: 'Logo, a fé é pelo ouvir, e o ouvir pela palavra de Deus.' },
-          ],
-        },
-        {
-          id: 'aula-rom-5-3',
-          título: 'O Futuro de Israel: Os Ramos da Oliveira',
-          tipo: 'texto',
-          duração: '15 min',
-          conteúdo: '## O Futuro de Israel: Os Ramos da Oliveira\n\nRomanos 11 é a resposta de Paulo para quem pensa que Deus rejeitou Israel para sempre. A resposta é inequívoca: "Deus não rejeitou o seu povo, a quem dantes soube" (11:2). Paulo se prova como prova viva de que Deus ainda trabalha com Israel — ele próprio é israelita, da tribo de Benjamim (11:1).\n\n### O exemplo de Elias\n\nElias se queixou que ficou só, que todos abandonaram o culto verdadeiro (11:2-3). Mas Deus revelou que guardara sete mil homens que não se curvaram diante de Baal. O remanescente sempre existiu. Deus nunca ficou sem testemunha. Mesmo nos piores momentos da história, há um restante fiel que Deus mantém pela Sua graça.\n\n### A oliveira e os ramos\n\nA imagem da oliveira em 11:17-24 é uma das mais ricas do NT. Os ramos originais são Israel. Alguns foram arrancados por incredulidade. Ramos selvagens (gentios) foram enxertados. Mas Paulo adverte com severidade: "Não te glories contra os ramos... Deus não perdoou aos ramos naturais, perdoará a ti?" (11:21-22). A posição na oliveira não é garantia — depende da fé. A soberania de Deus não anula a responsabilidade humana.\n\n### A plenitude dos gentios\n\nHá um tempo determinado para a plenitude dos gentios (11:25). Deus está trabalhando com as nações, mas isso não é para sempre — é um período. Enquanto os gentios recebem o evangelho, parte de Israel permanece endurecida. Mas esse endurecimento não é final nem total — é "parcial" (11:25) e temporário.\n\n### O mistério revelado\n\nPaulo revela um mistério: "Quando a plenitude dos gentios entrar, então todo Israel será salvo" (11:25-26). Esse "todo Israel" é debatido — alguns entendem como a totalidade do povo de Deus (judeus e gentios crentes), outros como uma conversão futura em massa do povo judeu. O que é claro é que o plano de Deus não exclui Israel permanentemente.\n\n### A misericórdia que regata\n\nRomanos 11:30-32 é uma das conclusões mais poderosas de Paulo: "Assim como vós também, em outro tempo, desobedecestes a Deus, mas agora alcançastes misericórdia pela desobediência deles, assim também estes agora desobedeceram, para que, pela misericórdia mostrada a vós, também eles alcancem misericórdia. Porque Deus concluiu todos em desobediência, para usar a misericórdia com todos." A cruza da história é a misericórdia. Deus usa a desobediência de uns para alcançar a misericórdia de todos.\n\n### O hino de louvor\n\nO capítulo 11 termina com um hino de admiração: "Ó profundidade da riqueza, tanto da sabedoria e do conhecimento de Deus! Quão insondáveis são os seus juízos, e inescrutáveis os seus caminhos!" (11:33). Diante do mistério da soberania e da responsabilidade, a resposta certa não é sistemática — é adoração. Deus é maior que qualquer sistema teológico. A oliveira é um lembrete: a raiz é santa, os ramos dependem da graça, e o oleiro é soberano.',
-          versículosChave: [
-            { ref: 'Romanos 11:1', texto: 'Deus não rejeitou o seu povo, a quem dantes soube.' },
-            { ref: 'Romanos 11:25-26', texto: 'Há um endurecimento parcial ocorrido a Israel... e depois todo Israel será salvo.' },
+            { ref: 'Romanos 11:25-26', texto: 'Há um endurecimento parcial acontecido a Israel, até que a plenitude dos gentios haja entrado. E depois todo Israel será salvo.' },
             { ref: 'Romanos 11:33', texto: 'Ó profundidade da riqueza, tanto da sabedoria e do conhecimento de Deus!' },
-          ],
-        },
-        {
-          id: 'aula-rom-5-4',
-          título: 'Quiz: Soberania e Israel',
-          tipo: 'quiz',
-          duração: '10 min',
-          perguntas: [
-            { id: 'q-rom-5-1', pergunta: 'Por que Paulo se entristeceu em Romanos 9?', opções: ['Por causa do sofrimento pessoal', 'Porque muitos judeus rejeitaram o Messias', 'Por causa da pobreza', 'Por causa da perseguição'], respostaCorreta: 1, explicação: 'Paulo expressou profunda tristeza porque seus irmãos segundo a carne rejeitaram o Messias (9:2-3).' },
-            { id: 'q-rom-5-2', pergunta: 'O que Paulo quer dizer com "nem todo Israel é Israel"?', opções: ['Israel não existe', 'A pertencença ao povo de Deus não é apenas biológica, mas espiritual', 'Os judeus foram substituídos', 'Israel é apenas um nome'], respostaCorreta: 1, explicação: 'A verdadeira pertencença a Israel depende da fé e da promessa, não apenas da descendência física (9:6).' },
-            { id: 'q-rom-5-3', pergunta: 'Qual é a lição de Jacó e Esaú em Romanos 9?', opções: ['O mais velho sempre governa', 'A eleição de Deus não se baseia em obras ou mérito humano', 'Esaú era melhor', 'Jacó era mais forte'], respostaCorreta: 1, explicação: 'Deus escolheu Jacó antes do nascimento, mostrando que a eleição depende do propósito divino, não de obras humanas (9:11-12).' },
-            { id: 'q-rom-5-4', pergunta: 'O que é o vaso de barro em Romanos 9?', opções: ['Uma cerâmica antiga', 'A imagem de Deus como oleiro com poder sobre o barro humano', 'Um símbolo de pecado', 'Um objeto de culto'], respostaCorreta: 1, explicação: 'O vaso de barro ilustra que Deus tem soberania total sobre a criação — Ele faz vasos para honra e para desonra (9:20-21).' },
-            { id: 'q-rom-5-5', pergunta: 'Por que Israel não alcançou a justiça pela Lei?', opções: ['Porque a Lei era ruim', 'Porque buscavam pela fé, mas por obras', 'Porque Deus não quis', 'Porque a Lei era impossível'], respostaCorreta: 1, explicação: 'Israel buscou a justiça pela obediência à Lei, mas não pela fé. Buscaram não pela fé, mas como quem pratica obras (9:31-32).' },
-            { id: 'q-rom-5-6', pergunta: 'O que é necessário para ser salvo segundo Romanos 10?', opções: ['Obedecer todos os mandamentos', 'Confessar que Jesus é o Senhor e crer que Deus o ressuscitou', 'Batizar-se', 'Dar dízimo'], respostaCorreta: 1, explicação: 'A salvação vem pela fé e pela confissão: "Se confessares... e creres... serás salvo" (10:9).' },
-            { id: 'q-rom-5-7', pergunta: 'Como Paulo descreve a oliveira em Romanos 11?', opções: ['Como um jardim', 'Uma oliveira com ramos originais (Israel) e enxertados (gentios)', 'Uma árvore frutífera', 'Uma planta seca'], respostaCorreta: 1, explicação: 'A oliveira representa o povo de Deus: ramos de Israel foram arrancados, e ramos gentios foram enxertados pela fé (11:17-24).' },
-            { id: 'q-rom-5-8', pergunta: 'O que significa "a plenitude dos gentios"?', opções: ['O fim dos gentios', 'Um período determinado para que os gentios recebam o evangelho', 'A conversão de todos os gentios', 'O número de anjos'], respostaCorreta: 1, explicação: 'Há um tempo determinado para que os gentios recebam o evangelho enquanto Israel permanece endurecido parcialmente (11:25).' },
-            { id: 'q-rom-5-9', pergunta: 'Qual a conclusão de Paulo em Romanos 11:33?', opções: ['Deus é injusto', 'A adoração diante do mistério da soberania de Deus', 'Deus é indiferente', 'Não há mistério'], respostaCorreta: 1, explicação: 'Paulo termina com um hino de adoração: "Ó profundidade da riqueza, sabedoria e conhecimento de Deus!" (11:33).' },
-            { id: 'q-rom-5-10', pergunta: 'Como Deus usa a desobediência dos homens?', opções: ['Para destruir', 'Para demonstrar misericórdia', 'Para punir apenas', 'Para ignorar'], respostaCorreta: 1, explicação: 'Deus concluiu todos em desobediência para usar a misericórdia com todos — a desobediência de uns serve para a salvação de outros (11:30-32).' },
           ],
         },
       ],
     },
     {
       id: 'mod-vida-pratica',
-      título: 'Romanos 12-16: A Vida Cristã Prática',
-      descrição: 'Aplicação prática do evangelho na vida cotidiana, dons e ética cristã',
+      título: 'Vida Prática (Rm 12-16)',
+      descrição: 'O sacrifício vivo, o governo civil, o amor fraterno e os guerreiros espirituais',
       ícone: '🤝',
       aulas: [
         {
-          id: 'aula-rom-6-1',
-          título: 'A Vida Transformada: Romanos 12:1-2',
+          id: 'aula-rom-9-1',
+          título: 'Vida Prática (Rm 12-16)',
           tipo: 'texto',
-          duração: '15 min',
-          conteúdo: '## A Vida Transformada: Romanos 12:1-2\n\nRomanos 12:1-2 é o ponto de virada do livro. Depois de onze capítulos de teologia densa — pecado, justificação, graça, soberania — Paulo faz o grande "assim" que conecta doutrina à vida: "Assim que, irmãos, rogo-vos pela misericórdia de Deus, que presentai o vosso corpo em sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional" (12:1).\n\n### A oferenda do corpo\n\nA palavra "corpo" é deliberada. Paulo não diz "ofereçam vossos corações" ou "vossas almas". Ele diz corpo. A fé cristã não é apenas espiritual — é encarnada. É na carne que pecamos, e é na carne que Deus quer ser honrado. O culto racional não é um ritual no templo — é uma vida inteira vivida para Deus. Cada ação, cada decisão, cada palavra é um ato de adoração.\n\n### Sacrifício vivo\n\nA expressão "sacrifício vivo" é um oxímoro deliberado. Sacrifícios são mortos. Mas na graça de Deus, o sacrifício é vivo — morremos para nós mesmos, mas vivemos para Ele. Não é uma oferta de uma vez — é um modo de vida. Cada manhã, cada escolha, cada dificuldade é uma oportunidade de offerir algo vivo a Deus.\n\n### Não vos conformeis\n\n"Não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento" (12:2). A conformação é o padrão: pensar como o mundo pensa, valorizar como o mundo valoriza, ambicionar como o mundo ambiciona. A transformação exige um contrafluxo. A palavra grega para "conformar" (syschēmatizō) sugere pressão externa — o mundo pressiona para moldar. A transformação vem de dentro, pela renovação da mente.\n\n### A renovação da mente\n\nA chave da transformação não é modificação superficial de comportamento, mas renovação da mente. É pensar de acordo com a realidade de Deus. É ver o mundo através das lentes do evangelho. É substituir os valores culturais pelos valores do Reino. A renovação da mente é um processo contínuo — não é evento, é jornada. Estuda as Escrituras, medita, ora, e a mente se renova.\n\n### A vontade agradável\n\nO resultado da transformação é "discernir a vontade de Deus, o que é bom, agradável e perfeito" (12:2). Não se trata de descobrir uma vontade secreta — mas de viver de acordo com o caráter revelado de Deus. O que é bom (segundo o padrão de Deus), o que é agradável (que agrada ao Pai), e o que é perfeito (que cumpre o Seu propósito).\n\n### A aplicação\n\nRomanos 12:1-2 é o antídoto contra o cristianismo cultural. Muitos cristãos vivem conformados — aceitam os valores do mundo em política, relações, finanças e moral, apenas adicionando uma camada religiosa. Paulo diz: não. A transformação é total. A mente muda, o corpo se offerêce, e a vontade de Deus se torna o norte. Esse é o "culto racional" — não é emoção, é entrega deliberada e racional de toda a vida a Deus.',
+          duração: '20 min',
+          conteúdo: `## Vida Prática (Rm 12-16)
+
+### A Oferenda Viva (12:1-2)
+
+Romanos 12:1-2 é o ponto de virada da epístola. Depois de onze capítulos de teologia densa — pecado, justificação, graça, soberania — Paulo faz o grande "assim" (houstos) que conecta doutrina à vida: "Assim que, irmãos, rogo-vos pela misericórdia de Deus, que presentai o vosso corpo em sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional" (12:1). O imperativo é plural — é dirigido à comunidade, não ao indivíduo isolado. A "misericórdia de Deus" (oiktirmōn tou theou) é a base — não é esforço moral, mas resposta à graça.
+
+A palavra "corpo" (sōma) é deliberada. Paulo não diz "corações" ou "almas" — diz corpo. A fé cristã não é abstrata — é encarnada. É na carne que pecamos, é na carne que Deus quer ser honrado. O "sacrifício vivo" (zōsan) é um oxímoro deliberado: sacrifícios são mortos, mas na graça de Deus, o sacrifício é vivo. Morremos para nós mesmos, mas vivemos para Ele. Não é evento pontual — é modo de vida. Cada manhã, cada escolha, cada dificuldade é oportunidade de oferecer algo vivo a Deus.
+
+O versículo 2 traz o imperativo negativo e positivo: "Não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento." A conformação (sysschēmatizō) sugere pressão externa — o mundo pressiona para moldar. A transformação (metamorphousthe) vem de dentro, pela renovação da mente. A "prova" (dokimazein) é teste laboratorial — experimentar, verificar, comprovar. O crente não é acrítico — ele testa os valores do mundo e os encontra insuficientes. A renovação da mente é processo contínuo — não é evento, é jornada.
+
+### Os Dons e o Corpo (12:3-8)
+
+Paulo começa com humildade: "Digo, pela graça que me foi dada, a todo o que está entre vós, que não tenha um conceito de si mesmo mais alto do que convém" (12:3). A humildade é pré-requisito para o uso correto dos dons. O "conceito de si mesmo" (phronein) é o mesmo verbo de 8:5 — a mentalidade. A humildade é mentalidade, não apenas atitude.
+
+A metáfora do corpo (12:4-5) é ricamente paulina: "Assim como em um corpo temos muitos membros, e nem todos têm a mesma função, assim nós, sendo muitos, somos um corpo em Cristo, e individualmente somos membros uns dos outros." Ninguém é autossuficiente; ninguém é dispensável. O olho não pode dizer ao pé que não precisa dele. A igreja não é reunião de consumidores — é corpo de membros interdependentes.
+
+Paulo lista dons específicos: profecia (kata tēn analogian tēs pisteōs — segundo a proporção da fé), serviço (diakonia), ensino (didaskalia), exortação (paraklēsis), dádiva (metadidōs), liderança (proïstamenos), misericórdia (eleōn). Note que não há hierarquia — serviço é tão importante quanto profecia; misericórdia é tão valiosa quanto ensino. A diversidade é intencional e necessária. O critério não é o tamanho do dom, mas a fé que o opera.
+
+### Amor e Ética (12:9-21)
+
+Logo após os dons, Paulo fala do amor: "O amor seja sem fingimento" (12:9). A palavra anupokritos (sem fingimento) é teatral — é o ator que não usa máscara. O amor cristão é autêntico, não表演. "Aborrecei o mal, apegai-vos ao bem" — não é sentimentalismo, mas compromisso moral. "Amai-vos uns aos outros com amor fraternal; em honra, uns aos outros preferindo" (12:10). A honra é a virtude de reconhecer o valor do outro — anti-competitiva, anti-elitista.
+
+A lista ética de 12:9-21 é um dos catálogos mais práticos do NT: diligência, fervor no espírito, servindo ao Senhor, alegria na esperança, paciência na tribulação, perseverança na oração, compartilhar com os santos, hospedar estrangeiros, abençoar os que perseguem, regozijar-se com os que se regozijam, chorar com os que choram. Cada imperativo é uma micro-ética cristã aplicada a situações reais.
+
+O versículo 14 é desafiador: "Abençoai os que vos perseguem; abençoai e não amaldiçoeis." O verbo eulogein (abençoar) é contracultural — é abençoar quem nos maltrata. O versículo 17-21 é a ética da não-retaliação: "Não vos vingueis vós mesmos, amados meus" (12:19). A vingança pertence a Deus (de mim é a vingança, eu retribuirei, diz o Senhor). A resposta cristã ao mal é a bondade ativa: "Se o teu inimigo tiver fome, dá-lhe de comer; se tiver sede, dá-lhe de beber" (12:20). O versículo 21 é o clímax: "Não te venças pelo mal, mas vence o mal com o bem." É a estratégia ofensiva do amor — não defensiva, mas proativa.
+
+### Estado e Consciência (13:1-14)
+
+A submissão às autoridades (13:1-7) é uma das passagens mais debatidas da ética paulina. "Sujeitai-vos a toda autoridade humana, porque não há autoridade que não venha de Deus" (13:1). Paulo escreve sob o império romano — que eventualmente o martirizará. A submissão não é cega nem absoluta: quando a autoridade humana contradiz a divina, "é necessário obedecer a Deus mais do que aos homens" (At 5:29). O propósito da autoridade é o bem — ela "não é temor para as boas obras, mas para as más" (13:3). O Estado é instrumento de Deus para conter o mal e promover a ordem — não é divino, mas ordenado por Deus.
+
+O amor cumpre a Lei inteira: "Não devemos nada a ninguém, senão o amor mútuo; porque quem ama ao outro cumpriu a Lei" (13:8). A síntese da ética cristã não é lista de regras, mas princípio unificador: o amor. Quem ama não comete adultério, não mata, não furtou, não cobiça (13:9). O amor é a essência da Lei — é o espírito que anima a letra.
+
+Romanos 14 aborda a questão da consciência fraca: "Não julgueis mais uns aos outros" (14:13). Em assuntos neutros — comida, dias sagrados — não há lugar para julgamento. O crente forte sabe que tudo é lícito; o crente fraco tem escrúpulos. Paulo não resolve a questão teológica — ele diz: não julguem. "O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito" (14:17). Os valores do Reino transcendem as disputas sobre observâncias externas. Quem come, coma; quem não come, não coma. Ambos vivem para o Senhor.
+
+### Despedida e Missionário (15:1-16:27)
+
+Romanos 15-16 são mais do que fórmulas de despedida — são manifesto missiológico. Paulo se identifica como apóstolo dos gentios (15:16), mas seu desejo é ir até a Hispânia (15:24). A unidade entre judeus e gentios é central: "Acolhei-vos uns aos outros, como Cristo também vos acolheu" (15:7). Cristo foi "ministro da circuncisão" para confirmar as promessas feitas aos patriarcas (15:8-9), mas o objetivo sempre foi que as nações louvassem a Deus (15:9-12).
+
+A bênção final (16:25-27) é um hino trinitário: "Ao que vos pode fortalecer segundo o meu evangelho e a pregação de Jesus Cristo... ao único e sábio Deus, por Jesus Cristo, a ele a glória para sempre." O evangelho não é apenas informação — é poder que fortalece. A glória não é para o pregador, mas para Deus. A teologia de Paul termina onde começou — na glória de Deus revelada no evangelho.
+
+Cranfield sintetiza: "Romanos não é um tratado acadêmico — é uma carta pastoral. Paulo escreve para igrejas que conhece, pessoas que ama, problemas que precisa resolver. A teologia não é abstrata — é encarnada na vida de comunidades reais. A justificação pela fé não é doutrina para debater — é realidade para viver. E a vida cristã não é optional — é consequência necessária do evangelho."`,
           versículosChave: [
-            { ref: 'Romanos 12:1', texto: 'Rogo-vos pela misericórdia de Deus, que presentai o vosso corpo em sacrifício vivo, santo e agradável a Deus.' },
+            { ref: 'Romanos 12:1', texto: 'Rogo-vos pela misericórdia de Deus, que presentai o vosso corpo em sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional.' },
             { ref: 'Romanos 12:2', texto: 'Não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento.' },
-          ],
-        },
-        {
-          id: 'aula-rom-6-2',
-          título: 'Os Dons Espirituais e o Corpo de Cristo',
-          tipo: 'texto',
-          duração: '15 min',
-          conteúdo: '## Os Dons Espirituais e o Corpo de Cristo\n\nRomanos 12:3-8 é uma das passagens mais práticas sobre dons espirituais e vida comunitária. Paulo começa com uma advertência humildade: "Digo, pela graça que me foi dada, a todo o que está entre vós, que não tenha um conceito de si mesmo mais alto do que convém" (12:3). A humildade é o pré-requisito para o uso correto dos dons.\n\n### O corpo de Cristo\n\nAssim como um corpo tem muitos membros, e cada membro tem uma função diferente, assim é o corpo de Cristo (12:4-5). Ninguém é autossuficiente. Ninguém é dispensável. O olho não pode dizer ao pé que não precisa dele. Cada cristão tem um papel, uma função, uma contribuição. A igreja não é uma reunião de consumidores — é um corpo de membros interdependentes.\n\n### A diversidade de dons\n\nPaulo lista dons específicos: profecia (12:6), serviço (12:7), ensino (12:7), exortação (12:8), dádiva (12:8), liderança (12:8), misericórdia (12:8). Note que não há hierarquia — serviço é tão importante quanto profecia. Misericórdia é tão valiosa quanto ensino. A diversidade é intencional e necessária.\n\n### A manifestação do Espírito\n\n"Se alguém tem dons diferentes, ou se alguém tem o dom de profecia, que fira segundo a proporção da fé" (12:6). O critério não é o tamanho do dom, mas a fé que o opera. Deus distribui dons conforme o Seu propósito, não conforme o mérito humano. O que importa é usar o dom que recebeu, não invejar o dom do outro.\n\n### O amor fraternal\n\nLogo após os dons, Paulo fala do amor: "O amor seja sem fingimento. Aborrecei o mal, apegai-vos ao bem" (12:9). Dons sem amor são ruído (1 Cor 13:1). A exibição de dons sem amor fraternal é vaidade. O amor é o ambiente onde os dons florescem. É o cimento que mantém o corpo unido.\n\n### Conviver em paz\n\n"Em quanto depender de vós, tende paz com todos os homens" (12:18). Paulo reconhece que nem sempre depende de nós — há pessoas que não querem paz. Mas a responsabilidade cristã é procurar a paz. Não vingar-se (12:19), não maltratar com palavras ásperas (12:14), abençoar os que perseguem (12:14). A vida comunitária é difícil, mas é onde os dons se exercitam.\n\n### Vencer o mal com o bem\n\n"Não te venças pelo mal, mas vence o mal com o bem" (12:21). Essa é a estratégia cristã. Não é passividade — é resistência ativa com bondade. É abençoar quando somos amaldiçoados. É alimentar o inimigo com fome. É escolher o bem mesmo quando o mal parece mais eficiente. A vitória do bem não é imediata — mas é eterna.',
-          versículosChave: [
-            { ref: 'Romanos 12:4-5', texto: 'Assim como em um corpo temos muitos membros, e nem todos têm a mesma função, assim nós, sendo muitos, somos um corpo em Cristo.' },
-            { ref: 'Romanos 12:6', texto: 'Tendo, pois, dons diferentes, segundo a graça que nos foi dada, usemo-los.' },
+            { ref: 'Romanos 12:9', texto: 'O amor seja sem fingimento; aborrecei o mal, apegai-vos ao bem.' },
             { ref: 'Romanos 12:21', texto: 'Não te venças pelo mal, mas vence o mal com o bem.' },
-          ],
-        },
-        {
-          id: 'aula-rom-6-3',
-          título: 'Obediência, Amor e a Ética Cristã',
-          tipo: 'texto',
-          duração: '12 min',
-          conteúdo: '## Obediência, Amor e a Ética Cristã\n\nRomanos 13-14 aborda a vida cristã na sociedade e na comunidade. Depois da transformação interior (12:1-2) e dos dons no corpo (12:3-21), Paulo agora olha para fora: como o cristão se relaciona com o Estado, com o próximo e com a consciência do outro?\n\n### Submissão às autoridades\n\n"Sujeitai-vos a toda autoridade humana, porque não há autoridade que não venha de Deus" (13:1). Essa instrução é surpreendente — Paulo escreve sob o império romano, que eventualmente o martirizará. Mas a submissão não é cega nem absoluta. Quando a autoridade humana contradiz a divina, "é necessário obedecer a Deus mais do que aos homens" (At 5:29). O propósito da autoridade é o bem — ela repreende o mal e promove a ordem.\n\n### O tributo e o amor\n\n"Pagai a quem o devedes: tributo a quem tributo, imposto a quem imposto, receio a quem receio, honra a quem honra" (13:7). O cristão não é devedor de ninguém, exceto de amor: "Não devemos nada a ninguém, senão o amor mútuo" (13:8). O amor cumpre a Lei inteira — quem ama ao próximo não comete Adultério, não mata, não furtou, não cobiça (13:9). O amor é a síntese da ética cristã.\n\n### O dia do Senhor\n\n"Não tenhamos julgamento quanto ao comer ou beber" (14:1-3). Paulo passa para assuntos de consciência: dias sagrados, alimentos, bebidas. Para o crente forte, tudo é lícito. Para o crente fraco, certas coisas são erradas. Paulo não resolve a questão teológica — ele diz: não julguem. Quem come, coma; quem não come, não coma. Ambos vivem para o Senhor.\n\n### O fruto do Espírito\n\n"O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito" (14:17). Os valores do Reino não estão em observâncias externas, mas em transformação interior. Justiça — viver retamente. Paz — relacionamentos reconciliados. Alegria — confiança no Evangelho. Quem serve a Cristo nesses valores agrada a Deus e é aprovado pelos homens.\n\n### Não colocar tropço\n\n"Não destruas, por causa da comida, a obra de Deus" (14:20). A ética cristã considera o outro. Se minha liberdade causa tropeço no irmão fraco, eu abdico da liberdade por amor. A liberdade cristã não é direito — é responsabilidade. Não faço o que posso, mas faço o que é melhor para o outro.\n\n### Andar e agradar\n\n"Sejamos, pois, zelosos do que conduz à paz e à mútua edificação" (14:19). A ética cristã é pragmática no melhor sentido — busca resultados práticos de paz e edificação. Não é legalismo, mas amor em ação. Não é liberdade irresponsável, mas liberdade que edifica. A vida cristã prática é uma busca contínua do que agrada a Deus e fortalece o próximo.',
-          versículosChave: [
             { ref: 'Romanos 13:1', texto: 'Sujeitai-vos a toda autoridade humana, porque não há autoridade que não venha de Deus.' },
-            { ref: 'Romanos 13:10', texto: 'O amor não pratica o mal ao próximo; de sorte que o cumprimento da Lei é o amor.' },
             { ref: 'Romanos 14:17', texto: 'O reino de Deus não é comida nem bebida, mas justiça, paz e alegria no Espírito.' },
+            { ref: 'Romanos 15:7', texto: 'Acolhei-vos uns aos outros, como Cristo também vos acolheu.' },
           ],
         },
+      ],
+    },
+    {
+      id: 'mod-avaliacao',
+      título: 'Avaliação Final',
+      descrição: '12 questões que testam compreensão exegética e teológica real de Romanos',
+      ícone: '📝',
+      aulas: [
         {
-          id: 'aula-rom-6-4',
-          título: 'Quiz: Vida Cristã Prática',
+          id: 'aula-rom-10-1',
+          título: 'Avaliação: Romanos',
           tipo: 'quiz',
-          duração: '10 min',
+          duração: '20 min',
           perguntas: [
-            { id: 'q-rom-6-1', pergunta: 'O que Paulo pede em Romanos 12:1?', opções: ['Orezem diariamente', 'Que presentai o vosso corpo em sacrifício vivo', 'Fujam do mundo', 'Juntem riquezas'], respostaCorreta: 1, explicação: 'Paulo pede que ofereçamos o corpo como sacrifício vivo — é o nosso culto racional a Deus (12:1).' },
-            { id: 'q-rom-6-2', pergunta: 'O que significa "não vos conformeis com este mundo"?', opções: ['Isolar-se completamente', 'Não adoptar os valores e padrões do mundo em oposição aos de Deus', 'Odiar as pessoas', 'Viajar muito'], respostaCorreta: 1, explicação: 'Não nos conformamos com os valores culturais — devemos ser transformados pela renovação da mente (12:2).' },
-            { id: 'q-rom-6-3', pergunta: 'Como Paulo descreve a relação entre dons no corpo de Cristo?', opções: ['Todos devem ter o mesmo dom', 'Cada membro tem uma função diferente, e todos são necessários', 'Apenas o pastor é importante', 'Dons não importam'], respostaCorreta: 1, explicação: 'Assim como um corpo tem muitos membros com funções diferentes, assim é o corpo de Cristo — todos são necessários (12:4-5).' },
-            { id: 'q-rom-6-4', pergunta: 'O que é mais importante que dons espirituais?', opções: ['Conhecimento', 'O amor sem fingimento', 'Riquezas', 'Fama'], respostaCorreta: 1, explicação: 'Dons sem amor são ruído. O amor fraternal é o ambiente onde os dons florescem (12:9, cf. 1 Cor 13).' },
-            { id: 'q-rom-6-5', pergunta: 'Qual a responsabilidade do cristão em relação à paz?', opções: ['Evitar conflitos a todo custo', 'Procurar a paz com todos, quanto depender de nós', 'Lutar sempre', 'Ignorar os outros'], respostaCorreta: 1, explicação: '"Em quanto depender de vós, tende paz com todos os homens" (12:18). Devemos buscar a paz ativamente.' },
-            { id: 'q-rom-6-6', pergunta: 'Por que devemos nos sujeitar às autoridades?', opções: ['Por medo de punição', 'Porque toda autoridade vem de Deus', 'Porque o Estado é perfeito', 'Para ganhar poder'], respostaCorreta: 1, explicação: 'A autoridade vem de Deus para o bem — ela repreende o mal e promove a ordem (13:1-4).' },
-            { id: 'q-rom-6-7', pergunta: 'O que Paulo diz sobre comer e beber em Romanos 14?', opções: ['É pecado', 'Não julguem uns aos outros nesses assuntos de consciência', 'É irrelevante', 'É mandamento'], respostaCorreta: 1, explicação: 'Em assuntos de consciência (comida, dias sagrados), não devemos julgar — cada um vive para o Senhor (14:1-4).' },
-            { id: 'q-rom-6-8', pergunta: 'O que o amor cumpre?', opções: ['Nada', 'A Lei inteira', 'Apenas os mandamentos', 'Apenas o dízimo'], respostaCorreta: 1, explicação: 'O amor cumpre a Lei inteira — quem ama ao próximo não comete pecado contra ele (13:8-10).' },
-            { id: 'q-rom-6-9', pergunta: 'O que é o "culto racional" de Romanos 12:1?', opções: ['Um culto racionalista', 'A entrega de toda a vida a Deus como ato de adoração', 'Um culto sem emoção', 'Um culto filosófico'], respostaCorreta: 1, explicação: 'O culto racional é a entrega de toda a vida — corpo, mente e vontade — a Deus como sacrifício vivo.' },
-            { id: 'q-rom-6-10', pergunta: 'Como devemos responder ao mal?', opções: ['Com vingança', 'Com o bem — vencer o mal com bondade', 'Com indiferença', 'Com violência'], respostaCorreta: 1, explicação: 'Não te venças pelo mal, mas vence o mal com o bem (12:21). A estratégia cristã é a bondade ativa.' },
+            {
+              id: 'q-rom-final-1',
+              pergunta: 'Em Romanos 1:17, a expressão "justiça de Deus" (dikaiosynē theou) se refere primariamente a:',
+              opções: [
+                'Uma exigência ética que Deus impõe ao homem',
+                'A ação salvadora de Deus que declara justo o crente pela fé',
+                'O padrão moral que o homem deve alcançar',
+                'A capacidade humana de obedecer à Lei'
+              ],
+              respostaCorreta: 1,
+              explicação: 'A dikaiosynē theou em Romanos 1:17 é a ação salvadora de Deus — não uma exigência que o homem cumpre, mas um dom que Ele oferece pela fé. Murray e Schreiner são unânimes em que essa justiça é descendente (de Deus para o homem), não ascendente (do homem para Deus). É a justiça que Deus imputa ao crente, não a que o crente produz.'
+            },
+            {
+              id: 'q-rom-final-2',
+              pergunta: 'O termo grego "hilastērion" em Romanos 3:25 se refere a:',
+              opções: [
+                'Um símbolo de pacificação divina',
+                'O propiciatório da arca da aliança — o lugar de expiação e encontro',
+                'Uma oferenda voluntária do crente',
+                'O sangue derramado nos rituais pagãos'
+              ],
+              respostaCorreta: 1,
+              explicação: 'O hilastērion é a tampa dourada da arca da aliança (Ex 25:17-22), onde o sumo sacerdote aspergia sangue no dia da expiação (Lv 16:14-15). Ao chamar Jesus de hilastērion, Paulo declara que Cristo é o cumprimento do ritual do dia da expiação — tanto o lugar quanto o meio da reconciliação. Cranfield e Moo enfatizam que a cruz é o ponto onde justiça e misericórdia se encontram.'
+            },
+            {
+              id: 'q-rom-final-3',
+              pergunta: 'A imputação (logizesthai) de Romanos 4:3-8 significa:',
+              opções: [
+                'Tornar o crente subjetivamente justo',
+                'Creditar, na conta do crente, a justiça de Cristo como realidade jurídica',
+                'Transformar a natureza moral do indivíduo',
+                'Apenas um símbolo de perdão divino'
+              ],
+              respostaCorreta: 1,
+              explicação: 'A imputação é um termo contábil — creditar, registrar na conta. A justiça de Cristo é imputada ao crente como um depósito legal, não como uma experiência subjetiva imediata. Murray distingue entre imputação (justificação forense) e santificação (transformação moral). A imputação é o mecanismo da justificação — Deus declara justo o ímpio porque a justiça de Cristo foi creditada a ele.'
+            },
+            {
+              id: 'q-rom-final-4',
+              pergunta: 'Romanos 6:1-14 ensina que o batismo simboliza:',
+              opções: [
+                'Apenas purificação ritual e entrada na comunidade',
+                'Morte, sepultamento e ressurreição com Cristo — união orgânica',
+                'O início da vida moral do crente',
+                'A obediência ao mandamento de Jesus sem implicação ontológica'
+              ],
+              respostaCorreta: 1,
+              explicação: 'O batismo em Romanos 6 não é apenas simbólico — é imagem da morte e ressurreição com Cristo. A palavra baptizō (mergulhar) sugere enterro; fomos "sepultados com ele" (6:4) e "plantados juntamente na semelhança da sua morte" (6:5). Murray observa que o batismo é tanto sacramento quanto sinal — ele não apenas representa, mas participa da realidade espiritual da união com Cristo.'
+            },
+            {
+              id: 'q-rom-final-5',
+              pergunta: 'A expressão "lei do pecado" em Romanos 7:23 se refere a:',
+              opções: [
+                'A Lei mosaica corrupta que condena o homem',
+                'A força do pecado que habita na carne e domina a vontade humana',
+                'O sistema religioso judaico oposto ao evangelho',
+                'Uma lei moral escrita na consciência gentia'
+              ],
+              respostaCorreta: 1,
+              explicação: 'A "lei do pecado" (nomos tēs hamartias) em Romanos 7:23 não é a Lei de Deus (que é "santa, justa e boa", 7:12), mas a força dominadora do pecado que habita na carne humana. Paulo usa a palavra "nomos" três vezes em Romanos 7: a lei de Deus (7:22), a lei do pecado (7:23), e a lei do pecado em seus membros (7:25). Schreiner argumenta que isso descreve a experiência do crente regenerado que ainda luta contra a carne.'
+            },
+            {
+              id: 'q-rom-final-6',
+              pergunta: 'Em Romanos 8:28-30, a "cadeia da salvação" (predestinação → chamado → justificação → glorificação) demonstra:',
+              opções: [
+                'Que a salvação depende exclusivamente da decisão humana',
+                'A segurança eterna dos eleitos — o propósito de Deus é inviolável',
+                'Que alguns podem perder a salvação após a justificação',
+                'Que a glorificação é opcional para os crentes'
+              ],
+              respostaCorreta: 1,
+              explicação: 'A cadeia de Romanos 8:29-30 é inviolável — cada elo está seguro no propósito eterno de Deus. O verbo "glorificou" (edoxasen) está no aoristo, como se a glorificação já tivesse acontecido. Do ponto de vista de Deus, que está fora do tempo, a salvação é realidade consumada. Moo e Schreiner argumentam que isso não elimina a responsabilidade humana, mas a fundamenta: é Deus quem persevera em nós.'
+            },
+            {
+              id: 'q-rom-final-7',
+              pergunta: 'Romanos 9:11-12 ensina que a eleição divina:',
+              opções: [
+                'Se baseia na previsão de fé ou obras humanas',
+                'Depende da resposta positiva do indivíduo ao evangelho',
+                'Se baseia no propósito soberano de Deus, anterior ao nascimento e às obras',
+                'É apenas um privilégio temporário que pode ser perdido'
+              ],
+              respostaCorreta: 2,
+              explicação: 'A escolha de Jacó e Esaú "antes de terem nascido, não tendo praticado bem ou mal" (9:11) demonstra que a eleição não se baseia em obras nem em mérito humano, mas no propósito (prothesis) de Deus. Murray e Calvin enfatizam que a eleição é incondicional — Deus escolhe segundo o Seu próprio conselho, não segundo a qualidade da resposta humana. Isso não anula a responsabilidade — ela é tema dos versículos seguintes (9:30-10:21).'
+            },
+            {
+              id: 'q-rom-final-8',
+              pergunta: 'A "perícia" (phronēma) de Romanos 8:5-8 se refere a:',
+              opções: [
+                'Uma capacidade intelectual do crente',
+                'Uma orientação existencial fundamental — pensar segundo o Espírito ou segundo a carne',
+                'O conhecimento teológico adquirido em estudo bíblico',
+                'A racionalidade grega aplicada à fé cristã'
+              ],
+              respostaCorreta: 1,
+              explicação: 'O phronēma não é apenas pensamento, mas orientação existencial fundamental — a bússola interior que direciona toda a vida. A "mentalidade da carne" (phronēma tēs sarkos) é centrada no eu e gera morte; a "mentalidade do Espírito" (phronēma tou pneumatos) é centrada em Deus e gera vida e paz. Schreiner observa que isso não é intelectualismo — é uma mudança na direção fundamental da vida, não apenas no conteúdo do conhecimento.'
+            },
+            {
+              id: 'q-rom-final-9',
+              pergunta: 'A "libertação dos filhos de Deus" mencionada em Romanos 8:21 refere-se a:',
+              opções: [
+                'Apenas à libertação espiritual individual do crente',
+                'A redenção cósmica — a criação inteira será renovada',
+                'A libertação de males sociais e políticos',
+                'Um evento exclusivamente futuro sem implicações presentes'
+              ],
+              respostaCorreta: 1,
+              explicação: 'A redenção em Romanos 8 não é apenas espiritual — é cósmica. Toda a criação "geme" (8:22) esperando a "libertação dos filhos de Deus" (8:21). Käsemann observa que isso apocalipsa uma escatologia futurista: Deus não salvará apenas almas, mas toda a criação. A nova criação (Ap 21:1) é a consumação da história da salvação — o universo inteiro será restaurado.'
+            },
+            {
+              id: 'q-rom-final-10',
+              pergunta: 'Romanos 11:25-26 ("todo Israel será salvo") é interpretado por muitos estudiosos como:',
+              opções: [
+                'A conversão futura de toda a nação israelita antes do fim',
+                'A totalidade do povo de Deus — judeus e gentios crentes ao longo da história',
+                'A salvação automática de todos os judeus independentemente da fé',
+                'Uma referência apenas à igreja primitiva judaica'
+              ],
+              respostaCorreta: 1,
+              explicação: 'A interpretação de "todo Israel" (pas Israel) em Romanos 11:26 é debatida. Wright e muitos evangélicos entendem como a totalidade do povo de Deus — judeus e gentios que compõem a verdadeira Israel. Outros (como Moo e Schreiner) defendem uma conversão futura em massa do povo judeu. O que é inegável é que o plano de Deus não exclui Israel permanentemente — a misericórdia divina alcança tanto judeus quanto gentios.'
+            },
+            {
+              id: 'q-rom-final-11',
+              pergunta: 'Romanos 12:1-2 ensina que a transformação cristã ocorre por meio de:',
+              opções: [
+                'Obediência externa a regras religiosas e rituais',
+                'Isolamento total do mundo e suas influências',
+                'A renovação da mente — testar e aprovar a vontade de Deus',
+                'Esforço moral humano sem intervenção divina'
+              ],
+              respostaCorreta: 2,
+              explicação: 'A transformação (metamorphousthe) em Romanos 12:2 não é conformidade externa nem isolamento, mas renovação interna da mente (nous). O verbo dokimazein (testar, provar) sugere discernimento ativo — o crente examina os valores do mundo, os testa contra a Palavra de Deus, e aprova a vontade de Deus. Murray observa que a transformação é obra do Espírito, mas o meio é a renovação da mente pelo estudo e meditação da Escritura.'
+            },
+            {
+              id: 'q-rom-final-12',
+              pergunta: 'A declaração final de Romanos 8:38-39 ("nada nos poderá separar do amor de Deus") fundamenta:',
+              opções: [
+                'O universalismo — todos serão salvos independentemente da fé',
+                'A segurança eterna do crente — a perseverança é dom divino, não mérito humano',
+                'O antinomianismo — o crente pode viver sem lei porque está seguro',
+                'O fatalismo — não importa o que o crente faça, pois nada muda'
+              ],
+              respostaCorreta: 1,
+              explicação: 'A segurança de Romanos 8:38-39 é o clímax da teologia paulina — nada no universo pode romper o laço entre o crente e o amor de Deus. Stott observa que a segurança não está na firmeza do crente para Deus, mas na firmeza de Deus para o crente. Isso não é licença para o pecado (cf. 6:1-2) — é fundamento para a obediência gratificada. O crente obedece não para ser salvo, mas porque já é salvo. A perseverança dos santos não é mérito humano — é dom divino.'
+            },
           ],
         },
       ],

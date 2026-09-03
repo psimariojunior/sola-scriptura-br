@@ -211,7 +211,7 @@ export default function HomeClient() {
         <section className="mb-14" aria-labelledby="cursos-home">
           <div className="flex items-baseline justify-between mb-4">
             <h2 id="cursos-home" className="font-display text-2xl sm:text-3xl font-normal text-foreground">
-              Cursos com certificado
+              Seminário Bíblico
             </h2>
             <Link href="/cursos" className="text-xs font-medium text-primary hover:underline">
               Ver todos
@@ -219,12 +219,12 @@ export default function HomeClient() {
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
             <Link href="/cursos/joao" className="ssb-panel block p-4 hover:border-primary/35 transition-colors">
-              <p className="text-sm font-semibold text-foreground">Trilha João</p>
-              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">Estudo profundo do Evangelho de João com ficha e certificado.</p>
+              <p className="text-sm font-semibold text-foreground">João — O Evangelho da Vida Eterna</p>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">10 módulos de estudo profundo com exegetas como Calvin, Carson e Barrett.</p>
             </Link>
             <Link href="/cursos/romanos" className="ssb-panel block p-4 hover:border-primary/35 transition-colors">
-              <p className="text-sm font-semibold text-foreground">Trilha Romanos</p>
-              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">Justificação pela fé — estudo com ficha e certificado.</p>
+              <p className="text-sm font-semibold text-foreground">Romanos — O Evangelho de Deus</p>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">A epístola que transformou Agostinho, Lutero e Wesley — estudo com Murray e Schreiner.</p>
             </Link>
           </div>
           <Link href="/seminario" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">

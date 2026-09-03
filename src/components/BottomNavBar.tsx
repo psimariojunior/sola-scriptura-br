@@ -127,6 +127,18 @@ function BottomNavBarInner() {
     setHidden(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!showMore) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMore();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [showMore, closeMore]);
+
   const toggleMore = useCallback(() => setShowMore((s) => !s), []);
   const closeMore = useCallback(() => setShowMore(false), []);
 

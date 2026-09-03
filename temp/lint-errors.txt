@@ -1,0 +1,7 @@
+﻿node.exe : Invalid project directory provided, no such directory: C:\Sola Scriptura BR\lint
+No linha:1 caractere:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Invalid project...riptura BR\lint:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

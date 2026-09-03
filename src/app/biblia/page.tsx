@@ -376,23 +376,24 @@ export default function BibliaPage() {
         <div className="max-w-[850px] mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-safe">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
-              <button onClick={() => ui.setZenMode(false)} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors" title={t('biblia.exitZen')}><X className="w-5 h-5" /></button>
+              <button onClick={() => ui.setZenMode(false)} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors" aria-label={t('biblia.exitZen')}><X className="w-5 h-5" /></button>
               <div><h1 className="font-display text-xl font-semibold text-[var(--content-primary)]">{nav.livro.nome} {nav.capituloIdx + 1}</h1><p className="text-xs text-[var(--content-muted)]">{nav.selectedTrads.map(t => labelMap[t] || t.toUpperCase()).join(' · ')}</p></div>
             </div>
             <div className="flex items-center gap-2">
-              <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] disabled:opacity-30 transition-colors"><ChevronLeft className="w-5 h-5" /></button>
-              <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] disabled:opacity-30 transition-colors"><ChevronRight className="w-5 h-5" /></button>
+              <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} aria-label={t('biblia.previousChapter')} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] disabled:opacity-30 transition-colors"><ChevronLeft className="w-5 h-5" /></button>
+              <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} aria-label={t('biblia.nextChapter')} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] disabled:opacity-30 transition-colors"><ChevronRight className="w-5 h-5" /></button>
             </div>
           </div>
           {nav.data.map((item) => (<div key={item.traducao}>
             {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/30"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span></div>)}
-            <div className="space-y-4">{item.versiculos.map((v) => (<p key={v.numero} className="verse-stagger font-serif-body text-[var(--content-primary)] leading-[2] cursor-pointer hover:bg-[var(--surface-sunken)]/40 rounded-lg px-3 py-2 -mx-3 transition-colors" style={{ fontSize: `${ui.fontSize + 2}px`, animationDelay: `${v.numero * 20}ms` }}
-              onClick={() => { ui.setZenMode(false); verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); }}>
+            <div className="space-y-4">{item.versiculos.map((v) => (<p key={v.numero} role="button" tabIndex={0} className="verse-stagger font-serif-body text-[var(--content-primary)] leading-[2] cursor-pointer hover:bg-[var(--surface-sunken)]/40 rounded-lg px-3 py-2 -mx-3 transition-colors" style={{ fontSize: `${ui.fontSize + 2}px`, animationDelay: `${v.numero * 20}ms` }}
+              onClick={() => { ui.setZenMode(false); verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); }}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ui.setZenMode(false); verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); } }}>
               <sup className="text-[var(--brand-default)] font-bold text-[11px] mr-1.5 select-none tabular-nums">{v.numero}</sup>{v.texto}</p>))}</div>
           </div>))}
           <div className="flex items-center justify-center gap-4 mt-16 pt-8 border-t border-[var(--border)]/30">
-            <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"><ChevronLeft className="w-4 h-4" />{t('biblia.previousChapter')}</button>
-            <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors">{t('biblia.nextChapter')}<ChevronRight className="w-4 h-4" /></button>
+            <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} aria-label={t('biblia.previousChapter')} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"><ChevronLeft className="w-4 h-4" />{t('biblia.previousChapter')}</button>
+            <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} aria-label={t('biblia.nextChapter')} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors">{t('biblia.nextChapter')}<ChevronRight className="w-4 h-4" /></button>
           </div>
         </div>
       </div>);

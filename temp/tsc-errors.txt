@@ -1,0 +1,4 @@
+﻿src/components/Biblia/VerseQuickBar.tsx(4,41): error TS2305: Module '"lucide-react"' has no exported member 'Undo2'.
+src/components/cursos/TrilhaLivroClient.tsx(88,52): error TS2322: Type 'TrilhaLivro | undefined' is not assignable to type 'TrilhaLivro'.
+  Type 'undefined' is not assignable to type 'TrilhaLivro'.
+src/components/RarasNesteLivro.tsx(4,10): error TS2305: Module '"lucide-react"' has no exported member 'Gem'.

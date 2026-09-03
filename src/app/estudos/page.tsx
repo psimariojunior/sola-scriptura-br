@@ -811,7 +811,7 @@ export default function EstudosPage() {
                   <p className="text-xs text-muted-foreground">
                     Abaixo: cursos introdutórios com vídeo e quiz. O diploma deles não é o das trilhas João e Romanos.
                   </p>
-                  <div className="sola-card overflow-hidden" style={{ height: '700px' }}>
+                  <div className="sola-card overflow-hidden min-h-[400px] md:min-h-[700px]">
                     <BibleCourses />
                   </div>
                 </div>

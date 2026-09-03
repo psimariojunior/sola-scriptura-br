@@ -46,6 +46,18 @@ export default function IaPage() {
     setTemAcesso(authService.temAcessoTotal());
   }, []);
 
+  useEffect(() => {
+    if (!mostrarTradicoes) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setMostrarTradicoes(false);
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [mostrarTradicoes]);
+
   const tradicaoLabel = tradicoes.find(trad => trad.valor === tradicao)?.label || t('ia.general');
 
   return (
@@ -72,6 +84,7 @@ export default function IaPage() {
             <div className="relative mb-4 flex items-center justify-center">
               <button
                 onClick={() => setMostrarTradicoes(!mostrarTradicoes)}
+                aria-expanded={mostrarTradicoes}
                 className="flex items-center gap-2 px-4 py-2 text-xs font-medium bg-card border border-border rounded-full hover:bg-muted transition-all duration-300"
               >
                 <BookOpen className="w-3.5 h-3.5" />
@@ -85,10 +98,11 @@ export default function IaPage() {
                     initial={{ opacity: 0, y: -8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                    role="menu"
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-20 bg-card border border-border rounded-xl shadow-xl p-2 flex flex-wrap justify-center gap-1 w-80 max-w-[calc(100vw-2rem)]"
                   >
                     {tradicoes.map(trad => (
-                      <button key={trad.valor} onClick={() => { setTradicao(trad.valor); setMostrarTradicoes(false); }}
+                      <button key={trad.valor} role="menuitem" onClick={() => { setTradicao(trad.valor); setMostrarTradicoes(false); }}
                         className={`text-xs px-3 py-1.5 rounded-full transition-all duration-300 ${
                           tradicao === trad.valor ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                         }`}>

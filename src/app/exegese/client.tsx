@@ -352,7 +352,7 @@ export function ExegeseClient() {
                     {/* Tabs */}
                     <ScrollReveal>
                       <div className="glass-card p-1.5 mb-6 rounded-2xl">
-                        <div className="flex">
+                        <div className="flex" role="tablist">
                           {([
                             { id: 'texto' as TabId, label: t('exegesis.tabText'), icon: BookOpen },
                             { id: 'contexto' as TabId, label: t('exegesis.tabContext'), icon: Globe },
@@ -361,6 +361,8 @@ export function ExegeseClient() {
                           ]).map(({ id, label, icon: Icon }) => (
                             <button
                               key={id}
+                              role="tab"
+                              aria-selected={tab === id}
                               onClick={() => setTab(id)}
                               className={`flex-1 flex items-center justify-center gap-2 text-sm py-3 rounded-xl transition-all ${
                                 tab === id

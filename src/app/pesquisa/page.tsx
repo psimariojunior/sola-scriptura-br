@@ -259,7 +259,10 @@ export default function PesquisaPage() {
                 } else if (campo === 'modo') {
                   if (!morph.includes(valor.toLowerCase())) return false;
                 } else if (campo === 'pessoa') {
-                  if (!morph.includes(`${valor} pessoa`) && !morph.includes(`${valor}a pessoa`) && !morph.includes(`${valor}st person`) && !morph.includes(`${valor}nd person`) && !morph.includes(`${valor}rd person`)) return false;
+                  const num = valor.replace('ª', '');
+                  const personWords = num === '1' ? ['primeira', '1st', '1st.', '1a', '1ª'] : num === '2' ? ['segunda', '2nd', '2nd.', '2a', '2ª'] : ['terceira', '3rd', '3rd.', '3a', '3ª'];
+                  const match = personWords.some(w => morph.includes(`${w} pessoa`) || morph.includes(`${w} person`)) || morph.includes(`p${num}`) || morph.includes(`${num}p`);
+                  if (!match) return false;
                 } else if (campo === 'numero') {
                   if (!morph.includes(valor.toLowerCase())) return false;
                 } else if (campo === 'genero') {
@@ -434,10 +437,12 @@ export default function PesquisaPage() {
                 {/* Search Mode */}
                 <div>
                   <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.searchMode')}</label>
-                  <div className="grid grid-cols-3 gap-1.5">
+                  <div className="grid grid-cols-3 gap-1.5" role="tablist">
                     {SEARCH_MODES.map((mode) => (
                       <button
                         key={mode.id}
+                        role="tab"
+                        aria-selected={searchMode === mode.id}
                         onClick={() => setSearchMode(mode.id)}
                         className={`flex items-center gap-1.5 px-2 py-1.5 text-xs rounded-sm transition-colors ${
                           searchMode === mode.id
@@ -799,6 +804,11 @@ export default function PesquisaPage() {
                     exit={{ opacity: 0 }}
                     className="space-y-3"
                   >
+                    {resultados.length > 100 && (
+                      <div className="text-center py-3 text-sm text-muted-foreground">
+                        Mostrando 100 de {resultados.length} resultados
+                      </div>
+                    )}
                     {resultados.slice(0, 100).map((r, i) => (
                       <motion.div
                         key={`${r.traducao}-${r.livroAbrev}-${r.capitulo}-${r.versiculo}`}

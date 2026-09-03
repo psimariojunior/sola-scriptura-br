@@ -360,6 +360,29 @@ export default function TeologiaClient() {
                                     </p>
                                   </div>
                                 )}
+
+                                <div className="mt-4 pt-4 border-t border-border/30">
+                                  <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                                    Controvérsias
+                                  </h4>
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div className="rounded-lg bg-blue-500/5 border border-blue-500/10 p-3">
+                                      <p className="text-[10px] font-semibold text-blue-600 uppercase tracking-wider mb-1">Posição A</p>
+                                      <p className="text-xs text-foreground/70 leading-relaxed">{d.posicaoA || 'Visão reformada clássica'}</p>
+                                    </div>
+                                    <div className="rounded-lg bg-amber-500/5 border border-amber-500/10 p-3">
+                                      <p className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-1">Posição B</p>
+                                      <p className="text-xs text-foreground/70 leading-relaxed">{d.posicaoB || 'Visão alternativa'}</p>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {d.confessionDocument && (
+                                  <div className="mt-3 rounded-lg bg-primary/5 border border-primary/10 p-3">
+                                    <p className="text-[10px] font-semibold text-primary uppercase tracking-wider mb-1">Documento Confessional</p>
+                                    <p className="text-xs text-foreground/70">{d.confessionDocument}</p>
+                                  </div>
+                                )}
                               </div>
                             </motion.div>
                           )}
@@ -468,8 +491,8 @@ export default function TeologiaClient() {
                                   <div className="pt-4 border-t border-border/50 space-y-4">
                                     <div>
                                       <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                        Conteudo Academico
-                                      </h4>
+                                          Conteúdo Acadêmico
+                                        </h4>
                                       <p className="text-sm text-foreground/80 leading-relaxed font-serif-body whitespace-pre-line">
                                         {tema.conteudo}
                                       </p>
@@ -478,7 +501,7 @@ export default function TeologiaClient() {
                                     {tema.autoresClassicos && tema.autoresClassicos.length > 0 && (
                                       <div>
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                          Autores Classicos
+                                          Autores Clássicos
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                           {tema.autoresClassicos.map((autor) => (
@@ -493,7 +516,7 @@ export default function TeologiaClient() {
                                     {tema.debateContemporaneo && (
                                       <div>
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                          Debate Contemporaneo
+                                          Debate Contemporâneo
                                         </h4>
                                         <p className="text-sm text-foreground/70 leading-relaxed font-serif-body">
                                           {tema.debateContemporaneo}
@@ -504,7 +527,7 @@ export default function TeologiaClient() {
                                     {tema.aplicacao && (
                                       <div>
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                          Aplicacao
+                                          Aplicação
                                         </h4>
                                         <p className="text-sm text-foreground/70 leading-relaxed font-serif-body">
                                           {tema.aplicacao}
@@ -515,7 +538,7 @@ export default function TeologiaClient() {
                                     {tema.perguntas && tema.perguntas.length > 0 && (
                                       <div>
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                          Para Reflexao
+                                          Para Reflexão
                                         </h4>
                                         <ul className="space-y-2">
                                           {tema.perguntas.map((pergunta, idx) => (

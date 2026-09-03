@@ -483,6 +483,23 @@ export default function IdiomasPage() {
                                     </div>
                                   </div>
                                 )}
+                                {['pistis', 'agape', 'charis', 'dikaiosyne', 'hagios', 'logos', 'kerygma', 'basileia', 'euangélion', 'paraklētos'].includes(p.strong) && (
+                                  <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
+                                    <p className="text-[10px] font-semibold text-primary uppercase tracking-wider mb-1">Uso Teológico</p>
+                                    <p className="text-xs text-foreground/70 leading-relaxed">
+                                      {p.strong === 'G4102' && 'Pistis (fé) é central na teologia paulina: "o homem é justificado pela fé, e não pelas obras da lei" (Rm 3:28). Base da soteriologia reformada e da Reforma Protestante.'}
+                                      {p.strong === 'G26' && 'Agape (amor) é o amor incondicional de Deus: "Deus é amor" (1 Jo 4:8). Distinto de eros (amor romântico) e philia (amizade). Fundamento da ética cristã.'}
+                                      {p.strong === 'G5485' && 'Charis (graça) é o dom gratuito de Deus: "Pela graça sois salvos" (Ef 2:8). Central na Justificação e na teologia da graça.'}
+                                      {p.strong === 'G1342' && 'Dikaiosyne (justiça) é a justiça declarada de Deus ao pecador pela fé. Base da Justificação pela fé apenas (sola fide).'}
+                                      {p.strong === 'G40' && 'Hagios (santo) descreve o caráter separado de Deus e dos crentes: "Sede santos, porque eu sou santo" (1 Pe 1:16). Fundamento da santificação.'}
+                                      {p.strong === 'G3056' && 'Logos (Verbo/Palavra) em João 1:1 identifica Cristo como a Palavra eterna de Deus: "No princípio era o Verbo." Base da cristologia joanina.'}
+                                      {p.strong === 'G2782' && 'Kerygma (proclamação) é o anúncio central do evangelho: morte e ressurreição de Cristo. Fundamento da missão da igreja primitiva.'}
+                                      {p.strong === 'G932' && 'Basileia (Reino) descreve o governo soberano de Deus: "Arrependei-vos, porque o Reino dos Céus está próximo" (Mt 4:17). Escatologia realizada e futura.'}
+                                      {p.strong === 'G2098' && 'Euangélion (evangelho) é a boa nova da salvação em Cristo: "Crê no Senhor Jesus e serás salvo" (At 16:31). Central na missão cristã.'}
+                                      {p.strong === 'G3875' && 'Paraklētos (Consolador/Paráclito) é o título do Espirito Santo em João 14-16: advocate, intercessor, guia. Pneumatologia joanina.'}
+                                    </p>
+                                  </div>
+                                )}
                                 {freq > 0 && (
                                   <div className="rounded-lg bg-amber-500/5 border border-amber-500/10 p-3">
                                     <p className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-1">{t('palavras.frequencyNT')}</p>

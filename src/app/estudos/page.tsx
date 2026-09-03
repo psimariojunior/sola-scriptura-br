@@ -272,30 +272,51 @@ export default function EstudosPage() {
             </Link>
           </PageHero>
 
-          {/* ═══ FILTROS EMOCIONAIS ═══ */}
+          {/* ═══ FILTROS ACADÊMICOS ═══ */}
           <ScrollReveal delay={0.05}>
             <div className="mb-8">
               <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">{t('estudos.exploreByFeeling')}</p>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { query: 'fé', tKey: 'emotionFe' },
-                  { query: 'esperança', tKey: 'emotionEsperanca' },
-                  { query: 'amor', tKey: 'emotionAmor' },
-                  { query: 'cura', tKey: 'emotionCura' },
-                  { query: 'ansiedade', tKey: 'emotionAnsiedade' },
-                  { query: 'paz', tKey: 'emotionPaz' },
-                  { query: 'sabedoria', tKey: 'emotionSabedoria' },
-                  { query: 'gratidão', tKey: 'emotionGratidao' },
-                  { query: 'força', tKey: 'emotionForca' },
-                  { query: 'perdão', tKey: 'emotionPerdao' },
-                ].map(emocao => (
+                  { query: 'exegese', label: 'Exegese', color: 'bg-blue-500/10 text-blue-600 hover:bg-blue-500/20' },
+                  { query: 'teologia sistemática', label: 'Teologia Sistemática', color: 'bg-purple-500/10 text-purple-600 hover:bg-purple-500/20' },
+                  { query: 'contexto histórico', label: 'Contexto Histórico', color: 'bg-amber-500/10 text-amber-600 hover:bg-amber-500/20' },
+                  { query: 'crítica textual', label: 'Crítica Textual', color: 'bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20' },
+                ].map(filtro => (
                   <button
-                    key={emocao.tKey}
-                    onClick={() => setQuery(emocao.query)}
-                    className="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all bg-primary/10 text-primary hover:bg-primary/20"
+                    key={filtro.query}
+                    onClick={() => setQuery(filtro.query)}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${filtro.color}`}
                   >
-                    {t(`estudos.${emocao.tKey}`)}
+                    {filtro.label}
                   </button>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* ═══ NÍVEIS DE DIFICULDADE ═══ */}
+          <ScrollReveal delay={0.08}>
+            <div className="mb-8">
+              <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">{t('estudos.difficultyLevels')}</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { level: 'iniciante', label: 'Iniciante', dots: 1, color: 'bg-green-500/10 text-green-600 border-green-500/20' },
+                  { level: 'intermediario', label: 'Intermediário', dots: 2, color: 'bg-blue-500/10 text-blue-600 border-blue-500/20' },
+                  { level: 'avancado', label: 'Avançado', dots: 3, color: 'bg-amber-500/10 text-amber-600 border-amber-500/20' },
+                  { level: 'seminario', label: 'Seminário', dots: 4, color: 'bg-red-500/10 text-red-600 border-red-500/20' },
+                ].map(nivel => (
+                  <div
+                    key={nivel.level}
+                    className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold border ${nivel.color}`}
+                  >
+                    <div className="flex gap-0.5">
+                      {Array.from({ length: 4 }, (_, i) => (
+                        <span key={i} className={`w-1.5 h-1.5 rounded-full ${i < nivel.dots ? 'bg-current' : 'bg-current/20'}`} />
+                      ))}
+                    </div>
+                    {nivel.label}
+                  </div>
                 ))}
               </div>
             </div>

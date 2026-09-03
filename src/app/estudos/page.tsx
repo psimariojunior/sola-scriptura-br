@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
 import { PageHero } from '@/components/layout/PageHero';
+import { AcademicHero } from '@/components/AcademicHero';
 import { hrefBiblia } from '@/lib/bibliaHref';
 import {
   Heart, StickyNote, Bookmark, Search, X, BookOpen, Trash2, ArrowRight,
@@ -258,19 +259,29 @@ export default function EstudosPage() {
             <Breadcrumbs items={[{ label: t('estudos.breadcrumbHome'), href: '/' }, { label: t('estudos.breadcrumbEstudos') }]} />
           </div>
 
-          <PageHero
+          <AcademicHero
             icon={GraduationCap}
-            eyebrow={t('estudos.breadcrumbEstudos')}
             title={t('estudos.title')}
             subtitle={t('estudos.subtitle')}
-            align="left"
+            author="Sola Scriptura BR"
+            period="Todas as épocas"
+            difficulty="Seminário"
+            tags={['Exegese', 'Teologia Sistemática', 'Comentários', 'Pais da Igreja', 'Reforma']}
+            align="center"
           >
-            <Link href="/estudos/academico" className="inline-flex items-center gap-2 mt-6 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-sm font-medium text-primary hover:border-primary/40 transition-all">
-              <GraduationCap className="w-4 h-4" />
-              Estudos Acadêmicos — Nível Seminário
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-          </PageHero>
+            <div className="flex items-center gap-3 mt-6 flex-wrap justify-center">
+              <Link href="/estudos/academico" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-400/15 border border-amber-400/20 text-sm font-medium text-amber-300 hover:border-amber-400/40 transition-all">
+                <GraduationCap className="w-4 h-4" />
+                Estudos Acadêmicos — Nível Seminário
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+              <Link href="/cursos" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-sm font-medium text-white/70 hover:border-white/20 hover:text-white/90 transition-all">
+                <Play className="w-4 h-4" />
+                Cursos com Diploma
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </AcademicHero>
 
           {/* ═══ FILTROS ACADÊMICOS ═══ */}
           <ScrollReveal delay={0.05}>
@@ -909,6 +920,89 @@ export default function EstudosPage() {
               )}
             </div>
           )}
+
+          {/* ═══ LEITURAS RECOMENDADAS ═══ */}
+          <ScrollReveal delay={0.2}>
+            <div className="mt-12 mb-8">
+              <div className="flex items-center gap-2 mb-6">
+                <Library className="w-5 h-5 text-primary" />
+                <h2 className="font-display text-xl font-semibold">Leituras Recomendadas</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  {
+                    titulo: 'Institutas da Religião Cristã',
+                    autor: 'João Calvino',
+                    descricao: 'A suma teológica mais influente da Reforma — o conhecimento de Deus e de nós mesmos.',
+                    href: '/biblioteca/calvino-institutas',
+                    cor: 'from-indigo-500/15 to-indigo-500/5',
+                    icon: BookOpen,
+                  },
+                  {
+                    titulo: 'O Peregrino',
+                    autor: 'John Bunyan',
+                    descricao: 'A alegoria da vida cristã mais lida da história — da Cidade da Destruição à Cidade Celestial.',
+                    href: '/biblioteca/peregrino',
+                    cor: 'from-amber-500/15 to-amber-500/5',
+                    icon: BookMarked,
+                  },
+                  {
+                    titulo: 'Catecismo de Westminster',
+                    autor: 'Assembleia de Westminster',
+                    descricao: '107 perguntas e respostas — "o fim principal do homem é glorificar a Deus e gozá-lo para sempre".',
+                    href: '/biblioteca/catecismo-menor-westminster',
+                    cor: 'from-emerald-500/15 to-emerald-500/5',
+                    icon: GraduationCap,
+                  },
+                  {
+                    titulo: 'A Liberdade do Cristão',
+                    autor: 'Martinho Lutero',
+                    descricao: 'O cristão é senhor livre de todas as coisas e servo de todas — pela fé e pelo amor.',
+                    href: '/biblioteca/lutero-liberdade',
+                    cor: 'from-red-500/15 to-red-500/5',
+                    icon: BookOpen,
+                  },
+                  {
+                    titulo: 'Confissões de Agostinho',
+                    autor: 'Santo Agostinho',
+                    descricao: 'A primeira autobiografia espiritual da história — "fizeste-nos para ti, e inquieto está o nosso coração".',
+                    href: '/biblioteca/agostinho-confissoes',
+                    cor: 'from-purple-500/15 to-purple-500/5',
+                    icon: BookOpen,
+                  },
+                  {
+                    titulo: 'Sermões de Spurgeon',
+                    autor: 'Charles H. Spurgeon',
+                    descricao: 'O Príncipe dos Pregadores — eloquência e ortodoxia reformada em sua forma mais poderosa.',
+                    href: '/biblioteca/spurgeon-sermoes',
+                    cor: 'from-sky-500/15 to-sky-500/5',
+                    icon: Quote,
+                  },
+                ].map((leitura, i) => {
+                  const Icon = leitura.icon;
+                  return (
+                    <ScrollReveal key={leitura.titulo} delay={0.25 + i * 0.03}>
+                      <Link href={leitura.href} className="block group">
+                        <div className={`sola-card rounded-xl overflow-hidden hover:shadow-lg transition-all h-full`}>
+                          <div className={`h-16 bg-gradient-to-br ${leitura.cor} flex items-center justify-center`}>
+                            <Icon className="w-6 h-6 text-primary/60" strokeWidth={1.4} />
+                          </div>
+                          <div className="p-4">
+                            <h3 className="font-display text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{leitura.titulo}</h3>
+                            <p className="text-[10px] text-muted-foreground mb-2">{leitura.autor}</p>
+                            <p className="text-xs text-foreground/60 line-clamp-2">{leitura.descricao}</p>
+                            <span className="inline-flex items-center gap-1 mt-3 text-[10px] font-medium text-primary">
+                              Ler agora <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    </ScrollReveal>
+                  );
+                })}
+              </div>
+            </div>
+          </ScrollReveal>
         </PageShell>
   );
 }

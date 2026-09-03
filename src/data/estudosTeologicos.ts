@@ -6774,6 +6774,106 @@ const estudosCatalogoRestante: EstudoVersiculo[] = [
       { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Discipulado', resumo: 'Stott vê no chamado o discipulado — ser discípulo é estar pronto para agir.', citacao: '«Ser discípulo é estar pronto para agir — o chamado é para ação.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOÃO 1:1-14 — PROEMINÊNCIA DE CRISTO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jo', capitulo: 1, versiculo: 1,
+    tema: 'O Verbo era Deus — Proeminência de Cristo',
+    contexto: 'O Prólogo do Evangelho de João estabelece a preexistência, a identidade divina e a missão redentora do Logos. João 1:1 é a declaração cristológica mais concisa e poderosa do Novo Testamento — uma paráfrase direta de Gênesis 1:1 aplicada a Jesus.',
+    interpretacoes: [
+      {
+        teologo: 'Atanásio de Alexandria', periodo: '296-373 d.C.', tradicao: 'Patrística', visao: 'Consubstancialidade',
+        resumo: 'Atanásio defendeu contra Ário que o Logos é "Deus de Deus verdadeiro, Luz de Luz, Deus verdadeiro de Deus verdadeiro". A expressão "o Verbo era Deus" (θεὸς ἦν ὁ λόγος) não pode significar "um deus" — seria blasfêmia. O Verbo é da mesma substância (homoousios) do Pai, pois se fosse criado, a criação não poderia ser redimida: apenas Deus pode salvar.',
+        citacao: '«Se o Verbo fosse criado, não poderia criar — mas Ele cria todas as coisas. Logo, Ele não é criado, mas coexistente com o Pai.»',
+      },
+      {
+        teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Trindade',
+        resumo: 'Agostinho viu em João 1:1 a chave para compreender a Trindade: o Verbo é gerado, não criado — a relação Pai-Filho é eterna. "No princípio era o Verbo" não é o princípio do tempo mas a eternidade. O Verbo é igual ao Pai em tudo, exceto no ser Pai. A encarnação (v.14) é o ato de amor pelo qual o Verbo se faz carne sem deixar de ser Deus.',
+        citacao: '«No princípio era o Verbo — não no princípio dos tempos, mas antes de todo tempo. O Verbo é eterno como o Pai.»',
+      },
+      {
+        teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Autoridade bíblica',
+        resumo: 'Calvino enfatiza que João_starts pela mesma frase de Gênesis, conectando a criação com a redenção — o mesmo Deus que criou o mundo é o mesmo que o resgata. O Verbo não é uma abstração filosófica, mas a Pessoa divina que se encarnou. "Deus era o Verbo" (theos ēn ho logos) mantém a distinção (o artigo definido em "o Verbo") e a identidade (theos sem artigo = qualidades divinas).',
+        citacao: '«João não começa com a genealogia humana de Jesus, mas com Sua eterna origem divina — o mesmo Verbo que criou o mundo é Deus.»',
+      },
+      {
+        teologo: 'Herman Bavinck', periodo: '1854-1921', tradicao: 'Reforma neocalvinista', visao: 'Cosmologia cristã',
+        resumo: 'Bavinck via João 1:1-14 como o resumo de toda a teologia cristã: o Verbo é a base da criação (tudo foi feito por Ele, v.3), da revelação (Ele é a luz dos homens, v.4), da salvação (Ele veio ao mundo, v.9) e da regeneração (deu poder de ser filhos de Deus, v.12). A encarnação (v.14) é o "ponto de inflexão" da história — Deus entra na Sua própria criação.',
+        citacao: '«O Logos joanino é o centro de toda a realidade: por Ele foi feito tudo, e sem Ele nada foi feito do que foi feito.»',
+      },
+      {
+        teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Evangelismo',
+        resumo: 'Stott enfatiza o contraste entre a permanência do Verbo ("era") e a mudança humana ("se fez"). O Verbo não se tornou menos Deus ao se tornar homem — a encarnação é adição de natureza, não subtração de divindade. O versículo 14 ("o Verbo se fez carne") é o mistério central da fé: a glória de Deus visível no rosto de Jesus.',
+        citacao: '«O Verbo não começou a existir quando se fez carne — Ele já existia, eterno e divino, antes de habitar entre nós.»',
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROMANOS 3:21-26 — JUSTIFICAÇÃO PELA FÉ
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'rm', capitulo: 3, versiculo: 21,
+    tema: 'Justificação pela Fé — A Justiça de Deus Revelada',
+    contexto: 'Romanos 3:21-26 é o coração teológico de toda a epístola e arguably o trecho mais importante da teologia cristã. Paulo sintetiza aqui a obra redentora de Cristo: a justificação é por graça mediante a fé, baseada na expiação de Cristo, para glória de Deus. Esta passagem foi o campo de batalha da Reforma Protestantista.',
+    interpretacoes: [
+      {
+        teologo: 'Martin Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Justitia Dei',
+        resumo: 'Lutero descobriu que "a justiça de Deus" em Romanos 1:17 não é a justiça com que Deus pune, mas a justiça que Ele dá gratuitamente ao crente pela fé. Romanos 3:21-24 é a formulação mais clara: "sendo justificados gratuitamente pela sua graça, pela redenção que há em Cristo Jesus". A justificação é forense — Deus declara o pecador justo, não porque ele é justo, mas porque Cristo o é.',
+        citacao: '«A justiça de Deus é aquela pela qual o justo vivifica pela fé. E esta justiça é revelada no Evangelho — não a justiça que pune, mas a que salva.»',
+      },
+      {
+        teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança',
+        resumo: 'Calvino via Romanos 3:21-26 como a síntese da aliança de graça: Deus cumpre em Cristo o que a lei não pôde realizar. "A justificação é gratuita" — não há mérito humano. A propiciação (hilastērion) é a satisfação que Cristo ofereceu à justiça divina, removendo a ira de Deus. A fé é o instrumento, não o mérito — como uma "mão vazia" que recebe o presente.',
+        citacao: '«A fé não é uma obra que merece salvação — é o instrumento pelo qual recebemos o que Cristo já obteve por nós.»',
+      },
+      {
+        teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Justiça infusa',
+        resumo: 'Para Tomás, a justificação em Romanos 3 não é apenas forense (declaração) mas real (transformação). Deus não apenas declara justo — Ele torna justo pela infusão da graça santificante. A justificação é "um movimento que vai do pecado à justiça", envolvendo perdão da culpa e康复 da natureza. A fé é o princípio, mas as obras são o fruto necessário.',
+        citacao: '«A justificação é a Transição do estado de pecado para o estado de justiça — não apenas declaração, mas transformação real pela graça.»',
+      },
+      {
+        teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Anglicana', visao: 'Nova Perspectiva sobre Paulo',
+        resumo: 'Wright argumenta que "a justiça de Deus" em Romanos 3:21 não é um status jurídico individual mas a fidelidade de Deus à Sua aliança com Israel. A justificação é a declaração de que alguém é membro do povo de Deus — pela fé, não pela obediência à Torá. Isto não contradiz a Reforma mas a contextualiza: Paulo está resolvendo o problema de como judeus e gentios formam uma só comunidade.',
+        citacao: '«A justificação é a declaração de que alguém é justo — um membro do povo fiel de Deus — pela fé em Jesus Cristo.»',
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // EFÉSIOS 2:8-10 — GRAÇA E BOAS OBRAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ef', capitulo: 2, versiculo: 8,
+    tema: 'Graça e Boas Obras — Salvos pela Graça',
+    contexto: 'Efésios 2:8-10 é a declaração mais concisa da teologia da graça no Novo Testamento. Paulo resume toda a experiência cristã em três versículos: morte espiritual, salvação por graça, e a nova vida para boas obras. Este trecho foi central nas disputas entre católicos e protestantes na Reforma.',
+    interpretacoes: [
+      {
+        teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça irresistível',
+        resumo: 'Agostinho usou Efésios 2:8-9 contra Pelágio: a salvação é "dom de Deus" — não resultado de mérito ou esforço humano. Se a salvação fosse pelas obras, não seria graça. A fé mesma é um dom de Deus, não uma obra humana. As boas obras (v.10) são o resultado, não a causa, da salvação — Deus preparou-as antes da fundação do mundo.',
+        citacao: '«Se a salvação fosse pelas obras, não seria graça. Mas é pela graça — logo, não pelas obras. A fé é dom de Deus, não mérito humano.»',
+      },
+      {
+        teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola gratia',
+        resumo: 'Lutero viu em Efésios 2:8-9 a essência do Evangelho: a salvação é "pela graça, por meio da fé" — sem obras humanas. As boas obras (v.10) são o fruto da salvação, não sua causa. O crente não trabalha PARA ser salvo, mas PORQUE já é salvo. Esta distinção é a chave de toda a teologia reformada.',
+        citacao: '«Somos salvos pela graça, por meio da fé — não pelas obras, para que ninguém se glorie. As obras são o fruto, não a raiz da salvação.»',
+      },
+      {
+        teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista Reformada', visao: 'Pregação',
+        resumo: 'Spurgeon insistia que Efésios 2:8-10 é a mais clara afirmação da graça soberana: "pela graça sois salvos" — não pela igreja, não pelo batismo, não pelo sacramento, não pelo mérito. A fé é o canal, não a fonte. As boas obras são "preparadas por Deus" — Ele mesmo preparou o caminho do crente. O crente não cria boas obras — Deus as preparou para ele.',
+        citacao: '«Somos salvos pela graça — uma graça que não depende de nós, mas de Deus. A fé é o olho que vê, não a luz que ilumina.»',
+      },
+      {
+        teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Equilíbrio',
+        resumo: 'Stott enfatiza o equilíbrio entre graça e obras: somos salvos "por graça, mediante fé" (v.8), não "para boas obras" mas "para andar nelas" (v.10). As obras não são a causa nem o mérito da salvação, mas seu propósito. Deus nos salvou para que vivamos em boas obras — a graça produz transformação, não indulgência.',
+        citacao: '«A graça nos salva, a fé nos recebe, e as boas obras são o caminho que Deus preparou para andarmos.»',
+      },
+      {
+        teologo: 'R.C. Sproul', periodo: '1939-2017', tradicao: 'Presbiteriana', visao: 'Ato de Deus',
+        resumo: 'Sproul via Efésios 2:8-10 como a negação do semi-pelagianismo: a salvação é inteiramente obra de Deus. "A fé é dom de Deus" (v.8) — nem mesmo a fé é mérito humano. As boas obras são "criação de Deus" (v.10) — Ele mesmo faz em nós o que quer ver. O crente não é cooperador mas recipiente da graça.',
+        citacao: '«A salvação é 100% obra de Deus — da início ao fim. Até a fé que cremos é dom dEle.»',
+      },
+    ],
+  },
 ];
 
 for (const e of estudosCatalogoRestante) addToIndex(e);

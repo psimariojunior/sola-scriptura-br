@@ -436,6 +436,319 @@ export const OBRAS: ObraMeta[] = [
     tags: ['judaísmo', 'guerra', 'Templo', 'arqueologia', 'profecia'],
     capa: { de: '#5C4033', ate: '#9E7B62', acento: '#EFE3DA' },
   },
+
+  // ═══════════════════ CREDOS E CONFISSÕES (EXPANDIDOS) ═══════════════════
+  {
+    id: 'confissao-fe-batista-1689',
+    titulo: 'Confissão de Fé Batista de 1689',
+    tituloOriginal: 'London Baptist Confession of Faith',
+    autor: 'Assembleia de Batistas Particulares de Londres',
+    autorVida: 'Londres, 1677–1689',
+    ano: 1689,
+    anoTexto: '1689 d.C.',
+    categoria: 'credos',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 12,
+    tempoLeituraMin: 60,
+    descricao:
+      'A confissão de fé reformada mais influente do batismo particular: 32 capítulos sistematizando doutrinas da aliança, graça eficaz, perseverança dos santos e governo eclesiástico congregacional. Seleção dos capítulos essenciais.',
+    contexto:
+      'Redigida em 1677 e adotada publicamente em 1689 por 107 igrejas batistas de Londres, esta confissão é uma adaptação batista da Confissão de Westminster (1646) com modificações no governo eclesiástico (congregacional vs presbiteriano) e na administração do batismo. Tornou-se o padrão doutrinário do baptismo reformado mundial.',
+    importancia:
+      'É a confissão mais usada em seminários batistas reformados do mundo. Suas definições de aliança, graça eficaz e perseverança dos santos influenciam a teologia batista desde o século XVII. O Capítulo 10 (Sobre a Graça Eficaz) é uma das formulações mais precisas do calvinismo batista.',
+    citacao: {
+      texto:
+        'A graça eficaz de Deus seleciona aqueles que serão salvos; e, dentre eles, todos os que são escolhidos, embora defeats em seus pecados, Ele os chama eficazmente pela Sua Palavra e Seu Espírito.',
+      fonte: 'Confissão Batista de 1689, Capítulo 10, §1',
+    },
+    tags: ['batismo', 'aliança', 'graça', 'perseverança', 'calvinismo'],
+    capa: { de: '#2D3748', ate: '#4A5568', acento: '#E2E8F0' },
+  },
+  {
+    id: 'catecismo-westminster-mais',
+    titulo: 'Catecismo Maior de Westminster',
+    tituloOriginal: 'The Larger Catechism',
+    autor: 'Assembleia de Westminster',
+    autorVida: 'Londres, 1643–1652',
+    ano: 1648,
+    anoTexto: '1648 d.C.',
+    categoria: 'credos',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 10,
+    tempoLeituraMin: 70,
+    descricao:
+      'As 196 perguntas e respostas do Catecismo Maior, destinado ao uso do púlpito e aos pais que catequizam seus filhos. Mais detalhado que o Menor, aprofunda cada ponto da doutrina com base bíblica rigorosa.',
+    contexto:
+      'Encomendado pelo Parlamento inglês juntamente com o Catecismo Menor, o Maior foi escrito para pastores e professores que precisavam de uma referência mais completa. Enquanto o Menor resume em 107 perguntas, o Maior expande em 196, com citações bíblicas para cada resposta.',
+    importancia:
+      'É a obra catequética mais completa da tradição reformada. Seus tratados sobre sacramentos, oração e ética cristã são referência em seminários presbiterianos. A Pergunta 159 ("Como devemos orar?") é um dos tratados mais práticos sobre oração já escritos.',
+    citacao: {
+      texto:
+        'Como devemos orar? Respondemos: Como Cristo nos ensinou a orar, não com muitas palavras e repetições vãs, mas com humildade, fervor e perseverança.',
+      fonte: 'Catecismo Maior de Westminster, Pergunta 159',
+    },
+    tags: ['catecismo', 'presbiterianismo', 'oração', 'sacramentos', 'ética'],
+    capa: { de: '#1A365D', ate: '#2B6CB0', acento: '#BEE3F8' },
+  },
+  {
+    id: 'confissao-fe-guia',
+    titulo: 'Guia do Peregrino (Breve Sumário da Confissão de Fé)',
+    tituloOriginal: 'The Pilgrim\'s Progress (Sumário)',
+    autor: 'John Bunyan',
+    autorVida: '1628–1688 — peregrino batista, Bedford',
+    ano: 1678,
+    anoTexto: '1678 d.C.',
+    categoria: 'credos',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 8,
+    tempoLeituraMin: 40,
+    descricao:
+      'Uma seleção temática das passagens mais significativas do alegado romance mais lido da história cristã depois da Bíblia: a jornada de Cristão da Cidade da Destruição até a Cidade Celestial.',
+    contexto:
+      'Bunyan escreveu na prisão por pregar sem licença, entre 1675 e 1678. O livro é uma alegoria da vida cristã que combina teologia puritana com narrativa vívida — cada personagem (Desespero, Dúvida, Fiel) é uma experiência espiritual real.',
+    importancia:
+      'Traduzido para mais de 200 línguas, é a obra mais influente da literatura cristã em inglês. Spurgeon o chamou de "o livro que mais lerias, depois da Bíblia". A alegoria tornou a teologia reformada acessível ao povo comum.',
+    citacao: {
+      texto:
+        'Eu não vi nada do que deixei para trás — mas vejo o que está diante de mim. O caminho é estreito, mas a glória que nos espera é eterna.',
+      fonte: 'O Peregrino, Parte I',
+    },
+    tags: ['alegoria', 'puritanismo', 'peregrinação', 'vida cristã', 'sacramentos'],
+    capa: { de: '#5B2333', ate: '#8B3A4A', acento: '#F3E0E5' },
+  },
+  // ═══════════════════ REFORMA (EXPANDIDO) ═══════════════════
+  {
+    id: 'lutero-servo-arbitrio',
+    titulo: 'Sobre a Servidão da Vontade (De Servo Arbitrio)',
+    tituloOriginal: 'De Servo Arbitrio',
+    autor: 'Martinho Lutero',
+    autorVida: '1483–1546 — monge agostiniano, Wittenberg',
+    ano: 1525,
+    anoTexto: 'outubro de 1525',
+    categoria: 'reforma',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Latim',
+    edicao: 'selecao',
+    numCapitulos: 8,
+    tempoLeituraMin: 50,
+    descricao:
+      'A resposta mais feroz de Lutero a Erasmo de Roterdã: a vontade humana não é livre mas escrava — cativa do pecado ou cativa da graça. Um dos textos mais ousados sobre a soberania divina e a depravação humana.',
+    contexto:
+      'Lutero escreveu contra o De Libero Arbitrio de Erasmo (1524), que defendia o livre-arbítrio. Lutero argumentou que Erasmo era "fluido como a água" — incapaz de tomar posição firme. O De Servo Arbitrio é a obra mais sistemática de Lutero sobre predestinação e graça.',
+    importancia:
+      'É o manifesto teológico mais radical da Reforma sobre a depravação humana. A tese central — "a vontade é escrava" — influenciou Calvino, os puritanos e toda a tradição reformada. O diálogo com Erasmo é um dos mais importantes da história da teologia.',
+    citacao: {
+      texto:
+        'A vontade humana está no meio, entre Deus e o diabo. Se Deus domina, a vontade faz o que Deus quer. Se o diabo domina, faz o que ele quer. Mas nunca é livre.',
+      fonte: 'De Servo Arbitrio, §38',
+    },
+    tags: ['reforma', 'livre-arbítrio', 'predestinação', 'depravação', 'soberania'],
+    capa: { de: '#4A1A1A', ate: '#7A2E2E', acento: '#F2DADA' },
+  },
+  {
+    id: 'lutero-liberdade-mais',
+    titulo: 'Sobre a Liberdade do Cristão (expansão)',
+    tituloOriginal: 'Von der Freiheit eines Christenmenschen',
+    autor: 'Martinho Lutero',
+    autorVida: '1483–1546 — monge agostiniano, Wittenberg',
+    ano: 1520,
+    anoTexto: 'novembro de 1520',
+    categoria: 'reforma',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Latim e alemão',
+    edicao: 'selecao',
+    numCapitulos: 10,
+    tempoLeituraMin: 45,
+    descricao:
+      'Expansão dos capítulos adicionais de A Liberdade do Cristão, incluindo a instrução sobre como o cristão deve usar sua liberdade no serviço ao próximo, a distinção entre liberdade interna e externa, e a ética da responsabilidade social.',
+    contexto:
+      'Além das 21 teses originais, Lutero expandiu o tratado com aplicações práticas: o cristão é servo de todos no amor, mas senhor de todas na fé. A liberdade cristã não é antinomianismo — é a base para o serviço sacrificial.',
+    importancia:
+      'Os capítulos adicionais mostram que a teologia da liberdade de Lutero não é individualista: a liberdade é para o próximo. Influenciou a ética social protestante e a doutrina da vocação.',
+    citacao: {
+      texto:
+        'O cristão é senhor de todas as coisas e está sujeito a ninguém — pela fé. E é servo de todas as coisas e está sujeito a todos — pelo amor.',
+      fonte: 'A Liberdade do Cristão, teses 13-14',
+    },
+    tags: ['reforma', 'liberdade', 'amor', 'serviço', 'ética'],
+    capa: { de: '#7A4513', ate: '#B86B1F', acento: '#F8E8CF' },
+  },
+  {
+    id: 'calvino-institutas-mais',
+    titulo: 'Institutas da Religião Cristã (mais seções)',
+    tituloOriginal: 'Institutio Christianae Religionis',
+    autor: 'João Calvino',
+    autorVida: '1509–1564 — reformador de Genebra',
+    ano: 1559,
+    anoTexto: 'edição final de 1559',
+    categoria: 'reforma',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Latim',
+    edicao: 'selecao',
+    numCapitulos: 10,
+    tempoLeituraMin: 65,
+    descricao:
+      'Seções adicionais dos Livros III e IV: sobre os sacramentos, a Igreja, o magistrado civil, e a vida cristã prática. A visão completa de Calvino sobre a sociedade e a adoração.',
+    contexto:
+      'O Livro III trata da recepção da graça (fé, regeneração, oração, justificação) e o Livro IV da Igreja (sacramentos, governo eclesiástico, magistrado). Calvino dedicou o livro ao rei Francisco I como defesa dos protestantes franceses.',
+    importancia:
+      'As seções sobre sacramentos (IV.14-19) são a base da teologia reformada da Ceia do Senhor. A doutrina do magistrado civil (IV.20) influenciou a teoria política protestante. As páginas sobre oração (III.20) são um dos tratados mais práticos da Reforma.',
+    citacao: {
+      texto:
+      'A Igreja existe onde está a Palavra de Deus pregada e os sacramentos administrados corretamente — não onde há magnificência de edifícios.',
+      fonte: 'Institutas IV.1.7',
+    },
+    tags: ['reforma', 'sacramentos', 'igreja', 'magistrado', 'oração'],
+    capa: { de: '#3D3D5C', ate: '#6B6B94', acento: '#E3E1F0' },
+  },
+  {
+    id: 'calvino-comentario-romanos',
+    titulo: 'Comentário à Epístola aos Romanos',
+    tituloOriginal: 'In Epistolam Pauli ad Romanos Commentarius',
+    autor: 'João Calvino',
+    autorVida: '1509–1564 — reformador de Genebra',
+    ano: 1540,
+    anoTexto: '1540 d.C.',
+    categoria: 'reforma',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Latim',
+    edicao: 'selecao',
+    numCapitulos: 8,
+    tempoLeituraMin: 55,
+    descricao:
+      'O comentário mais importante de Calvino, versículo por verso, sobre a epístola que moldou a teologia da Reforma. Inclui a análise de Romanos 3:21-26 (justificação), Romanos 8 (segurança do crente) e Romanos 9-11 (predestinação).',
+    contexto:
+      'Calvino publicou seu comentário a Romanos em 1540, antes dos Institutos em sua forma final. É uma exposição cuidadosa que combina exegese filológica com aplicação pastoral. Calvino o escreveu para pastores e estudiosos, não apenas para acadêmicos.',
+    importancia:
+      'O comentário a Romanos de Calvino é considerado uma das melhores exposições da epístola já escritas. Sua análise de Romanos 3:21-26 influenciou toda a tradição reformada. O comentário a Romanos 8 é uma das meditações mais profundas sobre a segurança do crente.',
+    citacao: {
+      texto:
+        'Paulo não ensina que somos justificados pela fé como se a fé em si mesma fosse um mérito — mas porque Cristo é o nosso mérito, que pela fé nos é imputado.',
+      fonte: 'Comentário a Romanos 3:26',
+    },
+    tags: ['comentário', 'romanos', 'justificação', 'predestinação', 'exegese'],
+    capa: { de: '#4A3D2F', ate: '#7A6B4E', acento: '#EDE5D6' },
+  },
+  // ═══════════════════ ESPIRITUALIDADE CLÁSSICA (EXPANDIDO) ═══════════════════
+  {
+    id: 'spurgeon-sermoes',
+    titulo: 'Sermões Escolhidos de Spurgeon',
+    tituloOriginal: 'Selected Sermons of C.H. Spurgeon',
+    autor: 'Charles Haddon Spurgeon',
+    autorVida: '1834–1892 — Príncipe dos Pregadores, Londres',
+    ano: 1866,
+    anoTexto: '1855–1891',
+    categoria: 'espiritualidade',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 10,
+    tempoLeituraMin: 50,
+    descricao:
+      'Uma seleção dos melhores sermões de Spurgeon, incluindo "A Negra Desesperação" (Texto: Mateus 8:12), "Vejam o Cordeiro de Deus" e "A Graça Abundante de Deus" — o púlpito cristão em sua forma mais poderosa.',
+    contexto:
+      'Spurgeon pregou por 38 anos no Metropolitan Tabernacle em Londres para multidões de 5.000 a 10.000 pessoas, sem microfone. Seus sermões eram publicados na segunda-feira e distribuídos em 43 línguas. Mais de 20 milhões de volumes de seus sermões foram impressos em vida.',
+    importancia:
+      'Spurgeon é o pregador mais influente da história protestante pós-Reforma. Seus sermões combinam eloquência popular com ortodoxia reformada. A Coleção Completa de seus 3.561 sermões é o maior corpo de pregação cristã já publicado.',
+    citacao: {
+      texto:
+        'O evangelho é simples o suficiente para que a criança o entenda e profundo o suficiente para que o filósofo não o esgote.',
+      fonte: 'Sermão, "A Simplicidade do Evangelho"',
+    },
+    tags: ['pregação', 'evangelismo', 'calvinismo', 'piedade', 'Londres'],
+    capa: { de: '#2D3748', ate: '#4A5568', acento: '#E2E8F0' },
+  },
+  {
+    id: 'caminho-santidade',
+    titulo: 'O Caminho da Santidade',
+    tituloOriginal: 'The Holy Life of the Justified',
+    autor: 'John Bunyan',
+    autorVida: '1628–1688 — peregrino batista, Bedford',
+    ano: 1677,
+    anoTexto: '1677 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 6,
+    tempoLeituraMin: 30,
+    descricao:
+      'Um tratado breve e poderoso sobre a santificação: como o crente justificado deve viver em santidade prática. Bunyan explora a tensão entre a justificação perfeita e a santificação imperfeita.',
+    contexto:
+      'Bunyan, preso por 12 anos por pregar sem licença, escreveu sua teologia com a vivacidade de quem a vive na prisão. Este tratado é o complemento teológico de O Peregrino — enquanto o romance mostra a jornada, este tratado explica a teologia.',
+    importancia:
+      'É uma das melhores exposições práticas da relação entre justificação e santificação. Bunyan mostra que a graça que justifica também santifica — a fé sem obras é morta.',
+    citacao: {
+      texto:
+        'O justo é feito perfeito em Cristo, mas ainda não é perfeito em si mesmo — até que chegue à glória.',
+      fonte: 'O Caminho da Santidade, Capítulo 2',
+    },
+    tags: ['santificação', 'piedade', 'puritanismo', 'vida cristã'],
+    capa: { de: '#5B2333', ate: '#8B3A4A', acento: '#F3E0E5' },
+  },
+  {
+    id: 'vida-interior',
+    titulo: 'A Vida Interior',
+    tituloOriginal: 'Instructions et Maximes sur la Vie Intérieure',
+    autor: 'Jacques-Bénigne Bossuet',
+    autorVida: '1627–1704 — bispo de Meaux, Francês',
+    ano: 1700,
+    anoTexto: 'póstumo, 1700',
+    categoria: 'espiritualidade',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Francês',
+    edicao: 'selecao',
+    numCapitulos: 7,
+    tempoLeituraMin: 35,
+    descricao:
+      'Um guia clássico da vida interior cristã: como cultivar a oração, a humildade e a dependência de Deus. Bossuet ensina que a vida espiritual não é ecstasy mas obediência silenciosa.',
+    contexto:
+      'Bossuet, bispo de Meaux e um dos maiores oradores franceses, escreveu estas instruções para suas freiras. Publicado postumamente, tornou-se um clássico da espiritualidade católica francesa, ao lado dos escritos de François Fénelon.',
+    importancia:
+      'É um dos mais belos tratados sobre a vida interior cristã. Bossuet distingue entre misticismo entusiasta e piedade sóbria — a verdadeira vida interior é humildade, silêncio e obediência.',
+    citacao: {
+      texto:
+        'A verdadeira oração não consiste em sentir, mas em se entregar a Deus — mesmo quando nada sentimos.',
+      fonte: 'A Vida Interior, Instrução 5',
+    },
+    tags: ['oração', 'vida interior', 'humildade', 'catolicismo francês', 'misticismo'],
+    capa: { de: '#4A3D5C', ate: '#7A5C8B', acento: '#E8E0F0' },
+  },
+  // ═══════════════════ CARTAS DE PAULO (COLETÂNEA) ═══════════════════
+  {
+    id: 'cartas-paulo',
+    titulo: 'Cartas de Paulo (coletânea temática)',
+    tituloOriginal: 'Epistolae Pauli (collectio)',
+    autor: 'Paulo de Tarso (e colaboradores)',
+    autorVida: 'c. 5–64/67 d.C. — apóstolo dos gentios',
+    ano: 55,
+    anoTexto: 'c. 50–64 d.C.',
+    categoria: 'pais-igreja',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Grego koiné',
+    edicao: 'selecao',
+    numCapitulos: 12,
+    tempoLeituraMin: 60,
+    descricao:
+      'Uma coletânea temática das passagens mais influentes das 13 epístolas paulinas, organizadas por tema: justificação (Romanos), amor (1 Coríntios 13), humildade (Filipenses 2), guerra espiritual (Efésios 6), e esperança (1 Tessalonicenses 4).',
+    contexto:
+      'Paulo escreveu suas cartas para igrejas específicas com problemas concretos — não eram tratados teológicos abstratos. Cada carta reflete o contexto da comunidade, os problemas que enfrentavam e as perguntas que faziam. A coletânea destaca as passagens que moldaram a teologia cristã.',
+    importancia:
+      'As epístolas paulinas constituem mais de um terço do Novo Testamento e são a base da teologia cristã ocidental. Romanos e Gálatas fundaram a Reforma; 1 Coríntios 13 é o "hino do amor" mais citado; Filipenses 2 é a cristologia mais antiga.',
+    citacao: {
+      texto:
+        'Porque pela graça sois salvos, por meio da fé; e isso não vem de vós, é dom de Deus. Não vem das obras, para que ninguém se glorie.',
+      fonte: 'Efésios 2:8-9',
+    },
+    tags: ['cartas', 'paulo', 'justificação', 'amor', 'cristologia'],
+    capa: { de: '#6B4A1E', ate: '#A87830', acento: '#F5E8D2' },
+  },
 ];
 
 export const getObraMeta = (id: string): ObraMeta | undefined =>

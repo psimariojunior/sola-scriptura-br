@@ -165,7 +165,12 @@ export const ClickableVerse = memo(function ClickableVerse({
   const handleClose = useCallback(() => setPopup(null), []);
 
   return (
-    <span ref={containerRef} className={className} style={style}>
+    <span
+      ref={containerRef}
+      className={className}
+      style={style}
+      onContextMenu={(e) => e.preventDefault()}
+    >
       {ptWords.map((token, i) => {
         const cleaned = limparPalavra(token);
         const clickable = ehClicavel(cleaned);

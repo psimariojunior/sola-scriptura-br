@@ -1233,7 +1233,7 @@ function InterlinearWordCol({
       type="button"
       dir="ltr"
       onClick={onClick}
-      className={`interlinear-col inline-flex flex-col items-center text-center px-1.5 py-1.5 rounded-lg min-w-[4.75em] transition-colors ${
+      className={`interlinear-col inline-flex flex-col items-center text-center px-1 py-1 rounded-lg min-w-[4em] transition-colors ${
         selected
           ? "bg-[var(--brand-default)]/14 ring-1 ring-[var(--brand-default)]/45"
           : echo
@@ -1511,7 +1511,7 @@ export function InterlinearView({
         />
       )}
       {selectedWord && (
-        <div className="sticky top-0 z-20 mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-[var(--surface-raised)] px-3 py-2 shadow-sm">
+        <div className="sticky top-0 z-20 mb-1 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-[var(--surface-raised)] px-3 py-2 shadow-sm border border-[var(--border)]/30">
           <span
             className={`font-semibold text-[var(--brand-default)] ${
               selectedWord.idioma === "hebraico" ? "font-hebrew" : "font-greek"
@@ -1549,24 +1549,25 @@ export function InterlinearView({
           <div
             key={versiculo.numero}
             id={`v${versiculo.numero}`}
-            className={`border-b border-[var(--border)]/15 last:border-b-0 ${
+            className={`border-b border-[var(--border)]/10 last:border-b-0 ${
               versoFoco === versiculo.numero
-                ? "bg-[var(--brand-default)]/6 rounded-xl"
-                : ""
-            }`}
+                ? "bg-[var(--brand-default)]/6 rounded-lg"
+                : "hover:bg-[var(--surface-sunken)]/30"
+            } transition-colors`}
           >
             <div
-              className="py-3 px-1 interlinear-reading bible-reading-text"
+              className="py-2.5 px-2 interlinear-reading bible-reading-text"
               style={{ fontSize: `${bodyPx}px` }}
             >
-                <div className="flex items-start gap-2 mb-2">
-                  <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-sm font-bold shrink-0 mt-0.5">
+                <div className="flex items-start gap-1.5 mb-1.5">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-xs font-bold shrink-0 mt-0.5">
                     {versiculo.numero}
                   </span>
-                  <div
-                    className="flex flex-wrap gap-x-1.5 gap-y-0.5 leading-relaxed font-serif-body text-[var(--content-primary)] flex-1"
-                    style={{ fontSize: `${bodyPx}px` }}
-                  >
+                    <div
+                      className="flex-1 min-w-0 flex flex-wrap gap-x-1 gap-y-px leading-snug font-serif-body text-[var(--content-primary)]"
+                      style={{ fontSize: `${bodyPx}px`, lineHeight: 1.4 }}
+                      onContextMenu={(e) => e.preventDefault()}
+                    >
                     {versiculo.palavras.map((p, wi) => {
                       const sameLemma = !!(
                         selectedWord?.strong && p.strong === selectedWord.strong
@@ -1606,27 +1607,27 @@ export function InterlinearView({
                   </div>
                   <button
                     type="button"
-                    className="shrink-0 mt-0.5 p-1.5 rounded-lg text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--surface-sunken)]"
+                    className="shrink-0 mt-0.5 p-1 rounded-lg text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--surface-sunken)]"
                     title={t("biblia.interlinear.copyVerse")}
                     aria-label={t("biblia.interlinear.copyVerseAria", { n: versiculo.numero })}
                     onClick={() => copiarVerso(versiculo.numero, versiculo.palavras)}
                   >
                     {copiedVerse === versiculo.numero ? (
-                      <Check className="w-4 h-4" />
+                      <Check className="w-3.5 h-3.5" />
                     ) : (
-                      <Copy className="w-4 h-4" />
+                      <Copy className="w-3.5 h-3.5" />
                     )}
                   </button>
                 </div>
 
                 {palavrasComStrong.length > 0 && (
                   <>
-                <p className="ml-9 mb-1.5 text-[10px] uppercase tracking-wider text-[var(--content-muted)]">
+                <p className="ml-8 mb-1 text-[9px] uppercase tracking-wider text-[var(--content-muted)]">
                   {t("biblia.interlinear.columnLegend")}
                 </p>
 
                 <div
-                  className="interlinear-word-row flex flex-wrap items-start gap-x-2 gap-y-4 mt-1 ml-2 md:ml-8"
+                  className="interlinear-word-row flex flex-wrap items-start gap-x-1.5 gap-y-3 mt-0.5 ml-1 md:ml-6"
                   dir="ltr"
                 >
                   {palavrasComStrong.map((p, wi) => (

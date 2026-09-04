@@ -7,7 +7,17 @@ import { InterlinearView } from '@/components/InterlinearView';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { resolverLivroParam } from '@/lib/bibliaHref';
 import { carregarCapitulo } from '@/lib/apresentacao/versiculos';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Minus, Plus } from 'lucide-react';
+
+const FONT_PRESETS = [
+  { label: 'P', size: 14, desc: 'Pequena' },
+  { label: 'M', size: 16, desc: 'Média' },
+  { label: 'G', size: 18, desc: 'Grande' },
+  { label: 'XG', size: 22, desc: 'Extra Grande' },
+  { label: 'XXG', size: 28, desc: 'Muito Grande' },
+];
+const FONT_MIN = 12;
+const FONT_MAX = 36;
 
 function InterlinearClient() {
   const params = useSearchParams();
@@ -25,6 +35,23 @@ function InterlinearClient() {
 
   const [versiculos, setVersiculos] = useState<{ numero: number; texto: string }[]>([]);
   const [carregando, setCarregando] = useState(true);
+
+  const [fontSize, setFontSize] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('ssb_interlinear_font_size');
+      if (stored) {
+        const n = parseInt(stored, 10);
+        if (n >= FONT_MIN && n <= FONT_MAX) return n;
+      }
+    }
+    return 18;
+  });
+
+  const handleFontSizeChange = useCallback((size: number) => {
+    const clamped = Math.max(FONT_MIN, Math.min(FONT_MAX, size));
+    setFontSize(clamped);
+    localStorage.setItem('ssb_interlinear_font_size', String(clamped));
+  }, []);
 
   useEffect(() => {
     let cancel = false;
@@ -62,7 +89,9 @@ function InterlinearClient() {
             Toque um lema para ver ocorrências no livro, o mesmo verso nas traduções locais e o eco
             canônico. Palavras raras neste livro ficam no topo.
         </p>
-        <div className="flex flex-wrap items-center gap-2 mb-6">
+
+        {/* Controles: Seletor de livro + capitulo + tamanho de fonte */}
+        <div className="flex flex-wrap items-center gap-2 mb-3">
           <select
             value={livro.abreviacao}
             onChange={(e) => ir(e.target.value, 1)}
@@ -95,6 +124,64 @@ function InterlinearClient() {
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
+
+        {/* Controle de tamanho de fonte */}
+        <div className="flex flex-wrap items-center gap-2 mb-6 p-2.5 rounded-xl bg-[var(--surface-sunken)]/50 border border-[var(--border)]/30">
+          <span className="text-xs font-medium text-[var(--content-muted)]">Fonte:</span>
+          <div className="flex items-center gap-1">
+            {FONT_PRESETS.map((preset) => (
+              <button
+                key={preset.label}
+                type="button"
+                onClick={() => handleFontSizeChange(preset.size)}
+                className={`min-h-[36px] min-w-[36px] px-2 rounded-lg text-xs font-bold transition-all ${
+                  fontSize === preset.size
+                    ? 'bg-[var(--brand-default)] text-[var(--brand-foreground)] shadow-sm'
+                    : 'bg-[var(--surface-raised)] text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-raised)]/80'
+                }`}
+                title={`${preset.desc} (${preset.size}px)`}
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+          <span className="w-px h-5 bg-[var(--border)] mx-1" />
+          <button
+            type="button"
+            onClick={() => handleFontSizeChange(fontSize - 2)}
+            className="w-9 h-9 rounded-lg bg-[var(--surface-raised)] hover:bg-[var(--surface-raised)]/80 flex items-center justify-center active:scale-95 transition-all"
+            aria-label="Diminuir fonte"
+          >
+            <Minus className="w-3.5 h-3.5 text-[var(--content-primary)]" />
+          </button>
+          <div className="w-20 relative">
+            <div className="h-1.5 rounded-full bg-[var(--border)]/40 overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-hover)] transition-all duration-150"
+                style={{ width: `${((fontSize - FONT_MIN) / (FONT_MAX - FONT_MIN)) * 100}%` }}
+              />
+            </div>
+            <input
+              type="range"
+              min={FONT_MIN}
+              max={FONT_MAX}
+              value={fontSize}
+              onChange={(e) => handleFontSizeChange(Number(e.target.value))}
+              className="absolute inset-0 w-full opacity-0 cursor-pointer"
+              aria-label="Tamanho da fonte"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => handleFontSizeChange(fontSize + 2)}
+            className="w-9 h-9 rounded-lg bg-[var(--surface-raised)] hover:bg-[var(--surface-raised)]/80 flex items-center justify-center active:scale-95 transition-all"
+            aria-label="Aumentar fonte"
+          >
+            <Plus className="w-3.5 h-3.5 text-[var(--content-primary)]" />
+          </button>
+          <span className="font-mono text-xs w-8 text-center tabular-nums text-[var(--content-primary)] font-medium">{fontSize}</span>
+        </div>
+
         {carregando ? (
           <p className="text-[var(--content-muted)]">Carregando o capítulo…</p>
         ) : (
@@ -103,7 +190,7 @@ function InterlinearClient() {
             livro={livro.abreviacao}
             capitulo={capitulo}
             traducao="arc"
-            fontSize={18}
+            fontSize={fontSize}
             versoFoco={versoFoco}
           />
         )}

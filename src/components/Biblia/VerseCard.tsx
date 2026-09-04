@@ -218,6 +218,10 @@ export const VerseCard = memo(function VerseCard({
     }
   }, []);
 
+  const handleContextMenu = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+  }, []);
+
   const handleClickCapture = useCallback((e: React.MouseEvent) => {
     if (didLongPressRef.current) {
       e.preventDefault();
@@ -251,6 +255,7 @@ export const VerseCard = memo(function VerseCard({
           onSelect();
         }}
         onClickCapture={handleClickCapture}
+        onContextMenu={handleContextMenu}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerLeave}

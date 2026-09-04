@@ -115,11 +115,11 @@ export default function SocialPage() {
       try {
         const raw = localStorage.getItem('ssb_reading_history');
         if (raw) setReadingHistory(JSON.parse(raw));
-      } catch {}
+      } catch { console.debug('[social-page]'); }
       try {
         const raw = localStorage.getItem('ssb_streak');
         if (raw) { const s = JSON.parse(raw); setStreak(s.count || 0); }
-      } catch {}
+      } catch { console.debug('[social-page]'); }
       try {
         const favs = await getFavoritesOffline();
         setFavoritosCount(favs.length);
@@ -127,7 +127,7 @@ export default function SocialPage() {
         try {
           const raw = localStorage.getItem('ssb_favoritos');
           if (raw) setFavoritosCount(JSON.parse(raw).length);
-        } catch {}
+        } catch { console.debug('[social-page]'); }
       }
       try {
         const notes = await getNotesOffline();
@@ -136,12 +136,12 @@ export default function SocialPage() {
         try {
           const raw = localStorage.getItem('ssb_notas_rich');
           if (raw) setNotasCount(JSON.parse(raw).length);
-        } catch {}
+        } catch { console.debug('[social-page]'); }
       }
       try {
         const marks = listarMarcadores();
         setMarkersCount(marks.length);
-      } catch {}
+      } catch { console.debug('[social-page]'); }
       setCarregado(true);
     }
     load();

@@ -210,8 +210,9 @@ function NotasPageInner() {
                                   </button>
                                 </div>
                               </div>
-                              <p className="text-sm text-muted-foreground line-clamp-2 mb-3"
-                                dangerouslySetInnerHTML={{ __html: nota.conteudo.replace(/<[^>]+>/g, ' ').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;').slice(0, 150) }} />
+                              <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                                {nota.conteudo.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 150)}
+                              </p>
                               <div className="flex items-center gap-2 flex-wrap">
                                 {nota.tags.map(tag => (
                                   <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{tag}</span>

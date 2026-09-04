@@ -205,58 +205,58 @@ export default function ConfiguracoesClient() {
 
       const savedLang = localStorage.getItem('ssb_lang') as 'pt' | 'en' | null;
       if (savedLang) setIdioma(savedLang);
-    } catch {}
+    } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleFontSize = useCallback((v: number) => {
     setFontSize(v);
-    try { localStorage.setItem('ssb_font_size', String(v)); } catch {}
+    try { localStorage.setItem('ssb_font_size', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleFontFamily = useCallback((v: 'serif' | 'sans' | 'reading') => {
     setFontFamily(v);
-    try { localStorage.setItem('ssb_font_family', v); } catch {}
+    try { localStorage.setItem('ssb_font_family', v); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleDefaultTranslation = useCallback((v: string) => {
     setDefaultTranslation(v);
-    try { localStorage.setItem('ssb_default_translation', v); } catch {}
+    try { localStorage.setItem('ssb_default_translation', v); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleViewMode = useCallback((v: 'single' | 'parallel' | 'interlinear') => {
     setViewMode(v);
-    try { localStorage.setItem('ssb_view_mode', v); } catch {}
+    try { localStorage.setItem('ssb_view_mode', v); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleAutoPlay = useCallback((v: boolean) => {
     setAutoPlayAudio(v);
-    try { localStorage.setItem('ssb_auto_play_audio', String(v)); } catch {}
+    try { localStorage.setItem('ssb_auto_play_audio', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleAudioSpeed = useCallback((v: number) => {
     setAudioSpeed(v);
-    try { localStorage.setItem('ssb_audio_speed', String(v)); } catch {}
+    try { localStorage.setItem('ssb_audio_speed', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleDevocional = useCallback((v: boolean) => {
     setDevocionalReminder(v);
-    try { localStorage.setItem('ssb_push_devocional', String(v)); } catch {}
+    try { localStorage.setItem('ssb_push_devocional', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handlePlano = useCallback((v: boolean) => {
     setPlanoReminder(v);
-    try { localStorage.setItem('ssb_push_plano', String(v)); } catch {}
+    try { localStorage.setItem('ssb_push_plano', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleStreak = useCallback((v: boolean) => {
     setStreakReminder(v);
-    try { localStorage.setItem('ssb_push_streak', String(v)); } catch {}
+    try { localStorage.setItem('ssb_push_streak', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const handleIdioma = useCallback((v: 'pt' | 'en') => {
     setIdioma(v);
     i18n.changeLanguage(v);
-    try { localStorage.setItem('ssb_lang', v); } catch {}
+    try { localStorage.setItem('ssb_lang', v); } catch { console.debug('[ConfiguracoesClient]'); }
   }, [i18n]);
 
   const exportFavoritos = useCallback(() => {
@@ -269,7 +269,7 @@ export default function ConfiguracoesClient() {
       a.download = `sola-scriptura-favoritos-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
-    } catch {}
+    } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const exportNotas = useCallback(() => {
@@ -282,7 +282,7 @@ export default function ConfiguracoesClient() {
       a.download = `sola-scriptura-notas-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
-    } catch {}
+    } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
   const clearLocalData = useCallback(() => {
@@ -296,7 +296,7 @@ export default function ConfiguracoesClient() {
       'ssb_line_spacing', 'ssb_accessibility',
     ];
     keys.forEach((k) => {
-      try { localStorage.removeItem(k); } catch {}
+      try { localStorage.removeItem(k); } catch { console.debug('[ConfiguracoesClient]'); }
     });
     window.location.reload();
   }, [t]);

@@ -10,5 +10,4 @@
     android:widgetCategory="home_screen"
     android:previewLayout="@layout/widget_verse"
     android:description="@string/widget_verse_description"
-    android:previewImage="@drawable/widget_background"
-    android:configure="com.solascriptura.app VerseWidgetConfigureActivity" />
+    android:previewImage="@drawable/widget_background" />

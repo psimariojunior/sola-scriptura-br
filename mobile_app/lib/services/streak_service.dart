@@ -63,7 +63,7 @@ class StreakService {
     try {
       await VerseWidgetService.updateStreakWidget();
     } catch (e) {
-      print('Failed to update widget: $e');
+      debugPrint('Failed to update widget: $e');
     }
 
     return newStreak;

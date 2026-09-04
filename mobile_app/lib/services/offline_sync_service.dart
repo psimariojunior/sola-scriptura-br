@@ -69,7 +69,7 @@ class OfflineSyncService {
         );
       }
     } catch (e) {
-      print('Failed to cache chapter: $e');
+      debugPrint('Failed to cache chapter: $e');
     }
   }
 
@@ -161,7 +161,7 @@ class OfflineSyncService {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(_lastSyncKey, DateTime.now().toIso8601String());
     } catch (e) {
-      print('Sync failed: $e');
+      debugPrint('Sync failed: $e');
     }
   }
 

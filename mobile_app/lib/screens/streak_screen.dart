@@ -86,7 +86,7 @@ class _StreakScreenState extends State<StreakScreen> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.goldPrimary.withOpacity(0.3),
+            color: AppTheme.goldPrimary.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -146,7 +146,7 @@ class _StreakScreenState extends State<StreakScreen> {
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
@@ -190,8 +190,8 @@ class _StreakScreenState extends State<StreakScreen> {
             color: isRead
                 ? AppTheme.goldPrimary
                 : isToday
-                    ? AppTheme.goldPrimary.withOpacity(0.3)
-                    : Colors.white.withOpacity(0.1),
+                    ? AppTheme.goldPrimary.withValues(alpha: 0.3)
+                    : Colors.white.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
             border: isToday
                 ? Border.all(color: AppTheme.goldPrimary, width: 2)
@@ -230,7 +230,7 @@ class _StreakScreenState extends State<StreakScreen> {
       child: Container(
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.05),
+          color: Colors.white.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -263,10 +263,10 @@ class _StreakScreenState extends State<StreakScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
-          color: AppTheme.goldPrimary.withOpacity(0.3),
+          color: AppTheme.goldPrimary.withValues(alpha: 0.3),
           width: 1,
         ),
       ),

@@ -301,7 +301,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
           await http.post(
             Uri.parse('https://api.solascripturabr.com.br/api/notifications/register'),
             headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({'fcmToken': newToken, 'platform': 'android'}),
+            body: jsonEncode({'fcmToken': newToken, 'platform': Platform.isIOS ? 'ios' : 'android'}),
           );
         } catch (_) {}
       });

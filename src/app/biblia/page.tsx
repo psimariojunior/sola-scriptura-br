@@ -188,7 +188,7 @@ export default function BibliaPage() {
     const key = `${nav.livro.abreviacao}-${nav.capituloIdx}`;
     const prevKey = scrollKeyRef.current;
     if (prevKey && typeof window !== 'undefined') {
-      try { sessionStorage.setItem(`ssb_scroll_${prevKey}`, String(window.scrollY)); } catch {}
+      try { sessionStorage.setItem(`ssb_scroll_${prevKey}`, String(window.scrollY)); } catch { console.debug('[biblia-page]'); }
     }
     scrollKeyRef.current = key;
     if (typeof window !== 'undefined') {
@@ -222,7 +222,7 @@ export default function BibliaPage() {
         }, 2000);
         return () => clearTimeout(timer);
       }
-    } catch {}
+    } catch { console.debug('[biblia-page]'); }
   }, []);
 
   // Keyboard shortcuts for Bible reader
@@ -361,7 +361,7 @@ export default function BibliaPage() {
           const current = localStorage.getItem('ssb_theme_v2') || localStorage.getItem('ssb_theme');
           const next = cycleTema(current);
           window.dispatchEvent(new CustomEvent('ssb:theme-change', { detail: next }));
-        } catch {}
+        } catch { console.debug('[biblia-page]'); }
         return;
       }
     };
@@ -517,7 +517,7 @@ export default function BibliaPage() {
       <AnnotationModal open={verse.anotandoVersiculo !== null} verseKey={verse.anotandoVersiculo} initialText={verse.anotacaoTexto} onClose={() => verse.setAnotandoVersiculo(null)}
         onSave={async (texto) => { const { salvarAnotacaoUnificada } = await import('@/lib/notasUnificadas'); const parts = verse.anotandoVersiculo!.split(':'); salvarAnotacaoUnificada(parts[0], Number(parts[1]), Number(parts[2]), parts[3], texto || null); refresh(); verse.setAnotandoVersiculo(null); verse.setAnotacaoTexto(''); }} />
       {ui.quickSearchOpen && (<QuickSearchModal open={ui.quickSearchOpen} onClose={() => ui.setQuickSearchOpen(false)}
-        onGoToResult={(r, query) => { const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro); if (idx >= 0) { verse.setRecentSearches(prev => { const next = [{ query, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 }, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5); try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch {} return next; }); nav.setLivroIdx(idx); nav.setCapituloIdx(r.cap - 1); ui.setQuickSearchOpen(false); } }} recentSearches={verse.recentSearches} />)}
+        onGoToResult={(r, query) => { const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro); if (idx >= 0) { verse.setRecentSearches(prev => { const next = [{ query, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 }, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5); try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch { console.debug('[biblia-page]'); } return next; }); nav.setLivroIdx(idx); nav.setCapituloIdx(r.cap - 1); ui.setQuickSearchOpen(false); } }} recentSearches={verse.recentSearches} />)}
       {ui.mostrarNarracao && passagemDramatica && (<div className="page-transition fixed inset-0 z-50 bg-[var(--bg)]"><NarracaoDramaticaLazy titulo={passagemDramatica.titulo} subtitulo={passagemDramatica.subtitulo} cenas={passagemDramatica.cenas} personagens={passagemDramatica.personagens} onFechar={() => ui.setMostrarNarracao(false)} /></div>)}
       {ui.mostrarNarracaoCapitulo && (<NarrationPanel open={ui.mostrarNarracaoCapitulo} onClose={() => { ui.setMostrarNarracaoCapitulo(false); capituloAudio.stop(); }} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.selectedTrads[0] || 'arc'} livroNome={nav.livro.nome} versiculos={nav.data[0]?.versiculos?.map(v => ({ numero: v.numero, texto: v.texto })) ?? []} />)}
       <PainelDoVersiculo livro={verse.versiculoSelecionado?.livroAbreviacao ?? ''} capitulo={verse.versiculoSelecionado?.capitulo ?? 1} versiculo={verse.versiculoSelecionado?.versiculo ?? 1} aberto={painelVersiculoAberto} onFechar={() => { setPainelVersiculoAberto(false); setPainelTabInicial(undefined); verse.setVersiculoSelecionado(null); }} tabInicial={painelTabInicial} texto={verse.versiculoSelecionado?.texto} traducao={verse.versiculoSelecionado?.traducao} livroNome={verse.versiculoSelecionado?.livroNome} />

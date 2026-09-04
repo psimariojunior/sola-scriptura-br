@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _mainController;
   late final AnimationController _glowController;
-  late final AnimationController _verseController;
 
   late final Animation<double> _fadeAnimation;
   late final Animation<double> _scaleAnimation;
@@ -47,12 +46,6 @@ class _SplashScreenState extends State<SplashScreen>
     _glowController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 2000),
-    );
-
-    // Verse slide-up controller
-    _verseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
     );
 
     // Logo fade in
@@ -160,7 +153,6 @@ class _SplashScreenState extends State<SplashScreen>
   void dispose() {
     _mainController.dispose();
     _glowController.dispose();
-    _verseController.dispose();
     super.dispose();
   }
 

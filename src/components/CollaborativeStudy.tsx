@@ -359,7 +359,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         setWsVerses(prev => [...prev, verseData]);
         chatServiceRef.current?.sendVerseShared(verseData);
       }
-    } catch {}
+    } catch { console.debug('[CollaborativeStudy]'); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 
@@ -465,7 +465,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, name: participantName, joinedAt: new Date().toISOString() }),
       });
-    } catch {}
+    } catch { console.debug('[CollaborativeStudy]'); }
 
     setJoinCode('');
     setRoomBusy(false);
@@ -510,7 +510,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           text: `${ref} - ${text}`, timestamp: new Date(verseData.timestamp).toISOString(), type: 'verse',
         }),
       });
-    } catch {}
+    } catch { console.debug('[CollaborativeStudy]'); }
   }, [room, participantId, participantName]);
 
   const handleSendMessage = useCallback(async () => {
@@ -531,7 +531,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           text: shareMessage, timestamp: new Date(msg.timestamp).toISOString(), type: 'chat',
         }),
       });
-    } catch {}
+    } catch { console.debug('[CollaborativeStudy]'); }
 
     setShareMessage('');
     chatServiceRef.current?.sendTypingStop(participantId);
@@ -739,7 +739,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ notes: notesMap }),
         });
-      } catch {}
+      } catch { console.debug('[CollaborativeStudy]'); }
       // Broadcast via WebSocket
       chatServiceRef.current?.sendNoteSync({
         action: 'add', noteId: newNote.id, participantId, participantName,
@@ -761,7 +761,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ notes: notesMap }),
         });
-      } catch {}
+      } catch { console.debug('[CollaborativeStudy]'); }
       chatServiceRef.current?.sendNoteSync({
         action: 'delete', noteId: id, participantId, participantName, timestamp: Date.now(),
       });
@@ -953,7 +953,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
             if (room) {
               try {
                 await fetch(`${COLAB_API}/rooms/${room.code}/participants/${participantId}/leave`, { method: 'POST' });
-              } catch {}
+              } catch { console.debug('[CollaborativeStudy]'); }
             }
             setRoom(null); setIsCallActive(false); wsConnectedRef.current = false; setWsStatus('disconnected'); setChatMessages([]); setWsVerses([]); setSharedNotes([]); setQuizLive(false); setQuizAnswers([]); setQuizScores([]);
           }}

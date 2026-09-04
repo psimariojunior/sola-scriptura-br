@@ -129,7 +129,7 @@ class _AppShellState extends State<AppShell> {
 
       final tempDir = Directory.systemTemp;
       final file = File('${tempDir.path}/versiculo.png');
-      file.writeAsBytesSync(bytes);
+      await file.writeAsBytes(bytes);
 
       Share.shareXFiles(
         [XFile(file.path)],

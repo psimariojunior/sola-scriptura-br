@@ -749,6 +749,432 @@ export const OBRAS: ObraMeta[] = [
     tags: ['cartas', 'paulo', 'justificação', 'amor', 'cristologia'],
     capa: { de: '#6B4A1E', ate: '#A87830', acento: '#F5E8D2' },
   },
+
+  // ═══════════════════ PAIS DA IGREJA (EXPANDIDO) ═══════════════════
+  {
+    id: 'origenes-principios',
+    titulo: 'Sobre os Primeiros Princípios',
+    tituloOriginal: 'De Principiis',
+    autor: 'Orígenes de Alexandria',
+    autorVida: 'c. 185–254 d.C. — teólogo de Alexandria',
+    ano: 250,
+    anoTexto: 'c. 230–250 d.C.',
+    categoria: 'pais-igreja',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Grego (traduzido ao latim por Rufino)',
+    edicao: 'selecao',
+    numCapitulos: 6,
+    tempoLeituraMin: 40,
+    descricao:
+      'A primeira tentativa de sistematizar a teologia cristã: Orígenes explora Deus, a criação, o pecado, a encarnação, a ressurreição e o juízo final — com a ousadia de quem pensa sem medo.',
+    contexto:
+      'Orígenes foi o maior teólogo do séc. III, mas foi condenado postumamente no Concílio de Constantinopla (553) por algumas das suas teses — como a preexistência das almas. O De Principiis é a sua obra sistemática mais importante, preservada em latim por Rufino.',
+    importancia:
+      'É o primeiro tratado sistemático da história da teologia cristã. A sua metodologia — Escritura, tradição e razão — antecipou em 1.500 anos o método teológico protestante. Influenciou Gregório de Nissa, Basílio e toda a teologia posterior.',
+    citacao: {
+      texto:
+        'Deus criou todas as coisas não porque necessitasse delas, mas porque a bondade não pode ser ociosa.',
+      fonte: 'De Principiis II.9',
+    },
+    tags: ['teologia sistemática', 'trindade', 'criação', 'alegoria'],
+    capa: { de: '#4A3D2F', ate: '#7A6B4E', acento: '#EDE5D6' },
+  },
+  {
+    id: 'cipriano-unidade',
+    titulo: 'Sobre a Unidade da Igreja',
+    tituloOriginal: 'De Unitate Ecclesiae',
+    autor: 'Santo Cipriano',
+    autorVida: 'c. 210–258 d.C. — bispo de Cartago, mártir',
+    ano: 256,
+    anoTexto: 'c. 256 d.C.',
+    categoria: 'pais-igreja',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Latim',
+    edicao: 'selecao',
+    numCapitulos: 5,
+    tempoLeituraMin: 30,
+    descricao:
+      'O tratado mais influente sobre a unidade da igreja na antiguidade: Cipriano argumenta que fora da igreja não há salvação — uma tese que moldou a eclesiologia cristã por séculos.',
+    contexto:
+      'Cipriano escreveu durante o cisma de Novaciano, que contestava a autoridade do bispo de Roma e a reconciliação dos lapsos (apóstatas que voltaram after perseguição). O De Unitate é a defesa da autoridade episcopal como centro da unidade.',
+    importancia:
+      'A frase "extra Ecclesiam nulla salus" (fora da igreja não há salvação) tornou-se dogma. O tratado influenciou toda a eclesiologia — tanto católica (autoridade do bispo) quanto protestante (a igreja como comunidade visível).',
+    citacao: {
+      texto:
+        'Cristo fundou a igreja uma — não múltiplas igrejas, mas uma só.',
+      fonte: 'De Unitate 6',
+    },
+    tags: ['eclesiologia', 'unidade', 'bispo', 'cisma'],
+    capa: { de: '#5A2D2D', ate: '#9E5656', acento: '#F2DEDE' },
+  },
+  {
+    id: 'gregorio-nissa-moises',
+    titulo: 'Vida de Moisés',
+    tituloOriginal: 'Vita Moysis',
+    autor: 'Santo Gregório de Nissa',
+    autorVida: 'c. 335–395 d.C. — bispo de Nissa, Capadócia',
+    ano: 380,
+    anoTexto: 'c. 380 d.C.',
+    categoria: 'pais-igreja',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Grego',
+    edicao: 'selecao',
+    numCapitulos: 7,
+    tempoLeituraMin: 45,
+    descricao:
+      'A biografia espiritual de Moisés como alegoria da vida contemplativa: Gregório lê a narrativa do Êxodo como itinerário da alma que busca Deus — das águas do Nilo à montanha da transfiguração.',
+    contexto:
+      'Gregório, bispo de Nissa na Capadócia, era irmão de Basílio e um dos grandes Padres Capadócios. A Vida de Moisés é a sua obra-prima literária e espiritual — uma leitura alegórica que combina exegese, filosofia e mística.',
+    importancia:
+      'É o texto fundador da mística cristã oriental. A leitura alegórica de Gregório influenciou toda a tradição contemplativa — de Pseudo-Dionísio a Meister Eckhart. A sua teologia da "epektasis" (progresso infinito em direção a Deus) é uma das ideias mais ousadas da história da teologia.',
+    citacao: {
+      texto:
+        'O fogo da sarça é a imagem da encarnação: a natureza divina unida à humana, queimando sem consumir.',
+      fonte: 'Vita Moysis II',
+    },
+    tags: ['mística', 'alegoria', 'Êxodo', 'contemplação'],
+    capa: { de: '#3D5C4A', ate: '#5C8B6B', acento: '#E0F0E5' },
+  },
+  {
+    id: 'basilio-espirito-santo',
+    titulo: 'Sobre o Espírito Santo',
+    tituloOriginal: 'De Spiritu Sancto',
+    autor: 'Santo Basílio, o Grande',
+    autorVida: 'c. 330–379 d.C. — arcebispo de Cesareia, Capadócia',
+    ano: 375,
+    anoTexto: 'c. 375 d.C.',
+    categoria: 'pais-igreja',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Grego',
+    edicao: 'selecao',
+    numCapitulos: 6,
+    tempoLeituraMin: 40,
+    descricao:
+      'A defesa mais eloquente da divindade do Espírito Santo: Basílio argumenta que o Espírito não é uma força impessoal, mas pessoa divina, coeterna e consubstancial ao Pai e ao Filho.',
+    contexto:
+      'Basílio escreveu contra os pneumatomachos ("combatentes do Espírito"), que negavam a divindade do Espírito Santo. O De Spiritu Sancto é a sua resposta, com base na Escritura, na tradição litúrgica e na experiência da igreja.',
+    importancia:
+      'O De Spiritu Sancto completou a formulação trinitária iniciada por Atanásio. A distinção de Basílio entre "essência" (ousia) e "pessoa" (hipóstase) é a base da teologia trinitária ortodoxa.',
+    citacao: {
+      texto:
+        'O Espírito Santo não é uma energia impersonal, mas pessoa divina — coeterna e consubstancial ao Pai e ao Filho.',
+      fonte: 'De Spiritu Sancto 18',
+    },
+    tags: ['trindade', 'Espírito Santo', 'pneumatologia', 'liturgia'],
+    capa: { de: '#1F3A5F', ate: '#3E6B9E', acento: '#DCE9F7' },
+  },
+  {
+    id: 'ambrosio-deveres',
+    titulo: 'Sobre os Deveres dos Ministros',
+    tituloOriginal: 'De Officiis Ministrorum',
+    autor: 'Santo Ambrósio',
+    autorVida: 'c. 340–397 d.C. — bispo de Milão',
+    ano: 386,
+    anoTexto: 'c. 386 d.C.',
+    categoria: 'pais-igreja',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Latim',
+    edicao: 'selecao',
+    numCapitulos: 5,
+    tempoLeituraMin: 35,
+    descricao:
+      'O primeiro manual de ética pastoral da história: Ambrósio define os deveres dos sacerdotes — misericórdia, justiça, castidade, paciência — com exemplos bíblicos.',
+    contexto:
+      'Ambrósio escreveu aos presbíteros de Milão, inspirado nos De Officiis de Cícero — mas substituindo a ética cívica romana pela ética cristã. É o primeiro texto a aplicar a moral evangélica à prática pastoral.',
+    importancia:
+      'O De Officiis开创了基督教牧灵文学的先河。它影响了金口约翰的《论祭司职》、格里高利·纳齐安的《神学演说》以及整个中世纪的牧灵手册传统。',
+    citacao: {
+      texto:
+        'Cristo lavou os pés dos discípulos — o gesto mais humilde de todos — e disse: "Eu fiz isso para que vós façais o mesmo."',
+      fonte: 'De Officiis I.56',
+    },
+    tags: ['pastoral', 'ética', 'ministério', 'humildade'],
+    capa: { de: '#5C3D2F', ate: '#9E6B4E', acento: '#F0E5D6' },
+  },
+  {
+    id: 'jeronimo-cartas',
+    titulo: 'Cartas (seleção)',
+    tituloOriginal: 'Epistulae',
+    autor: 'São Jerônimo',
+    autorVida: 'c. 347–420 d.C. — eremita, tradutor da Vulgata',
+    ano: 400,
+    anoTexto: 'c. 375–420 d.C.',
+    categoria: 'pais-igreja',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Latim',
+    edicao: 'selecao',
+    numCapitulos: 5,
+    tempoLeituraMin: 35,
+    descricao:
+      'As cartas mais pessoais da antiguidade cristã: Jerônimo aconselha amigas, discute Escritura, polemiza com inimigos — com a eloquência e a acidez que o tornaram o mais polêmico dos Padres.',
+    contexto:
+      'Jerônimo, tradutor da primeira edição completa da Bíblia em latim (Vulgata), viveu como eremita no deserto da Síria e depois em Belém. Suas 154 cartas sobreviveram e são um tesouro de informação sobre a vida cristã do séc. IV-V.',
+    importancia:
+      'As cartas de Jerônimo são uma fonte primária para a história da ascese, da monarquia feminina e da tradução bíblica. A carta a Eustóquio é o tratado mais influente sobre a castidade na literatura cristã.',
+    citacao: {
+      texto:
+        'A castidade é uma contínua martírio: cada dia é uma batalha, mas a vitória é eterna.',
+      fonte: 'Ep. 22.1',
+    },
+    tags: ['cartas', 'ascese', 'castidade', 'Vulgata', 'tradução'],
+    capa: { de: '#6B5B2F', ate: '#A2915B', acento: '#F1EDDC' },
+  },
+
+  // ═══════════════════ ESPIRITUALIDADE CLÁSSICA (EXPANDIDO) ═══════════════════
+  {
+    id: 'cristao-autentico',
+    titulo: 'O Peregrino',
+    tituloOriginal: 'The Pilgrim\'s Progress',
+    autor: 'John Bunyan',
+    autorVida: '1628–1688 — peregrino batista, Bedford',
+    ano: 1678,
+    anoTexto: '1678 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Inglês',
+    edicao: 'integral',
+    numCapitulos: 7,
+    tempoLeituraMin: 50,
+    descricao:
+      'O romance alegórico mais lido da história cristã depois da Bíblia: a jornada de Cristão da Cidade da Destruição até a Cidade Celestial, passando pelo Buraco do Desespero, o Vale da Sombra da Morte e a Cruz.',
+    contexto:
+      'Bunyan escreveu na prisão por pregar sem licença, entre 1675 e 1678. O livro é uma alegoria da vida cristã que combina teologia puritana com narrativa vívida — cada personagem (Desespero, Dúvida, Fiel) é uma experiência espiritual real.',
+    importancia:
+      'Traduzido para mais de 200 línguas, é a obra mais influente da literatura cristã em inglês. Spurgeon o chamou de "o livro que mais lerias, depois da Bíblia". A alegoria tornou a teologia reformada acessível ao povo comum.',
+    citacao: {
+      texto:
+        'Eu não vi nada do que deixei para trás — mas vejo o que está diante de mim.',
+      fonte: 'The Pilgrim\'s Progress, Parte I',
+    },
+    tags: ['alegoria', 'puritanismo', 'peregrinação', 'vida cristã'],
+    capa: { de: '#5B2333', ate: '#8B3A4A', acento: '#F3E0E5' },
+  },
+  {
+    id: 'lewis-cristianismo',
+    titulo: 'Cristianismo Puro e Simples',
+    tituloOriginal: 'Mere Christianity',
+    autor: 'C.S. Lewis',
+    autorVida: '1898–1963 — apologista e escritor, Oxford/Cambridge',
+    ano: 1952,
+    anoTexto: '1952 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 6,
+    tempoLeituraMin: 45,
+    descricao:
+      'A defesa do cristianismo mais acessível do século XX: Lewis, ex-ateu, argumenta pela existência de Deus, pela historicidade de Cristo e pela moral cristã — com clareza, humor e profundidade.',
+    contexto:
+      'Lewis expandiu uma série de rádios da BBC durante a Segunda Guerra Mundial. O livro reúne quatro partes: A Lei da Natureza, O Que os Cristãos Acreditam, A Moral Cristã e Cristo na Nossa Vida.',
+    importancia:
+      'O Mere Christianity vendeu mais de 5 milhões de cópias e é a porta de entrada para o cristianismo de milhões de pessoas. A sua definição do "trilema louco, mentiroso ou Senhor" é a apologética mais famosa do século XX.',
+    citacao: {
+      texto:
+        'O cristianismo não é apenas uma filosofia: é uma religião — e a religião exige mais do que pensar, exige viver.',
+      fonte: 'Mere Christianity, Livro I',
+    },
+    tags: ['apologética', 'C.S. Lewis', 'conversão', 'ética cristã'],
+    capa: { de: '#2D3748', ate: '#4A5568', acento: '#E2E8F0' },
+  },
+  {
+    id: 'lewis-diabo',
+    titulo: 'Cartas de um Diabo ao seu Aprendiz',
+    tituloOriginal: 'The Screwtape Letters',
+    autor: 'C.S. Lewis',
+    autorVida: '1898–1963 — apologista e escritor, Oxford/Cambridge',
+    ano: 1942,
+    anoTexto: '1942 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 7,
+    tempoLeituraMin: 40,
+    descricao:
+      'Uma coletânea de cartas de um demônio experiente ao seu aprendiz, ensinando como tentar um cristão — a obra mais engenhosa de Lewis sobre a psicologia do pecado e a natureza da tentação.',
+    contexto:
+      'Lewis escreveu durante a guerra, publicando anonimamente no The Guardian. O formato epistolar do diabo Screwtape ao jovem Wormwood permite uma sátira brilhante dos vícios humanos.',
+    importancia:
+      'Os Screwtape Letters é uma das obras mais traduzidas de Lewis e uma introdução brilhante à espiritualidade. O conceito de "graça barata" antecipou o Discipulado de Bonhoeffer.',
+    citacao: {
+      texto:
+        'O melhor é manter o cristianismo nominal: que ele diga que é cristão, mas que viva como os outros.',
+      fonte: 'The Screwtape Letters, Carta I',
+    },
+    tags: ['tentação', 'C.S. Lewis', 'satira', 'espiritualidade'],
+    capa: { de: '#4A1A1A', ate: '#7A2E2E', acento: '#F2DADA' },
+  },
+  {
+    id: 'bonhoeffer-discipulado',
+    titulo: 'O Custo do Discipulado',
+    tituloOriginal: 'Nachfolge (The Cost of Discipleship)',
+    autor: 'Dietrich Bonhoeffer',
+    autorVida: '1906–1945 — teólogo alemão, mártir do nazismo',
+    ano: 1937,
+    anoTexto: '1937 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Alemão',
+    edicao: 'selecao',
+    numCapitulos: 6,
+    tempoLeituraMin: 50,
+    descricao:
+      'A obra que definiu o que significa seguir a Cristo no século XX: a distinção entre graça barata e graça cara, e o chamado à obediência radical que custa a própria vida.',
+    contexto:
+      'Bonhoeffer escreveu contra o nazismo e contra a igreja alemã que se curvou a Hitler. Publicado em 1937, o livro foi censurado pelo regime e Bonhoeffer foi preso em 1943, executado em 1945.',
+    importancia:
+      'Nachfolge é a obra mais influente da teologia do século XX sobre discipulado. A distinção entre graça barata e graça cara transformou a reflexão ética cristã. A frase "quando Cristo chama um homem, ele quer que venha e morra" tornou-se o paradigma da ética cristã radical.',
+    citacao: {
+      texto:
+        'Graça barata é aquela que se oferece ao homem sem exigir nada — é a pregação do perdão sem arrependimento.',
+      fonte: 'Nachfolge, Capítulo 1',
+    },
+    tags: ['discipulado', 'grça cara', 'ética', 'Bonhoeffer', 'mártir'],
+    capa: { de: '#3D3D5C', ate: '#6B6B94', acento: '#E3E1F0' },
+  },
+  {
+    id: 'spurgeon-manhas',
+    titulo: 'Manhãs com Spurgeon',
+    tituloOriginal: 'Mornings with Spurgeon',
+    autor: 'Charles Haddon Spurgeon',
+    autorVida: '1834–1892 — Príncipe dos Pregadores, Londres',
+    ano: 1865,
+    anoTexto: '1865 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Iniciante',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 5,
+    tempoLeituraMin: 30,
+    descricao:
+      'Meditações matinais de Spurgeon — pensamentos breves e profundos sobre passagens bíblicas, perfeitos para começar o dia com Deus.',
+    contexto:
+      'Spurgeon compilou meditações diárias a partir dos seus sermões e escritos. Cada meditação é curta, mas densa — o pregador mais prolífico da história em formato devocional.',
+    importancia:
+      'Mornings with Spurgeon é um dos livros de devoção mais populares da história protestante. A combinação de profundidade teológica e acessibilidade é a marca registrada de Spurgeon.',
+    citacao: {
+      texto:
+        'O Senhor é o meu pastor — não "pode ser", não "espero que seja", mas "é".',
+      fonte: 'Mornings with Spurgeon, Dia 1',
+    },
+    tags: ['devoção', 'Spurgeon', 'meditação', 'vida cristã'],
+    capa: { de: '#4A5A2F', ate: '#7E9153', acento: '#EDF2DC' },
+  },
+  {
+    id: 'baxter-descanso',
+    titulo: 'O Descanso dos Santos',
+    tituloOriginal: 'The Saints\' Everlasting Rest',
+    autor: 'Richard Baxter',
+    autorVida: '1615–1691 — puritano, Kidderminster',
+    ano: 1650,
+    anoTexto: '1650 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 5,
+    tempoLeituraMin: 40,
+    descricao:
+      'O tratado mais profundo sobre a vida eterna na literatura puritana: Baxter medita sobre a natureza, a beleza e a eternidade do céu — e convida o leitor a viver para lá.',
+    contexto:
+      'Baxter, puritano que sofreu perseguição, escreveu o Saints\' Rest como meditação sobre a esperança cristã. O livro foi lido por milhões e traduzido em dezenas de línguas.',
+    importancia:
+      'O Saints\' Rest é a obra mais influente sobre a vida eterna na tradição puritana. A sua meditação sobre o céu não é escapismo — é motivação para viver santo agora.',
+    citacao: {
+      texto:
+        'O repouso dos santos é o descanso que Deus prometeu aos seus fiéis — não um descanso de preguiça, mas de plenitude.',
+      fonte: 'The Saints\' Rest, Capítulo 1',
+    },
+    tags: ['céu', 'esperança', 'puritanismo', 'eternidade'],
+    capa: { de: '#2D4A3D', ate: '#4A7A6B', acento: '#D6F0E3' },
+  },
+
+  // ═══════════════════ PREGAÇÃO E HERMENÊUTICA ═══════════════════
+  {
+    id: 'edwards-pecadores',
+    titulo: 'Pecadores nas Mãos de um Deus Irado',
+    tituloOriginal: 'Sinners in the Hands of an Angry God',
+    autor: 'Jonathan Edwards',
+    autorVida: '1703–1758 — teólogo puritano, Massachusetts',
+    ano: 1741,
+    anoTexto: '4 julho de 1741',
+    categoria: 'espiritualidade',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Inglês',
+    edicao: 'integral',
+    numCapitulos: 5,
+    tempoLeituraMin: 35,
+    descricao:
+      'O sermoão mais famoso da história americana — pregado em Enfield, Connecticut, durante o Grande Despertar, com ouvintes gemendo e chorando de medo.',
+    contexto:
+      'Edwards pregou este sermoão durante o Grande Despertar (1739-1743), o avivamento que varreu as colônias americanas. O texto bíblico era Deuteronômio 32:35. O sermoão causou pânico entre os ouvintes.',
+    importancia:
+      'É o sermoão mais citado da história americana e o exemplo clássico da teologia puritana da independência. A imagem dos pecadores "pendurados sobre o inferno pelas unhas de Deus" tornou-se um marco da retórica religiosa.',
+    citacao: {
+      texto:
+        'Neste momento, inumeráveis almas do mundo invisível estão suspensas pelas unhas de Deus sobre o inferno.',
+      fonte: 'Sinners in the Hands, Introdução',
+    },
+    tags: ['pregação', 'puritanismo', 'juízo', 'Grande Despertar'],
+    capa: { de: '#7A1F1F', ate: '#B04A3A', acento: '#F5DCD6' },
+  },
+  {
+    id: 'wesley-sermoes',
+    titulo: 'Sermões Selecionados',
+    tituloOriginal: 'Sermons on Several Occasions',
+    autor: 'John Wesley',
+    autorVida: '1703–1791 — fundador do metodismo',
+    ano: 1770,
+    anoTexto: '1740–1788',
+    categoria: 'espiritualidade',
+    dificuldade: 'Intermediário',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 5,
+    tempoLeituraMin: 40,
+    descricao:
+      'Uma seleção dos sermões mais influentes de Wesley: sobre a graça abrangente, a oração, a santificação, a justiça social e a unidade dos cristãos — os pilares do metodismo.',
+    contexto:
+      'Wesley pregou mais de 40.000 sermões ao longo de 52 anos. Os seus sermões definiram o metodismo — um movimento de santidade实践 que transformou a Inglaterra e o mundo.',
+    importancia:
+      'Os sermões de Wesley são a base da teologia metodista. A sua ênfase na santificação, na graça preveniente e na justiça social influenciou o evangelicalismo mundial.',
+    citacao: {
+      texto:
+        'O evangelho é para todos — não apenas para os ricos, não apenas para os pobres, mas para todos.',
+      fonte: 'Sermon 87, "On the Grace of Our Lord"',
+    },
+    tags: ['metodismo', 'Wesley', 'santificação', 'justiça social'],
+    capa: { de: '#5C4A2F', ate: '#9E7A5B', acento: '#F0E5D2' },
+  },
+  {
+    id: 'clarke-comentario',
+    titulo: 'Prefácio do Comentário Bíblico',
+    tituloOriginal: 'Preface to the Commentary on the Bible',
+    autor: 'Adam Clarke',
+    autorVida: '1762–1832 — teólogo metodista, Irlanda',
+    ano: 1810,
+    anoTexto: '1810 d.C.',
+    categoria: 'espiritualidade',
+    dificuldade: 'Avançado',
+    idiomaOriginal: 'Inglês',
+    edicao: 'selecao',
+    numCapitulos: 5,
+    tempoLeituraMin: 35,
+    descricao:
+      'O prefácio do monumental Comentário de Clarke — 8 volumes que levaram 40 anos para serem escritos — com princípios de interpretação bíblica, defesa do estudo das línguas originais e harmonia entre fé e razão.',
+    contexto:
+      'Clarke, metodista irlandês, começou o seu Comentário em 1790 e só o terminou em 1826, pouco antes de morrer. O prefácio é um manifesto sobre como estudar a Bíblia.',
+    importancia:
+      'O Commentary of Clarke foi o comentário mais usado no mundo anglófono por um século. O seu prefácio é uma introdução clássica à hermenêutica protestante.',
+    citacao: {
+      texto:
+        'A Escritura é o livro de Deus — e merece o nosso mais profundo estudo, não a nossa superficialidade.',
+      fonte: 'Preface to the Commentary',
+    },
+    tags: ['hermenêutica', 'Comentário', 'línguas originais', 'metodismo'],
+    capa: { de: '#4A3D5C', ate: '#7A5C8B', acento: '#E8E0F0' },
+  },
 ];
 
 export const getObraMeta = (id: string): ObraMeta | undefined =>

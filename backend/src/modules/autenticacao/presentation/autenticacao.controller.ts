@@ -1,5 +1,5 @@
-import { Controller, Post, Body, HttpCode, HttpStatus, UseGuards, Get, Query, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Post, Body, HttpCode, HttpStatus, UseGuards, Get, Query, Res, Req } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AutenticacaoService } from '../application/autenticacao.service';
 import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
@@ -8,6 +8,7 @@ import { Publico } from '../../../common/decorators/publico.decorator';
 import { ThrottleLogin } from '../../../common/decorators/throttle.decorator';
 import { ConfigService } from '@nestjs/config';
 import { CadastroDto, LoginDto, RefreshTokenDto } from './dto/autenticacao.dto';
+import * as crypto from 'crypto';
 
 @ApiTags('Autenticação')
 @Controller('auth')
@@ -63,44 +64,67 @@ export class AutenticacaoController {
     return this.authService.logout(usuarioId);
   }
 
-  private frontendCallback(base: string, params: Record<string, string>): string {
-    const url = new URL('/auth/callback', base);
-    Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-    return url.toString();
+  private getFrontendUrl(): string {
+    return this.configService.get<string>('FRONTEND_URL') || 'https://solascripturabr.com.br';
+  }
+
+  private setAuthCookies(res: Response, tokens: { accessToken: string; refreshToken: string; usuario: any }): void {
+    const isProduction = this.configService.get('NODE_ENV') === 'production';
+    res.cookie('ssb_token', tokens.accessToken, {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: 'lax',
+      maxAge: 15 * 60 * 1000,
+      path: '/',
+    });
+    res.cookie('ssb_refresh', tokens.refreshToken, {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: '/',
+    });
+  }
+
+  private generateState(): string {
+    return crypto.randomBytes(32).toString('hex');
   }
 
   @Publico()
   @Get('google')
   @ApiOperation({ summary: 'Iniciar login com Google' })
-  async googleAuth(@Res() res: Response) {
+  async googleAuth(@Req() req: Request, @Res() res: Response) {
     try {
-      const url = await this.authService.googleAuthUrl();
+      const state = this.generateState();
+      (req as any).session = (req as any).session || {};
+      (req as any).session.oauthState = state;
+      const url = await this.authService.googleAuthUrl(state);
       return res.redirect(url);
     } catch (e: any) {
-      const frontend = this.configService.get<string>('FRONTEND_URL') || 'https://solascripturabr.com.br';
-      return res.redirect(this.frontendCallback(frontend, { erro: e?.message || 'OAUTH_NAO_CONFIGURADO' }));
+      const frontend = this.getFrontendUrl();
+      return res.redirect(`${frontend}/auth?erro=${encodeURIComponent(e?.message || 'OAUTH_NAO_CONFIGURADO')}`);
     }
   }
 
   @Publico()
   @Get('google/callback')
   @ApiOperation({ summary: 'Callback do Google' })
-  async googleCallback(@Query('code') code: string, @Res() res: Response) {
-    const frontend = this.configService.get<string>('FRONTEND_URL') || 'https://solascripturabr.com.br';
+  async googleCallback(
+    @Query('code') code: string,
+    @Query('state') state: string,
+    @Req() req: Request,
+    @Res() res: Response,
+  ) {
+    const frontend = this.getFrontendUrl();
     if (!code) {
-      return res.redirect(this.frontendCallback(frontend, { erro: 'CODE_AUSENTE' }));
+      return res.redirect(`${frontend}/auth?erro=CODE_AUSENTE`);
     }
     try {
       const tokens = await this.authService.googleCallback(code);
-      return res.redirect(
-        this.frontendCallback(frontend, {
-          token: tokens.accessToken,
-          refresh: tokens.refreshToken,
-          usuario: encodeURIComponent(JSON.stringify(tokens.usuario)),
-        }),
-      );
+      this.setAuthCookies(res, tokens);
+      return res.redirect(`${frontend}/auth/callback?sucesso=true`);
     } catch (e: any) {
-      return res.redirect(this.frontendCallback(frontend, { erro: e?.message || 'OAUTH_FALHOU' }));
+      return res.redirect(`${frontend}/auth?erro=${encodeURIComponent(e?.message || 'OAUTH_FALHOU')}`);
     }
   }
 
@@ -112,8 +136,8 @@ export class AutenticacaoController {
       const url = await this.authService.appleIniciar();
       return res.redirect(url);
     } catch (e: any) {
-      const frontend = this.configService.get<string>('FRONTEND_URL') || 'https://solascripturabr.com.br';
-      return res.redirect(this.frontendCallback(frontend, { erro: e?.message || 'OAUTH_NAO_CONFIGURADO' }));
+      const frontend = this.getFrontendUrl();
+      return res.redirect(`${frontend}/auth?erro=${encodeURIComponent(e?.message || 'OAUTH_NAO_CONFIGURADO')}`);
     }
   }
 }

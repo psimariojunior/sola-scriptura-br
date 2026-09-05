@@ -111,7 +111,7 @@ export class AutenticacaoService {
     );
   }
 
-  async googleAuthUrl(): Promise<string> {
+  async googleAuthUrl(state?: string): Promise<string> {
     const clientId = this.configService.get<string>('GOOGLE_CLIENT_ID');
     const clientSecret = this.configService.get<string>('GOOGLE_CLIENT_SECRET');
     if (!clientId || !clientSecret) {
@@ -126,6 +126,9 @@ export class AutenticacaoService {
       access_type: 'offline',
       prompt: 'select_account',
     });
+    if (state) {
+      params.set('state', state);
+    }
     return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
   }
 

@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { PageShell } from '@/components/layout/PageShell';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, Trash2, Search, BookOpen, X, Plus, ArrowLeft, Edit3 } from 'lucide-react';
+import { FileText, Trash2, Search, BookOpen, X, Plus, ArrowLeft, Edit3, Download } from 'lucide-react';
+import { ExportNotesModal } from '@/components/notas/ExportNotesModal';
 import ScrollReveal from '@/components/ScrollReveal';
 import { NotaEditor, type Nota } from '@/components/NotaEditor';
 import { getNotesOffline } from '@/lib/offlineStorage';
@@ -25,6 +26,7 @@ function NotasPageInner() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const [notas, setNotas] = useState<Nota[]>([]);
+  const [exportOpen, setExportOpen] = useState(false);
   const [busca, setBusca] = useState('');
   const [carregado, setCarregado] = useState(false);
   const [view, setView] = useState<View>('list');
@@ -137,11 +139,20 @@ function NotasPageInner() {
                   <p className="text-sm text-muted-foreground">{t('notas.subtitle')}</p>
                 </div>
               </div>
-              <motion.button onClick={() => { setEditingNota(undefined); setView('editor'); }}
-                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium text-sm shadow-lg shadow-primary/25">
-                <Plus className="w-4 h-4" /> {t('notas.newNote')}
-              </motion.button>
+              <div className="flex items-center gap-2">
+                {notas.length > 0 && (
+                  <motion.button onClick={() => setExportOpen(true)}
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl border border-border/50 hover:bg-muted/50 text-muted-foreground font-medium text-sm transition-all">
+                    <Download className="w-4 h-4" />
+                  </motion.button>
+                )}
+                <motion.button onClick={() => { setEditingNota(undefined); setView('editor'); }}
+                  whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium text-sm shadow-lg shadow-primary/25">
+                  <Plus className="w-4 h-4" /> {t('notas.newNote')}
+                </motion.button>
+              </div>
             </div>
           </ScrollReveal>
 
@@ -252,6 +263,7 @@ function NotasPageInner() {
           )}
         </div>
         </PullToRefreshWrapper>
+      <ExportNotesModal open={exportOpen} onOpenChange={setExportOpen} notas={notas} />
     </PageShell>
   );
 }

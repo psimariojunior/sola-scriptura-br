@@ -422,7 +422,10 @@ export class RAGService {
       throw new Error('OPENAI_API_KEY não configurada');
     }
 
-    const resposta = await fetch('https://api.openai.com/v1/embeddings', {
+    const baseUrl = this.configService.get('OPENAI_BASE_URL', 'https://api.openai.com/v1');
+    const url = `${baseUrl}/embeddings`;
+
+    const resposta = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -436,7 +439,7 @@ export class RAGService {
 
     if (!resposta.ok) {
       const erro = await resposta.text();
-      throw new Error(`Erro OpenAI embedding: ${resposta.status} - ${erro}`);
+      throw new Error(`Erro embedding: ${resposta.status} - ${erro}`);
     }
 
     const dados = await resposta.json();
@@ -541,9 +544,11 @@ export class RAGService {
   private async gerarEmbeddingsLote(textos: string[]): Promise<number[][]> {
     if (!this.openaiKey) throw new Error('OPENAI_API_KEY não configurada');
 
+    const baseUrl = this.configService.get('OPENAI_BASE_URL', 'https://api.openai.com/v1');
+    const url = `${baseUrl}/embeddings`;
     const limpos = textos.map(t => t.slice(0, 8191));
 
-    const resposta = await fetch('https://api.openai.com/v1/embeddings', {
+    const resposta = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -557,7 +562,7 @@ export class RAGService {
 
     if (!resposta.ok) {
       const erro = await resposta.text();
-      throw new Error(`Erro OpenAI embeddings batch: ${resposta.status} - ${erro}`);
+      throw new Error(`Erro embeddings batch: ${resposta.status} - ${erro}`);
     }
 
     const dados = await resposta.json();

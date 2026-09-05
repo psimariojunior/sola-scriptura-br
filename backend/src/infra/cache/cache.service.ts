@@ -30,9 +30,29 @@ export class CacheService {
   async del(pattern: string): Promise<void> {
     if (!this.redis) return;
     try {
-      const keys = await this.redis.keys(pattern);
-      if (keys.length > 0) {
-        await this.redis.del(...keys);
+      if (pattern.includes('*')) {
+        const keys: string[] = [];
+        let cursor = '0';
+        do {
+          const [nextCursor, batch] = await this.redis.scan(
+            cursor,
+            'MATCH',
+            pattern,
+            'COUNT',
+            100,
+          );
+          cursor = nextCursor;
+          keys.push(...batch);
+        } while (cursor !== '0');
+
+        if (keys.length > 0) {
+          const BATCH_SIZE = 50;
+          for (let i = 0; i < keys.length; i += BATCH_SIZE) {
+            await this.redis.del(...keys.slice(i, i + BATCH_SIZE));
+          }
+        }
+      } else {
+        await this.redis.del(pattern);
       }
     } catch (err) {
       this.logger.warn(`Cache DEL failed for ${pattern}: ${err}`);

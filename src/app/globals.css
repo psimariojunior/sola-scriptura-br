@@ -851,11 +851,12 @@ body::before {
   html { scroll-behavior: smooth; }
 }
 
-/* Premium scrollbar */
+/* Premium scrollbar — consolidated */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.2); border-radius: 10px; transition: background 0.3s ease; }
 ::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.35); }
+* { scrollbar-width: thin; scrollbar-color: hsl(var(--muted-foreground) / 0.2) transparent; }
 
 /* Focus ring premium */
 .focus-premium:focus-visible {
@@ -1372,16 +1373,6 @@ textarea:focus-visible {
   }
   .glass-card, .sola-card {
     border: 1px solid ButtonText;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
@@ -2568,26 +2559,6 @@ textarea:focus-visible,
 .gradient-text-animated,
 [style*="animation"] {
   transition-property: none !important;
-}
-
-/* Custom scrollbar — thinner, themed, elegant */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.2);
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.4);
 }
 
 /* Firefox scrollbar */
@@ -3990,27 +3961,6 @@ main#main-content {
   z-index: 1;
 }
 
-::selection {
-  background: hsl(var(--primary) / 0.22);
-  color: hsl(var(--foreground));
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 999px;
-  border: 2px solid hsl(var(--background));
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.45);
-}
-
 /* Neutraliza cinzas genéricos que viravam blocos pretos no tema escuro */
 .dark .bg-gray-900,
 .dark .bg-gray-950,
@@ -4072,16 +4022,6 @@ header.ssb-header {
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
 }
 
-/* Unifica acentos genéricos (azul/roxo/ciano) com a paleta da marca */
-.text-blue-400, .text-blue-500, .text-blue-600, .text-blue-700,
-.text-indigo-400, .text-indigo-500, .text-indigo-600, .text-indigo-700,
-.text-purple-400, .text-purple-500, .text-purple-600, .text-purple-700,
-.text-violet-400, .text-violet-500, .text-violet-600, .text-violet-700,
-.text-cyan-400, .text-cyan-500, .text-cyan-600, .text-cyan-700,
-.text-sky-400, .text-sky-500, .text-sky-600, .text-sky-700,
-.text-teal-400, .text-teal-500, .text-teal-600 {
-  color: hsl(var(--primary));
-}
 
 .bible-layout {
   background: hsl(var(--background));

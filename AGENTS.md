@@ -9,7 +9,7 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - **Mobile**: Flutter WebView (mobile_app/) — carrega o site com splash screen dourada
 - **IA**: Groq (llama-3.3-70b-versatile, gratuito) + RAG vetorial (pgvector)
 - **Deploy**: Vercel (frontend), Oracle VM (backend)
-- **Auth**: Supabase (email/senha + Google OAuth) — cookie `ssb_token` no middleware
+- **Auth**: cookie `ssb_token` (httpOnly) + Google OAuth com state parameter CSRF — cookie `ssb_token` no middleware
 - **Audio**: Edge TTS gratuito (via /api/audio/edge) + ElevenLabs (premium) + Web Speech API fallback
 - **DNS/Proxy**: Cloudflare (solascripturabr.com.br)
 
@@ -387,3 +387,30 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - **Fase 1**: Performance (Web Vitals), SEO (sitemap+robots), Acessibilidade, Offline (SW v12)
 - **Fase 2**: Streak inteligente, Notificações motivacionais, Offline sync, Settings completo
 - **Fase 3**: Widgets Android (versículo+progresso), Background fetch, Compartilhamento nativo
+
+## Changelog Recente (05/09/2026)
+### Melhorias de Qualidade e Segurança
+- **ScrollReveal.tsx**: Implementado IntersectionObserver real com `whileInView` do framer-motion (antes era fake, sempre mostrava conteúdo)
+- **OAuth**: Adicionado state parameter para CSRF protection + tokens via httpOnly cookies (não mais na URL)
+- **CacheService**: `KEYS` substituído por `SCAN` (seguro para produção, não bloqueia Redis)
+- **RAG Service**: Embeddings API agora usa `OPENAI_BASE_URL` configurável (não mais hardcoded para openai.com)
+- **ExegeseService**: Expandido de 35 para 180+ linhas com prompt de exegese completa (12 dimensões)
+- **CSS**: Removido color override `.text-blue-*` que forçava todas cores virarem dourado
+- **CSS**: Consolidados 3 scrollbar duplicates e 2 ::selection duplicates
+
+### Refatoração de Componentes
+- **Pesquisa**: Quebrada de 881 para ~160 linhas com componentes extraídos
+  - `useSearchEngine` hook (lógica de busca)
+  - `SearchFilters` (sidebar de filtros)
+  - `SearchResults` (resultados da busca)
+  - `LexiconResults` (resultados do lexicon)
+  - `highlightText` (utilitário de destaque)
+
+### Novas Funcionalidades
+- **Biblioteca Digital**: Expandida de 15 para 41 obras classicas da cristandade
+  - Pais da Igreja: Origenes, Cipriano, Gregorio de Nissa, Basilio, Ambrósio, Jerônimo
+  - Espiritualidade: Bunyan, Spurgeon, Baxter, Edwards, Wesley
+  - Teologia: C.S. Lewis (2 obras), Bonhoeffer, Adam Clarke
+- **Export de Notas**: Modal com export TXT/DOCX/PDF com filtros por tag e data
+  - `exportNotes.ts` (utilitários de exportação)
+  - `ExportNotesModal.tsx` (componente modal)

@@ -48,7 +48,9 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
   - **Karaoke** — sincronizacao audio-versiculo (verso atual destacado em dourado)
   - **Comentarios inline** — badges de comentários expandiveis em cada verso
   - **Referências cruzadas visuais** — grid com cards clicaveis por tipo
-- `/pesquisa` — Pesquisa avancada com **busca semantica** (50 grupos de sinonimos)
+  - **Passage Guide** — painel único com tudo sobre um versículo (comentários, refs, léxico, mapa, IA)
+  - **Insights Sidebar** — painel lateral contextual com mini-insights automáticos
+- `/pesquisa` — Pesquisa avancada com **busca semantica** (50 grupos de sinonimos) + **Busca com IA** (linguagem natural via Groq)
 - `/idiomas` — Grego (5526 palavras) e Hebraico (8674 palavras) lexico Strong's
 - `/exegese` — Exegese automatica com IA
 - `/teologia` — Teologia sistematica (13 categorias)
@@ -117,11 +119,10 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 ### Rotas da API
 - `/api/ia/perguntar` — Rota de IA (proxy para backend NestJS)
 - `/api/ia/stream` — Streaming de respostas IA
+- `/api/ia/pesquisa` — **Busca com IA** (linguagem natural, retorna JSON com versículos + explicação)
 - `/api/audio/edge` — Edge TTS (gera MP3 via node-edge-tts)
 - `/api/notifications` — Push notifications (placeholder)
 - `/api/sync` — Sincronizacao de dados do usuario (favoritos, notas, colecoes)
-- `/api/audio/edge` — Edge TTS (gera MP3 via node-edge-tts)
-- `/api/notifications` — Push notifications (placeholder)
 
 ## Componentes Chave (src/components/)
 - `VerseDoDia.tsx` — Versiculo do dia na home page
@@ -147,6 +148,11 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - `FlashcardSystem.tsx` — Flashcards com repeticao espacada
 - `LiveQuiz.tsx` — Quiz com timer, scoring, ranking
 - `SharedNotes.tsx` — Notas compartilhadas com cores
+- `PassageGuide/` — **Guia da Passagem** (painel único com 13 seções: texto, comentários, léxico, refs, estudos, mapa, contexto, personagens, doutrinas, cronologia, perícope, crítica textual, IA)
+- `InsightsPanel.tsx` — **Insights Sidebar** (painel lateral contextual com mini-insights automáticos)
+- `InsightsToggle.tsx` — Botão flutuante para toggle dos insights
+- `AISearchToggle.tsx` — Toggle para busca com IA na pesquisa
+- `AISearchResults.tsx` — Resultados da busca com IA (explicação + cards de versículos)
 - `BottomSheet.tsx` — Bottom sheet nativo com snap points
 - `PullToRefresh.tsx` — Pull-to-refresh wrapper
 - `RoomEntrance.tsx` — Animacao de entrada na sala
@@ -414,3 +420,31 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - **Export de Notas**: Modal com export TXT/DOCX/PDF com filtros por tag e data
   - `exportNotes.ts` (utilitários de exportação)
   - `ExportNotesModal.tsx` (componente modal)
+
+### Fase 1: Features que Superam o Logos (05/09/2026)
+- **Passage Guide**: Painel único com tudo sobre um versículo
+  - `src/components/Biblia/PassageGuide/` — 13 seções (texto, comentários, léxico, refs, estudos, mapa, contexto, personagens, doutrinas, cronologia, perícope, crítica textual, IA)
+  - `PassageGuideSection.tsx` — Componente base expandível/colapsável
+  - `sections/VerseTextSection.tsx` — Texto multi-tradução
+  - `sections/ComentariosSection.tsx` — Comentários teológicos (4911)
+  - `sections/CrossRefsSection.tsx` — Referências cruzadas (29k)
+  - `sections/LexicoSection.tsx` — Léxico Strong's (8674 + 5526)
+  - `sections/EstudoSection.tsx` — Estudos teológicos
+  - `sections/MapaSection.tsx` — Mapa Leaflet
+  - `sections/ContextoSection.tsx` — Contexto histórico
+  - `sections/IASection.tsx` — Pergunta à IA (Groq)
+  - Mobile: BottomSheet com snap points (50/75/95vh)
+  - Web: Sidebar lateral (420px) com toggle tela cheia
+  - Lazy loading granular por seção (evita carregar 14MB de uma vez)
+- **Smart Search com IA**: Pesquisa em linguagem natural
+  - `src/app/api/ia/pesquisa/route.ts` — Endpoint SSE streaming
+  - `src/hooks/pesquisa/useAISearch.ts` — Hook de estado + streaming
+  - `src/components/pesquisa/AISearchToggle.tsx` — Toggle "Buscar com IA"
+  - `src/components/pesquisa/AISearchResults.tsx` — Resultados com cards de versículos
+  - Respostas com explicação teológica + versículos relevantes
+- **Insights Sidebar**: Painel lateral contextual
+  - `src/hooks/biblia/useInsights.ts` — Hook de dados com cache + pre-computação
+  - `src/components/Biblia/InsightsPanel.tsx` — Painel flutuante (web) / BottomSheet (mobile)
+  - `src/components/Biblia/InsightsToggle.tsx` — Botão flutuante
+  - 3 mini-insights: Comentário (amber), Referência Cruzada (cyan), Palavra-Chave (purple)
+  - Pre-computação para 50 versículos comuns via requestIdleCallback

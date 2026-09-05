@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FolderPlus, Heart, StickyNote, Undo2, X } from 'lucide-react';
+import { BookOpen, FolderPlus, Heart, StickyNote, Undo2, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   aplicarOuRemoverMarcador,
@@ -34,6 +34,7 @@ export interface VerseQuickBarProps {
   temAnotacao?: boolean;
   onFavoritoChange: () => void;
   onAnotar: () => void;
+  onAbrirGuia?: () => void;
   onClose?: () => void;
   variant?: 'inline' | 'dock';
 }
@@ -49,6 +50,7 @@ export function VerseQuickBar({
   temAnotacao = false,
   onFavoritoChange,
   onAnotar,
+  onAbrirGuia,
   onClose,
   variant = 'inline',
 }: VerseQuickBarProps) {
@@ -196,7 +198,12 @@ export function VerseQuickBar({
         })}
       </div>
 
-      <div className="mt-1.5 grid grid-cols-4 gap-1">
+      <div className="mt-1.5 grid grid-cols-5 gap-1">
+        <ActionChip
+          icon={BookOpen}
+          label="Guia"
+          onClick={() => onAbrirGuia?.()}
+        />
         <ActionChip
           icon={Heart}
           label={isFavorito ? 'Favorito' : 'Favoritar'}

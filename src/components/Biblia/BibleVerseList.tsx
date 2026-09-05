@@ -34,6 +34,10 @@ import { karaokeProgressFromAudio } from '@/lib/karaokeWords';
 import { useMarcasCapitulo } from '@/hooks/useMarcadores';
 import { MARCA_CLASSE, type CorMarcador } from '@/lib/marcadores';
 import { obterMarca } from '@/lib/estudos';
+import { PassageGuide } from './PassageGuide';
+import { InsightsPanel } from './InsightsPanel';
+import { InsightsToggle } from './InsightsToggle';
+import { precomputeInsights } from '@/hooks/biblia/useInsights';
 
 const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
 const PainelEstudosCapitulo = dynamic(() => import('./PainelEstudosCapitulo'));
@@ -111,6 +115,25 @@ export function BibleVerseList({
 
   const isModoLeitura = ui.modoLeitura === 'foco';
   const isModoEstudo = ui.modoLeitura === 'estudo';
+  const [passageGuideOpen, setPassageGuideOpen] = useState(false);
+  const [insightsOpen, setInsightsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 1024;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 1023px)');
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  // Pre-compute insights for common verses
+  useEffect(() => {
+    precomputeInsights();
+  }, []);
   const marcasCapitulo = useMarcasCapitulo(
     nav.livro.abreviacao,
     nav.capituloIdx + 1,
@@ -381,6 +404,7 @@ export function BibleVerseList({
                                 stableSetAnotandoVersiculo(verseKey);
                                 verse.setAnotacaoTexto('');
                               }}
+                              onAbrirGuia={() => setPassageGuideOpen(true)}
                               onClose={handleDeselectVerse}
                               variant="inline"
                             />
@@ -536,10 +560,45 @@ export function BibleVerseList({
               stableSetAnotandoVersiculo(`${s.livroAbreviacao}:${s.capitulo}:${s.versiculo}:${s.traducao}`);
               verse.setAnotacaoTexto('');
             }}
+            onAbrirGuia={() => setPassageGuideOpen(true)}
             onClose={handleDeselectVerse}
             variant="dock"
           />
         </div>
+      )}
+
+      {/* Passage Guide */}
+      {verse.versiculoSelecionado && (
+        <PassageGuide
+          open={passageGuideOpen}
+          onClose={() => setPassageGuideOpen(false)}
+          livro={verse.versiculoSelecionado.livroAbreviacao}
+          livroNome={verse.versiculoSelecionado.livroNome}
+          capitulo={verse.versiculoSelecionado.capitulo}
+          versiculo={verse.versiculoSelecionado.versiculo}
+          texto={verse.versiculoSelecionado.texto}
+          traducao={verse.versiculoSelecionado.traducao}
+          isMobile={isMobile}
+        />
+      )}
+
+      {/* Insights Panel */}
+      {verse.versiculoSelecionado && (
+        <>
+          <InsightsToggle
+            open={insightsOpen}
+            onToggle={() => setInsightsOpen(!insightsOpen)}
+          />
+          <InsightsPanel
+            open={insightsOpen}
+            onClose={() => setInsightsOpen(false)}
+            livro={verse.versiculoSelecionado.livroAbreviacao}
+            capitulo={verse.versiculoSelecionado.capitulo}
+            versiculo={verse.versiculoSelecionado.versiculo}
+            livroNome={verse.versiculoSelecionado.livroNome}
+            isMobile={isMobile}
+          />
+        </>
       )}
     </div>
   );

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserFromRequest } from '@/lib/session';
 import { origemPermitida } from '@/lib/origemPermitida';
+import { CookieClearSchema, validateBody } from '@/lib/api-schemas';
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,12 +10,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    const { name } = await request.json();
-
-    const allowedCookies = ['ssb_token', 'ssb_usuario', 'ssb_refresh'];
-    if (!name || !allowedCookies.includes(name)) {
+    let rawBody: unknown;
+    try {
+      rawBody = await request.json();
+    } catch {
       return NextResponse.json({ ok: true });
     }
+
+    const parsed = validateBody(CookieClearSchema, rawBody);
+    if (!parsed.success) return NextResponse.json({ ok: true });
+
+    const { name } = parsed.data;
 
     const response = NextResponse.json({ ok: true });
 

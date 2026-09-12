@@ -19,7 +19,7 @@ export const EstudoSchema = z.object({
 
 export const SyncSchema = z.object({
   tipo: z.enum(['favoritos', 'notas', 'colecoes', 'progresso']),
-  dados: z.record(z.unknown()),
+  dados: z.record(z.string(), z.unknown()),
 });
 
 export const CookieClearSchema = z.object({

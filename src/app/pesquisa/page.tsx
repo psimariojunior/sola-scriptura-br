@@ -79,7 +79,7 @@ export default function PesquisaPage() {
                 type="text"
                 value={engine.query}
                 onChange={(e) => handleQueryChange(e.target.value)}
-                placeholder={aiMode ? 'Pergunte em linguagem natural... ex: "Como Paulo fala da graça?"' : engine.searchMode === 'strongs' ? 'Ex: H1234, G3056, 1234...' : t('pesquisa.searchPlaceholder')}
+                placeholder={aiMode ? t('pesquisa.aiPlaceholder') : engine.searchMode === 'strongs' ? t('pesquisa.strongsPlaceholder') : t('pesquisa.searchPlaceholder')}
                 className="w-full pl-12 pr-14 sm:pr-24 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
                 autoFocus
                 aria-describedby="pesquisa-results-count"
@@ -107,7 +107,7 @@ export default function PesquisaPage() {
               />
               {aiMode && (
                 <span className="text-[10px] text-[var(--content-muted)]">
-                  Ctrl+Shift+A para ativar
+                  {t('pesquisa.aiShortcutHint')}
                 </span>
               )}
             </div>
@@ -132,7 +132,7 @@ export default function PesquisaPage() {
                   <div className="text-sm text-muted-foreground">
                     {engine.resultados.length > 0 ? (
                       <span>
-                        <strong className="text-foreground">{engine.resultados.length}</strong> resultado{engine.resultados.length !== 1 ? 's' : ''} encontrado{engine.resultados.length !== 1 ? 's' : ''} em{' '}
+                        <strong className="text-foreground">{engine.resultados.length}</strong>{' '}{t('pesquisa.resultsCount', { count: engine.resultados.length })}{' '}
                         <strong className="text-foreground">{engine.searchTime !== null ? (engine.searchTime / 1000).toFixed(1) : '0.0'}s</strong>
                         {' '}&mdash;{' '}&ldquo;<strong className="text-foreground">{engine.debouncedQuery}</strong>&rdquo;
                         {engine.buscaSemantica && engine.searchMode !== 'strongs' && (
@@ -143,7 +143,7 @@ export default function PesquisaPage() {
                       </span>
                     ) : engine.searchMode === 'strongs' && engine.lexiconResults.length > 0 ? (
                       <span>
-                        <strong className="text-foreground">{engine.lexiconResults.length}</strong> entrada{engine.lexiconResults.length !== 1 ? 's' : ''} no lexicon para &ldquo;<strong className="text-foreground">{engine.debouncedQuery}</strong>&rdquo;
+                        <strong className="text-foreground">{engine.lexiconResults.length}</strong>{' '}{t('pesquisa.lexiconEntriesFor')} &ldquo;<strong className="text-foreground">{engine.debouncedQuery}</strong>&rdquo;
                       </span>
                     ) : (
                       <span>{t('pesquisa.noResultsFor')} &ldquo;<strong className="text-foreground">{engine.debouncedQuery}</strong>&rdquo;</span>

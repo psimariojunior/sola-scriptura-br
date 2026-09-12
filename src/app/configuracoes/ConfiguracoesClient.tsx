@@ -33,6 +33,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import { requestNotificationPermission } from '@/lib/pushNotifications';
+import { useToast } from '@/hooks/useToast';
 
 const THEME_ICONS: Record<string, React.ReactNode> = {
   light: <Sun className="w-4 h-4" />,
@@ -108,6 +110,8 @@ function SliderControl({
   step = 1,
   unit = '',
   labels,
+  ariaLabelDecrease,
+  ariaLabelIncrease,
 }: {
   value: number;
   onChange: (v: number) => void;
@@ -116,13 +120,15 @@ function SliderControl({
   step?: number;
   unit?: string;
   labels?: Record<number, string>;
+  ariaLabelDecrease?: string;
+  ariaLabelIncrease?: string;
 }) {
   return (
     <div className="flex items-center gap-3">
       <button
         onClick={() => onChange(Math.max(min, value - step))}
         className="w-8 h-8 rounded-lg border border-[var(--border)] flex items-center justify-center hover:bg-[var(--surface-sunken)] transition-colors"
-        aria-label="Diminuir"
+        aria-label={ariaLabelDecrease}
       >
         <Minus className="w-3.5 h-3.5" />
       </button>
@@ -155,7 +161,7 @@ function SliderControl({
       <button
         onClick={() => onChange(Math.min(max, value + step))}
         className="w-8 h-8 rounded-lg border border-[var(--border)] flex items-center justify-center hover:bg-[var(--surface-sunken)] transition-colors"
-        aria-label="Aumentar"
+        aria-label={ariaLabelIncrease}
       >
         <Plus className="w-3.5 h-3.5" />
       </button>
@@ -167,6 +173,7 @@ export default function ConfiguracoesClient() {
   const { t, i18n } = useTranslation();
   const { tema, setTema, temasDisponiveis } = useTema();
   const { isAutenticado, usuario } = useAuth();
+  const { toast } = useToast();
 
   const [fontSize, setFontSize] = useState(18);
   const [fontFamily, setFontFamily] = useState<'serif' | 'sans' | 'reading'>('serif');
@@ -238,20 +245,47 @@ export default function ConfiguracoesClient() {
     try { localStorage.setItem('ssb_audio_speed', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
   }, []);
 
-  const handleDevocional = useCallback((v: boolean) => {
+  const handleDevocional = useCallback(async (v: boolean) => {
+    if (v) {
+      const granted = await requestNotificationPermission();
+      if (!granted) {
+        if (Notification.permission === 'denied') {
+          toast({ title: 'Permissão negada', description: 'Ative as notificações nas configurações do navegador.', variant: 'error' });
+        }
+        return;
+      }
+    }
     setDevocionalReminder(v);
     try { localStorage.setItem('ssb_push_devocional', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
-  }, []);
+  }, [toast]);
 
-  const handlePlano = useCallback((v: boolean) => {
+  const handlePlano = useCallback(async (v: boolean) => {
+    if (v) {
+      const granted = await requestNotificationPermission();
+      if (!granted) {
+        if (Notification.permission === 'denied') {
+          toast({ title: 'Permissão negada', description: 'Ative as notificações nas configurações do navegador.', variant: 'error' });
+        }
+        return;
+      }
+    }
     setPlanoReminder(v);
     try { localStorage.setItem('ssb_push_plano', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
-  }, []);
+  }, [toast]);
 
-  const handleStreak = useCallback((v: boolean) => {
+  const handleStreak = useCallback(async (v: boolean) => {
+    if (v) {
+      const granted = await requestNotificationPermission();
+      if (!granted) {
+        if (Notification.permission === 'denied') {
+          toast({ title: 'Permissão negada', description: 'Ative as notificações nas configurações do navegador.', variant: 'error' });
+        }
+        return;
+      }
+    }
     setStreakReminder(v);
     try { localStorage.setItem('ssb_push_streak', String(v)); } catch { console.debug('[ConfiguracoesClient]'); }
-  }, []);
+  }, [toast]);
 
   const handleIdioma = useCallback((v: 'pt' | 'en') => {
     setIdioma(v);
@@ -366,6 +400,8 @@ export default function ConfiguracoesClient() {
                 max={28}
                 step={1}
                 unit="px"
+                ariaLabelDecrease={t('configuracoes.appearance.decrease')}
+                ariaLabelIncrease={t('configuracoes.appearance.increase')}
               />
               <div className="mt-3 p-3 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)]/50">
                 <p
@@ -438,7 +474,7 @@ export default function ConfiguracoesClient() {
               </p>
               <Select value={defaultTranslation} onValueChange={handleDefaultTranslation}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Selecione..." />
+                  <SelectValue placeholder={t('configuracoes.bible.selectTranslation')} />
                 </SelectTrigger>
                 <SelectContent>
                   {TRAD_GROUPS.map((grupo) => (
@@ -518,6 +554,8 @@ export default function ConfiguracoesClient() {
                   max={2.0}
                   step={0.1}
                   unit="x"
+                  ariaLabelDecrease={t('configuracoes.appearance.decrease')}
+                  ariaLabelIncrease={t('configuracoes.appearance.increase')}
                 />
               </div>
             )}

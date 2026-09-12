@@ -121,3 +121,17 @@ textarea:focus-visible,
     --border: currentColor;
   }
 }
+
+/* === Minimum 44px touch targets on mobile (WCAG 2.5.8) === */
+@media (pointer: coarse) {
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"],
+  [role="tab"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

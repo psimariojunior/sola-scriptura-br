@@ -741,7 +741,8 @@
     "green": "Verde",
     "blue": "Azul",
     "pink": "Rosa",
-    "purple": "Roxo"
+    "purple": "Roxo",
+    "confirmRemove": "Tem certeza que deseja remover este versículo dos favoritos?"
   },
   "notas": {
     "title": "Notas",
@@ -758,7 +759,8 @@
     "of": "de",
     "notes": "notas",
     "noCategory": "Sem categoria",
-    "backToNotes": "Voltar às notas"
+    "backToNotes": "Voltar às notas",
+    "readInBible": "Ler na Bíblia"
   },
   "estudos": {
     "title": "Biblioteca de Estudos",
@@ -894,7 +896,13 @@
     "copy": "Copiar",
     "copied": "Copiado!",
     "share": "Compartilhar",
-    "goToBible": "Ir para Bíblia"
+    "goToBible": "Ir para Bíblia",
+    "aiPlaceholder": "Pergunte em linguagem natural... ex: \"Como Paulo fala da graça?\"",
+    "strongsPlaceholder": "Ex: H1234, G3056, 1234...",
+    "aiShortcutHint": "Ctrl+Shift+A para ativar",
+    "resultsCount": "{{count}} resultado(s) para",
+    "foundIn": "encontrado(s) em",
+    "lexiconEntriesFor": "entrada(s) no lexicon para"
   },
   "ia": {
     "loading": "Carregando assistente...",
@@ -1089,7 +1097,7 @@
     "savedOffline": "Salvo offline",
     "saving": "Salvando..."
   },
-  "biblia": {
+    "biblia": {
     "exitZen": "Sair do modo zen (Esc)",
     "previousChapter": "Capítulo anterior",
     "nextChapter": "Próximo capítulo",
@@ -1107,6 +1115,7 @@
     "audioQuality": "Qualidade do áudio",
     "chapterOffline": "Capítulo não disponível offline",
     "connectOrDownload": "Conecte-se à internet ou baixe as traduções.",
+    "hotkeysToast": "Pressione ? para ver os atalhos de teclado",
     "interlinearView": "Vista Interlinear",
     "interlinear": {
       "columnLegend": "Original · sentido · Strong",
@@ -1376,7 +1385,9 @@
       "fontFamily": "Família da fonte",
       "serif": "Serifado (Spectral)",
       "sans": "Sem serifa (Inter)",
-      "reading": "Leitura (Cormorant)"
+      "reading": "Leitura (Cormorant)",
+      "decrease": "Diminuir",
+      "increase": "Aumentar"
     },
     "bible": {
       "title": "Bíblia",
@@ -1390,7 +1401,8 @@
       "interlinear": "Interlinear",
       "autoPlayAudio": "Reproduzir áudio automaticamente",
       "audioVoice": "Voz do áudio",
-      "audioSpeed": "Velocidade do áudio"
+      "audioSpeed": "Velocidade do áudio",
+      "selectTranslation": "Selecione..."
     },
     "notifications": {
       "title": "Notificações",

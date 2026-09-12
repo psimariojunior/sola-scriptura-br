@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageShell } from '@/components/layout/PageShell';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Trash2, Search, X, ArrowUpDown, BookOpen, Download } from 'lucide-react';
+import { Heart, Trash2, Search, X, ArrowUpDown, BookOpen, Download, ChevronDown, Square, Check } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
@@ -41,6 +41,9 @@ export default function FavoritosPage() {
   const [filtroLivro, setFiltroLivro] = useState('all');
   const [sortBy, setSortBy] = useState<SortBy>('data');
   const [carregado, setCarregado] = useState(false);
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [showExportMenu, setShowExportMenu] = useState(false);
 
   const carregarFavoritos = useCallback(async () => {
     try {
@@ -73,7 +76,7 @@ export default function FavoritosPage() {
   }, []);
 
   const remover = useCallback((id: string) => {
-    if (!window.confirm('Tem certeza que deseja remover este versículo dos favoritos?')) return;
+    if (!window.confirm(t('favoritos.confirmRemove'))) return;
     setFavoritos(prev => {
       const updated = prev.filter(f => f.id !== id);
       localStorage.setItem('ssb_favoritos', JSON.stringify(updated));
@@ -122,6 +125,64 @@ export default function FavoritosPage() {
     return result;
   }, [favoritos, busca, filtroCor, filtroLivro, sortBy]);
 
+  const exportarTXT = useCallback(() => {
+    const text = filtrados.map(f => `${f.versiculo}\n${f.texto}\n`).join('\n');
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `favoritos-sola-scriptura-${new Date().toISOString().slice(0, 10)}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setShowExportMenu(false);
+  }, [filtrados]);
+
+  const exportarCSV = useCallback(() => {
+    const header = 'Referência,Texto,Cor,Data\n';
+    const rows = filtrados.map(f =>
+      `"${f.versiculo}","${f.texto.replace(/"/g, '""')}","${f.cor}","${f.data}"`
+    ).join('\n');
+    const blob = new Blob([header + rows], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `favoritos-sola-scriptura-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setShowExportMenu(false);
+  }, [filtrados]);
+
+  const toggleSelectAll = useCallback(() => {
+    if (selectedIds.size === filtrados.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(filtrados.map(f => f.id)));
+    }
+  }, [filtrados, selectedIds.size]);
+
+  const toggleSelect = useCallback((id: string) => {
+    setSelectedIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
+
+  const excluirSelecionados = useCallback(() => {
+    if (selectedIds.size === 0) return;
+    if (!window.confirm(`Tem certeza que deseja remover ${selectedIds.size} versículo(s) dos favoritos?`)) return;
+    setFavoritos(prev => {
+      const updated = prev.filter(f => !selectedIds.has(f.id));
+      localStorage.setItem('ssb_favoritos', JSON.stringify(updated));
+      saveFavoritesOffline(updated).catch(() => {});
+      triggerSync();
+      return updated;
+    });
+    setSelectedIds(new Set());
+    setSelectMode(false);
+  }, [selectedIds, triggerSync]);
+
   return (
     <PageShell maxWidth="3xl">
         <PullToRefreshWrapper onRefresh={carregarFavoritos}>
@@ -138,10 +199,42 @@ export default function FavoritosPage() {
                 </div>
               </div>
               {favoritos.length > 0 && (
-                <motion.button onClick={exportar} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border text-sm text-muted-foreground hover:bg-muted/50 transition-all">
-                  <Download className="w-4 h-4" /> {t('favoritos.export')}
-                </motion.button>
+                <div className="flex items-center gap-2">
+                  {selectMode && selectedIds.size > 0 && (
+                    <motion.button onClick={excluirSelecionados} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-sm text-red-500 hover:bg-red-500/20 transition-all">
+                      <Trash2 className="w-4 h-4" /> Excluir ({selectedIds.size})
+                    </motion.button>
+                  )}
+                  <motion.button onClick={() => { setSelectMode(p => !p); setSelectedIds(new Set()); }}
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className={cn('flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition-all',
+                      selectMode ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground hover:bg-muted/50')}>
+                    <Square className="w-4 h-4" /> {selectMode ? 'Cancelar' : 'Selecionar'}
+                  </motion.button>
+                  <div className="relative">
+                    <motion.button onClick={() => setShowExportMenu(p => !p)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border text-sm text-muted-foreground hover:bg-muted/50 transition-all">
+                      <Download className="w-4 h-4" /> {t('favoritos.export')} <ChevronDown className="w-3 h-3" />
+                    </motion.button>
+                    {showExportMenu && (
+                      <>
+                        <div className="fixed inset-0 z-40" onClick={() => setShowExportMenu(false)} />
+                        <div className="absolute right-0 top-full mt-1 z-50 w-40 rounded-xl border border-border bg-card shadow-lg overflow-hidden">
+                          <button onClick={exportar} className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-left hover:bg-muted/50 transition-colors">
+                            <Download className="w-4 h-4 text-muted-foreground" /> JSON
+                          </button>
+                          <button onClick={exportarTXT} className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-left hover:bg-muted/50 transition-colors">
+                            <Download className="w-4 h-4 text-muted-foreground" /> TXT
+                          </button>
+                          <button onClick={exportarCSV} className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-left hover:bg-muted/50 transition-colors">
+                            <Download className="w-4 h-4 text-muted-foreground" /> CSV
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
               )}
             </div>
           </ScrollReveal>
@@ -195,13 +288,32 @@ export default function FavoritosPage() {
               </ScrollReveal>
 
               <div className="space-y-3">
+                {selectMode && (
+                  <button onClick={toggleSelectAll}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border text-sm text-muted-foreground hover:bg-muted/50 transition-all mb-2">
+                    {selectedIds.size === filtrados.length && filtrados.length > 0
+                      ? <span className="w-4 h-4 rounded border-2 border-primary bg-primary flex items-center justify-center"><Check className="w-3 h-3 text-primary-foreground" /></span>
+                      : <Square className="w-4 h-4" />}
+                    {selectedIds.size === filtrados.length && filtrados.length > 0 ? 'Desmarcar todos' : 'Selecionar todos'}
+                    <span className="text-xs text-muted-foreground ml-auto">{selectedIds.size}/{filtrados.length}</span>
+                  </button>
+                )}
                 <AnimatePresence>
                   {filtrados.map((fav, idx) => (
                     <motion.div key={fav.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, x: -20 }} transition={{ delay: idx * 0.03 }}
-                      className="relative rounded-xl border border-border/50 bg-card/50 p-4 group hover:border-primary/30 transition-all">
+                      className={cn('relative rounded-xl border bg-card/50 p-4 group hover:border-primary/30 transition-all',
+                        selectMode && selectedIds.has(fav.id) ? 'border-primary/50 bg-primary/5' : 'border-border/50')}>
                       <div className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-xl" style={{ backgroundColor: fav.cor }} />
                       <div className="pl-3">
+                        {selectMode && (
+                          <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleSelect(fav.id); }}
+                            className="absolute top-4 right-4 p-1">
+                            {selectedIds.has(fav.id)
+                              ? <span className="w-5 h-5 rounded border-2 border-primary bg-primary flex items-center justify-center"><Check className="w-3.5 h-3.5 text-primary-foreground" /></span>
+                              : <Square className="w-5 h-5 text-muted-foreground" />}
+                          </button>
+                        )}
                         <Link href={getBibliaHref(fav)} className="block mb-2 hover:text-primary transition-colors">
                           <p className="text-sm text-foreground/90 leading-relaxed">{fav.texto}</p>
                         </Link>
@@ -211,10 +323,12 @@ export default function FavoritosPage() {
                           </Link>
                           <div className="flex items-center gap-2">
                             <span className="text-[10px] text-muted-foreground">{new Date(fav.data).toLocaleDateString('pt-BR')}</span>
-                            <button onClick={(e) => { e.preventDefault(); remover(fav.id); }}
-                              className="sm:opacity-0 sm:group-hover:opacity-100 opacity-100 p-1.5 rounded-lg hover:bg-red-500/10 text-red-500 transition-all">
-                              <Trash2 className="w-3.5 h-3.5" />
-                            </button>
+                            {!selectMode && (
+                              <button onClick={(e) => { e.preventDefault(); remover(fav.id); }}
+                                className="sm:opacity-0 sm:group-hover:opacity-100 opacity-100 p-1.5 rounded-lg hover:bg-red-500/10 text-red-500 transition-all">
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            )}
                           </div>
                         </div>
                       </div>

@@ -741,7 +741,8 @@
     "green": "Green",
     "blue": "Blue",
     "pink": "Pink",
-    "purple": "Purple"
+    "purple": "Purple",
+    "confirmRemove": "Are you sure you want to remove this verse from favorites?"
   },
   "notas": {
     "title": "Notes",
@@ -758,7 +759,8 @@
     "of": "of",
     "notes": "notes",
     "noCategory": "No category",
-    "backToNotes": "Back to notes"
+    "backToNotes": "Back to notes",
+    "readInBible": "Read in Bible"
   },
   "estudos": {
     "title": "Study Library",
@@ -894,7 +896,13 @@
     "copy": "Copy",
     "copied": "Copied!",
     "share": "Share",
-    "goToBible": "Go to Bible"
+    "goToBible": "Go to Bible",
+    "aiPlaceholder": "Ask in natural language... e.g., \"How does Paul talk about grace?\"",
+    "strongsPlaceholder": "E.g.: H1234, G3056, 1234...",
+    "aiShortcutHint": "Ctrl+Shift+A to enable",
+    "resultsCount": "{{count}} result(s) for",
+    "foundIn": "found in",
+    "lexiconEntriesFor": "lexicon entry/entries for"
   },
   "ia": {
     "loading": "Loading assistant...",
@@ -1089,7 +1097,7 @@
     "savedOffline": "Saved offline",
     "saving": "Saving..."
   },
-  "biblia": {
+    "biblia": {
     "exitZen": "Exit zen mode (Esc)",
     "previousChapter": "Previous chapter",
     "nextChapter": "Next chapter",
@@ -1107,6 +1115,7 @@
     "audioQuality": "Audio quality",
     "chapterOffline": "Chapter not available offline",
     "connectOrDownload": "Connect to the internet or download translations.",
+    "hotkeysToast": "Press ? to see keyboard shortcuts",
     "interlinearView": "Interlinear view",
     "interlinear": {
       "columnLegend": "Original · gloss · Strong",
@@ -1376,7 +1385,9 @@
       "fontFamily": "Font family",
       "serif": "Serif (Spectral)",
       "sans": "Sans-serif (Inter)",
-      "reading": "Reading (Cormorant)"
+      "reading": "Reading (Cormorant)",
+      "decrease": "Decrease",
+      "increase": "Increase"
     },
     "bible": {
       "title": "Bible",
@@ -1390,7 +1401,8 @@
       "interlinear": "Interlinear",
       "autoPlayAudio": "Auto-play audio",
       "audioVoice": "Audio voice",
-      "audioSpeed": "Audio speed"
+      "audioSpeed": "Audio speed",
+      "selectTranslation": "Select..."
     },
     "notifications": {
       "title": "Notifications",

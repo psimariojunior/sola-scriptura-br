@@ -542,7 +542,7 @@ export default function BibliaPage() {
       {showHotkeysToast && (
         <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-2 px-4 py-2.5 rounded-full bg-[var(--surface-raised)] border border-[var(--border)]/60 shadow-lg shadow-black/10 animate-in slide-in-from-bottom-4 fade-in duration-300">
           <Info className="w-4 h-4 text-[var(--brand-default)] shrink-0" />
-          <span className="text-sm text-[var(--content-primary)]">Pressione <kbd className="px-1.5 py-0.5 text-[10px] font-mono border border-[var(--border)]/50 rounded bg-[var(--surface-sunken)]">?</kbd> para ver os atalhos de teclado</span>
+          <span className="text-sm text-[var(--content-primary)]">{t('biblia.hotkeysToast').split('?')[0]}<kbd className="px-1.5 py-0.5 text-[10px] font-mono border border-[var(--border)]/50 rounded bg-[var(--surface-sunken)]">?</kbd>{t('biblia.hotkeysToast').split('?')[1]}</span>
           <button onClick={() => setShowHotkeysToast(false)} className="ml-1 p-0.5 rounded hover:bg-[var(--surface-sunken)] text-[var(--content-muted)]">
             <X className="w-3.5 h-3.5" />
           </button>

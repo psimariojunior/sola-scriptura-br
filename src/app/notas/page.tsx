@@ -122,7 +122,7 @@ function NotasPageInner() {
                 href={hrefFromVerseNoteId(editingNota.id)!}
                 className="inline-flex items-center gap-1.5 text-sm text-primary mb-4 ml-4 hover:underline"
               >
-                <BookOpen className="w-4 h-4" /> Ler na Bíblia
+                <BookOpen className="w-4 h-4" /> {t('notas.readInBible')}
               </Link>
             )}
             <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
@@ -249,7 +249,7 @@ function NotasPageInner() {
                                     onClick={(e) => e.stopPropagation()}
                                     className="inline-flex items-center gap-1 text-[10px] font-medium text-primary hover:underline"
                                   >
-                                    <BookOpen className="w-3 h-3" /> Ler na Bíblia
+                                    <BookOpen className="w-3 h-3" /> {t('notas.readInBible')}
                                   </Link>
                                 )}
                                 <span className="text-[10px] text-muted-foreground ml-auto">

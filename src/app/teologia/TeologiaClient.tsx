@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect } from 'react';
 import { doutrinas } from '@/data/biblia';
 import { getTodosTemas, type TemaTeologico } from '@/data/teologiaSistematica';
 import dynamic from 'next/dynamic';
-import { Search, ChevronDown, ExternalLink, Copy, Check, Layers, GraduationCap, BookOpen } from 'lucide-react';
+import { Search, ChevronDown, ExternalLink, Copy, Check, Layers, GraduationCap, BookOpen, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { hrefBiblia, parseRefLivre } from '@/lib/bibliaHref';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -48,7 +48,7 @@ export default function TeologiaClient() {
   const [filtroCategoria, setFiltroCategoria] = useState<string | null>(null);
   const [expandida, setExpandida] = useState<string | null>(null);
   const [copiedRef, setCopiedRef] = useState<string | null>(null);
-  const [abaAtiva, setAbaAtiva] = useState<'doutrinas' | 'estudos' | 'sistematica'>('doutrinas');
+  const [abaAtiva, setAbaAtiva] = useState<'doutrinas' | 'estudos' | 'sistematica' | 'artigos'>('doutrinas');
 
   const [painelVersiculo, setPainelVersiculo] = useState<{
     livro: string;
@@ -226,6 +226,19 @@ export default function TeologiaClient() {
           >
             <BookOpen className="w-4 h-4" />
             Sistematica <span className="text-xs opacity-70">({temasSistematica.length})</span>
+          </motion.button>
+          <motion.button
+            onClick={() => { setAbaAtiva('artigos'); setFiltroCategoria(null); setBusca(''); }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-300 ${
+              abaAtiva === 'artigos'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-muted text-muted-foreground hover:bg-muted/80'
+            }`}
+          >
+            <FileText className="w-4 h-4" />
+            Artigos Teológicos <span className="text-xs opacity-70">(14)</span>
           </motion.button>
         </div>
       </ScrollReveal>
@@ -562,6 +575,9 @@ export default function TeologiaClient() {
                 );
               })}
             </>
+          )}
+          {abaAtiva === 'artigos' && (
+            <ArtigosTeologicosTab busca={busca} filtroCategoria={filtroCategoria} />
           )}
       </div>
 

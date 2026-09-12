@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   BookOpen, Search, ChevronDown, ChevronUp, Download, Copy, Share2,
@@ -53,6 +53,55 @@ export default function ExegesePage() {
 
   const refLabel = `${nomeLivro(selectedBook)} ${chapter}:${verse}`;
 
+  // Carregar dados reais do versículo para enriquecer o prompt da IA
+  const [dadosVersiculo, setDadosVersiculo] = useState<{
+    palavrasStrong: string[];
+    crossRefs: string[];
+    comentarios: string[];
+    introducao: string;
+  }>({ palavrasStrong: [], crossRefs: [], comentarios: [], introducao: '' });
+
+  useEffect(() => {
+    if (!selectedBook || !chapter) return;
+    
+    const carregarDados = async () => {
+      try {
+        // Carregar Strong's
+        const { palavrasPorVersiculo } = await import('@/data/biblia/strong');
+        const chaveStrong = `${selectedBook}:${chapter}:${verse}`;
+        const palavras = palavrasPorVersiculo[chaveStrong] || [];
+        const palavrasStrong = palavras.slice(0, 15).map((p: { palavra: string; strong: string; definicao?: string }) => 
+          `${p.palavra} (${p.strong}): ${p.definicao || '—'}`
+        );
+
+        // Carregar referências cruzadas
+        const { getCrossReferences } = await import('@/data/crossReferences');
+        const refs = getCrossReferences(selectedBook, chapter, verse);
+        const crossRefs = refs.slice(0, 8).map((r: { referencia: string; descricao: string }) => 
+          `${r.referencia} — ${r.descricao}`
+        );
+
+        // Carregar comentários
+        const { getComentariosPorVersiculo } = await import('@/data/comentarios');
+        const coms = getComentariosPorVersiculo(selectedBook, chapter, verse);
+        const comentarios = coms.slice(0, 5).map((c: { teologo: string; texto: string }) => 
+          `${c.teologo}: ${c.texto}`
+        );
+
+        // Carregar introdução do livro
+        const { getIntroducaoLivro } = await import('@/data/biblia/introducoes');
+        const intro = getIntroducaoLivro(selectedBook);
+        const introducao = intro ? `${intro.genero || ''} — ${intro.contextoHistorico || ''}` : '';
+
+        setDadosVersiculo({ palavrasStrong, crossRefs, comentarios, introducao });
+      } catch {
+        // Dados opcionais — falha silenciosa
+      }
+    };
+
+    carregarDados();
+  }, [selectedBook, chapter, verse]);
+
   const toggleDimension = (id: string) => {
     setDimensions(prev =>
       prev.includes(id) ? prev.filter(d => d !== id) : [...prev, id]
@@ -78,13 +127,29 @@ export default function ExegesePage() {
 
 DIMENSÕES SOLICITADAS: ${dimNames}
 
+DADOS REAIS DA PASSAGEM (use-os como base para sua análise):
+
+1. LÉXICO STRONG (palavras originais):
+${dadosVersiculo.palavrasStrong.length > 0 ? dadosVersiculo.palavrasStrong.join('\n') : '— Dados não disponíveis para esta passagem —'}
+
+2. REFERÊNCIAS CRUZADAS (TSK):
+${dadosVersiculo.crossRefs.length > 0 ? dadosVersiculo.crossRefs.join('\n') : '— Dados não disponíveis —'}
+
+3. COMENTÁRIOS DE TEÓLOGOS:
+${dadosVersiculo.comentarios.length > 0 ? dadosVersiculo.comentarios.join('\n') : '— Dados não disponíveis —'}
+
+4. CONTEXTO DO LIVRO:
+${dadosVersiculo.introducao || '— Dados não disponíveis —'}
+
 INSTRUÇÕES:
 - Para cada dimensão, produza um texto aprofundado de 200-400 palavras
+- Use os dados reais acima como base para sua análise (léxico, refs, comentários)
 - Use terminologia técnica apropriada (mas acessível)
 - Cite fontes e teólogos quando relevante
 - Inclua o texto original (grego/hebraico) quando aplicável
 - Formate em markdown com tópicos e subtópicos
 - Seja específico e detalhado, não genérico
+- NUNCA invente dados — use apenas os dados fornecidos e seu conhecimento teológico
 
 FORMATO DE SAÍDA:
 Para cada dimensão, produza:

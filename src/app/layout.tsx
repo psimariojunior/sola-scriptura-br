@@ -54,6 +54,7 @@ export const metadata: Metadata = {
     canonical: 'https://solascripturabr.com.br',
     languages: {
       'pt-BR': 'https://solascripturabr.com.br',
+      'en': 'https://solascripturabr.com.br?lang=en',
     },
   },
   openGraph: {

@@ -175,7 +175,7 @@
   --secondary: 28 8% 22%;
   --secondary-foreground: 35 12% 72%;
   --muted: 28 8% 22%;
-  --muted-foreground: 30 6% 50%;
+  --muted-foreground: 30 6% 59%;
   --accent: 28 10% 26%;
   --accent-foreground: 35 18% 82%;
   --destructive: 0 62% 48%;
@@ -188,7 +188,7 @@
   /* Legacy aliases */
   --bg: #1E1C1A;
   --fg: #D4CCC0;
-  --muted-fg: #8A8078;
+  --muted-fg: #9D9690;
   --card-bg: #252320;
   --card-border: #333028;
   --primary-light: #C8A050;

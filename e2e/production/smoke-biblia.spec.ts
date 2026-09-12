@@ -41,7 +41,7 @@ test.describe('Smoke - Bíblia Page', () => {
   test('chapter navigation buttons exist', async ({ page }) => {
     await page.goto('/biblia', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(5000);
-    const nextBtn = page.locator('button:has(svg.lucide-chevron-right)').first();
+    const nextBtn = page.getByRole('button', { name: /próximo|next/i }).first();
     await expect(nextBtn).toBeVisible({ timeout: 10000 });
   });
 });

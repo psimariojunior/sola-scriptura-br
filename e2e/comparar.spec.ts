@@ -21,14 +21,14 @@ test.describe('Comparar Page', () => {
   });
 
   test('navigation buttons exist', async ({ page }) => {
-    const prevBtn = page.locator('button').filter({ has: page.locator('svg.lucide-chevron-left') }).first();
-    const nextBtn = page.locator('button').filter({ has: page.locator('svg.lucide-chevron-right') }).first();
+    const prevBtn = page.getByRole('button', { name: /anterior|previous/i }).first();
+    const nextBtn = page.getByRole('button', { name: /próximo|next/i }).first();
     await expect(prevBtn).toBeVisible({ timeout: 10000 });
     await expect(nextBtn).toBeVisible();
   });
 
   test('chapter navigation works', async ({ page }) => {
-    const nextBtn = page.locator('button').filter({ has: page.locator('svg.lucide-chevron-right') }).first();
+    const nextBtn = page.getByRole('button', { name: /próximo|next/i }).first();
     await expect(nextBtn).toBeVisible({ timeout: 10000 });
     await nextBtn.click();
     await page.waitForTimeout(1000);

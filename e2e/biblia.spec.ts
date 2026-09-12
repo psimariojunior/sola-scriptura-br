@@ -20,8 +20,9 @@ test.describe('Home Page', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 30000 });
     await page.waitForTimeout(2000);
 
-    await expect(page.getByText('Estudo Bíblico Acadêmico', { exact: true }).nth(1)).toBeVisible();
-    const cta = page.locator('a[href="/biblia"]').filter({ hasText: 'Iniciar Estudo' });
+    const subtitle = page.getByText(/estudo bíblico com traduções/i);
+    await expect(subtitle.first()).toBeVisible({ timeout: 10000 });
+    const cta = page.locator('a[href="/biblia"]').filter({ hasText: /Bíblia|Iniciar/ });
     await expect(cta).toBeVisible();
   });
 });
@@ -70,24 +71,26 @@ test.describe('Bible Page - Troca de Traducao', () => {
 
   test('ARC esta ativa por padrao', async ({ page }) => {
     const arcButton = page.locator('button').filter({ hasText: /^ARC$/ });
-    await expect(arcButton).toHaveClass(/bg-primary\/10/);
+    await expect(arcButton).toBeVisible();
+    // ARC should be in an active/selected state by default
+    await expect(arcButton).toHaveClass(/bg-primary/);
   });
 
   test('clicar NVI ativa NVI e mantem ARC', async ({ page }) => {
     const nviButton = page.locator('button').filter({ hasText: /^NVI$/ });
     await nviButton.click();
     await page.waitForTimeout(2000);
-    await expect(nviButton).toHaveClass(/bg-emerald-500\/10/);
+    await expect(nviButton).toHaveClass(/bg-emerald/);
 
     const arcButton = page.locator('button').filter({ hasText: /^ARC$/ });
-    await expect(arcButton).toHaveClass(/bg-primary\/10/);
+    await expect(arcButton).toHaveClass(/bg-primary/);
   });
 
   test('desativar traducao remove ella', async ({ page }) => {
     const arcButton = page.locator('button').filter({ hasText: /^ARC$/ });
     await arcButton.click();
     await page.waitForTimeout(2000);
-    await expect(arcButton).not.toHaveClass(/bg-primary\/10/);
+    await expect(arcButton).not.toHaveClass(/bg-primary/);
   });
 });
 
@@ -150,43 +153,27 @@ test.describe('Bible Page - Modo Zen', () => {
 test.describe('Bible Page - Mobile Menu', () => {
   test.use({ viewport: { width: 375, height: 812 } });
 
-  test('mobile menu abre e fecha', async ({ page }) => {
+  test('mobile bottom nav is visible', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 30000 });
     await page.waitForTimeout(1500);
 
-    // Abrir menu mobile
-    const menuBtn = page.locator('button[aria-controls="mobile-menu"]');
-    await expect(menuBtn).toBeVisible();
-    await menuBtn.click();
-    await page.waitForTimeout(500);
-
-    // Verificar que menu esta aberto
-    const mobileNav = page.locator('#mobile-menu');
-    await expect(mobileNav).toBeVisible();
-
-    // Verificar links de navegacao
-    await expect(mobileNav.locator('a[href="/biblia"]').first()).toBeVisible();
-    await expect(mobileNav.locator('a[href="/pesquisa"]').first()).toBeVisible();
-
-    // Fechar menu clicando em um link
-    const bibliaLink = mobileNav.locator('a[href="/biblia"]').first();
-    await bibliaLink.click();
-    await page.waitForURL(/\/biblia/, { timeout: 60000 });
-    await expect(page).toHaveURL(/\/biblia/);
+    // Bottom nav bar should be visible on mobile
+    const bottomNav = page.locator('nav[aria-label="Navegação mobile"]');
+    await expect(bottomNav).toBeVisible();
   });
 
-  test('mobile menu mostra todas as secoes', async ({ page }) => {
+  test('bottom nav "Mais" opens overlay with extra links', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 30000 });
     await page.waitForTimeout(1500);
 
-    const menuBtn = page.locator('button[aria-controls="mobile-menu"]');
-    await menuBtn.click();
-    await page.waitForTimeout(500);
+    const bottomNav = page.locator('nav[aria-label="Navegação mobile"]');
+    const maisTab = bottomNav.getByLabel('Mais').first();
+    await maisTab.click();
 
-    const mobileNav = page.locator('#mobile-menu');
-    await expect(mobileNav.locator('a[href="/exegese"]').first()).toBeVisible();
-    await expect(mobileNav.locator('a[href="/ia"]').first()).toBeVisible();
-    await expect(mobileNav.locator('a[href="/cronologia"]').first()).toBeVisible();
-    await expect(mobileNav.locator('a[href="/devocional"]').first()).toBeVisible();
+    const dialog = page.locator('[role="dialog"]');
+    await expect(dialog).toBeVisible({ timeout: 5000 });
+
+    // Verify links in the overlay
+    await expect(dialog.getByText('Teologia').first()).toBeVisible();
   });
 });

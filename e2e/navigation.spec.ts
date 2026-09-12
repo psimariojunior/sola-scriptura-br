@@ -21,7 +21,7 @@ test.describe('Navigation', () => {
     test('hero CTA navigates to /biblia', async ({ page }) => {
       await page.goto('/', { waitUntil: 'domcontentloaded' });
       await page.waitForTimeout(1500);
-      const cta = page.locator('a[href="/biblia"]').filter({ hasText: 'Iniciar Estudo' });
+      const cta = page.locator('a[href="/biblia"]').filter({ hasText: /Bíblia/ }).first();
       await expect(cta).toBeVisible();
       await cta.click();
       await page.waitForURL(/\/biblia/, { timeout: 60000 });

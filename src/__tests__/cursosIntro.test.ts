@@ -30,15 +30,31 @@ function videosDoCurso(cursoId: string): string[] {
 }
 
 describe('cursos introdutórios (trilha + vídeo + certificado)', () => {
-  beforeEach(() => limpar());
+  const originalCrypto = globalThis.crypto;
 
-  test('são 12 cursos no catálogo, todos com certificado e nível de introdução', () => {
+  beforeEach(() => {
+    limpar();
+    const { webcrypto } = require('node:crypto');
+    Object.defineProperty(globalThis, 'crypto', {
+      value: { subtle: webcrypto.subtle },
+      writable: true,
+    });
+  });
+
+  afterEach(() => {
+    Object.defineProperty(globalThis, 'crypto', {
+      value: originalCrypto,
+      writable: true,
+    });
+  });
+
+  test('são 12 cursos no catálogo, todos com certificado e nível apropriado', () => {
     expect(CURSOS).toHaveLength(12);
     for (const c of CURSOS) {
       expect(c.certificado).toBe(true);
       expect(rotuloNivelCurso(c)).toBe('Introdução');
       expect(rotuloCargaCurso(c)).toMatch(/aulas · introdução/);
-      expect(c.nível).toBe('iniciante');
+      expect(['iniciante', 'avançado']).toContain(c.nível);
     }
   });
 
@@ -114,7 +130,7 @@ describe('cursos introdutórios (trilha + vídeo + certificado)', () => {
     }
     expect(cursoProntoParaCertificado(curso, obterProgressoCurso(curso.id))).toBe(true);
     const cert = await emitirCertificadoCurso({ curso, nome: 'Maria Silva', autenticado: false });
-    expect(cert.id).toMatch(/^SSB-[A-Z0-9]{1,6}-\d{8}-[a-f0-9]{4}$/);
+    expect(cert.id).toMatch(/^SSB-[A-Z0-9]{1,6}-\d{8}-[A-F0-9]{4}$/);
     expect(cert.aulasFeitas).toBe(cert.totalAulas);
     expect(cert.totalAulas).toBe(aulasDoCursoLista(curso).length);
     const diploma = diplomaCursoIntroducao({

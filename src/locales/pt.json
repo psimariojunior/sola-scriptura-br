@@ -693,6 +693,7 @@
     "harmony": "Harmonia",
     "study": "Estudar",
     "theology": "Teologia",
+    "exegesis": "Exegese",
     "passageGuide": "Guia da passagem",
     "historyRead": "Histórico",
     "statistics": "Estatísticas",
@@ -916,10 +917,10 @@
     "pentecostal": "Pentecostal",
     "lutheran": "Luterana",
     "presbyterian": "Presbiteriana",
-    "paywallTitle": "Assistente de IA é do Acesso Total",
-    "paywallDesc": "Pague R$20 uma vez e desbloqueie para sempre.",
-    "unlock": "Desbloquear Acesso Total",
-    "unlockAccess": "Desbloquear Acesso Total"
+    "paywallTitle": "A IA é uma ferramenta complementar ao estudo",
+    "paywallDesc": "O estudo profundo depende de você — leia, medite, compare. A IA auxilia com análise e referências, mas a Escritura é a autoridade. Contribuição única de R$20 para manter a plataforma gratuita.",
+    "unlock": "Contribuir e Acessar IA",
+    "unlockAccess": "Contribuir e Acessar IA"
   },
   "notifications": {
     "title": "Notificações Push",

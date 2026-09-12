@@ -62,8 +62,23 @@ describe('trilhas oficiais João e Romanos', () => {
 });
 
 describe('critério honesto de conclusão', () => {
+  const originalCrypto = globalThis.crypto;
+
   beforeEach(() => {
     limparStorage();
+    // Mock crypto.subtle.digest for SHA-256 in Node.js test env
+    const { webcrypto } = require('node:crypto');
+    Object.defineProperty(globalThis, 'crypto', {
+      value: { subtle: webcrypto.subtle },
+      writable: true,
+    });
+  });
+
+  afterEach(() => {
+    Object.defineProperty(globalThis, 'crypto', {
+      value: originalCrypto,
+      writable: true,
+    });
   });
 
   it('rejeita resposta curta', () => {

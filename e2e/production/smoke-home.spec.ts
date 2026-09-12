@@ -42,7 +42,7 @@ test.describe('Smoke - Landing Page', () => {
   test('CTA button navigates to /biblia', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
-    const cta = page.locator('a[href="/biblia"]').filter({ hasText: /Iniciar Estudo/i }).first();
+    const cta = page.locator('a[href="/biblia"]').filter({ hasText: /Bíblia/i }).first();
     await expect(cta).toBeVisible({ timeout: 10000 });
   });
 

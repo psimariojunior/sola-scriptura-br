@@ -1,73 +1,104 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, lazy, Suspense } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   BookOpen, Search, Sparkles, Globe,
-  ChevronRight, Library, Languages, Brain, BookMarked,
-  ArrowRight, Layers, Shield,
+  ChevronRight, Languages, Brain, BookMarked,
+  ArrowRight, Layers, Shield, Map, Clock,
+  BookMarked as BookIcon, Library,
 } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { versiculoDoDia } from '@/lib/versiculoDoDia';
 import { cn } from '@/lib/utils';
 
-const FEATURES = [
+const VerseDoDia = lazy(() => import('@/components/VerseDoDia'));
+const ContinuarLeitura = lazy(() => import('@/components/ContinuarLeitura'));
+
+const DIFFERENTIATORS = [
+  {
+    icon: Brain,
+    title: 'Exegese em 12 Dimensões',
+    description: 'Selecione qualquer versículo e receba em segundos uma análise completa: textual, histórica, literária, teológica, gramatical, arqueológica, geográfica, canônica, pastoral, comparativa, contextual e síntese.',
+    href: '/exegese',
+    color: 'from-purple-500 to-pink-500',
+    stat: '12 dimensões',
+  },
+  {
+    icon: Library,
+    title: 'Biblioteca de Clássicos',
+    description: '41 obras-primas da teologia cristã — do Didaquê do século I a Bonhoeffer do século XX. Pais da Igreja, Reforma, Credos e Espiritualidade Clássica.',
+    href: '/biblioteca',
+    color: 'from-amber-500 to-orange-500',
+    stat: '41 obras · 6 séculos',
+  },
+  {
+    icon: Languages,
+    title: 'Léxico Original',
+    description: '8.674 palavras hebraicas e 5.526 gregas com Strong\'s, morfologia e definição — integradas diretamente ao texto bíblico.',
+    href: '/idiomas',
+    color: 'from-blue-500 to-cyan-500',
+    stat: '14.200+ palavras',
+  },
+];
+
+const TOOLS = [
   {
     icon: BookOpen,
-    title: 'Bíblia',
+    title: 'Bíblia Multi-Tradução',
     description: '10 traduções com comparação lado a lado.',
     href: '/biblia',
     color: 'from-amber-500 to-orange-500',
     stats: '10 traduções',
   },
   {
-    icon: Languages,
-    title: 'Grego & Hebraico',
-    description: '14.200+ entradas do léxico Strong.',
-    href: '/idiomas',
-    color: 'from-blue-500 to-cyan-500',
-    stats: '14.200+ palavras',
-  },
-  {
-    icon: Sparkles,
-    title: 'IA Teológica',
-    description: 'Exegese automática e perguntas em linguagem natural.',
-    href: '/ia',
-    color: 'from-purple-500 to-pink-500',
-    stats: 'Gratuito',
-  },
-  {
     icon: Search,
-    title: 'Pesquisa',
-    description: 'Busca semântica e com IA.',
+    title: 'Pesquisa com IA',
+    description: 'Busca semântica e em linguagem natural.',
     href: '/pesquisa',
     color: 'from-rose-500 to-red-500',
     stats: 'Busca semântica',
   },
   {
-    icon: Library,
-    title: 'Comentários',
-    description: '4.911 comentários de teólogos clássicos.',
-    href: '/estudos',
+    icon: BookIcon,
+    title: 'Teologia Sistematizada',
+    description: '91 doutrinas em 13 categorias com 3 tradições.',
+    href: '/teologia',
     color: 'from-violet-500 to-purple-500',
-    stats: '4.911 versículos',
+    stats: '91 doutrinas',
   },
   {
-    icon: Globe,
+    icon: Map,
     title: 'Atlas Bíblico',
-    description: 'Mapas interativos com 20+ locais.',
+    description: '158 locais e 21 rotas em mapa interativo.',
     href: '/atlas',
     color: 'from-teal-500 to-emerald-500',
-    stats: '20+ locais',
+    stats: '158 locais',
+  },
+  {
+    icon: Layers,
+    title: 'Harmonia Sinótica',
+    description: 'Mateus, Marcos, Lucas e João lado a lado.',
+    href: '/harmonia',
+    color: 'from-sky-500 to-blue-500',
+    stats: '4 evangelhos',
+  },
+  {
+    icon: Shield,
+    title: 'Crítica Textual',
+    description: 'Variantes textuais do Novo Testamento.',
+    href: '/ferramentas/critica-textual',
+    color: 'from-indigo-500 to-violet-500',
+    stats: 'Manuscritos',
   },
 ];
 
 const STATS = [
   { value: '10', label: 'Traduções', suffix: '' },
-  { value: '14.200', label: 'Palavras', suffix: '+' },
-  { value: '29.000', label: 'Referências', suffix: '+' },
+  { value: '14.200', label: 'Palavras Originais', suffix: '+' },
+  { value: '29.000', label: 'Referências Cruzadas', suffix: '+' },
   { value: '4.911', label: 'Comentários', suffix: '' },
 ];
 
@@ -121,7 +152,6 @@ export default function HomeClient() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20">
-        {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--surface-sunken)] via-[var(--surface-base)] to-transparent" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[var(--brand-default)] opacity-[0.03] rounded-full blur-3xl" />
 
@@ -129,29 +159,46 @@ export default function HomeClient() {
           style={{ y: heroY, opacity: heroOpacity }}
           className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-16"
         >
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-center mb-6"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] border border-[var(--border)]/50 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--content-muted)]">
+              <Sparkles className="w-3 h-3 text-[var(--brand-default)]" />
+              100% Gratuito · Sem Anúncios · Sem Cadastro
+            </span>
+          </motion.div>
+
           {/* Main heading */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-center font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[var(--content-primary)] tracking-tight leading-[1.1] mb-6"
+            className="text-center font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--content-primary)] tracking-tight leading-[1.1] mb-6"
           >
             <span className="bg-gradient-to-r from-[var(--brand-default)] via-[var(--accent-warm)] to-[var(--brand-emphasis)] bg-clip-text text-transparent">
-              Sola Scriptura
+              Estude a Bíblia
+            </span>
+            <br />
+            <span className="text-[var(--content-primary)]">
+              com profundidade acadêmica
             </span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle — value proposition */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center text-lg sm:text-xl text-[var(--content-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-center text-base sm:text-lg md:text-xl text-[var(--content-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Estudo bíblico com traduções, léxico original, exegese e teologia.
+            Bíblia em 10 traduções, exegese com IA, léxico original, teologia sistemática e 41 clássicos da fé — tudo em um só lugar, sem custo.
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTAs — diversified */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -163,37 +210,22 @@ export default function HomeClient() {
               className="group flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--accent-warm)] text-white font-semibold shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 hover:scale-105 active:scale-95 transition-all"
             >
               <BookOpen className="w-5 h-5" />
-              Bíblia
+              Explorar a Bíblia
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href="/pesquisa"
+              href="/exegese"
               className="flex items-center gap-2 px-8 py-4 rounded-2xl border-2 border-[var(--border)] text-[var(--content-primary)] font-semibold hover:bg-[var(--surface-raised)] hover:border-[var(--brand-default)]/30 transition-all"
             >
-              <Search className="w-5 h-5" />
-              Pesquisar
+              <Brain className="w-5 h-5" />
+              Experimentar a Exegese
             </Link>
           </motion.div>
 
-          {/* Verse of the day */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="max-w-2xl mx-auto"
-          >
-            <div className="relative rounded-2xl bg-[var(--surface-raised)]/80 backdrop-blur-xl border border-[var(--border)]/50 p-6 sm:p-8 shadow-lg">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full bg-[var(--surface-raised)] border border-[var(--border)]/50 text-[10px] font-bold uppercase tracking-widest text-[var(--content-muted)]">
-                Versículo do Dia
-              </div>
-              <p className="text-center font-serif-body text-lg sm:text-xl italic text-[var(--content-primary)] leading-relaxed mb-3">
-                &ldquo;{versiculo.texto}&rdquo;
-              </p>
-              <p className="text-center text-sm font-semibold text-[var(--brand-default)]">
-                {versiculo.referencia}
-              </p>
-            </div>
-          </motion.div>
+          {/* Verse of the day — integrated */}
+          <Suspense fallback={null}>
+            <VerseDoDia />
+          </Suspense>
         </motion.div>
       </section>
 
@@ -220,7 +252,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* Differentials — what makes this unique */}
       <section className="py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
@@ -230,41 +262,41 @@ export default function HomeClient() {
             className="text-center mb-16"
           >
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--content-primary)] mb-4">
-              Ferramentas que transformam seu estudo
+              O que nenhum outro site bíblico gratuito oferece
             </h2>
             <p className="text-[var(--content-secondary)] max-w-xl mx-auto">
-              Cada feature foi projetada com rigor acadêmico e acessibilidade — do estudante iniciante ao teólogo profissional.
+              Ferramentas de nível seminário, acessíveis a todos.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FEATURES.map((feature, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {DIFFERENTIATORS.map((item, i) => (
               <motion.div
-                key={feature.title}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: i * 0.1 }}
               >
                 <Link
-                  href={feature.href}
+                  href={item.href}
                   className="group block h-full rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/50 p-6 hover:shadow-xl hover:border-[var(--brand-default)]/20 hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className={cn(
-                    'w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center mb-4 shadow-lg',
-                    feature.color
+                    'w-14 h-14 rounded-xl bg-gradient-to-br flex items-center justify-center mb-5 shadow-lg',
+                    item.color
                   )}>
-                    <feature.icon className="w-6 h-6 text-white" />
+                    <item.icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-[var(--content-primary)] mb-2 group-hover:text-[var(--brand-default)] transition-colors">
-                    {feature.title}
+                  <h3 className="text-xl font-bold text-[var(--content-primary)] mb-3 group-hover:text-[var(--brand-default)] transition-colors">
+                    {item.title}
                   </h3>
                   <p className="text-sm text-[var(--content-secondary)] leading-relaxed mb-4">
-                    {feature.description}
+                    {item.description}
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--content-muted)]">
-                      {feature.stats}
+                      {item.stat}
                     </span>
                     <span className="flex items-center gap-1 text-xs font-medium text-[var(--brand-default)] opacity-0 group-hover:opacity-100 transition-opacity">
                       Explorar <ChevronRight className="w-3 h-3" />
@@ -277,7 +309,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Academic Section */}
+      {/* Tools Grid — comprehensive features */}
       <section className="py-16 bg-gradient-to-b from-[var(--surface-sunken)] to-transparent">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
@@ -287,39 +319,63 @@ export default function HomeClient() {
             className="text-center mb-12"
           >
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--content-primary)] mb-4">
-              Ferramentas de estudo
+              Ferramentas que transformam seu estudo
             </h2>
             <p className="text-[var(--content-secondary)] max-w-xl mx-auto">
-              Do iniciante ao teólogo profissional.
+              Do versículo do dia à exegese profunda — tudo integrado.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: Brain, title: 'Exegese', desc: 'Análise completa em 12 dimensões.' },
-              { icon: Shield, title: 'Crítica Textual', desc: 'Variantes textuais do NT.' },
-              { icon: Layers, title: 'Morfologia', desc: 'Grego e Hebraico detalhados.' },
-            ].map((item, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {TOOLS.map((tool, i) => (
               <motion.div
-                key={item.title}
+                key={tool.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/50 p-6 text-center"
+                transition={{ delay: i * 0.05 }}
               >
-                <div className="w-12 h-12 rounded-xl bg-[var(--brand-subtle)] flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-6 h-6 text-[var(--brand-default)]" />
-                </div>
-                <h3 className="text-lg font-bold text-[var(--content-primary)] mb-2">{item.title}</h3>
-                <p className="text-sm text-[var(--content-secondary)]">{item.desc}</p>
+                <Link
+                  href={tool.href}
+                  className="group block h-full rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/50 p-6 hover:shadow-xl hover:border-[var(--brand-default)]/20 hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className={cn(
+                    'w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center mb-4 shadow-lg',
+                    tool.color
+                  )}>
+                    <tool.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[var(--content-primary)] mb-2 group-hover:text-[var(--brand-default)] transition-colors">
+                    {tool.title}
+                  </h3>
+                  <p className="text-sm text-[var(--content-secondary)] leading-relaxed mb-4">
+                    {tool.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--content-muted)]">
+                      {tool.stats}
+                    </span>
+                    <span className="flex items-center gap-1 text-xs font-medium text-[var(--brand-default)] opacity-0 group-hover:opacity-100 transition-opacity">
+                      Explorar <ChevronRight className="w-3 h-3" />
+                    </span>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Continue Reading — for returning users */}
+      <Suspense fallback={null}>
+        <section className="py-12">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+            <ContinuarLeitura />
+          </div>
+        </section>
+      </Suspense>
+
+      {/* Final CTA — stronger */}
       <section className="py-16 bg-gradient-to-b from-transparent to-[var(--surface-sunken)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
@@ -328,19 +384,28 @@ export default function HomeClient() {
             viewport={{ once: true }}
           >
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--content-primary)] mb-4">
-              Estude a Bíblia
+              Comece por Gênesis 1
             </h2>
             <p className="text-[var(--content-secondary)] mb-8 max-w-xl mx-auto">
-              Acesse gratuitamente. Sem cadastro necessário.
+              Leia, ouça, estude e compare — tudo no mesmo lugar. Sem cadastro necessário.
             </p>
-            <Link
-              href="/biblia"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--accent-warm)] text-white font-semibold shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"
-            >
-              <BookOpen className="w-5 h-5" />
-              Abrir a Bíblia
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/biblia?livro=gn&capitulo=1"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--accent-warm)] text-white font-semibold shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"
+              >
+                <BookOpen className="w-5 h-5" />
+                Ler Gênesis 1
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/cursos"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border-2 border-[var(--border)] text-[var(--content-primary)] font-semibold hover:bg-[var(--surface-raised)] hover:border-[var(--brand-default)]/30 transition-all"
+              >
+                <Clock className="w-5 h-5" />
+                Explorar Cursos
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

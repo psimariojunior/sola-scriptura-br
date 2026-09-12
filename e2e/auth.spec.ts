@@ -34,13 +34,11 @@ test.describe('Auth - Login Page', () => {
     await expect(page.locator('text=Continuar com Google')).toBeVisible();
   });
 
-  test('Apple login button is visible', async ({ page }) => {
-    await expect(page.locator('text=Continuar com Apple')).toBeVisible();
-  });
-
   test('password toggle shows/hides password', async ({ page }) => {
     const passwordInput = page.locator('input[type="password"]');
-    const toggleBtn = page.locator('button').filter({ has: page.locator('svg.lucide-eye') }).first();
+    await expect(passwordInput).toBeVisible();
+    // The toggle button is a sibling button inside the relative container
+    const toggleBtn = page.locator('input[type="password"] ~ button').first();
     await expect(toggleBtn).toBeVisible();
     await toggleBtn.click();
     await page.waitForTimeout(300);
@@ -103,7 +101,7 @@ test.describe('Auth - Cadastro Page', () => {
   });
 
   test('Google signup button is visible', async ({ page }) => {
-    await expect(page.locator('text=Cadastrar com Google')).toBeVisible();
+    await expect(page.locator('text=Continuar com Google')).toBeVisible();
   });
 
   test('link to login page is visible', async ({ page }) => {

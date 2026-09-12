@@ -10,21 +10,16 @@ import {
   Search,
   MoreHorizontal,
   X,
-  GraduationCap,
   Languages,
   GitBranch,
-  Tag,
-  Wrench,
   ScrollText,
   Heart,
   Map,
   Calendar,
   BookMarked,
-  HelpCircle,
   ChevronDown,
-  Users,
   Compass,
-  History,
+  GraduationCap,
 } from 'lucide-react';
 
 interface TabItem {
@@ -62,42 +57,28 @@ function BottomNavBarInner() {
     {
       titulo: t('bottomBar.groupBibleTools', 'Ferramentas Bíblicas'),
       links: [
-        { href: '/idiomas', label: t('bottomBar.languages'), icon: Languages },
-        { href: '/referencias', label: t('bottomBar.references'), icon: GitBranch },
-        { href: '/harmonia', label: t('bottomBar.harmony', 'Harmonia'), icon: GitBranch },
-        { href: '/comparar', label: t('bottomBar.compare', 'Comparar'), icon: BookOpen },
         { href: '/pesquisa', label: t('bottomBar.search', 'Pesquisa'), icon: Search },
+        { href: '/comparar', label: t('bottomBar.compare', 'Comparar'), icon: BookOpen },
+        { href: '/idiomas', label: t('bottomBar.languages'), icon: Languages },
+        { href: '/harmonia', label: t('bottomBar.harmony', 'Harmonia'), icon: GitBranch },
       ],
     },
     {
       titulo: t('bottomBar.groupContext', 'Contexto & História'),
       links: [
+        { href: '/atlas', label: t('bottomBar.atlas'), icon: Map },
         { href: '/historia', label: t('bottomBar.history'), icon: ScrollText },
         { href: '/cronologia', label: t('bottomBar.chronology'), icon: Calendar },
         { href: '/personagens', label: t('bottomBar.characters'), icon: Heart },
-        { href: '/atlas', label: t('bottomBar.atlas'), icon: Map },
       ],
     },
     {
       titulo: t('bottomBar.groupDeep', 'Aprofundar'),
       links: [
         { href: '/teologia', label: t('bottomBar.theology', 'Teologia'), icon: BookMarked },
-        { href: '/guia', label: t('bottomBar.passageGuide', 'Guia da passagem'), icon: Compass },
-        { href: '/historico', label: t('bottomBar.historyRead', 'Histórico'), icon: History },
-        { href: '/ferramentas', label: t('bottomBar.tools'), icon: Wrench },
-        { href: '/topicos', label: t('bottomBar.topics'), icon: Tag },
-        { href: '/estudos', label: t('bottomBar.studies'), icon: GraduationCap },
-      ],
-    },
-    {
-      titulo: t('bottomBar.groupPractice', 'Prática'),
-      links: [
-        { href: '/planos', label: t('bottomBar.plans'), icon: Calendar },
-        { href: '/devocional', label: t('bottomBar.devotional'), icon: Heart },
-        { href: '/flashcards', label: t('bottomBar.flashcards'), icon: BookMarked },
-        { href: '/quiz', label: t('bottomBar.quizzes'), icon: HelpCircle },
+        { href: '/exegese', label: t('bottomBar.exegesis', 'Exegese'), icon: Compass },
+        { href: '/referencias', label: t('bottomBar.references'), icon: GitBranch },
         { href: '/biblioteca', label: t('bottomBar.library', 'Biblioteca'), icon: BookMarked },
-        { href: '/social', label: t('bottomBar.social', 'Social'), icon: Users },
       ],
     },
   ], [t]);
@@ -233,6 +214,7 @@ function BottomNavBarInner() {
       {/* Barra inferior — Premium iOS-style */}
       <nav
         aria-label={t('header.mobileNav')}
+        aria-hidden={hidden}
         className={`ssb-bottom-nav fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 md:hidden ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
@@ -276,6 +258,7 @@ function BottomNavBarInner() {
                   href={tab.href}
                   aria-label={tab.label}
                   aria-current={active ? 'page' : undefined}
+                  tabIndex={hidden ? -1 : undefined}
                   className={`relative flex flex-col items-center justify-center flex-1 min-h-[48px] py-2 rounded-2xl transition-all duration-200 ${
                     active 
                       ? 'text-primary bg-primary/[0.08]' 

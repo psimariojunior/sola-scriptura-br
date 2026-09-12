@@ -18,7 +18,7 @@ test.describe('Landing Page', () => {
   });
 
   test('hero subtitle is visible', async ({ page }) => {
-    await expect(page.getByText('Estudo Bíblico Acadêmico', { exact: true }).nth(1)).toBeVisible();
+    await expect(page.getByText(/estudo bíblico com traduções/i).first()).toBeVisible({ timeout: 10000 });
   });
 
   test('navigation link "Bíblia" goes to /biblia', async ({ page }) => {
@@ -42,7 +42,7 @@ test.describe('Landing Page', () => {
   });
 
   test('CTA buttons are clickable', async ({ page }) => {
-    const ctaButton = page.locator('a[href="/biblia"]').filter({ hasText: 'Iniciar Estudo' });
+    const ctaButton = page.locator('a[href="/biblia"]').filter({ hasText: /Bíblia/ }).first();
     await expect(ctaButton).toBeVisible();
     await ctaButton.click();
     await page.waitForURL(/\/biblia/);

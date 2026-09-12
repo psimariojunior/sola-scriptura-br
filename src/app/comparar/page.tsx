@@ -326,7 +326,7 @@ export default function CompararPage() {
                     {t('compare.chapter', 'Capítulo')}
                   </label>
                   <div className="flex items-center gap-1">
-                    <button onClick={() => setCapitulo(c => Math.max(1, c - 1))} className="p-2 rounded-lg hover:bg-[var(--surface-sunken)]">
+                    <button onClick={() => setCapitulo(c => Math.max(1, c - 1))} className="p-2 rounded-lg hover:bg-[var(--surface-sunken)]" aria-label={t('biblia.previousChapter', 'Capítulo anterior')}>
                       <ChevronLeft className="w-4 h-4" />
                     </button>
                     <input
@@ -342,7 +342,7 @@ export default function CompararPage() {
                       }}
                       className="w-full px-3 py-2.5 bg-[var(--surface-raised)] border border-[var(--border)]/40 rounded-lg text-sm text-[var(--content-primary)] focus:outline-none focus:ring-2 focus:ring-[#d4a853]/30 tabular-nums text-center"
                     />
-                    <button onClick={() => setCapitulo(c => Math.min(livro.totalCapitulos, c + 1))} className="p-2 rounded-lg hover:bg-[var(--surface-sunken)]">
+                    <button onClick={() => setCapitulo(c => Math.min(livro.totalCapitulos, c + 1))} className="p-2 rounded-lg hover:bg-[var(--surface-sunken)]" aria-label={t('biblia.nextChapter', 'Próximo capítulo')}>
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>

@@ -34,7 +34,7 @@ test.describe('Flashcards Page', () => {
   });
 
   test('stats view toggle exists', async ({ page }) => {
-    await expect(page.locator('svg.lucide-bar-chart-3, svg.lucide-brain').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.getByTitle('Estatísticas').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('header and navigation are present', async ({ page }) => {

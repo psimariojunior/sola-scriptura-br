@@ -27,16 +27,16 @@ test.describe('Compartilhar Page', () => {
   });
 
   test('copy button exists for verses', async ({ page }) => {
-    const copyBtn = page.locator('button').filter({ has: page.locator('svg.lucide-copy') }).first();
+    const copyBtn = page.getByRole('button', { name: /copiar/i }).first();
     await expect(copyBtn).toBeVisible({ timeout: 10000 });
   });
 
   test('copy button works and shows confirmation', async ({ page }) => {
-    const copyBtn = page.locator('button').filter({ has: page.locator('svg.lucide-copy') }).first();
+    const copyBtn = page.getByRole('button', { name: /copiar/i }).first();
     await expect(copyBtn).toBeVisible({ timeout: 10000 });
     await copyBtn.click();
     await page.waitForTimeout(500);
-    const checkIcon = page.locator('button:has(svg.lucide-check)').first();
+    const checkIcon = page.getByRole('button', { name: /copiado|check/i }).first();
     await expect(checkIcon).toBeVisible({ timeout: 3000 });
   });
 

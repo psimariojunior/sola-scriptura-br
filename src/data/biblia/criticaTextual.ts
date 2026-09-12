@@ -3767,5 +3767,5 @@ export function getVariantePorLivro(livro: string): VarianteTextual[] {
 
 export function temVarianteSignificativa(ref: string): boolean {
   const variantes = getVariantePorReferencia(ref);
-  return variantes.some(v => v.variantes.some(vr => vr.classificacao === 'fraca'));
+  return variantes.length > 0 && variantes.some(v => v.variantes.length >= 2);
 }

@@ -367,6 +367,7 @@ export function BibleVerseList({
                             {!ui.ocultarNumeros && (
                               <sup className="bible-verse-number">{v.numero}</sup>
                             )}
+                            <span aria-hidden="true">
                             <ClickableVerse
                               text={v.texto}
                               livroAbreviacao={nav.livro.abreviacao}
@@ -376,6 +377,7 @@ export function BibleVerseList({
                               karaokeActive={isCurrentAudioVerse && hasAudioClock}
                               karaokeProgress={karaokeProgress}
                             />
+                            </span>
                             {temRecurso && !isModoLeitura && (
                               <span className="inline-block w-1 h-1 ml-0.5 mb-0.5 rounded-full bg-[var(--brand-default)]/70" title="Há estudo neste versículo" />
                             )}

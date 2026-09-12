@@ -28,15 +28,15 @@ test.describe('Pesquisa Page', () => {
     const input = page.locator('input[placeholder="Pesquisar nas Escrituras..."]');
     await input.fill('Deus');
     await page.waitForTimeout(1500);
-    await expect(page.locator('text=resultados para')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('text=/resultado.*para/').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('search shows result count', async ({ page }) => {
     const input = page.locator('input[placeholder="Pesquisar nas Escrituras..."]');
     await input.fill('amor');
     await page.waitForTimeout(1500);
-    await expect(page.locator('text=resultados para')).toBeVisible({ timeout: 10000 });
-    const resultText = await page.locator('text=resultados para').textContent();
+    await expect(page.locator('text=/resultado.*para/').first()).toBeVisible({ timeout: 10000 });
+    const resultText = await page.locator('text=/resultado.*para/').first().textContent();
     expect(resultText).toMatch(/\d+/);
   });
 

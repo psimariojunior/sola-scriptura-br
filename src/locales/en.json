@@ -693,6 +693,7 @@
     "harmony": "Harmony",
     "study": "Study",
     "theology": "Theology",
+    "exegesis": "Exegesis",
     "passageGuide": "Passage guide",
     "historyRead": "History",
     "statistics": "Statistics",
@@ -916,10 +917,10 @@
     "pentecostal": "Pentecostal",
     "lutheran": "Lutheran",
     "presbyterian": "Presbyterian",
-    "paywallTitle": "AI Assistant requires Full Access",
-    "paywallDesc": "Pay R$20 once and unlock forever.",
-    "unlock": "Unlock Full Access",
-    "unlockAccess": "Unlock Full Access"
+    "paywallTitle": "AI is a complementary study tool",
+    "paywallDesc": "Deep study depends on you — read, meditate, compare. AI assists with analysis and references, but Scripture is the authority. One-time contribution to keep the platform free.",
+    "unlock": "Contribute and Access AI",
+    "unlockAccess": "Contribute and Access AI"
   },
   "notifications": {
     "title": "Push Notifications",

@@ -15,36 +15,36 @@ test.describe('Smoke - IA Page', () => {
   test('chat input exists and is visible', async ({ page }) => {
     await page.goto('/ia', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(3000);
-    const input = page.locator('input[placeholder*="pergunta bíblica"]');
+    const input = page.locator('textarea[placeholder*="pergunta bíblica"]');
     await expect(input).toBeVisible({ timeout: 10000 });
   });
 
   test('send button is visible', async ({ page }) => {
     await page.goto('/ia', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(3000);
-    const sendBtn = page.locator('button').filter({ has: page.locator('svg.lucide-send') }).first();
+    const sendBtn = page.locator('button').filter({ has: page.locator('svg') }).last();
     await expect(sendBtn).toBeVisible({ timeout: 10000 });
   });
 
   test('tradition selector is visible', async ({ page }) => {
     await page.goto('/ia', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(3000);
-    await expect(page.locator('text=Tradição:').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('text=Tradição').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('suggestion cards are shown', async ({ page }) => {
     await page.goto('/ia', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(3000);
-    await expect(page.getByText('Faça uma pergunta sobre as Escrituras')).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText('Assistente Bíblico').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('typing a question enables send button', async ({ page }) => {
     await page.goto('/ia', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(3000);
-    const input = page.locator('input[placeholder*="pergunta bíblica"]');
+    const input = page.locator('textarea[placeholder*="pergunta bíblica"]');
     await input.fill('O que é graça?');
     await page.waitForTimeout(500);
-    const sendBtn = page.locator('button').filter({ has: page.locator('svg.lucide-send') }).first();
+    const sendBtn = page.locator('button').filter({ has: page.locator('svg') }).last();
     await expect(sendBtn).toBeEnabled();
   });
 });

@@ -147,12 +147,12 @@ export function SearchFilters({
 
         <div>
           <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.searchMode')}</label>
-          <div className="grid grid-cols-3 gap-1.5" role="tablist">
+          <div className="grid grid-cols-3 gap-1.5" role="radiogroup">
             {SEARCH_MODES.map((mode) => (
               <button
                 key={mode.id}
-                role="tab"
-                aria-selected={searchMode === mode.id}
+                role="radio"
+                aria-checked={searchMode === mode.id}
                 onClick={() => setSearchMode(mode.id)}
                 className={`flex items-center gap-1.5 px-2 py-1.5 text-xs rounded-sm transition-colors ${
                   searchMode === mode.id
@@ -254,6 +254,7 @@ export function SearchFilters({
               <button
                 key={test}
                 onClick={() => { setTestamento(test); setLivroFiltro('all'); setCapituloFiltro(null); }}
+                aria-pressed={testamento === test}
                 className={`flex-1 text-xs py-2 rounded-sm transition-colors ${
                   testamento === test
                     ? 'bg-primary text-primary-foreground'
@@ -284,11 +285,14 @@ export function SearchFilters({
           <div>
             <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.chapter')} (intervalo)</label>
             <div className="flex items-center gap-2">
+              <label htmlFor="chapter-from" className="sr-only">{t('pesquisa.chapterFrom', 'Capítulo de')}</label>
               <input
+                id="chapter-from"
                 type="number"
                 min={1}
                 max={selectedBook.totalCapitulos}
                 placeholder="De"
+                aria-label={t('pesquisa.chapterFrom', 'Capítulo de')}
                 value={capituloDe ?? ''}
                 onChange={(e) => {
                   const val = e.target.value ? Number(e.target.value) : null;
@@ -298,11 +302,14 @@ export function SearchFilters({
                 className="flex-1 px-2 py-1.5 text-sm bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-primary/20 min-w-0"
               />
               <span className="text-muted-foreground text-xs">até</span>
+              <label htmlFor="chapter-to" className="sr-only">{t('pesquisa.chapterTo', 'Capítulo até')}</label>
               <input
+                id="chapter-to"
                 type="number"
                 min={1}
                 max={selectedBook.totalCapitulos}
                 placeholder="Até"
+                aria-label={t('pesquisa.chapterTo', 'Capítulo até')}
                 value={capituloAte ?? ''}
                 onChange={(e) => {
                   const val = e.target.value ? Number(e.target.value) : null;

@@ -90,7 +90,7 @@ export function HeaderUserMenu({
                 <DropdownMenuTrigger asChild>
                   <button
                     className="relative flex items-center gap-2 px-1.5 py-1 rounded-lg hover:bg-muted/50 transition-all duration-300"
-                    aria-label="Menu da conta"
+                    aria-label={t('header.accountMenu', 'Menu da conta')}
                   >
                     <span className="relative inline-flex">
                       <span className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary">

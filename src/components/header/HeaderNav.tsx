@@ -56,7 +56,7 @@ export function HeaderNav({
   );
 
   return (
-    <nav id="main-nav" className="hidden lg:flex items-center gap-0.5 ml-2" aria-label="Navegação principal">
+    <nav id="main-nav" className="hidden lg:flex items-center gap-0.5 ml-2" aria-label={t('header.mainNav', 'Navegação principal')}>
       {navLinks.map((link) => {
         const active = isActive(link.href);
         return (
@@ -89,6 +89,7 @@ export function HeaderNav({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
+            aria-label={t('header.books', 'Livros')}
             className={`relative flex items-center gap-1 text-[13px] font-medium px-3 py-2 rounded-lg transition-colors duration-300 ${
               isActive('/biblia')
                 ? 'text-primary font-semibold'

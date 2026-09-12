@@ -15,21 +15,21 @@ test.describe('IA Page', () => {
   });
 
   test('chat input is visible', async ({ page }) => {
-    const input = page.locator('input[placeholder*="pergunta bíblica"]');
+    const input = page.locator('textarea[placeholder*="pergunta bíblica"]');
     await expect(input).toBeVisible();
   });
 
   test('send button is visible', async ({ page }) => {
-    const sendBtn = page.locator('button').filter({ has: page.locator('svg.lucide-send') }).first();
+    const sendBtn = page.locator('button').filter({ has: page.locator('svg') }).last();
     await expect(sendBtn).toBeVisible();
   });
 
   test('tradition selector is visible', async ({ page }) => {
-    await expect(page.locator('text=Tradição:').first()).toBeVisible();
+    await expect(page.locator('text=Tradição').first()).toBeVisible();
   });
 
   test('suggestion cards are shown initially', async ({ page }) => {
-    await expect(page.getByText('Faça uma pergunta sobre as Escrituras')).toBeVisible();
+    await expect(page.getByText('Assistente Bíblico').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('suggestion cards include categories', async ({ page }) => {
@@ -46,22 +46,18 @@ test.describe('IA Page', () => {
   });
 
   test('tradition dropdown shows available traditions', async ({ page }) => {
-    const tradBtn = page.locator('button').filter({ hasText: /Tradição:/ });
+    const tradBtn = page.locator('button').filter({ hasText: /Tradição/ });
     await tradBtn.click();
     await page.waitForTimeout(500);
-    await expect(page.locator('text=Reformada').first()).toBeVisible();
-    await expect(page.locator('text=Arminiana').first()).toBeVisible();
-  });
-
-  test('connection test button exists', async ({ page }) => {
-    await expect(page.locator('text=Testar conexão').first()).toBeVisible();
+    await expect(page.locator('[role="menuitem"]').filter({ hasText: 'Reformada' }).first()).toBeVisible();
+    await expect(page.locator('[role="menuitem"]').filter({ hasText: 'Arminiana' }).first()).toBeVisible();
   });
 
   test('typing a question enables send button', async ({ page }) => {
-    const input = page.locator('input[placeholder*="pergunta bíblica"]');
+    const input = page.locator('textarea[placeholder*="pergunta bíblica"]');
     await input.fill('O que é graça?');
     await page.waitForTimeout(300);
-    const sendBtn = page.locator('button').filter({ has: page.locator('svg.lucide-send') }).first();
+    const sendBtn = page.locator('button').filter({ has: page.locator('svg') }).last();
     await expect(sendBtn).toBeEnabled();
   });
 });

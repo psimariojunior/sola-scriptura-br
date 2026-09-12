@@ -253,7 +253,7 @@ export default function EstudarPage() {
             icon={GraduationCap}
             align="left"
             title="O que você quer estudar hoje?"
-            subtitle="Ferramentas acadêmicas, estudos por livro e recursos para aprofundar as Escrituras."
+            subtitle="Ferramentas de estudo, recursos por livro e materiais para aprofundar as Escrituras."
           >
             <button
               onClick={handleSearch}

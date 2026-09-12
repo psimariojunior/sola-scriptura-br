@@ -180,11 +180,11 @@ export default function HomeClient() {
             className="text-center font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--content-primary)] tracking-tight leading-[1.1] mb-6"
           >
             <span className="bg-gradient-to-r from-[var(--brand-default)] via-[var(--accent-warm)] to-[var(--brand-emphasis)] bg-clip-text text-transparent">
-              Estude a Bíblia
+              A Palavra de Deus é viva e eficaz
             </span>
             <br />
             <span className="text-[var(--content-primary)]">
-              com profundidade acadêmica
+              — estudada com fidelidade ao original
             </span>
           </motion.h1>
 
@@ -195,7 +195,7 @@ export default function HomeClient() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center text-base sm:text-lg md:text-xl text-[var(--content-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Bíblia em 10 traduções, exegese com IA, léxico original, teologia sistemática e 41 clássicos da fé — tudo em um só lugar, sem custo.
+            Estude a Escritura como ela merece ser estudada — comparando traduções, examinando as palavras originais, ouvindo vozes da tradição cristã, tudo sem custo.
           </motion.p>
 
           {/* CTAs — diversified */}
@@ -210,7 +210,7 @@ export default function HomeClient() {
               className="group flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--accent-warm)] text-white font-semibold shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 hover:scale-105 active:scale-95 transition-all"
             >
               <BookOpen className="w-5 h-5" />
-              Explorar a Bíblia
+              Ler as Escrituras
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
@@ -218,7 +218,7 @@ export default function HomeClient() {
               className="flex items-center gap-2 px-8 py-4 rounded-2xl border-2 border-[var(--border)] text-[var(--content-primary)] font-semibold hover:bg-[var(--surface-raised)] hover:border-[var(--brand-default)]/30 transition-all"
             >
               <Brain className="w-5 h-5" />
-              Experimentar a Exegese
+              Fazer Exegese
             </Link>
           </motion.div>
 
@@ -262,10 +262,10 @@ export default function HomeClient() {
             className="text-center mb-16"
           >
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--content-primary)] mb-4">
-              O que nenhum outro site bíblico gratuito oferece
+              Por que estudar com tantas ferramentas?
             </h2>
             <p className="text-[var(--content-secondary)] max-w-xl mx-auto">
-              Ferramentas de nível seminário, acessíveis a todos.
+              Porque a Palavra merece ser examinada em toda a sua riqueza — nas línguas originais, na tradição da igreja, com o cuidado que o texto sagrado merece.
             </p>
           </motion.div>
 
@@ -319,10 +319,10 @@ export default function HomeClient() {
             className="text-center mb-12"
           >
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--content-primary)] mb-4">
-              Ferramentas que transformam seu estudo
+              Ferramentas que aprofundam sua compreensão das Escrituras
             </h2>
             <p className="text-[var(--content-secondary)] max-w-xl mx-auto">
-              Do versículo do dia à exegese profunda — tudo integrado.
+              Do versículo diário à análise exegética — cada recurso a serviço da Palavra.
             </p>
           </motion.div>
 
@@ -387,7 +387,7 @@ export default function HomeClient() {
               Comece por Gênesis 1
             </h2>
             <p className="text-[var(--content-secondary)] mb-8 max-w-xl mx-auto">
-              Leia, ouça, estude e compare — tudo no mesmo lugar. Sem cadastro necessário.
+              Leia, ouça, estude e compare — como em Atos 17:11, onde os bereanos examinavam as Escrituras dia a dia. Sem cadastro necessário.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -403,7 +403,7 @@ export default function HomeClient() {
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border-2 border-[var(--border)] text-[var(--content-primary)] font-semibold hover:bg-[var(--surface-raised)] hover:border-[var(--brand-default)]/30 transition-all"
               >
                 <Clock className="w-5 h-5" />
-                Explorar Cursos
+                Ver Cursos
               </Link>
             </div>
           </motion.div>

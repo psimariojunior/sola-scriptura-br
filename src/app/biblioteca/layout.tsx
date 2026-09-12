@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Biblioteca Digital — Clássicos da Fé | Sola Scriptura BR',
   description:
-    '15 obras-primas do cristianismo de domínio público: Pais da Igreja, credos ecumênicos, Reforma, catecismos e Josefo. Textos integrais com fichas acadêmicas e leitor premium. Grátis.',
+    '41 obras-primas do cristianismo de domínio público: Pais da Igreja, credos ecumênicos, Reforma, catecismos e Josefo. Textos integrais com fichas e leitor imersivo. Grátis.',
   keywords: [
     'biblioteca cristã',
     'pais da igreja',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Biblioteca Digital — Clássicos da Fé | Sola Scriptura BR',
     description:
-      '15 obras-primas do cristianismo de domínio público, com leitor premium e fichas acadêmicas. Grátis.',
+      '41 obras-primas do cristianismo de domínio público, com leitor imersivo e fichas históricas. Grátis.',
   },
 };
 

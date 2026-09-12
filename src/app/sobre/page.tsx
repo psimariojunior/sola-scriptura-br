@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Sobre Nós',
   description:
-    'Conheça a missão, a metodologia e a declaração doutrinária do Sola Scriptura BR — plataforma gratuita de estudo bíblico acadêmico.',
+    'Conheça a missão, a metodologia e a declaração doutrinária do Sola Scriptura BR — estudo bíblico com fidelidade ao texto original.',
   alternates: { canonical: 'https://solascripturabr.com.br/sobre' },
 };
 
@@ -22,9 +22,9 @@ export default function SobrePage() {
             Sobre o Sola Scriptura
           </h1>
           <p className="text-lg text-[var(--content-secondary)] leading-relaxed">
-            Uma plataforma brasileira de estudo bíblico e formação teológica que combina
-            profundidade acadêmica, tecnologia e inteligência artificial — gratuita, sem
-            anúncios e sem cadastro obrigatório.
+            Uma iniciativa brasileira para estudar as Escrituras com fidelidade ao texto original,
+            usando tecnologia a serviço da Palavra — sem barreiras financeiras, sem anúncios
+            intrusivos, sem a necessidade de formação acadêmica prévia.
           </p>
         </section>
 
@@ -34,22 +34,22 @@ export default function SobrePage() {
             Nossa Missão
           </h2>
           <p className="text-[var(--content-secondary)] leading-relaxed mb-4">
-            Tornar o estudo bíblico profundo acessível a todo cristão que deseja compreender
-            as Escrituras com rigor — sem barreiras financeiras, sem anúncios intrusivos, sem
-            a necessidade de formação acadêmica prévia.
+            Tornar o estudo das Escrituras com fidelidade ao texto original acessível a todo
+            cristão que deseja compreender a Palavra com o cuidado que ela merece — sem
+            barreiras financeiras, sem anúncios intrusivos, sem a necessidade de formação
+            acadêmica prévia.
           </p>
           <p className="text-[var(--content-secondary)] leading-relaxed">
             Acreditamos que a Palavra de Deus merece ser estudada com o melhor que a
-            tecnologia e a tradição teológica podem oferecer. Por isso, reunimos em um só
-            lugar ferramentas que normalmente só estão disponíveis em softwares pagos ou em
-            bibliotecas acadêmicas.
+            tecnologia e a tradição teológica podem oferecer. Por isso, reunimos ferramentas
+            que honram a riqueza do texto bíblico.
           </p>
         </section>
 
         {/* O que oferecemos */}
         <section className="mb-16">
           <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-4">
-            O que Oferecemos
+            Recursos para o Estudo
           </h2>
           <ul className="space-y-3 text-[var(--content-secondary)]">
             <li className="flex gap-3">
@@ -70,7 +70,7 @@ export default function SobrePage() {
             </li>
             <li className="flex gap-3">
               <span className="text-[var(--brand-default)] mt-1">•</span>
-              <span><strong>Biblioteca de clássicos</strong> — 41 obras-primas da teologia cristã, do século I ao século XX, com fichas acadêmicas.</span>
+              <span><strong>Biblioteca de clássicos</strong> — 41 obras-primas da teologia cristã, do século I ao século XX, com fichas históricas.</span>
             </li>
             <li className="flex gap-3">
               <span className="text-[var(--brand-default)] mt-1">•</span>

@@ -33,7 +33,7 @@ const ESTUDOS: EstudoAcademico[] = [
   {
     id: 'romanos-academico',
     titulo: 'Romanos: A Teologia da Cruz',
-    descricao: 'Exegese avançada da carta aos Romanos com análise gramatical grega, desenvolvimento histórico-doutrinário, múltiplas perspectivas teológicas e bibliografia acadêmica completa.',
+    descricao: 'Exegese avançada da carta aos Romanos com análise gramatical grega, desenvolvimento histórico-doutrinário, múltiplas perspectivas teológicas e bibliografia completa.',
     nivel: 'seminary',
     categoria: 'teologia',
     duracao: '16 semanas',
@@ -49,7 +49,7 @@ const ESTUDOS: EstudoAcademico[] = [
     objetivos: [
       'Analisar a estrutura retórica e o argumento teológico de Romanos com rigor exegético',
       'Avaliar criticamente as principais perspectivas teológicas sobre justificação, eleição e ética paulina',
-      'Citar fontes primárias e secundárias com precisão acadêmica (ABNT/Apa)',
+      'Citar fontes primárias e secundárias com precisão (ABNT/Apa)',
       'Traduzir passagens-chave do grego com apparatus crítico básico',
     ],
     bibliografia: [
@@ -97,7 +97,7 @@ const ESTUDOS: EstudoAcademico[] = [
   {
     id: 'teologia-academico',
     titulo: 'Teologia Sistematizada: Doutrinas em Perspectivas Múltiplas',
-    descricao: 'Análise acadêmica das grandes doutrinas cristãs: Trindade, eleição, salvação, escatologia. Cada doutrina apresentada com desenvolvimento histórico, perspectivas reformada/arminiana/católica/oriental e debate contemporâneo.',
+    descricao: 'Análise aprofundada das grandes doutrinas cristãs: Trindade, eleição, salvação, escatologia. Cada doutrina apresentada com desenvolvimento histórico, perspectivas reformada/arminiana/católica/oriental e debate contemporâneo.',
     nivel: 'seminary',
     categoria: 'teologia',
     duracao: '16 semanas',
@@ -319,7 +319,7 @@ export default function EstudoAcademicoPage() {
               Estudos <span className="text-[var(--brand-default)] italic">Superiores</span>
             </h1>
             <p className="text-[var(--content-muted)] text-lg max-w-2xl mx-auto">
-              Cursos com rigor acadêmico, avaliações, bibliografias e certificação. Estudo teológico de nível seminário.
+              Cursos com profundidade teológica, avaliações, bibliografias e certificação. Estudo sério das Escrituras.
             </p>
           </motion.div>
 

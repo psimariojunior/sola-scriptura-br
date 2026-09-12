@@ -13,7 +13,7 @@ import { Crown, Sparkles, Check, Lock, Infinity as Infinito, BookOpen, Languages
 import { motion } from 'framer-motion';
 
 const BENEFICIOS = [
-  { icon: Bot, titulo: 'Assistente de IA', desc: 'Chat teológico com fundamentação acadêmica' },
+  { icon: Bot, titulo: 'Assistente de IA', desc: 'Chat teológico com fundamentação nas Escrituras' },
   { icon: Sparkles, titulo: 'Estudo com IA', desc: 'Gerador de estudos bíblicos completos' },
   { icon: Languages, titulo: 'Línguas originais', desc: 'Grego e hebraico com Strong\'s aprofundados' },
   { icon: Map, titulo: 'Atlas bíblico', desc: 'Mapas interativos e geografia sagrada' },

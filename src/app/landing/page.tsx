@@ -72,7 +72,7 @@ const destaques = [
   { titulo: 'Comentários clássicos', texto: 'Pais da Igreja, Reforma e puritanos, em português do Brasil.' },
   { titulo: 'Referências cruzadas', texto: 'Mais de 29 mil ligações TSK, com exploração visual.' },
   { titulo: 'Exegese e harmonia', texto: 'Análise do texto, paralelos sinóticos e atlas bíblico.' },
-  { titulo: 'Biblioteca de clássicos', texto: 'Obras de domínio público com leitor e fichas acadêmicas.' },
+  { titulo: 'Biblioteca de clássicos', texto: 'Obras de domínio público com leitor e fichas históricas.' },
 ];
 
 const stats = [
@@ -97,7 +97,7 @@ export default function LandingPage() {
             <span className="block text-primary italic">BR</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            A plataforma mais completa para estudo bíblico. 10 traduções, léxico original, IA, exegese automática — e 100% gratuita.
+            Estude a Escritura como ela merece ser estudada. 10 traduções, léxico original, IA, exegese automática — sem custo, sem anúncios.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -131,7 +131,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <h2 className="font-display text-3xl md:text-4xl font-normal text-foreground text-center mb-4">Tudo que você precisa</h2>
           <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-            Ferramentas de estudo acadêmico em português do Brasil — gratuitas e sem anúncios.
+            Ferramentas de estudo bíblico em português do Brasil — gratuitas e sem anúncios.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (

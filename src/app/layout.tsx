@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: '%s | Sola Scriptura BR',
   },
   description:
-    'Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática, Concordância, Comentários de teólogos e ferramentas avançadas de pesquisa.',
+    'Estudo bíblico com fidelidade ao texto original — Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática, Concordância, Comentários e ferramentas avançadas de pesquisa. Gratuito, sem anúncios.',
   keywords: [
     'bíblia', 'estudo bíblico', 'grego', 'hebraico', 'teologia', 'exegese',
     'comentários', 'concordância', 'léxico strong', 'bíblia online',
@@ -135,7 +135,7 @@ const jsonLd = {
   name: 'Sola Scriptura BR',
   url: 'https://solascripturabr.com.br',
   description:
-    'Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática e ferramentas avançadas.',
+    'Estudo bíblico com fidelidade ao texto original — Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática e ferramentas avançadas.',
   applicationCategory: 'EducationalApplication',
   operatingSystem: 'Web',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

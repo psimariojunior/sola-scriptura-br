@@ -74,12 +74,12 @@ export default function ExegesePage() {
       EXEGESE_DIMENSIONS.find(d => d.id === id)?.nome || id
     ).join(', ');
 
-    const prompt = `Você é um exegeta e teólogo reformado com décadas de experiência em exegese bíblica acadêmica. Faça uma exegese COMPLETA e PROFUNDA da passagem ${refLabel}.
+    const prompt = `Você é um exegeta e teólogo com décadas de experiência em exegese bíblica. Faça uma exegese COMPLETA e PROFUNDA da passagem ${refLabel}.
 
 DIMENSÕES SOLICITADAS: ${dimNames}
 
 INSTRUÇÕES:
-- Para cada dimensão, produza um texto acadêmico de 200-400 palavras
+- Para cada dimensão, produza um texto aprofundado de 200-400 palavras
 - Use terminologia técnica apropriada (mas acessível)
 - Cite fontes e teólogos quando relevante
 - Inclua o texto original (grego/hebraico) quando aplicável
@@ -89,7 +89,7 @@ INSTRUÇÕES:
 FORMATO DE SAÍDA:
 Para cada dimensão, produza:
 ## [Nome da Dimensão]
-[Texto acadêmico completo]
+[Texto aprofundado completo]
 
 ---
 [Separação entre dimensões]
@@ -419,7 +419,7 @@ Responda APENAS com o conteúdo das dimensões solicitadas, sem texto adicional.
         icon={Brain}
         eyebrow="Exegese Bíblica"
         title="Análise em 12 Dimensões"
-        subtitle="Exegese acadêmica completa com IA — textual, histórica, literária, teológica, gramatical, arqueológica, geográfica, canônica, pastoral, comparativa, contextual e síntese."
+        subtitle="Exegese completa com IA — textual, histórica, literária, teológica, gramatical, arqueológica, geográfica, canônica, pastoral, comparativa, contextual e síntese."
       />
       {content}
     </PageShell>

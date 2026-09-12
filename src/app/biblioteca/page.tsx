@@ -147,7 +147,7 @@ export default function BibliotecaPage() {
                 <>
                   Os clássicos que mudaram a história da fé — Pais da Igreja, credos
                   ecumênicos, a Reforma e testemunhas oculares do mundo bíblico.
-                  Textos de domínio público, fichas acadêmicas e leitor premium.
+                  Textos de domínio público, fichas históricas e leitor imersivo.
                   <span className="text-primary font-medium"> Para sempre grátis.</span>
                 </>
               }
@@ -478,7 +478,7 @@ export default function BibliotecaPage() {
                 Estude como nos <span className="italic text-primary">grandes seminários</span>
               </h2>
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-6">
-                Estas obras acompanham toda a suíte acadêmica do Sola Scriptura: leia o Didaquê
+                Estas obras acompanham toda a suíte de estudo do Sola Scriptura: leia o Didaquê
                 junto com a página de História, as Institutas junto com a Teologia Sistemática,
                 e Josefo junto com a exegese de Lucas 21 e Marcos 13.
               </p>

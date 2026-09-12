@@ -4,7 +4,7 @@ const siteUrl = 'https://solascripturabr.com.br';
 
 export const metadata: Metadata = {
   title: 'Assistente Bíblico IA — Chat com Groq | Sola Scriptura BR',
-  description: 'Assistente de IA especializado em estudos bíblicos acadêmicos. Tire dúvidas sobre teologia, exegese, personagens, história e contexto bíblico com RAG vetorial.',
+  description: 'Assistente de IA treinado na tradição exegética cristã — tire dúvidas sobre teologia, exegese, personagens, história e contexto bíblico com RAG vetorial.',
   keywords: ['IA bíblica', 'assistente IA', 'chat bíblico', 'teologia', 'exegese', 'perguntas bíblicas', 'Groq', 'LLM'],
   authors: [{ name: 'Sola Scriptura BR' }],
   creator: 'Sola Scriptura BR',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: `${siteUrl}/ia`,
     title: 'Assistente Bíblico IA — Chat com Groq | Sola Scriptura BR',
-    description: 'Assistente de IA especializado em estudos bíblicos acadêmicos.',
+    description: 'Assistente de IA treinado na tradição exegética cristã.',
     siteName: 'Sola Scriptura BR',
     images: [
       {

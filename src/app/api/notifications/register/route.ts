@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserFromRequest } from '@/lib/session';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export const runtime = 'nodejs';
 
@@ -16,6 +17,9 @@ function headersSupabase(): Record<string, string> {
 }
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'NOTIFICATIONS_REGISTER');
+  if (blocked) return blocked;
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();

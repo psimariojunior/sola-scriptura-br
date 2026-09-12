@@ -604,8 +604,23 @@
       "submitting": "Signing in...",
       "noAccount": "Don't have an account?",
       "signUp": "Sign Up",
+      "forgotPassword": "Forgot your password?",
       "fillAllFields": "Please fill in all fields",
       "loginError": "Login error. Please check your credentials."
+    },
+    "recuperarSenha": {
+      "title": "Reset password",
+      "description": "Enter your email to receive a recovery link",
+      "enterEmail": "Enter your email",
+      "resetPassword": "Reset password",
+      "submit": "Send recovery link",
+      "submitting": "Sending...",
+      "resetEmailSent": "Recovery email sent",
+      "resetEmailSentDesc": "If the email is registered, you will receive a link to reset your password. Check your inbox and spam folder.",
+      "backToLogin": "Back to sign in",
+      "rememberPassword": "Remember your password?",
+      "invalidEmail": "Invalid email",
+      "errorSending": "Error sending recovery email."
     },
     "register": {
       "title": "Create Account",
@@ -1426,5 +1441,22 @@
     "deselectAll": "Deselect all",
     "copy": "Copy",
     "copied": "Copied!"
+  },
+  "emptyState": {
+    "favoritesTitle": "No favorites yet",
+    "favoritesDescription": "Tap the heart on a verse to save it here.",
+    "notesTitle": "Your notes",
+    "notesDescription": "Save insights and reflections as you study.",
+    "studiesTitle": "Start studying",
+    "studiesDescription": "Choose a book or topic to begin your studies.",
+    "searchTitle": "Search the Bible",
+    "searchDescription": "Look up words, verses, or topics.",
+    "collectionsTitle": "Create collections",
+    "collectionsDescription": "Organize verses by topic or study.",
+    "quizTitle": "Test your knowledge",
+    "quizDescription": "Challenge yourself with Bible questions.",
+    "genericTitle": "Nothing here yet",
+    "genericDescription": "Explore the Bible and start your journey.",
+    "getStarted": "Get started"
   }
 }

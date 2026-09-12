@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { chatWithAI } from '@/lib/ai-provider';
 import { construirContextoRAG } from '@/lib/ragGrounding';
 import { applyRateLimit } from '@/lib/api-rate-limit';
+import { PerguntaSchema, validateBody } from '@/lib/api-schemas';
 
 export const runtime = 'nodejs';
 
@@ -9,21 +10,17 @@ export async function POST(request: NextRequest) {
   const blocked = await applyRateLimit(request, 'IA_CHAT');
   if (blocked) return blocked;
 
-  let body: Record<string, unknown>;
+  let rawBody: unknown;
   try {
-    body = await request.json();
+    rawBody = await request.json();
   } catch {
     return NextResponse.json({ erro: 'JSON invalido' }, { status: 400 });
   }
 
-  const consulta = typeof body.consulta === 'string' ? body.consulta : '';
-  const tradicao = typeof body.tradicao === 'string' ? body.tradicao : undefined;
-  const contexto = typeof body.contexto === 'string' ? body.contexto : undefined;
-  const userId = typeof body.userId === 'string' ? body.userId : undefined;
+  const parsed = validateBody(PerguntaSchema, rawBody);
+  if (!parsed.success) return parsed.error;
 
-  if (!consulta?.trim()) {
-    return NextResponse.json({ erro: 'Pergunta e obrigatoria' }, { status: 400 });
-  }
+  const { consulta, tradicao, contexto } = parsed.data;
 
   const inicio = Date.now();
 
@@ -38,7 +35,6 @@ export async function POST(request: NextRequest) {
       question: consulta,
       context: contextoRAG,
       tradicao,
-      userId,
     });
 
     return NextResponse.json({

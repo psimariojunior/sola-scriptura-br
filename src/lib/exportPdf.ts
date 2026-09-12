@@ -1,4 +1,11 @@
-import jsPDF from 'jspdf';
+let jsPDFModule: typeof import('jspdf') | null = null;
+
+async function getJsPDF() {
+  if (!jsPDFModule) {
+    jsPDFModule = await import('jspdf');
+  }
+  return jsPDFModule.default;
+}
 
 export interface PlanoLeituraExport {
   id: string;
@@ -42,7 +49,8 @@ export async function exportPlanPDF(plano: PlanoLeituraExport, opcoes?: Partial<
   const opts = criarOpcoesPadrao(titulo, { subtitulo: `Plano de Leitura • ${plano.duracao} dias`, ...opcoes });
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const ph = doc.internal.pageSize.getHeight();
   const cw = doc.internal.pageSize.getWidth() - 2 * opts.margem;
   let y = opts.margem + 5;
@@ -146,7 +154,8 @@ export async function exportNotesPDF(notas: NotaExport[], opcoes?: Partial<Opcoe
   const opts = criarOpcoesPadrao(`Minhas Anotações (${notas.length})`, opcoes);
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const ph = doc.internal.pageSize.getHeight();
   const cw = doc.internal.pageSize.getWidth() - 2 * opts.margem;
 
@@ -301,7 +310,7 @@ function obterFonte(tipo: 'serif' | 'sans', estilo: 'normal' | 'bold' | 'italic'
   }
 }
 
-function desenharCabecalho(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores, tituloPagina: string) {
+function desenharCabecalho(doc: InstanceType<Awaited<ReturnType<typeof getJsPDF>>>, opcoes: OpcoesExportPdf, cores: TemaCores, tituloPagina: string) {
   const pw = doc.internal.pageSize.getWidth();
   doc.setFillColor(...cores.primarioEscuro);
   doc.rect(0, 0, pw, 14, 'F');
@@ -323,7 +332,7 @@ function desenharCabecalho(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores
   doc.text(truncated, pw - opcoes.margem, 9, { align: 'right' });
 }
 
-function desenharRodape(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores, numPagina: number, totalPaginas: number) {
+function desenharRodape(doc: InstanceType<Awaited<ReturnType<typeof getJsPDF>>>, opcoes: OpcoesExportPdf, cores: TemaCores, numPagina: number, totalPaginas: number) {
   const pw = doc.internal.pageSize.getWidth();
   const ph = doc.internal.pageSize.getHeight();
   const txt = TEXTO_IDIOMA[opcoes.idioma];
@@ -348,7 +357,7 @@ function desenharRodape(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores, n
   doc.text(txt.geradoPor + ' — solascripturabr.com.br', pw / 2, ph - 7, { align: 'center' });
 }
 
-function desenharCapa(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores) {
+function desenharCapa(doc: InstanceType<Awaited<ReturnType<typeof getJsPDF>>>, opcoes: OpcoesExportPdf, cores: TemaCores) {
   const pw = doc.internal.pageSize.getWidth();
   const ph = doc.internal.pageSize.getHeight();
 
@@ -409,7 +418,7 @@ function desenharCapa(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores) {
   doc.text('solascripturabr.com.br', pw / 2, ph - 30, { align: 'center' });
 }
 
-function desenharIndice(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores, conteudo: ConteudoExport[]) {
+function desenharIndice(doc: InstanceType<Awaited<ReturnType<typeof getJsPDF>>>, opcoes: OpcoesExportPdf, cores: TemaCores, conteudo: ConteudoExport[]) {
   const pw = doc.internal.pageSize.getWidth();
   const txt = TEXTO_IDIOMA[opcoes.idioma];
   let y = opcoes.margem + 5;
@@ -453,7 +462,7 @@ function desenharIndice(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores, c
 }
 
 function desenharSecao(
-  doc: jsPDF,
+  doc: InstanceType<Awaited<ReturnType<typeof getJsPDF>>>,
   opcoes: OpcoesExportPdf,
   cores: TemaCores,
   item: ConteudoExport,
@@ -533,7 +542,7 @@ function desenharSecao(
 }
 
 function desenharVersiculos(
-  doc: jsPDF,
+  doc: InstanceType<Awaited<ReturnType<typeof getJsPDF>>>,
   opcoes: OpcoesExportPdf,
   cores: TemaCores,
   versiculos: { numero: number; texto: string; traducao?: string }[],
@@ -606,7 +615,8 @@ export async function exportarPdf(conteudo: ConteudoExport[], opcoes?: Partial<O
   const opts = criarOpcoesPadrao(conteudo[0]?.titulo || 'Sola Scriptura', opcoes);
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const pw = doc.internal.pageSize.getWidth();
 
   desenharCapa(doc, opts, cores);
@@ -654,7 +664,8 @@ export async function exportarCapitulo(
   const opts = criarOpcoesPadrao(titulo, opcoes);
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
   desenharCapa(doc, opts, cores);
   doc.addPage();
@@ -682,7 +693,8 @@ export async function exportarEstudo(
   const opts = criarOpcoesPadrao(estudo.titulo, opcoes);
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
   desenharCapa(doc, opts, cores);
   doc.addPage();
@@ -716,7 +728,8 @@ export async function exportarVersiculos(
   const opts = criarOpcoesPadrao(referenciaBase, opcoes);
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
   desenharCapa(doc, opts, cores);
   doc.addPage();
@@ -752,7 +765,8 @@ export async function exportarComentarios(
   const opts = criarOpcoesPadrao(`Comentários — ${referencia}`, opcoes);
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
   desenharCapa(doc, opts, cores);
   doc.addPage();
@@ -782,7 +796,8 @@ export async function exportarNota(
   const opts = criarOpcoesPadrao(nota.titulo, opcoes);
   const cores = TEMAS[opts.tema];
 
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
   desenharCapa(doc, opts, cores);
   doc.addPage();

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserFromRequest } from '@/lib/session';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export const runtime = 'nodejs';
 
@@ -16,6 +17,9 @@ function headersSupabase(): Record<string, string> {
 }
 
 export async function GET(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'NOTIFICATIONS');
+  if (blocked) return blocked;
+
   const session = await getUserFromRequest(request);
   if (!session) {
     return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });
@@ -49,6 +53,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'NOTIFICATIONS');
+  if (blocked) return blocked;
+
   const session = await getUserFromRequest(request);
   if (!session) {
     return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });

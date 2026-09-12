@@ -3,6 +3,7 @@
 import { Heart, StickyNote, Search, FileText, BookMarked, Trophy, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 type EmptyStateType = 'favorites' | 'notes' | 'studies' | 'search' | 'collections' | 'quiz' | 'generic';
 
@@ -16,51 +17,6 @@ interface Props {
   icon?: React.ReactNode;
 }
 
-const EMPTY_CONFIG: Record<EmptyStateType, { icon: React.ReactNode; title: string; description: string; gradient: string }> = {
-  favorites: {
-    icon: <Heart className="w-8 h-8" />,
-    title: 'Nenhum favorito ainda',
-    description: 'Toque no coração de um versículo para salvá-lo aqui.',
-    gradient: 'from-pink-500/10 to-rose-500/10',
-  },
-  notes: {
-    icon: <StickyNote className="w-8 h-8" />,
-    title: 'Suas anotações',
-    description: 'Salve insights e reflexões enquanto estuda.',
-    gradient: 'from-amber-500/10 to-yellow-500/10',
-  },
-  studies: {
-    icon: <BookOpen className="w-8 h-8" />,
-    title: 'Comece a estudar',
-    description: 'Escolha um livro ou tema para iniciar seus estudos.',
-    gradient: 'from-emerald-500/10 to-teal-500/10',
-  },
-  search: {
-    icon: <Search className="w-8 h-8" />,
-    title: 'Pesquise na Bíblia',
-    description: 'Busque por palavras, versículos ou temas.',
-    gradient: 'from-blue-500/10 to-indigo-500/10',
-  },
-  collections: {
-    icon: <BookMarked className="w-8 h-8" />,
-    title: 'Crie coleções',
-    description: 'Organize versículos por tema ou estudo.',
-    gradient: 'from-violet-500/10 to-purple-500/10',
-  },
-  quiz: {
-    icon: <Trophy className="w-8 h-8" />,
-    title: 'Teste seus conhecimentos',
-    description: 'Desafie-se com perguntas sobre a Bíblia.',
-    gradient: 'from-orange-500/10 to-amber-500/10',
-  },
-  generic: {
-    icon: <BookOpen className="w-8 h-8" />,
-    title: 'Nada por aqui',
-    description: 'Explore a Bíblia e comece sua jornada.',
-    gradient: 'from-gray-500/10 to-slate-500/10',
-  },
-};
-
 export function EmptyState({
   type = 'generic',
   title,
@@ -70,6 +26,53 @@ export function EmptyState({
   onAction,
   icon,
 }: Props) {
+  const { t } = useTranslation();
+
+  const EMPTY_CONFIG: Record<EmptyStateType, { icon: React.ReactNode; title: string; description: string; gradient: string }> = {
+    favorites: {
+      icon: <Heart className="w-8 h-8" />,
+      title: t('emptyState.favoritesTitle'),
+      description: t('emptyState.favoritesDescription'),
+      gradient: 'from-pink-500/10 to-rose-500/10',
+    },
+    notes: {
+      icon: <StickyNote className="w-8 h-8" />,
+      title: t('emptyState.notesTitle'),
+      description: t('emptyState.notesDescription'),
+      gradient: 'from-amber-500/10 to-yellow-500/10',
+    },
+    studies: {
+      icon: <BookOpen className="w-8 h-8" />,
+      title: t('emptyState.studiesTitle'),
+      description: t('emptyState.studiesDescription'),
+      gradient: 'from-emerald-500/10 to-teal-500/10',
+    },
+    search: {
+      icon: <Search className="w-8 h-8" />,
+      title: t('emptyState.searchTitle'),
+      description: t('emptyState.searchDescription'),
+      gradient: 'from-blue-500/10 to-indigo-500/10',
+    },
+    collections: {
+      icon: <BookMarked className="w-8 h-8" />,
+      title: t('emptyState.collectionsTitle'),
+      description: t('emptyState.collectionsDescription'),
+      gradient: 'from-violet-500/10 to-purple-500/10',
+    },
+    quiz: {
+      icon: <Trophy className="w-8 h-8" />,
+      title: t('emptyState.quizTitle'),
+      description: t('emptyState.quizDescription'),
+      gradient: 'from-orange-500/10 to-amber-500/10',
+    },
+    generic: {
+      icon: <BookOpen className="w-8 h-8" />,
+      title: t('emptyState.genericTitle'),
+      description: t('emptyState.genericDescription'),
+      gradient: 'from-gray-500/10 to-slate-500/10',
+    },
+  };
+
   const config = EMPTY_CONFIG[type];
 
   return (
@@ -119,14 +122,14 @@ export function EmptyState({
               href={actionHref}
               className="ssb-hit inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-[var(--brand-default)] text-white shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 transition-all active:scale-95"
             >
-              {actionLabel || 'Começar'}
+              {actionLabel || t('emptyState.getStarted')}
             </Link>
           ) : (
             <button
               onClick={onAction}
               className="ssb-hit inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-[var(--brand-default)] text-white shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 transition-all active:scale-95"
             >
-              {actionLabel || 'Começar'}
+              {actionLabel || t('emptyState.getStarted')}
             </button>
           )}
         </motion.div>

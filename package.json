@@ -35,11 +35,12 @@
     "@radix-ui/react-toast": "^1.2.21",
     "@radix-ui/react-tooltip": "^1.2.14",
     "@sentry/nextjs": "^10.68.0",
+    "@types/dompurify": "^3.0.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "dompurify": "^3.4.15",
     "framer-motion": "^11.18.2",
-    "html2canvas": "^1.4.1",
     "i18next": "^23.16.8",
     "i18next-browser-languagedetector": "^7.2.2",
     "jspdf": "^4.2.1",
@@ -58,7 +59,8 @@
     "recharts": "^3.10.0",
     "socket.io-client": "^4.8.3",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.6.2"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

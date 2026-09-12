@@ -11,39 +11,15 @@ import { ExportModal } from '@/components/ExportModal';
 import type { ConteudoExport } from '@/lib/exportPdf';
 import { useToast } from '@/hooks/useToast';
 import { aplicarSalvarNotaRich, lerNotasRich } from '@/lib/notasUnificadas';
+import DOMPurify from 'dompurify';
 
 function sanitizarHTML(html: string): string {
   if (!html) return '';
-  const tagsPermitidas = ['b', 'i', 'u', 's', 'em', 'strong', 'h2', 'h3', 'blockquote', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'br', 'p', 'img', 'span'];
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  const limpar = (el: Element) => {
-    for (const child of [...el.children]) {
-      const tag = child.tagName.toLowerCase();
-      if (!tagsPermitidas.includes(tag)) {
-        child.replaceWith(document.createTextNode(child.textContent || ''));
-        continue;
-      }
-      for (const attr of [...child.attributes]) {
-        if (attr.name === 'href') {
-          const v = attr.value.trim().toLowerCase();
-          if (!v.startsWith('http://') && !v.startsWith('https://') && !v.startsWith('#')) {
-            child.removeAttribute(attr.name);
-          }
-        } else if (attr.name === 'src') {
-          const v = attr.value.trim().toLowerCase();
-          if (!v.startsWith('http://') && !v.startsWith('https://') && !v.startsWith('data:')) {
-            child.removeAttribute(attr.name);
-          }
-        } else if (attr.name.startsWith('on')) {
-          child.removeAttribute(attr.name);
-        }
-      }
-      limpar(child);
-    }
-  };
-  limpar(div);
-  return div.innerHTML;
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: ['b', 'i', 'u', 's', 'em', 'strong', 'h2', 'h3', 'blockquote', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'br', 'p', 'span'],
+    ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'target', 'rel'],
+    ALLOW_DATA_ATTR: false,
+  });
 }
 
 export interface Nota {
@@ -62,6 +38,7 @@ interface NotaEditorProps {
   onSalvar?: (nota: Nota) => void;
   onExcluir?: (id: string) => void;
   autoSalvar?: boolean;
+  onChange?: () => void;
 }
 
 const TAGS_SUGERIDAS = [
@@ -74,6 +51,7 @@ export function NotaEditor({
   onSalvar,
   onExcluir,
   autoSalvar = true,
+  onChange,
 }: NotaEditorProps) {
   const [nota, setNota] = useState<Nota>(
     notaInicial || {
@@ -141,7 +119,8 @@ export function NotaEditor({
     document.execCommand(comando, false, valor);
     editorRef.current?.focus();
     setEditando(true);
-  }, []);
+    onChange?.();
+  }, [onChange]);
 
   const inserirLink = useCallback(() => {
     const url = prompt('URL do link:');
@@ -158,14 +137,16 @@ export function NotaEditor({
     if (t && !nota.tags.includes(t)) {
       setNota(n => ({ ...n, tags: [...n.tags, t] }));
       setEditando(true);
+      onChange?.();
     }
     setTagInput('');
-  }, [nota.tags]);
+  }, [nota.tags, onChange]);
 
   const removerTag = useCallback((tag: string) => {
     setNota(n => ({ ...n, tags: n.tags.filter(t => t !== tag) }));
     setEditando(true);
-  }, []);
+    onChange?.();
+  }, [onChange]);
 
   const restaurarVersao = useCallback((idx: number) => {
     const verso = nota.versoes[idx];
@@ -187,8 +168,9 @@ export function NotaEditor({
       const html = editorRef.current.innerHTML;
       setNota(n => ({ ...n, conteudo: html }));
       setEditando(true);
+      onChange?.();
     }
-  }, []);
+  }, [onChange]);
 
   const conteudoExport: ConteudoExport[] = [{
     tipo: 'nota',
@@ -369,7 +351,7 @@ export function NotaEditor({
       <div className="px-4 pt-4">
         <input
           value={nota.titulo}
-          onChange={(e) => { setNota(n => ({ ...n, titulo: e.target.value })); setEditando(true); }}
+          onChange={(e) => { setNota(n => ({ ...n, titulo: e.target.value })); setEditando(true); onChange?.(); }}
           placeholder="Título da nota..."
           className="w-full text-lg font-display font-medium bg-transparent border-none outline-none placeholder:text-muted-foreground/50"
         />

@@ -173,7 +173,7 @@ export function generateWebAppSchema(): WebApplicationSchema {
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      'Plataforma gratuita de estudo bíblico acadêmico com IA. Bíblia em 12 traduções, léxico Grego e Hebraico, exegese automática, teologia sistemática e ferramentas avançadas.',
+      'Plataforma gratuita de estudo bíblico acadêmico com IA. Bíblia em 10+ traduções, léxico Grego e Hebraico, exegese automática, teologia sistemática e ferramentas avançadas.',
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Web',
     offers: {
@@ -182,7 +182,7 @@ export function generateWebAppSchema(): WebApplicationSchema {
       priceCurrency: 'BRL',
     },
     featureList: [
-      'Bíblia em 12 traduções',
+      'Bíblia em 10+ traduções',
       'Léxico Hebraico (8674 palavras)',
       'Léxico Grego (5526 palavras)',
       'Vista interlinear palavra-a-palavra',
@@ -226,7 +226,10 @@ export function generateOrganizationSchema(): OrganizationSchema {
     logo: `${SITE_URL}/logo.png`,
     description:
       'Plataforma gratuita de estudo bíblico acadêmico com inteligência artificial.',
-    sameAs: [],
+    sameAs: [
+      'https://github.com/psimariojunior/sola-scriptura-br',
+      'https://twitter.com/solascriptura_br',
+    ],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',

@@ -1,0 +1,521 @@
+/* ═══════════════════════════════════════════════════════════
+ THEMES — All 5 theme definitions (light, dark, dim, sepia, noturno)
+ ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ShadCN HSL tokens — Premium Light (manhã) */
+  --background: 40 38% 95%;
+  --foreground: 24 42% 12%;
+  --card: 40 44% 98%;
+  --card-foreground: 24 42% 12%;
+  --popover: 40 44% 98%;
+  --popover-foreground: 24 42% 12%;
+  --primary: 36 56% 32%;
+  --primary-foreground: 40 44% 98%;
+  --secondary: 38 26% 91%;
+  --secondary-foreground: 24 32% 18%;
+  --muted: 38 22% 91%;
+  --muted-foreground: 28 16% 38%;
+  --accent: 38 28% 90%;
+  --accent-foreground: 24 32% 18%;
+  --destructive: 0 62% 38%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 34 22% 80%;
+  --input: 34 22% 80%;
+  --ring: 36 56% 32%;
+  --radius: 0.5rem;
+  --rubric: 355 58% 36%;
+
+  /* Legacy aliases */
+  --bg: #F7F1E4;
+  --fg: #2A1810;
+  --muted-fg: #6B5A48;
+  --card-bg: #FBF8F0;
+  --card-border: #DCCDB0;
+  --primary-light: #8B6914;
+
+  /* UNIFIED SEMANTIC TOKENS — Pergaminho */
+  --surface-base: #F7F1E4;
+  --surface-raised: #FBF8F0;
+  --surface-overlay: rgba(251, 248, 240, 0.92);
+  --surface-sunken: #EDE4D2;
+  --surface-inverted: #2A1810;
+
+  --content-primary: #2C1A12;
+  --content-secondary: #5C4A38;
+  --content-muted: #8A7660;
+  --content-inverse: #F3E9D4;
+  --content-link: #8B6914;
+
+  --brand-default: #8B6914;
+  --brand-hover: #6F5210;
+  --brand-emphasis: #A67C1A;
+  --brand-subtle: rgba(139, 105, 20, 0.12);
+  --brand-contrast: #FBF6EA;
+
+  --accent-warm: #B45309;
+  --accent-cool: #1E3A8A;
+  --accent-success: #15803D;
+  --accent-danger: #B91C1C;
+  --accent-warning: #CA8A04;
+  --accent-info: #0369A1;
+
+  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.06), 0 1px 3px rgba(28, 25, 23, 0.04);
+  --shadow-md: 0 4px 12px rgba(28, 25, 23, 0.08), 0 2px 4px rgba(28, 25, 23, 0.04);
+  --shadow-lg: 0 12px 32px rgba(28, 25, 23, 0.12), 0 4px 12px rgba(28, 25, 23, 0.06);
+  --shadow-glow: 0 0 24px rgba(161, 122, 44, 0.20);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --gradient-hero: linear-gradient(135deg, #A17A2C 0%, #C49A4D 50%, #E07A30 100%);
+  --gradient-divine: linear-gradient(135deg, #A17A2C 0%, #B45309 100%);
+  --gradient-warm: linear-gradient(135deg, #B45309 0%, #E07A30 100%);
+  --gradient-sunset: linear-gradient(180deg, #FAFAF7 0%, #F4EBD8 50%, #E8C19A 100%);
+
+  --mark-yellow: rgba(234,179,8,0.22);
+  --mark-green: rgba(34,197,94,0.22);
+  --mark-blue: rgba(59,130,246,0.22);
+  --mark-pink: rgba(236,72,153,0.22);
+  --mark-orange: rgba(249,115,22,0.22);
+  --mark-purple: rgba(168,85,247,0.22);
+
+  --font-heading: var(--font-cormorant), Georgia, serif;
+  --font-reading: var(--font-spectral), Georgia, serif;
+  --rhythm: 1.25rem;
+}
+
+.dark {
+  /* Mesa de nogueira — tinta quente, nao OLED preto-cinza */
+  --background: 28 22% 8%;
+  --foreground: 38 30% 94%;
+  --card: 28 18% 13%;
+  --card-foreground: 38 30% 94%;
+  --popover: 28 18% 13%;
+  --popover-foreground: 38 30% 94%;
+  --primary: 38 62% 62%;
+  --primary-foreground: 28 22% 8%;
+  --secondary: 28 16% 17%;
+  --secondary-foreground: 38 18% 84%;
+  --muted: 28 14% 15%;
+  --muted-foreground: 32 12% 64%;
+  --accent: 30 16% 19%;
+  --accent-foreground: 38 30% 94%;
+  --destructive: 0 65% 50%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 30 14% 22%;
+  --input: 30 14% 22%;
+  --ring: 38 62% 62%;
+  --rubric: 25 70% 62%;
+
+  /* Legacy aliases */
+  --bg: #1A1510;
+  --fg: #F4EEE4;
+  --muted-fg: #C4B8A8;
+  --card-bg: #262019;
+  --card-border: #3D342C;
+  --primary-light: #D4A843;
+
+  /* UNIFIED SEMANTIC TOKENS — Dark (nogueira) */
+  --surface-base: #1A1510;
+  --surface-raised: #262019;
+  --surface-overlay: rgba(38, 32, 25, 0.92);
+  --surface-sunken: #120E0A;
+  --surface-inverted: #F4EEE4;
+
+  --content-primary: #F3EDE3;
+  --content-secondary: #C4B8A8;
+  --content-muted: #8A7E70;
+  --content-inverse: #1C1610;
+  --content-link: #D4A843;
+
+  --brand-default: #D4A843;
+  --brand-hover: #E0B558;
+  --brand-emphasis: #E8C56B;
+  --brand-subtle: rgba(212, 168, 67, 0.14);
+  --brand-contrast: #1C1610;
+
+  --accent-warm: #E07A30;
+  --accent-cool: #3B5BA5;
+  --accent-success: #22C55E;
+  --accent-danger: #EF4444;
+  --accent-warning: #EAB308;
+  --accent-info: #38BDF8;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 24px rgba(212, 168, 67, 0.25);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --gradient-hero: linear-gradient(135deg, #D4A843 0%, #E0B558 50%, #E07A30 100%);
+  --gradient-divine: linear-gradient(135deg, #D4A843 0%, #E07A30 100%);
+  --gradient-warm: linear-gradient(135deg, #E07A30 0%, #F59E0B 100%);
+  --gradient-sunset: linear-gradient(180deg, #1C1610 0%, #241C14 50%, #2A1C12 100%);
+}
+
+.dim {
+  /* Dim theme — between light and dark (GitHub-style) */
+  --background: 30 8% 14%;
+  --foreground: 35 18% 82%;
+  --card: 28 10% 18%;
+  --card-foreground: 35 18% 82%;
+  --popover: 28 10% 18%;
+  --popover-foreground: 35 18% 82%;
+  --primary: 38 55% 58%;
+  --primary-foreground: 20 12% 6%;
+  --secondary: 28 8% 22%;
+  --secondary-foreground: 35 12% 72%;
+  --muted: 28 8% 22%;
+  --muted-foreground: 30 6% 50%;
+  --accent: 28 10% 26%;
+  --accent-foreground: 35 18% 82%;
+  --destructive: 0 62% 48%;
+  --destructive-foreground: 0 0% 96%;
+  --border: 28 8% 24%;
+  --input: 28 8% 24%;
+  --ring: 38 55% 58%;
+  --rubric: 25 70% 62%;
+
+  /* Legacy aliases */
+  --bg: #1E1C1A;
+  --fg: #D4CCC0;
+  --muted-fg: #8A8078;
+  --card-bg: #252320;
+  --card-border: #333028;
+  --primary-light: #C8A050;
+
+  /* UNIFIED SEMANTIC TOKENS — Dim */
+  --surface-base: #1E1C1A;
+  --surface-raised: #252320;
+  --surface-overlay: rgba(37, 35, 32, 0.96);
+  --surface-sunken: #161412;
+  --surface-inverted: #D4CCC0;
+
+  --content-primary: #D4CCC0;
+  --content-secondary: #A09888;
+  --content-muted: #6A6258;
+  --content-inverse: #1E1C1A;
+  --content-link: #C8A050;
+
+  --brand-default: #C8A050;
+  --brand-hover: #D4B068;
+  --brand-emphasis: #E0C080;
+  --brand-subtle: rgba(200, 160, 80, 0.14);
+  --brand-contrast: #1E1C1A;
+
+  --accent-warm: #D06830;
+  --accent-cool: #4A6AA5;
+  --accent-success: #30A050;
+  --accent-danger: #D04040;
+  --accent-warning: #D0A020;
+  --accent-info: #3090C0;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 24px rgba(200, 160, 80, 0.22);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --gradient-hero: linear-gradient(135deg, #C8A050 0%, #D4B068 50%, #D06830 100%);
+  --gradient-divine: linear-gradient(135deg, #C8A050 0%, #D06830 100%);
+  --gradient-warm: linear-gradient(135deg, #D06830 0%, #E08040 100%);
+  --gradient-sunset: linear-gradient(180deg, #1E1C1A 0%, #252018 50%, #302018 100%);
+}
+
+.sepia {
+  /* Premium Sepia — parchment feel for reading (leitura) */
+  --background: 38 32% 85%;
+  --foreground: 25 38% 15%;
+  --card: 40 40% 87%;
+  --card-foreground: 25 38% 15%;
+  --popover: 40 40% 87%;
+  --popover-foreground: 25 38% 15%;
+  --primary: 33 62% 26%;
+  --primary-foreground: 40 40% 87%;
+  --secondary: 38 22% 80%;
+  --secondary-foreground: 25 32% 20%;
+  --muted: 38 22% 80%;
+  --muted-foreground: 25 18% 36%;
+  --accent: 38 22% 76%;
+  --accent-foreground: 25 32% 20%;
+  --destructive: 0 62% 36%;
+  --destructive-foreground: 40 40% 87%;
+  --border: 30 20% 73%;
+  --input: 30 20% 73%;
+  --ring: 33 62% 26%;
+  --rubric: 355 58% 36%;
+
+  /* Legacy aliases */
+  --bg: #E8DFC8;
+  --fg: #382A18;
+  --muted-fg: #685840;
+  --card-bg: #F0E6CE;
+  --card-border: #D0C4A0;
+  --primary-light: #785018;
+
+  /* UNIFIED SEMANTIC TOKENS — Sepia (parchment) */
+  --surface-base: #E8DFC8;
+  --surface-raised: #F0E6CE;
+  --surface-overlay: rgba(240, 230, 206, 0.96);
+  --surface-sunken: #DCD2B4;
+  --surface-inverted: #382A18;
+
+  --content-primary: #382A18;
+  --content-secondary: #685840;
+  --content-muted: #988A6C;
+  --content-inverse: #E8DFC8;
+  --content-link: #785018;
+
+  --brand-default: #785018;
+  --brand-hover: #684412;
+  --brand-emphasis: #986820;
+  --brand-subtle: rgba(120, 80, 24, 0.14);
+  --brand-contrast: #F0E6CE;
+
+  --accent-warm: #983820;
+  --accent-cool: #2A3C6C;
+  --accent-success: #2C6838;
+  --accent-danger: #982A2A;
+  --accent-warning: #B08008;
+  --accent-info: #1C6888;
+
+  --shadow-sm: 0 1px 2px rgba(56, 42, 24, 0.08), 0 1px 3px rgba(56, 42, 24, 0.05);
+  --shadow-md: 0 4px 12px rgba(56, 42, 24, 0.10), 0 2px 4px rgba(56, 42, 24, 0.05);
+  --shadow-lg: 0 12px 32px rgba(56, 42, 24, 0.15), 0 4px 12px rgba(56, 42, 24, 0.08);
+  --shadow-glow: 0 0 24px rgba(152, 56, 32, 0.22);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --gradient-hero: linear-gradient(135deg, #785018 0%, #983820 50%, #B08008 100%);
+  --gradient-divine: linear-gradient(135deg, #785018 0%, #983820 100%);
+  --gradient-warm: linear-gradient(135deg, #983820 0%, #B08008 100%);
+  --gradient-sunset: linear-gradient(180deg, #E8DFC8 0%, #DCD0A8 50%, #C0A860 100%);
+}
+
+.noturno {
+  /* Noturno — nogueira profunda, nunca OLED preto-cinza */
+  --background: 28 20% 7%;
+  --foreground: 38 24% 90%;
+  --card: 28 18% 12%;
+  --card-foreground: 38 24% 90%;
+  --popover: 28 18% 12%;
+  --popover-foreground: 38 24% 90%;
+  --primary: 38 52% 58%;
+  --primary-foreground: 28 20% 7%;
+  --secondary: 28 14% 15%;
+  --secondary-foreground: 38 16% 78%;
+  --muted: 28 12% 14%;
+  --muted-foreground: 32 10% 58%;
+  --accent: 30 16% 16%;
+  --accent-foreground: 38 24% 90%;
+  --destructive: 0 55% 46%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 30 14% 20%;
+  --input: 30 14% 20%;
+  --ring: 38 52% 58%;
+  --rubric: 25 62% 58%;
+
+  /* Legacy aliases */
+  --bg: #16110C;
+  --fg: #EDE6DC;
+  --muted-fg: #A89884;
+  --card-bg: #221C16;
+  --card-border: #3A3228;
+  --primary-light: #C8A668;
+
+  /* UNIFIED SEMANTIC TOKENS — Noturno (nogueira profunda) */
+  --surface-base: #16110C;
+  --surface-raised: #221C16;
+  --surface-overlay: rgba(34, 28, 22, 0.97);
+  --surface-sunken: #120E0A;
+  --surface-inverted: #EDE6DC;
+
+  --content-primary: #EDE6DC;
+  --content-secondary: #C4B8A8;
+  --content-muted: #8A7A68;
+  --content-inverse: #16110C;
+  --content-link: #C8A668;
+
+  --brand-default: #C8A668;
+  --brand-hover: #D4B47A;
+  --brand-emphasis: #DCC089;
+  --brand-subtle: rgba(200, 166, 104, 0.14);
+  --brand-contrast: #16110C;
+
+  --accent-warm: #A06030;
+  --accent-cool: #3A4A7A;
+  --accent-success: #3A7A4A;
+  --accent-danger: #8A3030;
+  --accent-warning: #A08020;
+  --accent-info: #3A6A8A;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(200, 166, 104, 0.18);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --gradient-hero: linear-gradient(135deg, #C8A668 0%, #D4B47A 50%, #A06030 100%);
+  --gradient-divine: linear-gradient(135deg, #C8A668 0%, #A06030 100%);
+  --gradient-warm: linear-gradient(135deg, #A06030 0%, #B87038 100%);
+  --gradient-sunset: linear-gradient(180deg, #000000 0%, #0A0805 50%, #1A0F08 100%);
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground antialiased overflow-x-hidden;
+}
+
+/* Prefers-color-scheme — System fallbacks */
+@media (prefers-color-scheme: dark) {
+html:not(.dark):not(.sepia):not(.noturno) {
+  color-scheme: dark;
+}
+}
+
+@media (prefers-color-scheme: light) {
+html:not(.dark):not(.sepia):not(.noturno) {
+  color-scheme: light;
+}
+}
+
+/* ═════════════════════════════════════════════════════════════
+ ATELIER — identidade editorial em todas as paginas
+ ═════════════════════════════════════════════════════════════ */
+
+html {
+background-color: hsl(var(--background));
+}
+
+body {
+font-family: var(--font-inter), system-ui, sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+isolation: isolate;
+background-color: hsl(var(--background));
+color: hsl(var(--foreground));
+}
+
+/* Atmosfera tras do conteudo — nunca cobre a interface */
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+z-index: -1;
+pointer-events: none;
+background:
+  radial-gradient(ellipse 90% 50% at 50% -8%, hsl(var(--primary) / 0.10), transparent 58%),
+  radial-gradient(ellipse 50% 35% at 100% 100%, hsl(var(--primary) / 0.05), transparent 50%);
+}
+
+.dark body::before,
+.dim body::before,
+.noturno body::before {
+background:
+  radial-gradient(ellipse 80% 45% at 50% -6%, hsl(var(--primary) / 0.12), transparent 55%),
+  radial-gradient(ellipse 45% 30% at 0% 100%, hsl(var(--primary) / 0.06), transparent 48%);
+}
+
+main#main-content {
+background-color: transparent;
+position: relative;
+z-index: 1;
+}
+
+/* Neutraliza cinzas genericos que viravam blocos pretos no tema escuro */
+.dark .bg-gray-900,
+.dark .bg-gray-950,
+.dark .bg-zinc-900,
+.dark .bg-zinc-950,
+.dark .bg-neutral-900,
+.dark .bg-neutral-950,
+.dark .bg-slate-900,
+.dark .bg-slate-950 {
+background-color: hsl(var(--card)) !important;
+}
+
+.dark .bg-gray-800,
+.dark .bg-zinc-800,
+.dark .bg-neutral-800,
+.dark .bg-slate-800 {
+background-color: hsl(var(--muted)) !important;
+}
+
+/* Cabecalhos de pagina: tipografia de livro */
+h1 {
+font-family: var(--font-cormorant), Georgia, serif;
+letter-spacing: -0.02em;
+}
+
+/* Aurora/particulas da home: desliga o efeito de TV */
+.hero-aurora::before,
+.hero-particles::before,
+.hero-particles::after {
+animation: none !important;
+opacity: 0 !important;
+}
+
+/* Superficies elevadas usadas em qualquer pagina */
+.ssb-panel {
+background: hsl(var(--card));
+border: 1px solid hsl(var(--border));
+border-radius: var(--radius-lg);
+box-shadow: var(--shadow-sm);
+transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ssb-panel:hover {
+border-color: hsl(var(--primary) / 0.28);
+}
+
+@media (max-width: 767px) {
+.ssb-panel {
+  border-radius: var(--radius-md);
+}
+}
+
+.ssb-hairline {
+height: 1px;
+background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.35), transparent);
+}
+
+header.ssb-header {
+background: hsl(var(--background) / 0.78);
+backdrop-filter: blur(20px) saturate(1.2);
+-webkit-backdrop-filter: blur(20px) saturate(1.2);
+}
+
+.bible-layout {
+background: hsl(var(--background));
+}
+
+/* Sepia — sem textura fractal (parecia interferencia) */
+.sepia .sola-card,
+.sepia .glass-card {
+background-color: hsl(var(--card));
+}

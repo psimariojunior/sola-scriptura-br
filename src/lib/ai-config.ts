@@ -37,9 +37,9 @@ export interface AIConfigShape {
 
 export const AI_CONFIG: AIConfigShape = {
   ollama: {
-    baseUrl: process.env.OLLAMA_BASE_URL || 'http://137.131.184.53:11434',
+    baseUrl: process.env.OLLAMA_BASE_URL || '',
     model: process.env.OLLAMA_MODEL || 'llama3.1:8b',
-    enabled: process.env.OLLAMA_ENABLED !== 'false',
+    enabled: process.env.OLLAMA_ENABLED !== 'false' && !!process.env.OLLAMA_BASE_URL,
     timeout: 30_000,
   },
   groq: {

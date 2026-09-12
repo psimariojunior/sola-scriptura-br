@@ -1,0 +1,185 @@
+/* ═══════════════════════════════════════════════════════════
+   UTILITIES — Helper/utility classes
+   ═══════════════════════════════════════════════════════════ */
+
+/* === Screen Reader Only === */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* === Scrollbar Hide === */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* === Smooth Scroll (respeitando reduced motion) === */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* === Safe area insets === */
+@supports (padding: env(safe-area-inset-top)) {
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pl-safe { padding-left: env(safe-area-inset-left); }
+  .pr-safe { padding-right: env(safe-area-inset-right); }
+
+  .mt-safe { margin-top: env(safe-area-inset-top); }
+  .mb-safe { margin-bottom: env(safe-area-inset-bottom); }
+
+  .h-safe-top { height: env(safe-area-inset-top); }
+  .h-safe-bottom { height: env(safe-area-inset-bottom); }
+
+  .safe-all {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Safe area helpers (notch + home indicator) */
+.pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 1rem); }
+.pt-safe { padding-top: max(env(safe-area-inset-top), 1rem); }
+.pl-safe { padding-left: max(env(safe-area-inset-left), 1rem); }
+.pr-safe { padding-right: max(env(safe-area-inset-right), 1rem); }
+
+/* === Mobile nav height === */
+:root {
+  --mobile-nav-height: 60px;
+  --mobile-bottom-offset: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 0px) + 16px);
+}
+
+.pb-mobile-nav {
+  padding-bottom: var(--mobile-bottom-offset);
+}
+
+@media (max-width: 767px) {
+  main {
+    padding-bottom: max(var(--mobile-bottom-offset), 1rem);
+  }
+  main[class*="pb-16"],
+  main[class*="pb-20"],
+  main[class*="pb-24"],
+  main[class*="pb-32"] {
+    padding-bottom: var(--mobile-bottom-offset) !important;
+  }
+}
+
+/* === Native app (Flutter WebView) === */
+html.ssb-native-app {
+  --mobile-nav-height: 0px;
+}
+html.ssb-native-app .ssb-bottom-nav { display: none !important; }
+html.ssb-native-app .ssb-header { display: none !important; }
+html.ssb-native-app footer[role="contentinfo"] { display: none !important; }
+html.ssb-native-app main.pt-16,
+html.ssb-native-app main.pt-20 { padding-top: 0.75rem !important; }
+html.ssb-native-app .bible-layout { min-height: 100dvh; }
+html.ssb-native-app .ssb-fab-donate { display: none !important; }
+
+/* === Touch target === */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Remove tap highlight === */
+button, a, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch animation */
+@media (hover: none) and (pointer: coarse) {
+  button:active:not(:disabled),
+  a:active,
+  [role="button"]:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* === Responsive reading typography === */
+@media (max-width: 640px) {
+  .reading-mode p,
+  .reading-mode [role="verse"],
+  .reading-mode .verse-text {
+    font-size: 22px !important;
+    line-height: 2.0 !important;
+  }
+}
+
+/* === Print styles === */
+@media print {
+  header, footer, nav, aside, .no-print { display: none !important; }
+  main { padding: 0 !important; }
+  .sola-card { box-shadow: none !important; border: 1px solid #ccc !important; }
+}
+
+@media print {
+  .no-print, header, nav, .glass-card { display: none !important; }
+  body { background: white; color: black; }
+  a[href]::after { content: " (" attr(href) ")"; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACCESSIBILITY CLASSES (set by AccessibilityPanel)
+   ═══════════════════════════════════════════════════════════ */
+
+.font-dyslexia,
+.font-dyslexia * {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', cursive !important;
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+}
+
+.reduce-motion,
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.sr-mode body {
+  font-size: 18px;
+  line-height: 2;
+}
+
+.sr-mode .verse-number::before {
+  content: 'Verse ' attr(data-verse-number) ' ';
+}
+
+.sr-mode [aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Bible reading uses these CSS custom properties from AccessibilityPanel */
+.bible-verse-text {
+  font-size: var(--bible-font-size, 20px);
+  line-height: var(--bible-line-height, 1.85);
+  letter-spacing: var(--bible-letter-spacing, 0.01em);
+}
+
+/* Karaoke word - reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .karaoke-word { transition: none; }
+  .karaoke-word.is-upcoming { opacity: 1; }
+}

@@ -604,8 +604,23 @@
       "submitting": "Entrando...",
       "noAccount": "Não tem conta?",
       "signUp": "Cadastre-se",
+      "forgotPassword": "Esqueceu a senha?",
       "fillAllFields": "Preencha todos os campos",
       "loginError": "Erro ao fazer login. Verifique suas credenciais."
+    },
+    "recuperarSenha": {
+      "title": "Recuperar senha",
+      "description": "Digite seu email para receber um link de recuperação",
+      "enterEmail": "Digite seu email",
+      "resetPassword": "Recuperar senha",
+      "submit": "Enviar link de recuperação",
+      "submitting": "Enviando...",
+      "resetEmailSent": "Email de recuperação enviado",
+      "resetEmailSentDesc": "Se o email estiver cadastrado, você receberá um link para redefinir sua senha. Verifique sua caixa de entrada e a pasta de spam.",
+      "backToLogin": "Voltar para o login",
+      "rememberPassword": "Lembrou a senha?",
+      "invalidEmail": "Email inválido",
+      "errorSending": "Erro ao enviar email de recuperação."
     },
     "register": {
       "title": "Criar Conta",
@@ -1426,5 +1441,22 @@
     "deselectAll": "Desmarcar todos",
     "copy": "Copiar",
     "copied": "Copiado!"
+  },
+  "emptyState": {
+    "favoritesTitle": "Nenhum favorito ainda",
+    "favoritesDescription": "Toque no coração de um versículo para salvá-lo aqui.",
+    "notesTitle": "Suas anotações",
+    "notesDescription": "Salve insights e reflexões enquanto estuda.",
+    "studiesTitle": "Comece a estudar",
+    "studiesDescription": "Escolha um livro ou tema para iniciar seus estudos.",
+    "searchTitle": "Pesquise na Bíblia",
+    "searchDescription": "Busque por palavras, versículos ou temas.",
+    "collectionsTitle": "Crie coleções",
+    "collectionsDescription": "Organize versículos por tema ou estudo.",
+    "quizTitle": "Teste seus conhecimentos",
+    "quizDescription": "Desafie-se com perguntas sobre a Bíblia.",
+    "genericTitle": "Nada por aqui",
+    "genericDescription": "Explore a Bíblia e comece sua jornada.",
+    "getStarted": "Começar"
   }
 }

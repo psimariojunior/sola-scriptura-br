@@ -148,7 +148,13 @@ export const RATE_LIMITS = {
   AUDIO_EDGE: { max: 60, windowMs: 60_000 },
   AUTH_LOGIN: { max: 5, windowMs: 15 * 60_000 },
   AUTH_CADASTRAR: { max: 3, windowMs: 60 * 60_000 },
+  AUTH_RECUPERAR_SENHA: { max: 3, windowMs: 60 * 60_000 },
   AUTH_REFRESH: { max: 20, windowMs: 15 * 60_000 },
+  SYNC: { max: 30, windowMs: 60_000 },
+  ANALYTICS: { max: 60, windowMs: 60_000 },
+  ANALYTICS_BATCH: { max: 10, windowMs: 60_000 },
+  NOTIFICATIONS: { max: 30, windowMs: 60_000 },
+  NOTIFICATIONS_REGISTER: { max: 30, windowMs: 60_000 },
 } satisfies Record<string, RateLimitOptions>;
 
 export function buildRateLimitHeaders(result: RateLimitResult, limite: number): HeadersInit {

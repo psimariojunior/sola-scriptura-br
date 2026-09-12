@@ -130,6 +130,12 @@ function LoginForm() {
               </div>
             </div>
 
+            <div className="flex items-center justify-end">
+              <Link href="/auth/recuperar-senha" className="text-xs text-primary hover:underline font-medium">
+                Esqueceu a senha?
+              </Link>
+            </div>
+
             <button
               type="submit"
               disabled={carregando}

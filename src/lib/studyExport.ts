@@ -1,4 +1,11 @@
-import jsPDF from 'jspdf';
+let jsPDFModule: typeof import('jspdf') | null = null;
+
+async function getJsPDF() {
+  if (!jsPDFModule) {
+    jsPDFModule = await import('jspdf');
+  }
+  return jsPDFModule.default;
+}
 import type { PalavraStrong } from '@/data/biblia/strong';
 import type { CrossReference } from '@/data/biblia/crossReferences';
 
@@ -33,7 +40,8 @@ function formatReference(ref: string): string {
 
 export async function exportStudyPDF(study: StudyData): Promise<void> {
   const cores = TEMAS.light;
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const JsPDF = await getJsPDF();
+  const doc = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const pw = doc.internal.pageSize.getWidth();
   const ph = doc.internal.pageSize.getHeight();
   const margem = 20;

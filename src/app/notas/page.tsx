@@ -32,6 +32,18 @@ function NotasPageInner() {
   const [view, setView] = useState<View>('list');
   const [editingNota, setEditingNota] = useState<Nota | undefined>(undefined);
   const notaQueryAberta = useRef(false);
+  const hasUnsavedChanges = useRef(false);
+
+  useEffect(() => {
+    if (view !== 'editor') return;
+    const handler = (e: BeforeUnloadEvent) => {
+      if (hasUnsavedChanges.current) {
+        e.preventDefault();
+      }
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [view]);
 
   const carregarNotas = useCallback(async () => {
     try {
@@ -70,6 +82,7 @@ function NotasPageInner() {
 
   const salvarNota = useCallback((nota: Nota) => {
     setNotas((prev) => aplicarSalvarNotaRich(nota, prev));
+    hasUnsavedChanges.current = false;
     triggerSync();
     setView('list');
     setEditingNota(undefined);
@@ -77,6 +90,7 @@ function NotasPageInner() {
 
   const excluirNota = useCallback((id: string) => {
     setNotas((prev) => aplicarExcluirNotaRich(id, prev));
+    hasUnsavedChanges.current = false;
     triggerSync();
   }, [triggerSync]);
 
@@ -99,7 +113,7 @@ function NotasPageInner() {
   if (view === 'editor') {
     return (
       <PageShell maxWidth="4xl">
-            <button onClick={() => { setView('list'); setEditingNota(undefined); }}
+            <button onClick={() => { setView('list'); setEditingNota(undefined); hasUnsavedChanges.current = false; }}
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4">
               <ArrowLeft className="w-4 h-4" /> {t('notas.backToNotes')}
             </button>
@@ -117,6 +131,7 @@ function NotasPageInner() {
                 onSalvar={salvarNota}
                 onExcluir={excluirNota}
                 autoSalvar={false}
+                onChange={() => { hasUnsavedChanges.current = true; }}
               />
             </div>
       </PageShell>

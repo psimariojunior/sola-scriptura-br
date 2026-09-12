@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserFromRequest } from '@/lib/session';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export const runtime = 'nodejs';
 
@@ -24,6 +25,9 @@ const TABLE_MAP: Record<string, string> = {
 };
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'SYNC');
+  if (blocked) return blocked;
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -124,6 +128,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'SYNC');
+  if (blocked) return blocked;
+
   const session = await getUserFromRequest(request);
   if (!session) {
     return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });

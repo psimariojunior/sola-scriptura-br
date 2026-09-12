@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, X, Sparkles } from 'lucide-react';
 
@@ -100,6 +101,7 @@ function getTooltipPosition(
 }
 
 export function OnboardingTour() {
+  const router = useRouter();
   const [active, setActive] = useState(false);
   const [step, setStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
@@ -159,7 +161,7 @@ export function OnboardingTour() {
     }
     const href = TOUR_STEPS[step]?.ctaHref;
     dismiss();
-    if (href) window.location.assign(href);
+    if (href) router.push(href);
   };
 
   useEffect(() => {
@@ -176,7 +178,7 @@ export function OnboardingTour() {
         } else {
           const href = TOUR_STEPS[stepRef.current]?.ctaHref;
           dismiss();
-          if (href) window.location.assign(href);
+          if (href) router.push(href);
         }
       }
     };

@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { getFavoritesOffline, saveFavoritesOffline } from '@/lib/offlineStorage';
 import { PullToRefreshWrapper } from '@/components/PullToRefresh';
+import Link from 'next/link';
 
 interface Favorito {
   id: string;
@@ -72,6 +73,7 @@ export default function FavoritosPage() {
   }, []);
 
   const remover = useCallback((id: string) => {
+    if (!window.confirm('Tem certeza que deseja remover este versículo dos favoritos?')) return;
     setFavoritos(prev => {
       const updated = prev.filter(f => f.id !== id);
       localStorage.setItem('ssb_favoritos', JSON.stringify(updated));
@@ -96,6 +98,12 @@ export default function FavoritosPage() {
     const livros = new Set(favoritos.map(f => f.livro));
     return TODOS_LIVROS.filter(l => livros.has(l.nome));
   }, [favoritos]);
+
+  const getBibliaHref = useCallback((fav: Favorito) => {
+    const livro = TODOS_LIVROS.find(l => l.nome === fav.livro);
+    if (!livro) return `/biblia`;
+    return `/biblia?trad=ARA&livro=${livro.abreviacao}&cap=${fav.capitulo}&verso=${fav.verso}`;
+  }, []);
 
   const filtrados = useMemo(() => {
     let result = favoritos;
@@ -194,12 +202,16 @@ export default function FavoritosPage() {
                       className="relative rounded-xl border border-border/50 bg-card/50 p-4 group hover:border-primary/30 transition-all">
                       <div className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-xl" style={{ backgroundColor: fav.cor }} />
                       <div className="pl-3">
-                        <p className="text-sm text-foreground/90 leading-relaxed mb-2">{fav.texto}</p>
+                        <Link href={getBibliaHref(fav)} className="block mb-2 hover:text-primary transition-colors">
+                          <p className="text-sm text-foreground/90 leading-relaxed">{fav.texto}</p>
+                        </Link>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-primary/80">{fav.versiculo}</span>
+                          <Link href={getBibliaHref(fav)} className="text-sm font-medium text-primary/80 hover:text-primary transition-colors">
+                            {fav.versiculo}
+                          </Link>
                           <div className="flex items-center gap-2">
                             <span className="text-[10px] text-muted-foreground">{new Date(fav.data).toLocaleDateString('pt-BR')}</span>
-                            <button onClick={() => remover(fav.id)}
+                            <button onClick={(e) => { e.preventDefault(); remover(fav.id); }}
                               className="sm:opacity-0 sm:group-hover:opacity-100 opacity-100 p-1.5 rounded-lg hover:bg-red-500/10 text-red-500 transition-all">
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
@@ -62,6 +63,7 @@ function PanelFallback() {
 
 export default function BibliaPage() {
   const { t } = useTranslation();
+  const router = useRouter();
   useEffect(() => {
     const trads = ['arc', 'nvi', 'ara', 'acf', 'kjv', 'web'];
     const ric = typeof requestIdleCallback !== 'undefined' ? requestIdleCallback : (cb: () => void) => setTimeout(cb, 0);
@@ -261,7 +263,7 @@ export default function BibliaPage() {
       // Ctrl+D — Verse of the day (navigate to home)
       if (mod && key === 'd') {
         e.preventDefault();
-        window.location.href = '/';
+        router.push('/');
         return;
       }
 
@@ -386,10 +388,10 @@ export default function BibliaPage() {
           </div>
           {nav.data.map((item) => (<div key={item.traducao}>
             {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/30"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span></div>)}
-            <div className="space-y-4">{item.versiculos.map((v) => (<p key={v.numero} role="button" tabIndex={0} className="verse-stagger font-serif-body text-[var(--content-primary)] leading-[2] cursor-pointer hover:bg-[var(--surface-sunken)]/40 rounded-lg px-3 py-2 -mx-3 transition-colors" style={{ fontSize: `${ui.fontSize + 2}px`, animationDelay: `${v.numero * 20}ms` }}
+            <div className="space-y-4">{item.versiculos.map((v) => (<div key={v.numero} role="button" tabIndex={0} className="verse-stagger font-serif-body text-[var(--content-primary)] leading-[2] cursor-pointer hover:bg-[var(--surface-sunken)]/40 rounded-lg px-3 py-2 -mx-3 transition-colors" style={{ fontSize: `${ui.fontSize + 2}px`, animationDelay: `${v.numero * 20}ms` }}
               onClick={() => { ui.setZenMode(false); verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); }}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ui.setZenMode(false); verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); } }}>
-              <sup className="text-[var(--brand-default)] font-bold text-[11px] mr-1.5 select-none tabular-nums">{v.numero}</sup>{v.texto}</p>))}</div>
+              <sup className="text-[var(--brand-default)] font-bold text-[11px] mr-1.5 select-none tabular-nums">{v.numero}</sup>{v.texto}</div>))}</div>
           </div>))}
           <div className="flex items-center justify-center gap-4 mt-16 pt-8 border-t border-[var(--border)]/30">
             <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} aria-label={t('biblia.previousChapter')} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"><ChevronLeft className="w-4 h-4" />{t('biblia.previousChapter')}</button>

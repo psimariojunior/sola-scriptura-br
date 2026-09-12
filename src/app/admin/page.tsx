@@ -594,7 +594,7 @@ function UsuariosTab({ apiFetch, addToast }: { apiFetch: <T,>(e: string, o?: Req
       <div>
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="font-display text-3xl font-semibold">Usuários</h1>
+            <h2 className="font-display text-3xl font-semibold">Usuários</h2>
             <p className="text-muted-foreground mt-1">Gestão de usuários da plataforma</p>
           </div>
           <button
@@ -928,7 +928,7 @@ function ConfigTab({ apiFetch }: { apiFetch: <T,>(e: string, o?: RequestInit) =>
     <ScrollReveal>
       <div>
         <div className="mb-8">
-          <h1 className="font-display text-3xl font-semibold">Configurações</h1>
+          <h2 className="font-display text-3xl font-semibold">Configurações</h2>
           <p className="text-muted-foreground mt-1">Configurações do sistema</p>
         </div>
 

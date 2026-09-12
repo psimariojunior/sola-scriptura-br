@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useRouter } from 'next/navigation';
 import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2, Users, Compass } from 'lucide-react';
 import { hrefGuia } from '@/lib/bibliaHref';
 import { cn } from '@/lib/utils';
@@ -46,6 +47,7 @@ export function ToolsDropdown({
   open, onToggle, onClose, bookName, chapter, hasDramatica, onNotas, onExportPdf, onPlanoLeitura,
   onNarracaoDramatica, onNarrarCapitulo, onConfiguracoes,
 }: ToolsDropdownProps) {
+  const router = useRouter();
   const btnRef = useRef<HTMLButtonElement>(null);
   const [pos, setPos] = useState({ top: 0, right: 12 });
 
@@ -72,14 +74,14 @@ export function ToolsDropdown({
         style={{ top: pos.top, right: pos.right }}
       >
         <ToolItem icon={FileText} label="Notas" onClick={onNotas} />
-        <ToolItem icon={BookMarked} label="Marcações" onClick={() => { window.location.href = '/marcacoes'; }} />
+        <ToolItem icon={BookMarked} label="Marcações" onClick={() => { router.push('/marcacoes'); }} />
         <ToolItem icon={Download} label="Exportar PDF" onClick={onExportPdf} />
         <ToolItem icon={BookMarked} label="Plano de Leitura" onClick={onPlanoLeitura} />
         {hasDramatica && <ToolItem icon={Play} label="Narração Dramática" onClick={onNarracaoDramatica} />}
         <ToolItem icon={Volume2} label="Narrar Capítulo" onClick={onNarrarCapitulo} />
         <div className="my-1 h-px bg-[var(--border)]/40" />
-        <ToolItem icon={Users} label="Estudo Colaborativo" onClick={() => { window.location.href = '/estudo-colaborativo'; }} />
-        <ToolItem icon={Compass} label="Guia da passagem" onClick={() => { window.location.href = hrefGuia(bookName, chapter); }} />
+        <ToolItem icon={Users} label="Estudo Colaborativo" onClick={() => { router.push('/estudo-colaborativo'); }} />
+        <ToolItem icon={Compass} label="Guia da passagem" onClick={() => { router.push(hrefGuia(bookName, chapter)); }} />
         <ToolItem icon={Settings} label="Configurações" onClick={onConfiguracoes} />
       </div>
     </>,
